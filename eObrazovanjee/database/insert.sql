@@ -1,0 +1,1 @@
+insert into deoIspita (naziv, brojOsvojenihBodova, minBodova,polozio) values ('matematika', 66, 8, false);
