@@ -8,11 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ftn.eObrazovanjee.model.IspitniRok;
 import com.ftn.eObrazovanjee.repository.IspitniRokRepository;
-import com.ftn.eObrazovanjee.service.IspitniRokService;
+
 
 @Service
 @Transactional
-public class IspitniRokServiceImpl implements IspitniRokService{
+public class IspitniRokService {
 
 	@Autowired
 	IspitniRokRepository repository;
@@ -21,19 +21,18 @@ public class IspitniRokServiceImpl implements IspitniRokService{
 		return repository.findById(id).orElse(null);
 	}
 	
-	@Override
 	public List<IspitniRok> findAll() {
 
 		return repository.findAll();
 	}
 	
-	@Override
+	
 	public void save(IspitniRok ispitniRok) {
 		repository.save(ispitniRok);
 		
 	}
 	
-	@Override
+	
 	public void remove(Long id){
 		repository.deleteById(id);
 	}
