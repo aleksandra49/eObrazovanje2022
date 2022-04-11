@@ -22,6 +22,8 @@ public class Predmet {
 	
 	@Column(name = "oznaka")
 	private String oznaka;
+	
+    
 
 	public Long getId() {
 		return id;
@@ -66,6 +68,8 @@ public class Predmet {
 		this.espb = espb;
 		this.oznaka = oznaka;
 	}
+
+
 	
 	
 }

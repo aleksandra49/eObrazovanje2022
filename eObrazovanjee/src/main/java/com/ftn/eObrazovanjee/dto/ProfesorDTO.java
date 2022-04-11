@@ -7,7 +7,6 @@ public class ProfesorDTO {
     private String ime;
     private String prezime;
     private String email;
-    private boolean obrisan;
     //private KorisnikDTO korisnik;
     
     
@@ -35,22 +34,16 @@ public class ProfesorDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public boolean isObrisan() {
-		return obrisan;
-	}
-	public void setObrisan(boolean obrisan) {
-		this.obrisan = obrisan;
-	}
+
 	public ProfesorDTO() {
 		super();
 	}
-	public ProfesorDTO(Long id, String ime, String prezime, String email, boolean obrisan) {
+	public ProfesorDTO(Long id, String ime, String prezime, String email) {
 		super();
 		this.id = id;
 		this.ime = ime;
 		this.prezime = prezime;
 		this.email = email;
-		this.obrisan = obrisan;
 	}
     
     

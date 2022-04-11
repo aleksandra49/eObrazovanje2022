@@ -6,6 +6,8 @@ public class PredmetDTO {
 	private String naziv;
 	private Integer espb;
 	private String oznaka;
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -35,14 +37,16 @@ public class PredmetDTO {
 	public PredmetDTO() {
 		super();
 	}
-	
 	public PredmetDTO(Long id, String naziv, Integer espb, String oznaka) {
 		super();
 		this.id = id;
 		this.naziv = naziv;
 		this.espb = espb;
 		this.oznaka = oznaka;
+
 	}
+	
+
 	
 	
 	

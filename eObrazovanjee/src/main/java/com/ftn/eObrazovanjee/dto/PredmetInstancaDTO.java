@@ -10,7 +10,6 @@ public class PredmetInstancaDTO {
 	private Long id;
 	private Date pocetak;
 	private Date kraj;
-	private boolean obrisan;
 	private Predmet predmet;
 	private List<PredavanjePredmetaDTO> predavanjePredmetaDTO;
 	private List<PohadjanjePredmetaDTO> pohadjanjePredmetaDTO;
@@ -32,12 +31,7 @@ public class PredmetInstancaDTO {
 	public void setKraj(Date kraj) {
 		this.kraj = kraj;
 	}
-	public boolean isObrisan() {
-		return obrisan;
-	}
-	public void setObrisan(boolean obrisan) {
-		this.obrisan = obrisan;
-	}
+
 	public Predmet getPredmet() {
 		return predmet;
 	}
@@ -61,13 +55,12 @@ public class PredmetInstancaDTO {
 		super();
 	}
 	
-	public PredmetInstancaDTO(Long id, Date pocetak, Date kraj, boolean obrisan, Predmet predmet,
+	public PredmetInstancaDTO(Long id, Date pocetak, Date kraj, Predmet predmet,
 			List<PredavanjePredmetaDTO> predavanjePredmetaDTO, List<PohadjanjePredmetaDTO> pohadjanjePredmetaDTO) {
 		super();
 		this.id = id;
 		this.pocetak = pocetak;
 		this.kraj = kraj;
-		this.obrisan = obrisan;
 		this.predmet = predmet;
 		this.predavanjePredmetaDTO = predavanjePredmetaDTO;
 		this.pohadjanjePredmetaDTO = pohadjanjePredmetaDTO;
