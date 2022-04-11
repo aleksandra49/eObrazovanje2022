@@ -3,13 +3,13 @@ package com.ftn.eObrazovanjee.dto;
 import com.ftn.eObrazovanjee.model.Ispit;
 import com.ftn.eObrazovanjee.model.Student;
 
-public class PolaganjePredmetaDTO {
+public class PolaganjeIspitaDTO {
 
 	private Long id;
 	private IspitDTO ispit;
 	private StudentDTO student;
 	
-	public PolaganjePredmetaDTO(Long id, IspitDTO ispit, StudentDTO student) {
+	public PolaganjeIspitaDTO(Long id, IspitDTO ispit, StudentDTO student) {
 		super();
 		this.id = id;
 		this.ispit = ispit;
