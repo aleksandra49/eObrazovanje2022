@@ -29,6 +29,8 @@ public class Profesor {
     
     @Column(name = "obrisan")
     private boolean obrisan;
+    
+    
 
     /*   
     @OneToOne

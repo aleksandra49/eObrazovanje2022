@@ -4,8 +4,10 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -43,11 +45,11 @@ public class PredmetInstanca {
     private boolean obrisan;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "instanca")
+    @OneToMany(mappedBy = "instanca", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     private Set<PredavanjePredmeta> predavanja = new HashSet<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "instanca")
+    @OneToMany(mappedBy = "instanca", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     private Set<PohadjanjePredmeta> pohadjanja = new HashSet<>();
 
 	public Long getId() {

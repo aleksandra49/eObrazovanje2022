@@ -22,26 +22,36 @@ public class PredavanjePredmeta {
 
     @ManyToOne()
     @JoinColumn(name = "profesor_id", referencedColumnName = "id")
-    private Profesor nastavnik;
+    private Profesor profesor;
 
     @ManyToOne()
     @JoinColumn(name = "instanca_id", referencedColumnName = "id")
     private PredmetInstanca instanca;
+    
+	@Column(name = "tip_predavaca")
+	private TipPredavacaVezbi tipPredavaca;
 
     @Column(name = "obrisan")
     private boolean obrisan;
     
+    
+	public Profesor getProfesor() {
+		return profesor;
+	}
+	public void setProfesor(Profesor profesor) {
+		this.profesor = profesor;
+	}
+	public TipPredavacaVezbi getTipPredavaca() {
+		return tipPredavaca;
+	}
+	public void setTipPredavaca(TipPredavacaVezbi tipPredavaca) {
+		this.tipPredavaca = tipPredavaca;
+	}
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}
-	public Profesor getNastavnik() {
-		return nastavnik;
-	}
-	public void setNastavnik(Profesor nastavnik) {
-		this.nastavnik = nastavnik;
 	}
 	public boolean isObrisan() {
 		return obrisan;
@@ -49,25 +59,28 @@ public class PredavanjePredmeta {
 	public void setObrisan(boolean obrisan) {
 		this.obrisan = obrisan;
 	}
-	
-	
-	
+		
 	public PredmetInstanca getInstanca() {
 		return instanca;
 	}
 	public void setInstanca(PredmetInstanca instanca) {
 		this.instanca = instanca;
 	}
+	
 	public PredavanjePredmeta() {
 		super();
 	}
-	public PredavanjePredmeta(Long id, Profesor nastavnik, PredmetInstanca instanca, boolean obrisan) {
+	
+	public PredavanjePredmeta(Long id, Profesor profesor, PredmetInstanca instanca, TipPredavacaVezbi tipPredavaca,
+			boolean obrisan) {
 		super();
 		this.id = id;
-		this.nastavnik = nastavnik;
+		this.profesor = profesor;
 		this.instanca = instanca;
+		this.tipPredavaca = tipPredavaca;
 		this.obrisan = obrisan;
 	}
+	
 
 	
 	
