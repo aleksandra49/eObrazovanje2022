@@ -1,32 +1,32 @@
-package com.ftn.eObrazovanjee.service.impl;
+package com.ftn.eObrazovanjee.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ftn.eObrazovanjee.model.Korisnik;
-import com.ftn.eObrazovanjee.repository.KorisnikRepository;
+import com.ftn.eObrazovanjee.model.Ispit;
+import com.ftn.eObrazovanjee.repository.IspitRepository;
 
 
 @Service
-public class KorisnikService {
+public class IspitService {
 
 	@Autowired
-	KorisnikRepository repository;
+	IspitRepository repository;
 	
-	public Korisnik findOne(Long id) {
+	public Ispit findOne(Long id) {
 		return repository.findById(id).orElse(null);
 	}
 	
 	
-	public List<Korisnik> findAll() {
+	public List<Ispit> findAll() {
 
 		return repository.findAll();
 	}
 	
 	
-	public void save(Korisnik ispit) {
+	public void save(Ispit ispit) {
 		repository.save(ispit);
 		
 	}
