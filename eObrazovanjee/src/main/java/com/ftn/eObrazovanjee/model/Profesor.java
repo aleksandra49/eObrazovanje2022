@@ -27,8 +27,6 @@ public class Profesor {
     @Column(name = "email")
     private String email;
     
-    @Column(name = "obrisan")
-    private boolean obrisan;
     
     
 
@@ -42,13 +40,12 @@ public class Profesor {
 		super();
 	}
 
-	public Profesor(Long id, String ime, String prezime, String email, boolean obrisan) {
+	public Profesor(Long id, String ime, String prezime, String email) {
 		super();
 		this.id = id;
 		this.ime = ime;
 		this.prezime = prezime;
 		this.email = email;
-		this.obrisan = obrisan;
 	}
 
 	public Long getId() {
@@ -83,15 +80,7 @@ public class Profesor {
 		this.email = email;
 	}
 
-	public boolean isObrisan() {
-		return obrisan;
-	}
-
-	public void setObrisan(boolean obrisan) {
-		this.obrisan = obrisan;
-	}
   
-
     
     
 

@@ -41,8 +41,6 @@ public class PredmetInstanca {
     @JoinColumn(name = "predmet_id", referencedColumnName = "id")
     private Predmet predmet;
     
-    @Column(name = "obrisan")
-    private boolean obrisan;
     
     @JsonIgnore
     @OneToMany(mappedBy = "instanca", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
@@ -84,13 +82,6 @@ public class PredmetInstanca {
 		this.predmet = predmet;
 	}
 
-	public boolean isObrisan() {
-		return obrisan;
-	}
-
-	public void setObrisan(boolean obrisan) {
-		this.obrisan = obrisan;
-	}
 
 	public Set<PredavanjePredmeta> getPredavanja() {
 		return predavanja;
@@ -112,14 +103,13 @@ public class PredmetInstanca {
 		super();
 	}
 
-	public PredmetInstanca(Long id, Date pocetak, Date kraj, Predmet predmet, boolean obrisan,
+	public PredmetInstanca(Long id, Date pocetak, Date kraj, Predmet predmet, 
 			Set<PredavanjePredmeta> predavanja, Set<PohadjanjePredmeta> pohadjanja) {
 		super();
 		this.id = id;
 		this.pocetak = pocetak;
 		this.kraj = kraj;
 		this.predmet = predmet;
-		this.obrisan = obrisan;
 		this.predavanja = predavanja;
 		this.pohadjanja = pohadjanja;
 	}

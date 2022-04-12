@@ -6,7 +6,6 @@ public class PredavanjePredmetaDTO {
 
 	private Long id;
 	private PredmetInstancaDTO predmetInstanca;
-	private boolean obrisan;
 	private ProfesorDTO profesor;
 	private TipPredavacaVezbi tipPredavaca;
 	public Long getId() {
@@ -21,12 +20,7 @@ public class PredavanjePredmetaDTO {
 	public void setPredmetInstanca(PredmetInstancaDTO predmetInstanca) {
 		this.predmetInstanca = predmetInstanca;
 	}
-	public boolean isObrisan() {
-		return obrisan;
-	}
-	public void setObrisan(boolean obrisan) {
-		this.obrisan = obrisan;
-	}
+
 	public ProfesorDTO getProfesor() {
 		return profesor;
 	}
@@ -39,12 +33,12 @@ public class PredavanjePredmetaDTO {
 	public void setTipPredavaca(TipPredavacaVezbi tipPredavaca) {
 		this.tipPredavaca = tipPredavaca;
 	}
-	public PredavanjePredmetaDTO(Long id, PredmetInstancaDTO predmetInstanca, boolean obrisan, ProfesorDTO profesor,
+	public PredavanjePredmetaDTO(Long id, PredmetInstancaDTO predmetInstanca, ProfesorDTO profesor,
 			TipPredavacaVezbi tipPredavaca) {
 		super();
 		this.id = id;
 		this.predmetInstanca = predmetInstanca;
-		this.obrisan = obrisan;
+
 		this.profesor = profesor;
 		this.tipPredavaca = tipPredavaca;
 	}

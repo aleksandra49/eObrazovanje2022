@@ -31,8 +31,6 @@ public class PredavanjePredmeta {
 	@Column(name = "tip_predavaca")
 	private TipPredavacaVezbi tipPredavaca;
 
-    @Column(name = "obrisan")
-    private boolean obrisan;
     
     
 	public Profesor getProfesor() {
@@ -53,12 +51,7 @@ public class PredavanjePredmeta {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public boolean isObrisan() {
-		return obrisan;
-	}
-	public void setObrisan(boolean obrisan) {
-		this.obrisan = obrisan;
-	}
+
 		
 	public PredmetInstanca getInstanca() {
 		return instanca;
@@ -71,14 +64,13 @@ public class PredavanjePredmeta {
 		super();
 	}
 	
-	public PredavanjePredmeta(Long id, Profesor profesor, PredmetInstanca instanca, TipPredavacaVezbi tipPredavaca,
-			boolean obrisan) {
+	public PredavanjePredmeta(Long id, Profesor profesor, PredmetInstanca instanca, TipPredavacaVezbi tipPredavaca) {
 		super();
 		this.id = id;
 		this.profesor = profesor;
 		this.instanca = instanca;
 		this.tipPredavaca = tipPredavaca;
-		this.obrisan = obrisan;
+
 	}
 	
 
