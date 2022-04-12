@@ -15,7 +15,7 @@ public class StudijskaGodinaDTOToStudijskaGodina {
 		studijskaGodina.setId(studijskaGodinaDTO.getId());
 		studijskaGodina.setPocetakStudija(studijskaGodinaDTO.getPocetakStudija());
 		studijskaGodina.setKrajStudija(studijskaGodinaDTO.getKrajStudija());
-		studijskaGodina.setNacinFinansiranja(studijskaGodinaDTO.getNacinFinansiranja());
+		//studijskaGodina.setNacinFinansiranja(studijskaGodinaDTO.getNacinFinansiranja());
 		studijskaGodina.setGodinaStudija(studijskaGodinaDTO.getGodinaStudija());
 		studijskaGodina.setSkolskaGodina(studijskaGodinaDTO.getSkolskaGodina());
 		
