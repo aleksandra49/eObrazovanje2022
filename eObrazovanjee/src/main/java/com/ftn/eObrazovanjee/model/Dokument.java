@@ -1,5 +1,7 @@
 package com.ftn.eObrazovanjee.model;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -20,11 +23,11 @@ public class Dokument {
 	
 	private String uri;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.REFRESH , fetch = FetchType.LAZY)
 	private Student student;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private TipDokumenta tipDokumenta;	
+	private List<TipDokumenta> tipDokumenta;	
 	
 	
 	public Dokument() {
@@ -39,8 +42,9 @@ public class Dokument {
 	}
 	
 	
+	
 
-	public Dokument(Long id, String naziv, String uri, Student student, TipDokumenta tipDokumenta) {
+	public Dokument(Long id, String naziv, String uri, Student student, List<TipDokumenta> tipDokumenta) {
 		super();
 		this.id = id;
 		this.naziv = naziv;
@@ -81,13 +85,14 @@ public class Dokument {
 		this.student = student;
 	}
 
-	public TipDokumenta getTipDokumenta() {
+	public List<TipDokumenta> getTipDokumenta() {
 		return tipDokumenta;
 	}
 
-	public void setTipDokumenta(TipDokumenta tipDokumenta) {
+	public void setTipDokumenta(List<TipDokumenta> tipDokumenta) {
 		this.tipDokumenta = tipDokumenta;
 	}
+
 	
 	
 	
