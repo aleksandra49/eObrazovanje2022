@@ -3,7 +3,8 @@ package com.ftn.eObrazovanjee.model;
 
 import org.hibernate.annotations.Where;
 
-
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -28,12 +29,13 @@ public class Profesor {
     private String email;
     
     
-    
-
-       
     @OneToOne
     @JoinColumn(name = "korisnik", referencedColumnName = "id")
     private Korisnik korisnik;
+    
+    @OneToMany(mappedBy = "profesor", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    private Set<PredavanjePredmeta> predavanja = new HashSet<>();
+
 
     
 	public Profesor() {

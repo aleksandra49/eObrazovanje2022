@@ -41,7 +41,6 @@ public class PredmetInstanca {
     @JoinColumn(name = "predmet_id", referencedColumnName = "id")
     private Predmet predmet;
     
-    
     @JsonIgnore
     @OneToMany(mappedBy = "instanca", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     private Set<PredavanjePredmeta> predavanja = new HashSet<>();
@@ -49,6 +48,9 @@ public class PredmetInstanca {
     @JsonIgnore
     @OneToMany(mappedBy = "instanca", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     private Set<PohadjanjePredmeta> pohadjanja = new HashSet<>();
+    
+    @OneToMany(mappedBy = "instanca", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	private Set<Ispit> ispit = new HashSet<Ispit>();
 
 	public Long getId() {
 		return id;
