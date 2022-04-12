@@ -7,9 +7,15 @@ public class ProfesorDTO {
     private String ime;
     private String prezime;
     private String email;
-    //private KorisnikDTO korisnik;
+    private KorisnikDTO korisnik;
     
     
+	public KorisnikDTO getKorisnik() {
+		return korisnik;
+	}
+	public void setKorisnik(KorisnikDTO korisnik) {
+		this.korisnik = korisnik;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -38,13 +44,15 @@ public class ProfesorDTO {
 	public ProfesorDTO() {
 		super();
 	}
-	public ProfesorDTO(Long id, String ime, String prezime, String email) {
+	public ProfesorDTO(Long id, String ime, String prezime, String email, KorisnikDTO korisnik) {
 		super();
 		this.id = id;
 		this.ime = ime;
 		this.prezime = prezime;
 		this.email = email;
+		this.korisnik = korisnik;
 	}
+
     
     
 }

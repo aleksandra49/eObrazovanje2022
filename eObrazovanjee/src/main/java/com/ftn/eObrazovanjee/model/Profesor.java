@@ -30,23 +30,36 @@ public class Profesor {
     
     
 
-    /*   
+       
     @OneToOne
     @JoinColumn(name = "korisnik", referencedColumnName = "id")
     private Korisnik korisnik;
-*/
+
     
 	public Profesor() {
 		super();
 	}
 
-	public Profesor(Long id, String ime, String prezime, String email) {
+
+	public Profesor(Long id, String ime, String prezime, String email, Korisnik korisnik) {
 		super();
 		this.id = id;
 		this.ime = ime;
 		this.prezime = prezime;
 		this.email = email;
+		this.korisnik = korisnik;
 	}
+
+
+	public Korisnik getKorisnik() {
+		return korisnik;
+	}
+
+
+	public void setKorisnik(Korisnik korisnik) {
+		this.korisnik = korisnik;
+	}
+
 
 	public Long getId() {
 		return id;
