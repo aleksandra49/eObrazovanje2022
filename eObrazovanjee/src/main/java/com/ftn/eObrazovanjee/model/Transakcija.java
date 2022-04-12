@@ -2,7 +2,9 @@ package com.ftn.eObrazovanjee.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,7 +24,7 @@ public class Transakcija {
 	
 	private double promenaStanja;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "finansijskaKartica_id", referencedColumnName = "id")
 	private FinansijskaKartica finansijskaKartica;
 	

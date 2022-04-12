@@ -1,5 +1,7 @@
 package com.ftn.eObrazovanjee.model;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,7 +28,7 @@ public class FinansijskaKartica {
 	private Student student;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Transakcija transakcija;
+	private List<Transakcija> transakcija;
 	
 	
 	public FinansijskaKartica() {
@@ -41,10 +43,10 @@ public class FinansijskaKartica {
 		this.trenutnoStanje = trenutnoStanje;
 		this.racunFakulteta = racunFakulteta;
 	}
-	
+
 
 	public FinansijskaKartica(Long id, String personalniBroj, int trenutnoStanje, String racunFakulteta,
-			Student student, Transakcija transakcija) {
+			Student student, List<Transakcija> transakcija) {
 		super();
 		this.id = id;
 		this.personalniBroj = personalniBroj;
@@ -53,6 +55,7 @@ public class FinansijskaKartica {
 		this.student = student;
 		this.transakcija = transakcija;
 	}
+
 
 	public Long getId() {
 		return id;
@@ -94,13 +97,16 @@ public class FinansijskaKartica {
 		this.student = student;
 	}
 
-	public Transakcija getTransakcija() {
+
+	public List<Transakcija> getTransakcija() {
 		return transakcija;
 	}
 
-	public void setTransakcija(Transakcija transakcija) {
+
+	public void setTransakcija(List<Transakcija> transakcija) {
 		this.transakcija = transakcija;
 	}
+
 	
 	
 	
