@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Transakcija {
@@ -13,9 +15,16 @@ public class Transakcija {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	
 	private Date datum;
+	
 	private String svrha;
+	
 	private double promenaStanja;
+	
+	@ManyToOne
+    @JoinColumn(name = "finansijskaKartica_id", referencedColumnName = "id")
+	private FinansijskaKartica finansijskaKartica;
 	
 	public Transakcija() {
 		super();
@@ -27,6 +36,17 @@ public class Transakcija {
 		this.datum = datum;
 		this.svrha = svrha;
 		this.promenaStanja = promenaStanja;
+	}
+	
+	
+
+	public Transakcija(Long id, Date datum, String svrha, double promenaStanja, FinansijskaKartica finansijskaKartica) {
+		super();
+		this.id = id;
+		this.datum = datum;
+		this.svrha = svrha;
+		this.promenaStanja = promenaStanja;
+		this.finansijskaKartica = finansijskaKartica;
 	}
 
 	public Long getId() {
@@ -59,6 +79,14 @@ public class Transakcija {
 
 	public void setPromenaStanja(double promenaStanja) {
 		this.promenaStanja = promenaStanja;
+	}
+
+	public FinansijskaKartica getFinansijskaKartica() {
+		return finansijskaKartica;
+	}
+
+	public void setFinansijskaKartica(FinansijskaKartica finansijskaKartica) {
+		this.finansijskaKartica = finansijskaKartica;
 	}
 	
 	

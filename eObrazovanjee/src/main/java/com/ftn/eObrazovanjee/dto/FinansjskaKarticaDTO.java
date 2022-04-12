@@ -7,6 +7,12 @@ public class FinansjskaKarticaDTO {
 	private int trenutnoStanje;
 	private String racunFakulteta;
 	
+	
+	
+	public FinansjskaKarticaDTO() {
+		super();
+	}
+
 	public FinansjskaKarticaDTO(Long id, String personalniBroj, int trenutnoStanje, String racunFakulteta) {
 		super();
 		this.id = id;

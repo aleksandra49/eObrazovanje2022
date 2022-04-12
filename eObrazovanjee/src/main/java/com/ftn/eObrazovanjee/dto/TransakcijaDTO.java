@@ -9,6 +9,11 @@ public class TransakcijaDTO {
 	private String svrha;
 	private double promenaStanja;
 	
+	
+	public TransakcijaDTO() {
+		super();
+	}
+
 	public TransakcijaDTO(Long id, Date datum, String svrha, double promenaStanja) {
 		super();
 		this.id = id;
