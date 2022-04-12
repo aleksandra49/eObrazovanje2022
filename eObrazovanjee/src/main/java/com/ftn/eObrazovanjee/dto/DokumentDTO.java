@@ -6,6 +6,11 @@ public class DokumentDTO {
 	private String naziv;
 	private String uri;
 	
+	
+	public DokumentDTO() {
+		super();
+	}
+
 	public DokumentDTO(Long id, String naziv, String uri) {
 		super();
 		this.id = id;

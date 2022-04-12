@@ -5,6 +5,12 @@ public class TipDokumentaDTO {
 	private Long id;
 	private String nazivDokumenta;
 	
+	
+	
+	public TipDokumentaDTO() {
+		super();
+	}
+
 	public TipDokumentaDTO(Long id, String nazivDokumenta) {
 		super();
 		this.id = id;
