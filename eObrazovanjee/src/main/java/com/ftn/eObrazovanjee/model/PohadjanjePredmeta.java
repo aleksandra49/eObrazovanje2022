@@ -3,6 +3,7 @@ package com.ftn.eObrazovanjee.model;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -23,25 +24,58 @@ public class PohadjanjePredmeta {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(name = "pocetak")
 	private Date pocetak;
+	
+	@Column(name = "kraj")
 	private Date kraj;
+	
+	@Column(name = "polozen")
 	private boolean polozen;
 	
 	
 	//student
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinColumn(name = "student", referencedColumnName = "student_id", nullable = false)
+    @JoinColumn(name = "student", referencedColumnName = "id", nullable = false)
     private Student student;
 	
 	//predmetinstanca
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinColumn(name = "predmetInstanca", referencedColumnName = "predmetInstanca_id", nullable = false)
+    @JoinColumn(name = "predmetInstanca", referencedColumnName = "id", nullable = false)
     private PredmetInstanca predmetInstanca;
 	
-		
+
+	
+	public PohadjanjePredmeta() {
+		super();
+	}
 	
 	
+	public PohadjanjePredmeta(Long id, Date pocetak, Date kraj, boolean polozen, Student student,
+			PredmetInstanca predmetInstanca) {
+		super();
+		this.id = id;
+		this.pocetak = pocetak;
+		this.kraj = kraj;
+		this.polozen = polozen;
+		this.student = student;
+		this.predmetInstanca = predmetInstanca;
+	}
 	
+	
+
+
+	public PohadjanjePredmeta(Date pocetak, Date kraj, boolean polozen, Student student,
+			PredmetInstanca predmetInstanca) {
+		super();
+		this.pocetak = pocetak;
+		this.kraj = kraj;
+		this.polozen = polozen;
+		this.student = student;
+		this.predmetInstanca = predmetInstanca;
+	}
+
+
 	public Long getId() {
 		return id;
 	}
@@ -66,6 +100,22 @@ public class PohadjanjePredmeta {
 	}
 	public void setPolozen(boolean polozen) {
 		this.polozen = polozen;
+	}
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+	public PredmetInstanca getPredmetInstanca() {
+		return predmetInstanca;
+	}
+
+	public void setPredmetInstanca(PredmetInstanca predmetInstanca) {
+		this.predmetInstanca = predmetInstanca;
 	}
 	
 	

@@ -27,29 +27,36 @@ public class Student {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(name = "ime")
 	private String ime;
+	
+	@Column(name = "prezime")
 	private String prezime;
 	
 	//@Column(name = "indeks", unique = true, nullable = false)
 	//String indeks;
+	@Column(name = "indeks")
 	private String indeks;
 	
+	@Column(name = "email")
 	private String email;
+	
+	@Column(name = "active")
 	private boolean active;
 	//private boolean active = true;
 	
 	
 	//studijskagodina
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<StudijskaGodina> studijskaGodina;
+	private Set<StudijskaGodina> studijskaGodina = new HashSet<StudijskaGodina>();
 	
 	//dokument
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Dokument> dokumenti;
+	private Set<Dokument> dokumenti = new HashSet<Dokument>();
 	
 	//finakart
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "finansijska_kartica_id", nullable = false)
+    @JoinColumn(name = "id", nullable = false)
     private FinansijskaKartica finansijskaKartica;
 //	
 //	//transakcija
@@ -58,7 +65,7 @@ public class Student {
 //	
 	//pohadjanjepredmeta
 	@OneToMany(mappedBy = "student",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	private List<PohadjanjePredmeta> pohadjanjePredmeta;
+	private Set<PohadjanjePredmeta> pohadjanjePredmeta = new HashSet<PohadjanjePredmeta>();
 	
 //	@OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 //	private Set<PohadjanjePredmeta> pohadjanjePredmeta = new HashSet<PohadjanjePredmeta>();
@@ -68,11 +75,57 @@ public class Student {
 //	private Set<PolaganjeIspita> polaganjeIspita = new HashSet<PolaganjeIspita>();
 	
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "korisnik_id", nullable = false)
+    @JoinColumn(name = "id", nullable = false)
     private Korisnik korisnik;
 	
 	
 	
+	
+	
+	public Student() {
+		super();
+	}
+	
+	
+	
+	public Student(Long id, String ime, String prezime, String indeks, String email, boolean active,
+			Set<StudijskaGodina> studijskaGodina, Set<Dokument> dokumenti, FinansijskaKartica finansijskaKartica,
+			Set<PohadjanjePredmeta> pohadjanjePredmeta, Korisnik korisnik) {
+		super();
+		this.id = id;
+		this.ime = ime;
+		this.prezime = prezime;
+		this.indeks = indeks;
+		this.email = email;
+		this.active = active;
+		this.studijskaGodina = studijskaGodina;
+		this.dokumenti = dokumenti;
+		this.finansijskaKartica = finansijskaKartica;
+		this.pohadjanjePredmeta = pohadjanjePredmeta;
+		this.korisnik = korisnik;
+	}
+
+
+	
+
+	public Student(String ime, String prezime, String indeks, String email, boolean active,
+			Set<StudijskaGodina> studijskaGodina, Set<Dokument> dokumenti, FinansijskaKartica finansijskaKartica,
+			Set<PohadjanjePredmeta> pohadjanjePredmeta, Korisnik korisnik) {
+		super();
+		this.ime = ime;
+		this.prezime = prezime;
+		this.indeks = indeks;
+		this.email = email;
+		this.active = active;
+		this.studijskaGodina = studijskaGodina;
+		this.dokumenti = dokumenti;
+		this.finansijskaKartica = finansijskaKartica;
+		this.pohadjanjePredmeta = pohadjanjePredmeta;
+		this.korisnik = korisnik;
+	}
+
+
+
 	public Long getId() {
 		return id;
 	}
@@ -108,6 +161,46 @@ public class Student {
 	}
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+	public Set<StudijskaGodina> getStudijskaGodina() {
+		return studijskaGodina;
+	}
+
+	public void setStudijskaGodina(Set<StudijskaGodina> studijskaGodina) {
+		this.studijskaGodina = studijskaGodina;
+	}
+
+	public Set<Dokument> getDokumenti() {
+		return dokumenti;
+	}
+
+	public void setDokumenti(Set<Dokument> dokumenti) {
+		this.dokumenti = dokumenti;
+	}
+
+	public FinansijskaKartica getFinansijskaKartica() {
+		return finansijskaKartica;
+	}
+
+	public void setFinansijskaKartica(FinansijskaKartica finansijskaKartica) {
+		this.finansijskaKartica = finansijskaKartica;
+	}
+
+	public Set<PohadjanjePredmeta> getPohadjanjePredmeta() {
+		return pohadjanjePredmeta;
+	}
+
+	public void setPohadjanjePredmeta(Set<PohadjanjePredmeta> pohadjanjePredmeta) {
+		this.pohadjanjePredmeta = pohadjanjePredmeta;
+	}
+
+	public Korisnik getKorisnik() {
+		return korisnik;
+	}
+
+	public void setKorisnik(Korisnik korisnik) {
+		this.korisnik = korisnik;
 	}
 	
 	
