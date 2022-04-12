@@ -10,8 +10,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Korisnik {
@@ -20,19 +22,31 @@ public class Korisnik {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(name = "korisnicko_ime")
 	private String korisnickoIme;
 	
+	@Column(name = "lozinka")
 	private String lozinka;
 	
-	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+	@Column(name = "uloga")
 	private Uloga uloga;
+	
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "id", nullable = false)
+	private Profesor profesor;
+	
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "id", nullable = false)
+	private Student student;
 
-	public Korisnik(Long id, String korisnickoIme, String lozinka, Uloga uloga) {
+	public Korisnik(Long id, String korisnickoIme, String lozinka, Uloga uloga, Profesor profesor, Student student) {
 		super();
 		this.id = id;
 		this.korisnickoIme = korisnickoIme;
 		this.lozinka = lozinka;
 		this.uloga = uloga;
+		this.profesor = profesor;
+		this.student = student;
 	}
 
 	public Korisnik() {
@@ -70,6 +84,23 @@ public class Korisnik {
 	public void setUloga(Uloga uloga) {
 		this.uloga = uloga;
 	}
+
+	public Profesor getProfesor() {
+		return profesor;
+	}
+
+	public void setProfesor(Profesor profesor) {
+		this.profesor = profesor;
+	}
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
 	
 	
 	

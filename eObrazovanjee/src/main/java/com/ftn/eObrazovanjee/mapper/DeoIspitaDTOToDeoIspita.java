@@ -21,7 +21,6 @@ public class DeoIspitaDTOToDeoIspita {
 		deoIspita.setPolozio(deoIspitaDTO.isPolozio());
 		
 		
-		
 		return deoIspita;
 	}
 
