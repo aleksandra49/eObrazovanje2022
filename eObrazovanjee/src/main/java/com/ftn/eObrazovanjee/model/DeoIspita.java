@@ -1,9 +1,13 @@
 package com.ftn.eObrazovanjee.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -23,7 +27,18 @@ public class DeoIspita {
 	private boolean polozio;
 	
 	//predmetinstanca ili predmetspec
+	
+	
+	
 	//ispit
+	//@ManyToOne
+	//@JoinColumn(name = "ispit", referencedColumnName = "ispit_id", nullable = false)
+	//private Ispit ispit;
+	
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "ispit", referencedColumnName = "ispit_id", nullable = false)
+    private Ispit ispit;
+	
 	//student
 	
 	
