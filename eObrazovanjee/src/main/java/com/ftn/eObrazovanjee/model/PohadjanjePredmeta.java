@@ -2,10 +2,14 @@ package com.ftn.eObrazovanjee.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -25,8 +29,15 @@ public class PohadjanjePredmeta {
 	
 	
 	//student
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "student", referencedColumnName = "student_id", nullable = false)
+    private Student student;
+	
 	//predmetinstanca
-	//ispit
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "predmetInstanca", referencedColumnName = "predmetInstanca_id", nullable = false)
+    private PredmetInstanca predmetInstanca;
+	
 		
 	
 	

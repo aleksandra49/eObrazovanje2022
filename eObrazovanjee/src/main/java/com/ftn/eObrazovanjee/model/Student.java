@@ -39,36 +39,37 @@ public class Student {
 	//private boolean active = true;
 	
 	
-//	//studijskagodina
-//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//	private List<StudijskaGodina> studGodina;
-//	
-//	//dokument
-//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//	private List<Dokument> dokumenti;
-//	
-//	//finakart
-//	@OneToOne(mappedBy = "student",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-//	private List<FinansijskaKartica> finansijskaKartica;
+	//studijskagodina
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<StudijskaGodina> studijskaGodina;
+	
+	//dokument
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Dokument> dokumenti;
+	
+	//finakart
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "finansijska_kartica_id", nullable = false)
+    private FinansijskaKartica finansijskaKartica;
 //	
 //	//transakcija
 //	@OneToMany(mappedBy = "student",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 //	private List<Transakcija> transakcije;
 //	
-//	//pohadjanjepredmeta
-//	@OneToMany(mappedBy = "student",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-//	private List<PohadjanjePredmeta> pohadjanjePredmeta;
-//	
+	//pohadjanjepredmeta
+	@OneToMany(mappedBy = "student",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	private List<PohadjanjePredmeta> pohadjanjePredmeta;
+	
 //	@OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 //	private Set<PohadjanjePredmeta> pohadjanjePredmeta = new HashSet<PohadjanjePredmeta>();
 //	
-//	//ispit
+//	//polaganjeispit
 //	@OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 //	private Set<PolaganjeIspita> polaganjeIspita = new HashSet<PolaganjeIspita>();
 	
-//	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-//    @JoinColumn(name = "korisnik_id", nullable = false)
-//    private Korisnik korisnik;
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "korisnik_id", nullable = false)
+    private Korisnik korisnik;
 	
 	
 	
