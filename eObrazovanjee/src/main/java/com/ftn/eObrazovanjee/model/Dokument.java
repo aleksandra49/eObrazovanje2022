@@ -1,6 +1,8 @@
 package com.ftn.eObrazovanjee.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,15 +21,17 @@ public class Dokument {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+    @Column(name = "naziv")
 	private String naziv;
 	
+    @Column(name = "uri")
 	private String uri;
 	
 	@ManyToOne(cascade = CascadeType.REFRESH , fetch = FetchType.LAZY)
 	private Student student;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<TipDokumenta> tipDokumenta;	
+	private Set<TipDokumenta> tipDokumenta = new HashSet<TipDokumenta>();
 	
 	
 	public Dokument() {
@@ -42,9 +46,7 @@ public class Dokument {
 	}
 	
 	
-	
-
-	public Dokument(Long id, String naziv, String uri, Student student, List<TipDokumenta> tipDokumenta) {
+	public Dokument(Long id, String naziv, String uri, Student student, Set<TipDokumenta> tipDokumenta) {
 		super();
 		this.id = id;
 		this.naziv = naziv;
@@ -85,13 +87,15 @@ public class Dokument {
 		this.student = student;
 	}
 
-	public List<TipDokumenta> getTipDokumenta() {
+	public Set<TipDokumenta> getTipDokumenta() {
 		return tipDokumenta;
 	}
 
-	public void setTipDokumenta(List<TipDokumenta> tipDokumenta) {
+	public void setTipDokumenta(Set<TipDokumenta> tipDokumenta) {
 		this.tipDokumenta = tipDokumenta;
 	}
+
+	
 
 	
 	

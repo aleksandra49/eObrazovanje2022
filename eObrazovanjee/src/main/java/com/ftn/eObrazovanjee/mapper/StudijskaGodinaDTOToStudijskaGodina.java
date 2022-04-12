@@ -1,30 +1,25 @@
 package com.ftn.eObrazovanjee.mapper;
 
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ftn.eObrazovanjee.dto.StudijskaGodinaDTO;
 import com.ftn.eObrazovanjee.model.StudijskaGodina;
 
+
 @Component
 public class StudijskaGodinaDTOToStudijskaGodina {
 	
-	public StudijskaGodina konvertujDtoToEntity(StudijskaGodinaDTO studijskaGodinaDTO) {
+
+	@Autowired
+	private ModelMapper modelMapper;
+	
+	public StudijskaGodina konvertujDtoToEntity(StudijskaGodinaDTO objDTO) {
 		
-		StudijskaGodina studijskaGodina = new StudijskaGodina();
-		
-		studijskaGodina.setId(studijskaGodinaDTO.getId());
-		studijskaGodina.setPocetakStudija(studijskaGodinaDTO.getPocetakStudija());
-		studijskaGodina.setKrajStudija(studijskaGodinaDTO.getKrajStudija());
-		//studijskaGodina.setNacinFinansiranja(studijskaGodinaDTO.getNacinFinansiranja());
-		studijskaGodina.setGodinaStudija(studijskaGodinaDTO.getGodinaStudija());
-		studijskaGodina.setSkolskaGodina(studijskaGodinaDTO.getSkolskaGodina());
-		
-		
-		
-		return studijskaGodina;
+		StudijskaGodina obj = modelMapper.map(objDTO, StudijskaGodina.class);
+		return obj;
 	}
 	
-	
-
 
 }

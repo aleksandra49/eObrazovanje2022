@@ -1,8 +1,11 @@
 package com.ftn.eObrazovanjee.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -18,17 +21,20 @@ public class FinansijskaKartica {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(name = "personalni_broj")
 	private String personalniBroj;
 	
+	@Column(name = "trenutno_stanje")
 	private int trenutnoStanje;
 	
+	@Column(name = "racun_fakulteta")
 	private String racunFakulteta;
 	
 	@OneToOne(mappedBy = "finansijskaKartica",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private Student student;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Transakcija> transakcija;
+	private Set<Transakcija> transakcije = new HashSet<Transakcija>();
 	
 	
 	public FinansijskaKartica() {
@@ -43,17 +49,17 @@ public class FinansijskaKartica {
 		this.trenutnoStanje = trenutnoStanje;
 		this.racunFakulteta = racunFakulteta;
 	}
-
+	
 
 	public FinansijskaKartica(Long id, String personalniBroj, int trenutnoStanje, String racunFakulteta,
-			Student student, List<Transakcija> transakcija) {
+			Student student, Set<Transakcija> transakcije) {
 		super();
 		this.id = id;
 		this.personalniBroj = personalniBroj;
 		this.trenutnoStanje = trenutnoStanje;
 		this.racunFakulteta = racunFakulteta;
 		this.student = student;
-		this.transakcija = transakcija;
+		this.transakcije = transakcije;
 	}
 
 
@@ -98,14 +104,16 @@ public class FinansijskaKartica {
 	}
 
 
-	public List<Transakcija> getTransakcija() {
-		return transakcija;
+	public Set<Transakcija> getTransakcije() {
+		return transakcije;
 	}
 
 
-	public void setTransakcija(List<Transakcija> transakcija) {
-		this.transakcija = transakcija;
+	public void setTransakcije(Set<Transakcija> transakcije) {
+		this.transakcije = transakcije;
 	}
+
+	
 
 	
 	

@@ -3,6 +3,7 @@ package com.ftn.eObrazovanjee.model;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -18,10 +19,13 @@ public class Transakcija {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(name = "datum")
 	private Date datum;
 	
+	@Column(name = "svrha")
 	private String svrha;
 	
+	@Column(name = "promena_stanja")
 	private double promenaStanja;
 	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

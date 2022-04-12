@@ -15,6 +15,7 @@ public class TipDokumenta {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(name = "naziv_dokumenta")
 	private String nazivDokumenta;
 	
 	@ManyToOne
@@ -29,6 +30,15 @@ public class TipDokumenta {
 		super();
 		this.id = id;
 		this.nazivDokumenta = nazivDokumenta;
+	}
+	
+	
+
+	public TipDokumenta(Long id, String nazivDokumenta, Dokument dokument) {
+		super();
+		this.id = id;
+		this.nazivDokumenta = nazivDokumenta;
+		this.dokument = dokument;
 	}
 
 	public Long getId() {
@@ -45,6 +55,14 @@ public class TipDokumenta {
 
 	public void setNazivDokumenta(String nazivDokumenta) {
 		this.nazivDokumenta = nazivDokumenta;
+	}
+
+	public Dokument getDokument() {
+		return dokument;
+	}
+
+	public void setDokument(Dokument dokument) {
+		this.dokument = dokument;
 	}
 	
 	
