@@ -30,7 +30,7 @@ public class IspitniRok {
 	@Column(name = "krajRoka")
 	private Date krajRoka;
 	
-	@OneToMany(mappedBy = "ispit", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	@OneToMany(mappedBy = "ispitniRok", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private Set<Ispit> ispit = new HashSet<Ispit>();
 
 	public IspitniRok(Long id, String nazivRoka, Date pocetakRoka, Date krajRoka, Set<Ispit> ispit) {
