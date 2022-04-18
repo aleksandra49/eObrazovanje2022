@@ -45,6 +45,7 @@ public class IspitController {
 		//convert Ispits to DTOs
 		List<IspitDTO> ispitiDTO = new ArrayList<>();
 		for (Ispit s : ispiti) {
+			
 			ispitiDTO.add(new IspitToIspitDTO().konvertujEntityToDto(s));
 		}
 		return new ResponseEntity<>(ispitiDTO, HttpStatus.OK);

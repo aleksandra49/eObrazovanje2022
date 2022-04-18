@@ -15,17 +15,30 @@ public class PredmetToPredmetDTO {
 
 	@Autowired
 	private ModelMapper modelMapper;
-
-	public PredmetDTO konvertujEntityToDto(Predmet predmet) {
-
-		return modelMapper.map(predmet, PredmetDTO.class);
+	
+	public PredmetDTO konvertujEntityToDto(Predmet deoIspita) {
+		PredmetDTO deoIspitaDTO = new PredmetDTO();
+		
+		deoIspitaDTO.setId(deoIspita.getId());
+		deoIspitaDTO.setEspb(deoIspita.getEspb());
+		deoIspitaDTO.setNaziv(deoIspita.getNaziv());
+		deoIspitaDTO.setOznaka(deoIspita.getOznaka());
+		//deoIspitaDTO.setPolozio(deoIspita.isPolozio());
+		
+	
+		return deoIspitaDTO;
 	}
 
-	public List<PredmetDTO> konvertujEntityToDto(List<Predmet> predmet) {
+	/*public PredmetDTO konvertujEntityToDto(Predmet predmet) {
+
+		return modelMapper.map(predmet, PredmetDTO.class);
+	}*/
+
+	/*public List<PredmetDTO> konvertujEntityToDto(List<Predmet> predmet) {
 		List<PredmetDTO> listaPredmeta = new ArrayList<PredmetDTO>();
 		for (Predmet predmeti : predmet) {
 			listaPredmeta.add(konvertujEntityToDto(predmeti));
 		}
 		return listaPredmeta;
-	}
+	}*/
 }

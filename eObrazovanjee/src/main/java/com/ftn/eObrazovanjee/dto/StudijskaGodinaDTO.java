@@ -3,12 +3,14 @@ package com.ftn.eObrazovanjee.dto;
 import java.util.Date;
 import java.util.List;
 
+import com.ftn.eObrazovanjee.model.NacinFinansiranja;
+
 public class StudijskaGodinaDTO {
 	
 	private Long id;
 	private Date pocetakStudija;
 	private Date krajStudija;
-	private String nacinFinansiranja;
+	private NacinFinansiranja nacinFinansiranja;
 	private int godinaStudija;
 	private int skolskaGodina;
 	
@@ -21,6 +23,8 @@ public class StudijskaGodinaDTO {
 	}
 
 	//pun
+	
+	
 	
 
 	public Long getId() {
@@ -47,11 +51,13 @@ public class StudijskaGodinaDTO {
 		this.krajStudija = krajStudija;
 	}
 
-	public String getNacinFinansiranja() {
+	
+
+	public NacinFinansiranja getNacinFinansiranja() {
 		return nacinFinansiranja;
 	}
 
-	public void setNacinFinansiranja(String nacinFinansiranja) {
+	public void setNacinFinansiranja(NacinFinansiranja nacinFinansiranja) {
 		this.nacinFinansiranja = nacinFinansiranja;
 	}
 
