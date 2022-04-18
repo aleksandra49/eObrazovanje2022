@@ -23,7 +23,7 @@ import com.ftn.eObrazovanjee.service.StudijskaGodinaService;
 
 
 @RestController
-@RequestMapping(value="api/studijskGodina")
+@RequestMapping(value="api/studijskaGodina")
 public class StudijskaGodinaController {
 	
 	@Autowired
