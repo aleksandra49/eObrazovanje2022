@@ -42,14 +42,14 @@ public class PredmetInstanca {
     private Predmet predmet;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "instanca", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    @OneToMany(mappedBy = "predmetInstanca", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     private Set<PredavanjePredmeta> predavanja = new HashSet<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "instanca", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    @OneToMany(mappedBy = "predmetInstanca", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     private Set<PohadjanjePredmeta> pohadjanja = new HashSet<>();
     
-    @OneToMany(mappedBy = "instanca", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    @OneToMany(mappedBy = "predmetInstanca", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private Set<Ispit> ispit = new HashSet<Ispit>();
 
 	public Long getId() {

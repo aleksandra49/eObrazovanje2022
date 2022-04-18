@@ -30,12 +30,12 @@ public class StudentService {
 		studentRepository.deleteById(id);
 	}
 
-	public Student findByIndeks(String indeks) {
-		return studentRepository.findOneByIndeks(indeks);
-	}
+//	public Student findByIndeks(String indeks) {
+//		return studentRepository.findOneByIndeks(indeks);
+//	}
 
-	public List<Student> findByKorisnickoIme(String korisnickoIme) {
-		return studentRepository.findAllByKorisnickoIme(korisnickoIme);
-	}
+//	public List<Student> findByKorisnickoIme(String korisnickoIme) {
+//		return studentRepository.findAllByKorisnickoIme(korisnickoIme);
+//	}
 
 }

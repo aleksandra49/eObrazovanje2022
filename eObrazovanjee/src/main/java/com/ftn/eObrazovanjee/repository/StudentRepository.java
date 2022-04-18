@@ -11,9 +11,9 @@ import com.ftn.eObrazovanjee.model.Student;
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {
 
-	public Student findOne(Long id);
-	public List<Student> findAll();
-	Student findOneByIndeks(String indeks);
-    List<Student> findAllByPrezime(String prezime);
-    List<Student> findAllByKorisnickoIme(String korisnickoIme);
+//	public Student findOne(Long id);
+//	public List<Student> findAll();
+//	Student findOneByIndeks(String indeks);
+    //List<Student> findAllByPrezime(String prezime);
+    //List<Student> findAllByKorisnickoIme(String korisnickoIme);
 }

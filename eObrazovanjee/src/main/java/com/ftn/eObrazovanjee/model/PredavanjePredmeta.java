@@ -1,7 +1,9 @@
 package com.ftn.eObrazovanjee.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,13 +22,11 @@ public class PredavanjePredmeta {
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne()
-    @JoinColumn(name = "profesor_id", referencedColumnName = "id")
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     private Profesor profesor;
 
-    @ManyToOne()
-    @JoinColumn(name = "instanca_id", referencedColumnName = "id")
-    private PredmetInstanca instanca;
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    private PredmetInstanca predmetInstanca;
     
 	@Column(name = "tip_predavaca")
 	private TipPredavacaVezbi tipPredavaca;
@@ -54,21 +54,21 @@ public class PredavanjePredmeta {
 
 		
 	public PredmetInstanca getInstanca() {
-		return instanca;
+		return predmetInstanca;
 	}
 	public void setInstanca(PredmetInstanca instanca) {
-		this.instanca = instanca;
+		this.predmetInstanca = instanca;
 	}
 	
 	public PredavanjePredmeta() {
 		super();
 	}
 	
-	public PredavanjePredmeta(Long id, Profesor profesor, PredmetInstanca instanca, TipPredavacaVezbi tipPredavaca) {
+	public PredavanjePredmeta(Long id, Profesor profesor, PredmetInstanca predmetInstanca, TipPredavacaVezbi tipPredavaca) {
 		super();
 		this.id = id;
 		this.profesor = profesor;
-		this.instanca = instanca;
+		this.predmetInstanca = predmetInstanca;
 		this.tipPredavaca = tipPredavaca;
 
 	}
