@@ -1,6 +1,6 @@
 package com.ftn.eObrazovanjee.dto;
 
-public class FinansjskaKarticaDTO {
+public class FinansijskaKarticaDTO {
 	
 	private Long id;
 	private String personalniBroj;
@@ -9,11 +9,11 @@ public class FinansjskaKarticaDTO {
 	
 	
 	
-	public FinansjskaKarticaDTO() {
+	public FinansijskaKarticaDTO() {
 		super();
 	}
 
-	public FinansjskaKarticaDTO(Long id, String personalniBroj, int trenutnoStanje, String racunFakulteta) {
+	public FinansijskaKarticaDTO(Long id, String personalniBroj, int trenutnoStanje, String racunFakulteta) {
 		super();
 		this.id = id;
 		this.personalniBroj = personalniBroj;

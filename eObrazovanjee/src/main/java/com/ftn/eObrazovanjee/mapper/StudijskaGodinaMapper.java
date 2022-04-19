@@ -1,5 +1,8 @@
 package com.ftn.eObrazovanjee.mapper;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -55,5 +58,15 @@ public class StudijskaGodinaMapper {
 		return studijskaGodina;
 
 	}
+	
+	
+	public Set<StudijskaGodina> listDtoToModel(Set<StudijskaGodinaDTO> listaDto) {
+		Set<StudijskaGodina> listaModel = new HashSet<StudijskaGodina>();
+		for (StudijskaGodinaDTO objectDTO : listaDto) {
+			listaModel.add(konvertujDtoToEntity(objectDTO));
+		}
+		return listaModel;
+	}
+	
 	
 }

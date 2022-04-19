@@ -14,7 +14,8 @@ public class StudijskaGodinaDTO {
 	private int godinaStudija;
 	private int skolskaGodina;
 	
-	private List<StudentDTO> studentDTO;
+	//private List<StudentDTO> studentDTO;
+	private StudentDTO studnetDTO;
 
 	
 	
@@ -22,10 +23,17 @@ public class StudijskaGodinaDTO {
 		super();
 	}
 
-	//pun
-	
-	
-	
+	public StudijskaGodinaDTO(Long id, Date pocetakStudija, Date krajStudija, NacinFinansiranja nacinFinansiranja,
+			int godinaStudija, int skolskaGodina, StudentDTO studnetDTO) {
+		super();
+		this.id = id;
+		this.pocetakStudija = pocetakStudija;
+		this.krajStudija = krajStudija;
+		this.nacinFinansiranja = nacinFinansiranja;
+		this.godinaStudija = godinaStudija;
+		this.skolskaGodina = skolskaGodina;
+		this.studnetDTO = studnetDTO;
+	}
 
 	public Long getId() {
 		return id;
@@ -77,12 +85,14 @@ public class StudijskaGodinaDTO {
 		this.skolskaGodina = skolskaGodina;
 	}
 
-	public List<StudentDTO> getStudentDTO() {
-		return studentDTO;
+	public StudentDTO getStudnetDTO() {
+		return studnetDTO;
 	}
 
-	public void setStudentDTO(List<StudentDTO> studentDTO) {
-		this.studentDTO = studentDTO;
+	public void setStudnetDTO(StudentDTO studnetDTO) {
+		this.studnetDTO = studnetDTO;
 	}
+
+	
 
 }

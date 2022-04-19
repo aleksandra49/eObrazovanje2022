@@ -1,5 +1,8 @@
 package com.ftn.eObrazovanjee.mapper;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,7 +13,7 @@ import com.ftn.eObrazovanjee.model.DeoIspita;
 import com.ftn.eObrazovanjee.model.StudijskaGodina;
 
 @Component
-public class DeoIspitaToDeoIspitaDTO {
+public class DeoIspitaMapper {
 	
 	@Autowired
 	private ModelMapper modelMapper;
@@ -20,6 +23,8 @@ public class DeoIspitaToDeoIspitaDTO {
 		return modelMapper.map(deoIspita, DeoIspitaDTO.class);
 	}*/
 	
+	
+	//modelToDto
 	public DeoIspitaDTO konvertujEntityToDto(DeoIspita deoIspita) {
 		
 		DeoIspitaDTO deoIspitaDTO = new DeoIspitaDTO();
@@ -35,7 +40,7 @@ public class DeoIspitaToDeoIspitaDTO {
 		return deoIspitaDTO;
 	}
 	
-	
+	//dtoToModel
 	public DeoIspita konvertujDtoToEntity(DeoIspitaDTO deoIspitaDTO) {
 		
 		DeoIspita deoIspita = new DeoIspita();
@@ -50,6 +55,15 @@ public class DeoIspitaToDeoIspitaDTO {
 		
 		
 		return deoIspita;
+	}
+	
+	
+	public Set<DeoIspita> listDtoToModel(Set<DeoIspitaDTO> listaDto) {
+		Set<DeoIspita> listaModel = new HashSet<DeoIspita>();
+		for (DeoIspitaDTO objectDTO : listaDto) {
+			listaModel.add(konvertujDtoToEntity(objectDTO));
+		}
+		return listaModel;
 	}
 
 }

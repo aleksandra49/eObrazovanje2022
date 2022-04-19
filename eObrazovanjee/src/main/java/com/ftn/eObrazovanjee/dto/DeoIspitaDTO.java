@@ -1,7 +1,9 @@
 package com.ftn.eObrazovanjee.dto;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class DeoIspitaDTO {
 	
@@ -12,7 +14,7 @@ public class DeoIspitaDTO {
 	private boolean polozio;
 	
 	private List<StudentDTO> studentDTO;
-	//private List<IspitDTO> ispitDTO;
+	private Set<IspitDTO> ispitDTO = new HashSet();
 	//private List<PredmetInstancaDTO> predmetInstancaDTO;
 
 	public DeoIspitaDTO() {
@@ -21,6 +23,29 @@ public class DeoIspitaDTO {
 	
 	//pun
 	
+
+	public DeoIspitaDTO(Long id, String naziv, Double brojOsvojenihBodova, int minBodova, boolean polozio,
+			List<StudentDTO> studentDTO, Set<IspitDTO> ispitDTO) {
+		super();
+		this.id = id;
+		this.naziv = naziv;
+		this.brojOsvojenihBodova = brojOsvojenihBodova;
+		this.minBodova = minBodova;
+		this.polozio = polozio;
+		this.studentDTO = studentDTO;
+		this.ispitDTO = ispitDTO;
+	}
+	
+	public DeoIspitaDTO(Long id, String naziv, Double brojOsvojenihBodova, int minBodova, boolean polozio,
+			Set<IspitDTO> ispitDTO) {
+		super();
+		this.id = id;
+		this.naziv = naziv;
+		this.brojOsvojenihBodova = brojOsvojenihBodova;
+		this.minBodova = minBodova;
+		this.polozio = polozio;
+		this.ispitDTO = ispitDTO;
+	}
 
 	public Long getId() {
 		return id;
@@ -68,6 +93,14 @@ public class DeoIspitaDTO {
 
 	public void setStudentDTO(List<StudentDTO> studentDTO) {
 		this.studentDTO = studentDTO;
+	}
+
+	public Set<IspitDTO> getIspitDTO() {
+		return ispitDTO;
+	}
+
+	public void setIspitDTO(Set<IspitDTO> ispitDTO) {
+		this.ispitDTO = ispitDTO;
 	}
 	
 	

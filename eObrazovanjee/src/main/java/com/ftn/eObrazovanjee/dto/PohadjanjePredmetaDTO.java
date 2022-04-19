@@ -10,7 +10,8 @@ public class PohadjanjePredmetaDTO {
 	private Date kraj;
 	private boolean polozen;
 	
-	private List<StudentDTO> studnetDTO;
+	private StudentDTO studnetDTO;
+	private PredmetInstancaDTO predmetInstanca;
 	//private List<PredmetInstancaDTO> predmetInstancaDTO;
 	//private List<IspitDTO> ispitDTO;
 
@@ -19,9 +20,17 @@ public class PohadjanjePredmetaDTO {
 	}
 	
 	
-	//pun
-	
-	
+	public PohadjanjePredmetaDTO(Long id, Date pocetak, Date kraj, boolean polozen, StudentDTO studnetDTO,
+			PredmetInstancaDTO predmetInstanca) {
+		super();
+		this.id = id;
+		this.pocetak = pocetak;
+		this.kraj = kraj;
+		this.polozen = polozen;
+		this.studnetDTO = studnetDTO;
+		this.predmetInstanca = predmetInstanca;
+	}
+
 
 	public Long getId() {
 		return id;
@@ -55,15 +64,35 @@ public class PohadjanjePredmetaDTO {
 		this.polozen = polozen;
 	}
 
-	public List<StudentDTO> getStudnetDTO() {
+
+	public StudentDTO getStudnetDTO() {
+		return studnetDTO;
+	}
+
+
+	public void setStudnetDTO(StudentDTO studnetDTO) {
+		this.studnetDTO = studnetDTO;
+	}
+
+
+	public PredmetInstancaDTO getPredmetInstanca() {
+		return predmetInstanca;
+	}
+
+
+	public void setPredmetInstanca(PredmetInstancaDTO predmetInstanca) {
+		this.predmetInstanca = predmetInstanca;
+	}
+
+	/*public List<StudentDTO> getStudnetDTO() {
 		return studnetDTO;
 	}
 
 	public void setStudnetDTO(List<StudentDTO> studnetDTO) {
 		this.studnetDTO = studnetDTO;
-	}
+	}*/
 	
-	//pun
+	
 	
 	
 
