@@ -15,21 +15,41 @@ public class DeoIspitaToDeoIspitaDTO {
 	@Autowired
 	private ModelMapper modelMapper;
 
-	public DeoIspitaDTO konvertujEntityToDto(DeoIspita deoIspita) {
+	/*public DeoIspitaDTO konvertujEntityToDto(DeoIspita deoIspita) {
 
 		return modelMapper.map(deoIspita, DeoIspitaDTO.class);
+	}*/
+	
+	public DeoIspitaDTO konvertujEntityToDto(DeoIspita deoIspita) {
+		
+		DeoIspitaDTO deoIspitaDTO = new DeoIspitaDTO();
+		
+		deoIspitaDTO.setId(deoIspita.getId());
+		deoIspitaDTO.setNaziv(deoIspita.getNaziv());
+		deoIspitaDTO.setBrojOsvojenihBodova(deoIspita.getBrojOsvojenihBodova());
+		deoIspitaDTO.setMinBodova(deoIspita.getMinBodova());
+		deoIspitaDTO.setPolozio(deoIspita.isPolozio());
+		
+	//ispit
+		
+		return deoIspitaDTO;
 	}
 	
-//	public DeoIspitaDTO konvertujEntityToDto(DeoIspita deoIspita) {
-//		DeoIspitaDTO deoIspitaDTO = new DeoIspitaDTO();
-//		
-//		deoIspitaDTO.setNaziv(deoIspita.getNaziv());
-//		deoIspitaDTO.setBrojOsvojenihBodova(deoIspita.getBrojOsvojenihBodova());
-//		deoIspitaDTO.setMinBodova(deoIspita.getMinBodova());
-//		deoIspitaDTO.setPolozio(deoIspita.isPolozio());
-//		
-//	
-//		return deoIspitaDTO;
-//	}
+	
+	public DeoIspita konvertujDtoToEntity(DeoIspitaDTO deoIspitaDTO) {
+		
+		DeoIspita deoIspita = new DeoIspita();
+		
+		deoIspita.setId(deoIspitaDTO.getId());
+		deoIspita.setNaziv(deoIspitaDTO.getNaziv());
+		deoIspita.setBrojOsvojenihBodova(deoIspitaDTO.getBrojOsvojenihBodova());
+		deoIspita.setMinBodova(deoIspitaDTO.getMinBodova());
+		deoIspita.setPolozio(deoIspitaDTO.isPolozio());
+		
+		//ispit
+		
+		
+		return deoIspita;
+	}
 
 }

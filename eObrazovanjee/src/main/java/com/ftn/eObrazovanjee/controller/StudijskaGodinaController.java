@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ftn.eObrazovanjee.dto.PredmetDTO;
 import com.ftn.eObrazovanjee.dto.StudijskaGodinaDTO;
 import com.ftn.eObrazovanjee.mapper.PredmetToPredmetDTO;
-import com.ftn.eObrazovanjee.mapper.StudijskaGodinaToStudijskaGodinaDTO;
+import com.ftn.eObrazovanjee.mapper.StudijskaGodinaMapper;
 import com.ftn.eObrazovanjee.model.Predmet;
 import com.ftn.eObrazovanjee.model.StudijskaGodina;
 import com.ftn.eObrazovanjee.service.StudijskaGodinaService;
@@ -36,7 +36,7 @@ public class StudijskaGodinaController {
 		//convert studijskeGodine to DTOs
 		List<StudijskaGodinaDTO> studijskeGodineDTO = new ArrayList<>();
 		for (StudijskaGodina s : studijskeGodine) {
-			studijskeGodineDTO.add(new StudijskaGodinaToStudijskaGodinaDTO().konvertujEntityToDto(s));
+			studijskeGodineDTO.add(new StudijskaGodinaMapper().konvertujEntityToDto(s));
 		}
 		return new ResponseEntity<>(studijskeGodineDTO, HttpStatus.OK);
 	}
@@ -48,7 +48,7 @@ public class StudijskaGodinaController {
 		//convert studijskeGodine to DTOs
 		List<StudijskaGodinaDTO> studijskeGodineDTO = new ArrayList<>();
 		for (StudijskaGodina sg : studijskeGodine) {
-			studijskeGodineDTO.add(new StudijskaGodinaToStudijskaGodinaDTO().konvertujEntityToDto(sg));
+			studijskeGodineDTO.add(new StudijskaGodinaMapper().konvertujEntityToDto(sg));
 		}
 		return new ResponseEntity<>(studijskeGodineDTO, HttpStatus.OK);
 	}
@@ -60,7 +60,7 @@ public class StudijskaGodinaController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		
-		return new ResponseEntity<>(new StudijskaGodinaToStudijskaGodinaDTO().konvertujEntityToDto(sg), HttpStatus.OK);
+		return new ResponseEntity<>(new StudijskaGodinaMapper().konvertujEntityToDto(sg), HttpStatus.OK);
 	}
 
 }
