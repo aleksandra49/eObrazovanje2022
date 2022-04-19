@@ -16,6 +16,10 @@ public class KorisnikDTO {
 		this.lozinka = lozinka;
 		this.uloga = uloga;
 	}
+	
+	public KorisnikDTO() {
+		super();
+	}
 
 	public Long getId() {
 		return id;

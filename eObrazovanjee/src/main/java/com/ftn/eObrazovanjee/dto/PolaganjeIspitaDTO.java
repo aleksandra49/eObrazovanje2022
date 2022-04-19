@@ -15,6 +15,12 @@ public class PolaganjeIspitaDTO {
 		this.ispit = ispit;
 		this.student = student;
 	}
+	
+	
+	public PolaganjeIspitaDTO() {
+		super();
+	}
+
 
 	public Long getId() {
 		return id;

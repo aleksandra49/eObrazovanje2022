@@ -22,6 +22,11 @@ public class IspitniRokDTO {
 		this.krajRoka = krajRoka;
 		this.ispitniRok = ispitniRok;
 	}
+	
+	public IspitniRokDTO() {
+		super();
+	}
+
 
 	public Long getId() {
 		return id;

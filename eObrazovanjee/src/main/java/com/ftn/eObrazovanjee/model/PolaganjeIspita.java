@@ -30,6 +30,7 @@ public class PolaganjeIspita {
 		this.student = student;
 	}
 
+
 	public PolaganjeIspita() {
 		super();
 	}
