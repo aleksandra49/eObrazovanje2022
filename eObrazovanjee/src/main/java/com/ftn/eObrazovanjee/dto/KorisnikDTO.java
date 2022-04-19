@@ -1,5 +1,7 @@
 package com.ftn.eObrazovanjee.dto;
 
+import com.ftn.eObrazovanjee.model.Profesor;
+import com.ftn.eObrazovanjee.model.Student;
 import com.ftn.eObrazovanjee.model.Uloga;
 
 public class KorisnikDTO {
@@ -8,50 +10,60 @@ public class KorisnikDTO {
 	private String korisnickoIme;
 	private String lozinka;
 	private Uloga uloga;
+	private Profesor profesor;
+	private Student student;
 	
-	public KorisnikDTO(Long id, String korisnickoIme, String lozinka, Uloga uloga) {
+	public KorisnikDTO(Long id, String korisnickoIme, String lozinka, Uloga uloga, Profesor profesor, Student student) {
 		super();
 		this.id = id;
 		this.korisnickoIme = korisnickoIme;
 		this.lozinka = lozinka;
 		this.uloga = uloga;
+		this.profesor = profesor;
+		this.student = student;
 	}
 	
 	public KorisnikDTO() {
 		super();
 	}
-
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public String getKorisnickoIme() {
 		return korisnickoIme;
 	}
-
 	public void setKorisnickoIme(String korisnickoIme) {
 		this.korisnickoIme = korisnickoIme;
 	}
-
 	public String getLozinka() {
 		return lozinka;
 	}
-
 	public void setLozinka(String lozinka) {
 		this.lozinka = lozinka;
 	}
-
 	public Uloga getUloga() {
 		return uloga;
 	}
-
 	public void setUloga(Uloga uloga) {
 		this.uloga = uloga;
 	}
+	public Profesor getProfesor() {
+		return profesor;
+	}
+	public void setProfesor(Profesor profesor) {
+		this.profesor = profesor;
+	}
+	public Student getStudent() {
+		return student;
+	}
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+	
+	
 	
 	
 }
