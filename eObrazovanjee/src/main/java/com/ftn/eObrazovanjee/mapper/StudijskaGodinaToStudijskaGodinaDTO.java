@@ -13,9 +13,24 @@ public class StudijskaGodinaToStudijskaGodinaDTO {
 
 	@Autowired
 	private ModelMapper modelMapper;
+//
+//	public StudijskaGodinaDTO konvertujEntityToDto(StudijskaGodina obj) {
+//
+//		return modelMapper.map(obj, StudijskaGodinaDTO.class);
+//	}
+	
+	
+	
+	public StudijskaGodinaDTO konvertujEntityToDto(StudijskaGodina studijskaGodina) {
+		StudijskaGodinaDTO studijskaGodinaDTO = new StudijskaGodinaDTO();
 
-	public StudijskaGodinaDTO konvertujEntityToDto(StudijskaGodina obj) {
+		studijskaGodinaDTO.setId(studijskaGodina.getId());
+		studijskaGodinaDTO.setPocetakStudija(studijskaGodina.getPocetakStudija());
+		studijskaGodinaDTO.setKrajStudija(studijskaGodina.getKrajStudija());
+		studijskaGodinaDTO.setNacinFinansiranja(studijskaGodina.getNacin_finansiranja());
+		studijskaGodinaDTO.setGodinaStudija(studijskaGodina.getGodinaStudija());
+		studijskaGodinaDTO.setSkolskaGodina(studijskaGodina.getSkolskaGodina());
 
-		return modelMapper.map(obj, StudijskaGodinaDTO.class);
+		return studijskaGodinaDTO;
 	}
 }

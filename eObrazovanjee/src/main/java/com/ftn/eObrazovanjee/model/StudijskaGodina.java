@@ -33,7 +33,7 @@ public class StudijskaGodina {
 	private Date krajStudija;
 	
 	//private String nacinFinansiranja;
-	//@Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.STRING)
     @Column(name = "nacin_finansiranja", nullable = false)
     private NacinFinansiranja nacin_finansiranja;
 	
