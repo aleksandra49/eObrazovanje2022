@@ -36,6 +36,8 @@ public class StudijskaGodinaDTOToStudijskaGodina {
 		studijskaGodina.setNacin_finansiranja(studijskaGodinaDTO.getNacinFinansiranja());
 		studijskaGodina.setGodinaStudija(studijskaGodinaDTO.getGodinaStudija());
 		studijskaGodina.setSkolskaGodina(studijskaGodinaDTO.getSkolskaGodina());
+		//resiti za studenta to sto ne valjda da ispise i njegov id
+		//studijskaGodina.setStudent(studijskaGodinaDTO.getStudent());
 		
 		return studijskaGodina;
 
