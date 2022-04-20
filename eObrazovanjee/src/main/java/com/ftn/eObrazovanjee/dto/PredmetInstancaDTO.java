@@ -3,6 +3,7 @@ package com.ftn.eObrazovanjee.dto;
 import java.util.Date;
 import java.util.List;
 
+import com.ftn.eObrazovanjee.model.Ispit;
 import com.ftn.eObrazovanjee.model.Predmet;
 
 public class PredmetInstancaDTO {
@@ -10,7 +11,8 @@ public class PredmetInstancaDTO {
 	private Long id;
 	private Date pocetak;
 	private Date kraj;
-	private Predmet predmet;
+	private PredmetDTO predmet;
+	private List<IspitDTO> ispit;
 	private List<PredavanjePredmetaDTO> predavanjePredmetaDTO;
 	private List<PohadjanjePredmetaDTO> pohadjanjePredmetaDTO;
 	public Long getId() {
@@ -32,12 +34,7 @@ public class PredmetInstancaDTO {
 		this.kraj = kraj;
 	}
 
-	public Predmet getPredmet() {
-		return predmet;
-	}
-	public void setPredmet(Predmet predmet) {
-		this.predmet = predmet;
-	}
+
 	public List<PredavanjePredmetaDTO> getPredavanjePredmetaDTO() {
 		return predavanjePredmetaDTO;
 	}
@@ -51,20 +48,37 @@ public class PredmetInstancaDTO {
 		this.pohadjanjePredmetaDTO = pohadjanjePredmetaDTO;
 	}
 	
+	
+	
+	public PredmetDTO getPredmet() {
+		return predmet;
+	}
+	public void setPredmet(PredmetDTO predmet) {
+		this.predmet = predmet;
+	}
+	public List<IspitDTO> getIspit() {
+		return ispit;
+	}
+	public void setIspit(List<IspitDTO> ispit) {
+		this.ispit = ispit;
+	}
 	public PredmetInstancaDTO() {
 		super();
 	}
-	
-	public PredmetInstancaDTO(Long id, Date pocetak, Date kraj, Predmet predmet,
+	public PredmetInstancaDTO(Long id, Date pocetak, Date kraj, PredmetDTO predmet, List<IspitDTO> ispit,
 			List<PredavanjePredmetaDTO> predavanjePredmetaDTO, List<PohadjanjePredmetaDTO> pohadjanjePredmetaDTO) {
 		super();
 		this.id = id;
 		this.pocetak = pocetak;
 		this.kraj = kraj;
 		this.predmet = predmet;
+		this.ispit = ispit;
 		this.predavanjePredmetaDTO = predavanjePredmetaDTO;
 		this.pohadjanjePredmetaDTO = pohadjanjePredmetaDTO;
 	}
+
+	
+
 	
 	
 }

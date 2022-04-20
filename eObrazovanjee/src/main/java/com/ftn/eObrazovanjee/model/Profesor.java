@@ -43,13 +43,27 @@ public class Profesor {
 	}
 
 
-	public Profesor(Long id, String ime, String prezime, String email, Korisnik korisnik) {
+
+	public Profesor(Long id, String ime, String prezime, String email, Korisnik korisnik,
+			Set<PredavanjePredmeta> predavanja) {
 		super();
 		this.id = id;
 		this.ime = ime;
 		this.prezime = prezime;
 		this.email = email;
 		this.korisnik = korisnik;
+		this.predavanja = predavanja;
+	}
+
+
+
+	public Set<PredavanjePredmeta> getPredavanja() {
+		return predavanja;
+	}
+
+
+	public void setPredavanja(Set<PredavanjePredmeta> predavanja) {
+		this.predavanja = predavanja;
 	}
 
 

@@ -105,8 +105,8 @@ public class PredmetInstanca {
 		super();
 	}
 
-	public PredmetInstanca(Long id, Date pocetak, Date kraj, Predmet predmet, 
-			Set<PredavanjePredmeta> predavanja, Set<PohadjanjePredmeta> pohadjanja) {
+	public PredmetInstanca(Long id, Date pocetak, Date kraj, Predmet predmet, Set<PredavanjePredmeta> predavanja,
+			Set<PohadjanjePredmeta> pohadjanja, Set<Ispit> ispit) {
 		super();
 		this.id = id;
 		this.pocetak = pocetak;
@@ -114,7 +114,18 @@ public class PredmetInstanca {
 		this.predmet = predmet;
 		this.predavanja = predavanja;
 		this.pohadjanja = pohadjanja;
+		this.ispit = ispit;
 	}
+
+	public Set<Ispit> getIspit() {
+		return ispit;
+	}
+
+	public void setIspit(Set<Ispit> ispit) {
+		this.ispit = ispit;
+	}
+
+
     
     
 

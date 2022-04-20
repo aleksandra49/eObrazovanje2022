@@ -8,8 +8,15 @@ public class ProfesorDTO {
     private String prezime;
     private String email;
     private KorisnikDTO korisnik;
+    private PredavanjePredmetaDTO predavanja;
     
     
+	public PredavanjePredmetaDTO getPredavanja() {
+		return predavanja;
+	}
+	public void setPredavanja(PredavanjePredmetaDTO predavanja) {
+		this.predavanja = predavanja;
+	}
 	public KorisnikDTO getKorisnik() {
 		return korisnik;
 	}
@@ -44,14 +51,17 @@ public class ProfesorDTO {
 	public ProfesorDTO() {
 		super();
 	}
-	public ProfesorDTO(Long id, String ime, String prezime, String email, KorisnikDTO korisnik) {
+	public ProfesorDTO(Long id, String ime, String prezime, String email, KorisnikDTO korisnik,
+			PredavanjePredmetaDTO predavanja) {
 		super();
 		this.id = id;
 		this.ime = ime;
 		this.prezime = prezime;
 		this.email = email;
 		this.korisnik = korisnik;
+		this.predavanja = predavanja;
 	}
+
 
     
     
