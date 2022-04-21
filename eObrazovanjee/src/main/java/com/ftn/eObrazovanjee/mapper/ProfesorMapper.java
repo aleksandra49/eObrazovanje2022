@@ -1,41 +1,34 @@
 package com.ftn.eObrazovanjee.mapper;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.ftn.eObrazovanjee.dto.PredavanjePredmetaDTO;
 import com.ftn.eObrazovanjee.dto.PredmetDTO;
 import com.ftn.eObrazovanjee.dto.ProfesorDTO;
 import com.ftn.eObrazovanjee.model.Predmet;
 import com.ftn.eObrazovanjee.model.Profesor;
+import com.ftn.eObrazovanjee.service.ProfesorServiceImpl;
 
 @Component
 public class ProfesorMapper {
 
-	public Profesor konvertujDtoToEntity(ProfesorDTO profesorDTO) {
-		
-		Profesor profesor = new Profesor();
-		
-		profesor.setId(profesorDTO.getId());
-		profesor.setEmail(profesorDTO.getEmail());
-		profesor.setIme(profesorDTO.getIme());
-		profesor.setPrezime(profesorDTO.getPrezime());
-		
-//		profesor.setPredavanja(profesorDTO.getPredavanja());
-//		profesor.setKorisnik(profesorDTO.getKorisnik());
-		
-		return profesor;
-	}
+	@Autowired
+	private ProfesorServiceImpl service;
 	
-	public ProfesorDTO konvertujEntityToDto(Profesor profesor) {
+	public ProfesorDTO modelToDto(Profesor profesor) {
 		ProfesorDTO profesorDTO = new ProfesorDTO();
 			
 		profesorDTO.setId(profesor.getId());
 		profesorDTO.setEmail(profesor.getEmail());
 		profesorDTO.setIme(profesor.getIme());
-		profesorDTO.setPrezime(profesor.getPrezime());
-			
+		profesorDTO.setPrezime(profesor.getPrezime());	
+		profesorDTO.setKorisnik(new KorisnikMapper().modelToDto(profesor.getKorisnik()));
+		profesorDTO.setPredavanja(new ArrayList<PredavanjePredmetaDTO>());
 		
 		return profesorDTO;
 		
@@ -44,9 +37,24 @@ public class ProfesorMapper {
 	public Set<Profesor> listDtoToModel(Set<ProfesorDTO> listaDto) {
 		Set<Profesor> listaModel = new HashSet<Profesor>();
 		for (ProfesorDTO objectDTO : listaDto) {
-			listaModel.add(konvertujDtoToEntity(objectDTO));
+			listaModel.add(service.findOne(objectDTO.getId()));
 		}
 		return listaModel;
 		
 	}
+	
+//	public Profesor konvertujDtoToEntity(ProfesorDTO profesorDTO) {
+//		
+//		Profesor profesor = new Profesor();
+//		
+//		profesor.setId(profesorDTO.getId());
+//		profesor.setEmail(profesorDTO.getEmail());
+//		profesor.setIme(profesorDTO.getIme());
+//		profesor.setPrezime(profesorDTO.getPrezime());
+//		
+////		profesor.setPredavanja(profesorDTO.getPredavanja());
+////		profesor.setKorisnik(profesorDTO.getKorisnik());
+//		
+//		return profesor;
+//	}
 }

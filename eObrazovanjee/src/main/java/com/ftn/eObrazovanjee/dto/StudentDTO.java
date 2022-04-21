@@ -1,5 +1,6 @@
 package com.ftn.eObrazovanjee.dto;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -13,12 +14,13 @@ public class StudentDTO {
 	private String indeks;
 	private String email;
 	private boolean active;
-	private Set<StudijskaGodinaDTO> studijskeGodineDTO = new HashSet();
-	private Set<DokumentDTO> dokumentiDTO = new HashSet();
+	//private Set<StudijskaGodinaDTO> studijskeGodineDTO = new HashSet();
+	private ArrayList<StudijskaGodinaDTO> studijskeGodineDTO;
+	//private Set<DokumentDTO> dokumentiDTO = new HashSet();
+	private ArrayList<DokumentDTO> dokumentiDTO;
 	private FinansijskaKarticaDTO finansijskaKarticaDTO;
-	//private List<TransakcijaDTO> transkacijeDTO;
-	private Set<PohadjanjePredmetaDTO> pohadjanjaPredmetaDTO = new HashSet();
-	//private List<IspitDTO> ispitDTO;
+	//private Set<PohadjanjePredmetaDTO> pohadjanjaPredmetaDTO = new HashSet();
+	private ArrayList<PohadjanjePredmetaDTO> pohadjanjaPredmetaDTO;
 	private KorisnikDTO korisnikDTO;
 	
 	
@@ -26,10 +28,9 @@ public class StudentDTO {
 		super();
 	}
 	
-	
 	public StudentDTO(Long id, String ime, String prezime, String indeks, String email, boolean active,
-			Set<StudijskaGodinaDTO> studijskeGodineDTO, Set<DokumentDTO> dokumentiDTO,
-			FinansijskaKarticaDTO finansijskaKarticaDTO, Set<PohadjanjePredmetaDTO> pohadjanjaPredmetaDTO,
+			ArrayList<StudijskaGodinaDTO> studijskeGodineDTO, ArrayList<DokumentDTO> dokumentiDTO,
+			FinansijskaKarticaDTO finansijskaKarticaDTO, ArrayList<PohadjanjePredmetaDTO> pohadjanjaPredmetaDTO,
 			KorisnikDTO korisnikDTO) {
 		super();
 		this.id = id;
@@ -44,6 +45,9 @@ public class StudentDTO {
 		this.pohadjanjaPredmetaDTO = pohadjanjaPredmetaDTO;
 		this.korisnikDTO = korisnikDTO;
 	}
+
+
+
 
 
 	public Long getId() {
@@ -105,19 +109,19 @@ public class StudentDTO {
 		this.active = active;
 	}
 
-	public Set<StudijskaGodinaDTO> getStudijskeGodineDTO() {
+	public ArrayList<StudijskaGodinaDTO> getStudijskeGodineDTO() {
 		return studijskeGodineDTO;
 	}
 
-	public void setStudijskeGodineDTO(Set<StudijskaGodinaDTO> studijskeGodineDTO) {
+	public void setStudijskeGodineDTO(ArrayList<StudijskaGodinaDTO> studijskeGodineDTO) {
 		this.studijskeGodineDTO = studijskeGodineDTO;
 	}
 
-	public Set<DokumentDTO> getDokumentiDTO() {
+	public ArrayList<DokumentDTO> getDokumentiDTO() {
 		return dokumentiDTO;
 	}
 
-	public void setDokumentiDTO(Set<DokumentDTO> dokumentiDTO) {
+	public void setDokumentiDTO(ArrayList<DokumentDTO> dokumentiDTO) {
 		this.dokumentiDTO = dokumentiDTO;
 	}
 
@@ -129,11 +133,11 @@ public class StudentDTO {
 		this.finansijskaKarticaDTO = finansijskaKarticaDTO;
 	}
 
-	public Set<PohadjanjePredmetaDTO> getPohadjanjaPredmetaDTO() {
+	public ArrayList<PohadjanjePredmetaDTO> getPohadjanjaPredmetaDTO() {
 		return pohadjanjaPredmetaDTO;
 	}
 
-	public void setPohadjanjaPredmetaDTO(Set<PohadjanjePredmetaDTO> pohadjanjaPredmetaDTO) {
+	public void setPohadjanjaPredmetaDTO(ArrayList<PohadjanjePredmetaDTO> pohadjanjaPredmetaDTO) {
 		this.pohadjanjaPredmetaDTO = pohadjanjaPredmetaDTO;
 	}
 

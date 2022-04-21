@@ -1,11 +1,15 @@
 package com.ftn.eObrazovanjee.dto;
 
+import java.util.ArrayList;
+
 public class PredmetDTO {
 
 	private Long id;
 	private String naziv;
 	private Integer espb;
 	private String oznaka;
+	
+	private ArrayList<PredmetInstancaDTO> predmetInstancaDTO;
 	
 	
 	public Long getId() {
@@ -33,6 +37,13 @@ public class PredmetDTO {
 		this.oznaka = oznaka;
 	}
 	
+	public ArrayList<PredmetInstancaDTO> getPredmetInstancaDTO() {
+		return predmetInstancaDTO;
+	}
+	public void setPredmetInstancaDTO(ArrayList<PredmetInstancaDTO> predmetInstancaDTO) {
+		this.predmetInstancaDTO = predmetInstancaDTO;
+	}
+	
 	
 	public PredmetDTO() {
 		super();
@@ -45,6 +56,18 @@ public class PredmetDTO {
 		this.oznaka = oznaka;
 
 	}
+	public PredmetDTO(Long id, String naziv, Integer espb, String oznaka,
+			ArrayList<PredmetInstancaDTO> predmetInstancaDTO) {
+		super();
+		this.id = id;
+		this.naziv = naziv;
+		this.espb = espb;
+		this.oznaka = oznaka;
+		this.predmetInstancaDTO = predmetInstancaDTO;
+	}
+	
+	
+	
 	
 
 	

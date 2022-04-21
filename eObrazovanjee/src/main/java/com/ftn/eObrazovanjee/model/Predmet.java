@@ -63,6 +63,16 @@ public class Predmet {
 	public void setOznaka(String oznaka) {
 		this.oznaka = oznaka;
 	}
+	
+	
+
+	public Set<PredmetInstanca> getPredmetInstanca() {
+		return predmetInstanca;
+	}
+
+	public void setPredmetInstanca(Set<PredmetInstanca> predmetInstanca) {
+		this.predmetInstanca = predmetInstanca;
+	}
 
 	public Predmet() {
 		super();
@@ -76,7 +86,17 @@ public class Predmet {
 		this.oznaka = oznaka;
 	}
 
+	public Predmet(Long id, String naziv, Integer espb, String oznaka, Set<PredmetInstanca> predmetInstanca) {
+		super();
+		this.id = id;
+		this.naziv = naziv;
+		this.espb = espb;
+		this.oznaka = oznaka;
+		this.predmetInstanca = predmetInstanca;
+	}
 
+
+	
 	
 	
 }

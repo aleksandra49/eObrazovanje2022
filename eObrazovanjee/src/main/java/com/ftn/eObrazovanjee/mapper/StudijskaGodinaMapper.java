@@ -9,11 +9,15 @@ import org.springframework.stereotype.Component;
 
 import com.ftn.eObrazovanjee.dto.StudijskaGodinaDTO;
 import com.ftn.eObrazovanjee.model.StudijskaGodina;
+import com.ftn.eObrazovanjee.service.StudijskaGodinaService;
 
 
 @Component
 public class StudijskaGodinaMapper {
 
+	@Autowired
+	private StudijskaGodinaService service;
+	
 	@Autowired
 	private ModelMapper modelMapper;
 //
@@ -23,8 +27,8 @@ public class StudijskaGodinaMapper {
 //	}
 	
 	
-	//modelToDto
-	public StudijskaGodinaDTO konvertujEntityToDto(StudijskaGodina studijskaGodina) {
+	//modelToDto konvertujEntityToDto
+	public StudijskaGodinaDTO modelToDto(StudijskaGodina studijskaGodina) {
 		
 		StudijskaGodinaDTO studijskaGodinaDTO = new StudijskaGodinaDTO();
 
@@ -35,35 +39,43 @@ public class StudijskaGodinaMapper {
 		studijskaGodinaDTO.setGodinaStudija(studijskaGodina.getGodinaStudija());
 		studijskaGodinaDTO.setSkolskaGodina(studijskaGodina.getSkolskaGodina());
 		
-		//veza za studenta
+		studijskaGodinaDTO.setStudnetDTO(new StudentMapper().modelToDto(studijskaGodina.getStudent()));
 
 		return studijskaGodinaDTO;
 	}
 	
 	//dtoToModel
-	public StudijskaGodina konvertujDtoToEntity(StudijskaGodinaDTO studijskaGodinaDTO) {
-
-		StudijskaGodina studijskaGodina = new StudijskaGodina();
-
-		studijskaGodina.setId(studijskaGodinaDTO.getId());
-		studijskaGodina.setPocetakStudija(studijskaGodinaDTO.getPocetakStudija());
-		studijskaGodina.setKrajStudija(studijskaGodinaDTO.getKrajStudija());
-		studijskaGodina.setNacin_finansiranja(studijskaGodinaDTO.getNacinFinansiranja());
-		studijskaGodina.setGodinaStudija(studijskaGodinaDTO.getGodinaStudija());
-		studijskaGodina.setSkolskaGodina(studijskaGodinaDTO.getSkolskaGodina());
-		
-		//resiti za studenta to sto ne valjda da ispise i njegov id
-		//studijskaGodina.setStudent(studijskaGodinaDTO.getStudent());
-		
-		return studijskaGodina;
-
-	}
+//	public StudijskaGodina konvertujDtoToEntity(StudijskaGodinaDTO studijskaGodinaDTO) {
+//
+//		StudijskaGodina studijskaGodina = new StudijskaGodina();
+//
+//		studijskaGodina.setId(studijskaGodinaDTO.getId());
+//		studijskaGodina.setPocetakStudija(studijskaGodinaDTO.getPocetakStudija());
+//		studijskaGodina.setKrajStudija(studijskaGodinaDTO.getKrajStudija());
+//		studijskaGodina.setNacin_finansiranja(studijskaGodinaDTO.getNacinFinansiranja());
+//		studijskaGodina.setGodinaStudija(studijskaGodinaDTO.getGodinaStudija());
+//		studijskaGodina.setSkolskaGodina(studijskaGodinaDTO.getSkolskaGodina());
+//		
+//		//resiti za studenta to sto ne valjda da ispise i njegov id
+//		//studijskaGodina.setStudent(studijskaGodinaDTO.getStudent());
+//		
+//		return studijskaGodina;
+//
+//	}
 	
+	
+//	public Set<StudijskaGodina> listDtoToModel(Set<StudijskaGodinaDTO> listaDto) {
+//		Set<StudijskaGodina> listaModel = new HashSet<StudijskaGodina>();
+//		for (StudijskaGodinaDTO objectDTO : listaDto) {
+//			listaModel.add(konvertujDtoToEntity(objectDTO));
+//		}
+//		return listaModel;
+//	}
 	
 	public Set<StudijskaGodina> listDtoToModel(Set<StudijskaGodinaDTO> listaDto) {
 		Set<StudijskaGodina> listaModel = new HashSet<StudijskaGodina>();
 		for (StudijskaGodinaDTO objectDTO : listaDto) {
-			listaModel.add(konvertujDtoToEntity(objectDTO));
+			listaModel.add(service.findOne(objectDTO.getId()));
 		}
 		return listaModel;
 	}

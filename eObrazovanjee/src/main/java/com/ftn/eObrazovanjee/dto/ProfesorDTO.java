@@ -1,5 +1,6 @@
 package com.ftn.eObrazovanjee.dto;
 
+import java.util.ArrayList;
 
 public class ProfesorDTO {
 
@@ -8,13 +9,14 @@ public class ProfesorDTO {
     private String prezime;
     private String email;
     private KorisnikDTO korisnik;
-    private PredavanjePredmetaDTO predavanja;
+    private ArrayList<PredavanjePredmetaDTO> predavanja;
     
     
-	public PredavanjePredmetaDTO getPredavanja() {
+	
+	public ArrayList<PredavanjePredmetaDTO> getPredavanja() {
 		return predavanja;
 	}
-	public void setPredavanja(PredavanjePredmetaDTO predavanja) {
+	public void setPredavanja(ArrayList<PredavanjePredmetaDTO> predavanja) {
 		this.predavanja = predavanja;
 	}
 	public KorisnikDTO getKorisnik() {
@@ -52,7 +54,7 @@ public class ProfesorDTO {
 		super();
 	}
 	public ProfesorDTO(Long id, String ime, String prezime, String email, KorisnikDTO korisnik,
-			PredavanjePredmetaDTO predavanja) {
+			ArrayList<PredavanjePredmetaDTO> predavanja) {
 		super();
 		this.id = id;
 		this.ime = ime;
@@ -61,6 +63,7 @@ public class ProfesorDTO {
 		this.korisnik = korisnik;
 		this.predavanja = predavanja;
 	}
+	
 
 
     

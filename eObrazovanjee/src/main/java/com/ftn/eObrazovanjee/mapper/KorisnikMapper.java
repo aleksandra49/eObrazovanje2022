@@ -20,9 +20,9 @@ public class KorisnikMapper {
 		KorisnikDTO objectDTO = new KorisnikDTO();
 		
 		objectDTO.setId(object.getId());
-		object.setKorisnickoIme(objectDTO.getKorisnickoIme());
-		object.setLozinka(objectDTO.getLozinka());
-		object.setUloga(objectDTO.getUloga());
+		objectDTO.setKorisnickoIme(object.getKorisnickoIme());
+		objectDTO.setLozinka(object.getLozinka());
+		objectDTO.setUloga(object.getUloga());
 		objectDTO.setProfesor(new ProfesorMapper().modelToDto(object.getProfesor()));
 		objectDTO.setStudent(new StudentMapper().modelToDto(object.getStudent()));
 		

@@ -3,6 +3,8 @@ package com.ftn.eObrazovanjee.model;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,6 +30,7 @@ public class PredavanjePredmeta {
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     private PredmetInstanca predmetInstanca;
     
+    @Enumerated(EnumType.STRING)
 	@Column(name = "tip_predavaca")
 	private TipPredavacaVezbi tipPredavaca;
 

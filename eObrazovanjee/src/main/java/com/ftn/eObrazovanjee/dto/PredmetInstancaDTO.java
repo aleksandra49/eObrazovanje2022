@@ -1,5 +1,6 @@
 package com.ftn.eObrazovanjee.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,9 +13,9 @@ public class PredmetInstancaDTO {
 	private Date pocetak;
 	private Date kraj;
 	private PredmetDTO predmet;
-	private List<IspitDTO> ispit;
-	private List<PredavanjePredmetaDTO> predavanjePredmetaDTO;
-	private List<PohadjanjePredmetaDTO> pohadjanjePredmetaDTO;
+	private ArrayList<IspitDTO> ispit;
+	private ArrayList<PredavanjePredmetaDTO> predavanjePredmetaDTO;
+	private ArrayList<PohadjanjePredmetaDTO> pohadjanjePredmetaDTO;
 	public Long getId() {
 		return id;
 	}
@@ -35,16 +36,16 @@ public class PredmetInstancaDTO {
 	}
 
 
-	public List<PredavanjePredmetaDTO> getPredavanjePredmetaDTO() {
+	public ArrayList<PredavanjePredmetaDTO> getPredavanjePredmetaDTO() {
 		return predavanjePredmetaDTO;
 	}
-	public void setPredavanjePredmetaDTO(List<PredavanjePredmetaDTO> predavanjePredmetaDTO) {
+	public void setPredavanjePredmetaDTO(ArrayList<PredavanjePredmetaDTO> predavanjePredmetaDTO) {
 		this.predavanjePredmetaDTO = predavanjePredmetaDTO;
 	}
-	public List<PohadjanjePredmetaDTO> getPohadjanjePredmetaDTO() {
+	public ArrayList<PohadjanjePredmetaDTO> getPohadjanjePredmetaDTO() {
 		return pohadjanjePredmetaDTO;
 	}
-	public void setPohadjanjePredmetaDTO(List<PohadjanjePredmetaDTO> pohadjanjePredmetaDTO) {
+	public void setPohadjanjePredmetaDTO(ArrayList<PohadjanjePredmetaDTO> pohadjanjePredmetaDTO) {
 		this.pohadjanjePredmetaDTO = pohadjanjePredmetaDTO;
 	}
 	
@@ -56,17 +57,17 @@ public class PredmetInstancaDTO {
 	public void setPredmet(PredmetDTO predmet) {
 		this.predmet = predmet;
 	}
-	public List<IspitDTO> getIspit() {
+	public ArrayList<IspitDTO> getIspit() {
 		return ispit;
 	}
-	public void setIspit(List<IspitDTO> ispit) {
+	public void setIspit(ArrayList<IspitDTO> ispit) {
 		this.ispit = ispit;
 	}
 	public PredmetInstancaDTO() {
 		super();
 	}
-	public PredmetInstancaDTO(Long id, Date pocetak, Date kraj, PredmetDTO predmet, List<IspitDTO> ispit,
-			List<PredavanjePredmetaDTO> predavanjePredmetaDTO, List<PohadjanjePredmetaDTO> pohadjanjePredmetaDTO) {
+	public PredmetInstancaDTO(Long id, Date pocetak, Date kraj, PredmetDTO predmet, ArrayList<IspitDTO> ispit,
+			ArrayList<PredavanjePredmetaDTO> predavanjePredmetaDTO, ArrayList<PohadjanjePredmetaDTO> pohadjanjePredmetaDTO) {
 		super();
 		this.id = id;
 		this.pocetak = pocetak;

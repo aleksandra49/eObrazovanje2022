@@ -17,8 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.eObrazovanjee.dto.IspitDTO;
 import com.ftn.eObrazovanjee.dto.PredmetDTO;
-import com.ftn.eObrazovanjee.mapper.IspitToIspitDTO;
-import com.ftn.eObrazovanjee.mapper.PredmetToPredmetDTO;
+import com.ftn.eObrazovanjee.mapper.PredmetMapper;
 import com.ftn.eObrazovanjee.model.Ispit;
 import com.ftn.eObrazovanjee.model.Predmet;
 import com.ftn.eObrazovanjee.service.PredmetServiceImpl;
@@ -40,7 +39,7 @@ public class PredmetController {
 		List<PredmetDTO> ispitiDTO = new ArrayList<>();
 		for (Predmet s : ispiti) {
 			
-			ispitiDTO.add(new PredmetToPredmetDTO().konvertujEntityToDto(s));
+			ispitiDTO.add(new PredmetMapper().modelToDto(s));
 		}
 		return new ResponseEntity<>(ispitiDTO, HttpStatus.OK);
 	}
@@ -54,7 +53,7 @@ public class PredmetController {
 		//konvertuje kurseve u DTOs
 		List<PredmetDTO> predmetiDTO = new ArrayList<>();
 		for (Predmet p : predmeti) {
-			predmetiDTO.add(new PredmetToPredmetDTO().konvertujEntityToDto(p));
+			predmetiDTO.add(new PredmetMapper().modelToDto(p));
 		}
 		return new ResponseEntity<>(predmetiDTO, HttpStatus.OK);
 	}
@@ -68,23 +67,11 @@ public class PredmetController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		
-		return new ResponseEntity<>(new PredmetToPredmetDTO().konvertujEntityToDto(predmet), HttpStatus.OK);
+		return new ResponseEntity<>(new PredmetMapper().modelToDto(predmet), HttpStatus.OK);
 	}
 	
 	
-	
-//	//brisanje
-//	@DeleteMapping(value = "/{id}")
-//    public ResponseEntity<Void> deletePredmet(@PathVariable("id") Long id) {
-//        try {
-//        	Predmet predmet = predmetService.findOne(id);
-//        	predmetService.delete(predmet);
-//            return new ResponseEntity<>(HttpStatus.OK);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return new ResponseEntity<>(HttpStatus.OK);
-//        }
-//    }
+
 	
 	
 
