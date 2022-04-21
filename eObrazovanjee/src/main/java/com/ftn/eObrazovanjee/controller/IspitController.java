@@ -17,8 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.ftn.eObrazovanjee.dto.IspitDTO;
 import com.ftn.eObrazovanjee.mapper.DeoIspitaDTOToDeoIspita;
+import com.ftn.eObrazovanjee.mapper.DeoIspitaMapper;
+import com.ftn.eObrazovanjee.mapper.IspitMapper;
 import com.ftn.eObrazovanjee.mapper.IspitToIspitDTO;
 import com.ftn.eObrazovanjee.mapper.PolaganjeIspitaDTOToPolaganjeIspita;
+import com.ftn.eObrazovanjee.mapper.PolaganjeIspitaMapper;
 import com.ftn.eObrazovanjee.model.Ispit;
 import com.ftn.eObrazovanjee.service.IspitService;
 import com.ftn.eObrazovanjee.service.IspitniRokService;
@@ -44,9 +47,8 @@ public class IspitController {
 		List<Ispit> ispiti = ispitService.findAll();
 		//convert Ispits to DTOs
 		List<IspitDTO> ispitiDTO = new ArrayList<>();
-		for (Ispit s : ispiti) {
-			
-			ispitiDTO.add(new IspitToIspitDTO().konvertujEntityToDto(s));
+		for (Ispit obj : ispiti) {
+			ispitiDTO.add(new IspitMapper().modelToDto(obj));
 		}
 		return new ResponseEntity<>(ispitiDTO, HttpStatus.OK);
 	}
@@ -59,20 +61,20 @@ public class IspitController {
 		
 		//convert Ispits to DTOs
 		List<IspitDTO> ispitiDTO = new ArrayList<>();
-		for (Ispit o : ispiti) {
-			ispitiDTO.add(new IspitToIspitDTO().konvertujEntityToDto(o));
+		for (Ispit obj : ispiti) {
+			ispitiDTO.add(new IspitMapper().modelToDto(obj));
 		}
 		return new ResponseEntity<>(ispitiDTO, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<IspitDTO> getIspit(@PathVariable Long id){
-		Ispit Ispit = ispitService.findOne(id);
-		if(Ispit == null){
+		Ispit ispit = ispitService.findOne(id);
+		if(ispit == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		
-		return new ResponseEntity<>(new IspitToIspitDTO().konvertujEntityToDto(Ispit), HttpStatus.OK);
+		return new ResponseEntity<>(new IspitMapper().modelToDto(ispit), HttpStatus.OK);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
@@ -82,13 +84,13 @@ public class IspitController {
 		ispit.setDatumVreme(ispitDTO.getDatumVreme());
 		ispit.setBrojOsvojenihBodova(ispitDTO.getBrojOsvojenihBodova());
 
-		ispit.setPolaganjeIspita(new HashSet<>(new PolaganjeIspitaDTOToPolaganjeIspita().konvertujListuIzDTO(ispitDTO.getPolaganjeIspita())));
+		ispit.setPolaganjeIspita(new HashSet<>(new PolaganjeIspitaMapper().listDtoToModel(ispitDTO.getPolaganjeIspita())));
 		ispit.setIspitniRok(ispitniRokService.findOne(ispitDTO.getIspitniRok().getId()));
-		ispit.setDeoIspita(new HashSet<>(new DeoIspitaDTOToDeoIspita().konvertujListuIzDTO(ispitDTO.getDeoIspitaDTO())));
+		ispit.setDeoIspita(new HashSet<>(new DeoIspitaMapper().listDtoToModel(ispitDTO.getDeoIspitaDTO())));
 		ispit.setPredmetInstanca(predmetInstancaServiceImpl.findOne(ispitDTO.getPredmetInstanca().getId()));
 		
 		ispit = ispitService.save(ispit);
-		return new ResponseEntity<>(new IspitToIspitDTO().konvertujEntityToDto(ispit), HttpStatus.CREATED);	
+		return new ResponseEntity<>(new IspitMapper().modelToDto(ispit), HttpStatus.CREATED);	
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, consumes="application/json")
@@ -103,13 +105,13 @@ public class IspitController {
 		ispit.setDatumVreme(ispitDTO.getDatumVreme());
 		ispit.setBrojOsvojenihBodova(ispitDTO.getBrojOsvojenihBodova());
 
-		ispit.setPolaganjeIspita(new HashSet<>(new PolaganjeIspitaDTOToPolaganjeIspita().konvertujListuIzDTO(ispitDTO.getPolaganjeIspita())));
+		ispit.setPolaganjeIspita(new HashSet<>(new PolaganjeIspitaMapper().listDtoToModel(ispitDTO.getPolaganjeIspita())));
 		ispit.setIspitniRok(ispitniRokService.findOne(ispitDTO.getIspitniRok().getId()));
-		ispit.setDeoIspita(new HashSet<>(new DeoIspitaDTOToDeoIspita().konvertujListuIzDTO(ispitDTO.getDeoIspitaDTO())));
+		ispit.setDeoIspita(new HashSet<>(new DeoIspitaMapper().listDtoToModel(ispitDTO.getDeoIspitaDTO())));
 		ispit.setPredmetInstanca(predmetInstancaServiceImpl.findOne(ispitDTO.getPredmetInstanca().getId()));
 		
 		ispit = ispitService.save(ispit);
-		return new ResponseEntity<>(new IspitToIspitDTO().konvertujEntityToDto(ispit), HttpStatus.OK);	
+		return new ResponseEntity<>(new IspitMapper().modelToDto(ispit), HttpStatus.OK);	
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)

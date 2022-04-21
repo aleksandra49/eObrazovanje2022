@@ -10,10 +10,10 @@ public class KorisnikDTO {
 	private String korisnickoIme;
 	private String lozinka;
 	private Uloga uloga;
-	private Profesor profesor;
-	private Student student;
+	private ProfesorDTO profesor;
+	private StudentDTO student;
 	
-	public KorisnikDTO(Long id, String korisnickoIme, String lozinka, Uloga uloga, Profesor profesor, Student student) {
+	public KorisnikDTO(Long id, String korisnickoIme, String lozinka, Uloga uloga, ProfesorDTO profesor, StudentDTO student) {
 		super();
 		this.id = id;
 		this.korisnickoIme = korisnickoIme;
@@ -50,16 +50,16 @@ public class KorisnikDTO {
 	public void setUloga(Uloga uloga) {
 		this.uloga = uloga;
 	}
-	public Profesor getProfesor() {
+	public ProfesorDTO getProfesor() {
 		return profesor;
 	}
-	public void setProfesor(Profesor profesor) {
+	public void setProfesor(ProfesorDTO profesor) {
 		this.profesor = profesor;
 	}
-	public Student getStudent() {
+	public StudentDTO getStudent() {
 		return student;
 	}
-	public void setStudent(Student student) {
+	public void setStudent(StudentDTO student) {
 		this.student = student;
 	}
 	

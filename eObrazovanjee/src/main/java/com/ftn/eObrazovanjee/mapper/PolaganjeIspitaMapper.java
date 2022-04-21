@@ -1,42 +1,39 @@
 package com.ftn.eObrazovanjee.mapper;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ftn.eObrazovanjee.dto.PolaganjeIspitaDTO;
 import com.ftn.eObrazovanjee.model.PolaganjeIspita;
+import com.ftn.eObrazovanjee.service.PolaganjeIspitaService;
 
 @Component
 public class PolaganjeIspitaMapper {
-
-	public PolaganjeIspita dtoToModel(PolaganjeIspitaDTO objectDTO) {
-		PolaganjeIspita object = new PolaganjeIspita();
-		
-//		atributi su ispit i student
-		
-		return object;
-	}
+	
+	@Autowired
+	private PolaganjeIspitaService service;
 	
 	public PolaganjeIspitaDTO modelToDto(PolaganjeIspita object) {
 		PolaganjeIspitaDTO objectDTO = new PolaganjeIspitaDTO();
 		
-//		atributi su ispit i student
+		objectDTO.setId(object.getId());
+		objectDTO.setIspit(new IspitMapper().modelToDto(object.getIspit()));
+		objectDTO.setStudent(new StudentMapper().modelToDto(object.getStudent()));
 		
 		return objectDTO;
 	}
 	
-	public Set<PolaganjeIspita> listDtoToModel(Set<PolaganjeIspitaDTO> listaDto) {
+	public Set<PolaganjeIspita> listDtoToModel(ArrayList<PolaganjeIspitaDTO> listaDto) {
 		Set<PolaganjeIspita> listaModel = new HashSet<PolaganjeIspita>();
 		for (PolaganjeIspitaDTO objectDTO : listaDto) {
-			listaModel.add(dtoToModel(objectDTO));
+			listaModel.add(service.findOne(objectDTO.getId()));
 		}
 		return listaModel;
 	}
 	
 }
 
-//this.id = id;
-//this.PolaganjeIspita = PolaganjeIspita;
-//this.student = student;

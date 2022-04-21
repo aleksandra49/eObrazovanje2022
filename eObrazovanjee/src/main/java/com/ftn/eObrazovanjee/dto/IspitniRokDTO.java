@@ -1,5 +1,6 @@
 package com.ftn.eObrazovanjee.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import com.ftn.eObrazovanjee.model.IspitniRok;
@@ -12,21 +13,20 @@ public class IspitniRokDTO {
 	private String nazivRoka;
 	private Date pocetakRoka;
 	private Date krajRoka;
-	private IspitniRokDTO ispitniRok;
+	private ArrayList<IspitDTO> ispiti;
 	
-	public IspitniRokDTO(Long id, String nazivRoka, Date pocetakRoka, Date krajRoka, IspitniRokDTO ispitniRok) {
+	public IspitniRokDTO(Long id, String nazivRoka, Date pocetakRoka, Date krajRoka, ArrayList<IspitDTO> ispiti) {
 		super();
 		this.id = id;
 		this.nazivRoka = nazivRoka;
 		this.pocetakRoka = pocetakRoka;
 		this.krajRoka = krajRoka;
-		this.ispitniRok = ispitniRok;
+		this.ispiti = ispiti;
 	}
-	
+
 	public IspitniRokDTO() {
 		super();
 	}
-
 
 	public Long getId() {
 		return id;
@@ -60,13 +60,14 @@ public class IspitniRokDTO {
 		this.krajRoka = krajRoka;
 	}
 
-	public IspitniRokDTO getIspitniRok() {
-		return ispitniRok;
+	public ArrayList<IspitDTO> getIspiti() {
+		return ispiti;
 	}
 
-	public void setIspitniRok(IspitniRokDTO ispitniRok) {
-		this.ispitniRok = ispitniRok;
+	public void setIspiti(ArrayList<IspitDTO> ispiti) {
+		this.ispiti = ispiti;
 	}
+	
 	
 	
 	

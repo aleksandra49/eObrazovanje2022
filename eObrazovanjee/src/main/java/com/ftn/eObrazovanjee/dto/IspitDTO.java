@@ -1,6 +1,7 @@
 package com.ftn.eObrazovanjee.dto;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,13 +17,13 @@ public class IspitDTO {
 	private LocalDateTime datumVreme;
 	private int brojOsvojenihBodova;
 	
-	private Set<PolaganjeIspitaDTO> polaganjeIspita = new HashSet();
+	private ArrayList<PolaganjeIspitaDTO> polaganjeIspita;
 	private IspitniRokDTO ispitniRok;
-	private Set<DeoIspitaDTO> deoIspitaDTO = new HashSet();
+	private ArrayList<DeoIspitaDTO> deoIspitaDTO;
 	private PredmetInstancaDTO predmetInstanca;
 	
 	public IspitDTO(Long id, String naziv, LocalDateTime datumVreme, int brojOsvojenihBodova,
-			Set<PolaganjeIspitaDTO> polaganjeIspita, IspitniRokDTO ispitniRok, Set<DeoIspitaDTO> deoIspitaDTO,
+			ArrayList<PolaganjeIspitaDTO> polaganjeIspita, IspitniRokDTO ispitniRok, ArrayList<DeoIspitaDTO> deoIspitaDTO,
 			PredmetInstancaDTO predmetInstanca) {
 		super();
 		this.id = id;
@@ -71,11 +72,11 @@ public class IspitDTO {
 		this.brojOsvojenihBodova = brojOsvojenihBodova;
 	}
 
-	public Set<PolaganjeIspitaDTO> getPolaganjeIspita() {
+	public ArrayList<PolaganjeIspitaDTO> getPolaganjeIspita() {
 		return polaganjeIspita;
 	}
 
-	public void setPolaganjeIspita(Set<PolaganjeIspitaDTO> polaganjeIspita) {
+	public void setPolaganjeIspita(ArrayList<PolaganjeIspitaDTO> polaganjeIspita) {
 		this.polaganjeIspita = polaganjeIspita;
 	}
 
@@ -87,11 +88,11 @@ public class IspitDTO {
 		this.ispitniRok = ispitniRok;
 	}
 
-	public Set<DeoIspitaDTO> getDeoIspitaDTO() {
+	public ArrayList<DeoIspitaDTO> getDeoIspitaDTO() {
 		return deoIspitaDTO;
 	}
 
-	public void setDeoIspitaDTO(Set<DeoIspitaDTO> deoIspitaDTO) {
+	public void setDeoIspitaDTO(ArrayList<DeoIspitaDTO> deoIspitaDTO) {
 		this.deoIspitaDTO = deoIspitaDTO;
 	}
 
