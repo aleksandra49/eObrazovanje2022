@@ -4,6 +4,7 @@ public class TipDokumentaDTO {
 	
 	private Long id;
 	private String nazivDokumenta;
+	private DokumentDTO dokumentDTO;
 	
 	
 	
@@ -31,6 +32,14 @@ public class TipDokumentaDTO {
 
 	public void setNazivDokumenta(String nazivDokumenta) {
 		this.nazivDokumenta = nazivDokumenta;
+	}
+
+	public DokumentDTO getDokumentDTO() {
+		return dokumentDTO;
+	}
+
+	public void setDokumentDTO(DokumentDTO dokumentDTO) {
+		this.dokumentDTO = dokumentDTO;
 	}
 	
 	

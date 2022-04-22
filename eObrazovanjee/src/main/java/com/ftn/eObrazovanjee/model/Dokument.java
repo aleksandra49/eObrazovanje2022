@@ -30,22 +30,15 @@ public class Dokument {
 	@ManyToOne(cascade = CascadeType.REFRESH , fetch = FetchType.LAZY)
 	private Student student;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Set<TipDokumenta> tipDokumenta = new HashSet<TipDokumenta>();
+	@OneToMany(mappedBy = "tipDokumenta", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	private Set<TipDokumenta> tipDokumenta = new HashSet<>();
 	
 	
 	public Dokument() {
 		super();
 	}
+	
 
-	public Dokument(Long id, String naziv, String uri) {
-		super();
-		this.id = id;
-		this.naziv = naziv;
-		this.uri = uri;
-	}
-	
-	
 	public Dokument(Long id, String naziv, String uri, Student student, Set<TipDokumenta> tipDokumenta) {
 		super();
 		this.id = id;
@@ -54,6 +47,7 @@ public class Dokument {
 		this.student = student;
 		this.tipDokumenta = tipDokumenta;
 	}
+
 
 	public Long getId() {
 		return id;
@@ -87,13 +81,17 @@ public class Dokument {
 		this.student = student;
 	}
 
+
 	public Set<TipDokumenta> getTipDokumenta() {
 		return tipDokumenta;
 	}
 
+
 	public void setTipDokumenta(Set<TipDokumenta> tipDokumenta) {
 		this.tipDokumenta = tipDokumenta;
 	}
+
+	
 
 	
 

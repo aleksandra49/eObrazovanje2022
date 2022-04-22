@@ -25,14 +25,6 @@ public class TipDokumenta {
 	public TipDokumenta() {
 		super();
 	}
-	
-	public TipDokumenta(Long id, String nazivDokumenta) {
-		super();
-		this.id = id;
-		this.nazivDokumenta = nazivDokumenta;
-	}
-	
-	
 
 	public TipDokumenta(Long id, String nazivDokumenta, Dokument dokument) {
 		super();
