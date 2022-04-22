@@ -5,12 +5,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.ftn.eObrazovanjee.dto.FinansijskaKarticaDTO;
 import com.ftn.eObrazovanjee.dto.TransakcijaDTO;
 import com.ftn.eObrazovanjee.model.FinansijskaKartica;
 import com.ftn.eObrazovanjee.service.FinansijskaKarticaService;
 
+@Component
 public class FinansijskaKarticaMapper {
 
 	@Autowired

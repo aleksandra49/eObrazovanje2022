@@ -30,7 +30,7 @@ public class Dokument {
 	@ManyToOne(cascade = CascadeType.REFRESH , fetch = FetchType.LAZY)
 	private Student student;
 	
-	@OneToMany(mappedBy = "tipDokumenta", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	@OneToMany(mappedBy = "dokument", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private Set<TipDokumenta> tipDokumenta = new HashSet<>();
 	
 	
