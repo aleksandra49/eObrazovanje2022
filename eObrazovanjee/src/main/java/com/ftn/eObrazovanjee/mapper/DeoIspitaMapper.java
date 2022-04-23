@@ -61,7 +61,7 @@ public class DeoIspitaMapper {
 //	}
 	
 	
-	public Set<DeoIspita> listDtoToModel(Set<DeoIspitaDTO> listaDto) {
+	public Set<DeoIspita> listDtoToModel(ArrayList<DeoIspitaDTO> listaDto) {
 		Set<DeoIspita> listaModel = new HashSet<DeoIspita>();
 		for (DeoIspitaDTO objectDTO : listaDto) {
 			listaModel.add(service.findOne(objectDTO.getId()));
