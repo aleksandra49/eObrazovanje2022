@@ -29,7 +29,7 @@ public class IspitniRokMapper {
 		return objectDTO;
 	}
 	
-	public Set<IspitniRok> listDtoToModel(Set<IspitniRokDTO> listaDto) {
+	public Set<IspitniRok> listDtoToModel(ArrayList<IspitniRokDTO> listaDto) {
 		Set<IspitniRok> listaModel = new HashSet<IspitniRok>();
 		for (IspitniRokDTO objectDTO : listaDto) {
 			listaModel.add(service.findOne(objectDTO.getId()));

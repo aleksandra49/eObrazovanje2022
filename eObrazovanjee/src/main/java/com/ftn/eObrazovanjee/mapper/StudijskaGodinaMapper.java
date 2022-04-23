@@ -1,5 +1,6 @@
 package com.ftn.eObrazovanjee.mapper;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -72,7 +73,7 @@ public class StudijskaGodinaMapper {
 //		return listaModel;
 //	}
 	
-	public Set<StudijskaGodina> listDtoToModel(Set<StudijskaGodinaDTO> listaDto) {
+	public Set<StudijskaGodina> listDtoToModel(ArrayList<StudijskaGodinaDTO> listaDto) {
 		Set<StudijskaGodina> listaModel = new HashSet<StudijskaGodina>();
 		for (StudijskaGodinaDTO objectDTO : listaDto) {
 			listaModel.add(service.findOne(objectDTO.getId()));

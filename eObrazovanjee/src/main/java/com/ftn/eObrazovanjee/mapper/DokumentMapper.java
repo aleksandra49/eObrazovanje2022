@@ -40,7 +40,7 @@ public class DokumentMapper {
 		
 	}
 	
-	public Set<Dokument> listDtoToModel(Set<DokumentDTO> listaDto) {
+	public Set<Dokument> listDtoToModel(ArrayList<DokumentDTO> listaDto) {
 		Set<Dokument> listaModel = new HashSet<Dokument>();
 		for (DokumentDTO dokumentDTO : listaDto) {
 			listaModel.add(service.findOne(dokumentDTO.getId()));

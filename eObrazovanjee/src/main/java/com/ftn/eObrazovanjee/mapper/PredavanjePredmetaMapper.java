@@ -1,5 +1,6 @@
 package com.ftn.eObrazovanjee.mapper;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,7 +33,7 @@ public class PredavanjePredmetaMapper {
 		
 	}
 	
-	public Set<PredavanjePredmeta> listDtoToModel(Set<PredavanjePredmetaDTO> listaDto) {
+	public Set<PredavanjePredmeta> listDtoToModel(ArrayList<PredavanjePredmetaDTO> listaDto) {
 		Set<PredavanjePredmeta> listaModel = new HashSet<PredavanjePredmeta>();
 		for (PredavanjePredmetaDTO objectDTO : listaDto) {
 			listaModel.add(service.findOne(objectDTO.getId()));

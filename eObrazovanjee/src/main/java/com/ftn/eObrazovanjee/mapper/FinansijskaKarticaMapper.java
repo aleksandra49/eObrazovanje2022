@@ -33,7 +33,7 @@ public class FinansijskaKarticaMapper {
 		
 	}
 	
-	public Set<FinansijskaKartica> listDtoToModel(Set<FinansijskaKarticaDTO> listaDto) {
+	public Set<FinansijskaKartica> listDtoToModel(ArrayList<FinansijskaKarticaDTO> listaDto) {
 		Set<FinansijskaKartica> listaModel = new HashSet<FinansijskaKartica>();
 		for (FinansijskaKarticaDTO objectDTO : listaDto) {
 			listaModel.add(service.findOne(objectDTO.getId()));

@@ -1,5 +1,6 @@
 package com.ftn.eObrazovanjee.mapper;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -54,12 +55,12 @@ public class PohadjanjePredmetaMapper {
 	}
 	
 	//ERROR
-//	public Set<PohadjanjePredmeta> listDtoToModel(Set<PohadjanjePredmetaDTO> listaDto) {
-//		Set<PohadjanjePredmeta> listaModel = new HashSet<PohadjanjePredmeta>();
-//		for (PohadjanjePredmeta objectDTO : listaDto) {
-//			listaModel.add(service.findOne(objectDTO.getId()));
-//		}
-//		return listaModel;
-//	}
+	public Set<PohadjanjePredmeta> listDtoToModel(ArrayList<PohadjanjePredmetaDTO> listaDto) {
+		Set<PohadjanjePredmeta> listaModel = new HashSet<PohadjanjePredmeta>();
+		for (PohadjanjePredmetaDTO objectDTO : listaDto) {
+			listaModel.add(service.findOne(objectDTO.getId()));
+		}
+		return listaModel;
+	}
 
 }

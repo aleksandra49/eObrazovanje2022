@@ -34,7 +34,7 @@ public class PredmetMapper {
 		
 	}
 	
-	public Set<Predmet> listDtoToModel(Set<PredmetDTO> listaDto) {
+	public Set<Predmet> listDtoToModel(ArrayList<PredmetDTO> listaDto) {
 		Set<Predmet> listaModel = new HashSet<Predmet>();
 		for (PredmetDTO objectDTO : listaDto) {
 			listaModel.add(service.findOne(objectDTO.getId()));

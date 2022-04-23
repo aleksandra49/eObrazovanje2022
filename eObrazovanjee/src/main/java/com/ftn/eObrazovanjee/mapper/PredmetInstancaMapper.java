@@ -39,7 +39,7 @@ public class PredmetInstancaMapper {
 		
 	}
 	
-	public Set<PredmetInstanca> listDtoToModel(Set<PredmetInstancaDTO> listaDto) {
+	public Set<PredmetInstanca> listDtoToModel(ArrayList<PredmetInstancaDTO> listaDto) {
 		Set<PredmetInstanca> listaModel = new HashSet<PredmetInstanca>();
 		for (PredmetInstancaDTO objectDTO : listaDto) {
 			listaModel.add(service.findOne(objectDTO.getId()));

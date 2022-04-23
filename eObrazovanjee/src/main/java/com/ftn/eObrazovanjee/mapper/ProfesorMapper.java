@@ -34,7 +34,7 @@ public class ProfesorMapper {
 		
 	}
 	
-	public Set<Profesor> listDtoToModel(Set<ProfesorDTO> listaDto) {
+	public Set<Profesor> listDtoToModel(ArrayList<ProfesorDTO> listaDto) {
 		Set<Profesor> listaModel = new HashSet<Profesor>();
 		for (ProfesorDTO objectDTO : listaDto) {
 			listaModel.add(service.findOne(objectDTO.getId()));

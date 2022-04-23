@@ -52,7 +52,7 @@ public class StudentMapper {
 		return objectDTO;
 	}
 	
-	public Set<Student> listDtoToModel(Set<StudentDTO> listaDto) {
+	public Set<Student> listDtoToModel(ArrayList<StudentDTO> listaDto) {
 		Set<Student> listaModel = new HashSet<Student>();
 		for (StudentDTO objectDTO : listaDto) {
 			listaModel.add(service.findOne(objectDTO.getId()));
