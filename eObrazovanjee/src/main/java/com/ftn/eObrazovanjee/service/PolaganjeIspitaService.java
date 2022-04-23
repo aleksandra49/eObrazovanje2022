@@ -4,8 +4,11 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.ftn.eObrazovanjee.model.Ispit;
 import com.ftn.eObrazovanjee.model.PolaganjeIspita;
 import com.ftn.eObrazovanjee.repository.PolaganjeIspitaRepository;
 
@@ -27,14 +30,18 @@ public class PolaganjeIspitaService {
 	}
 	
 	
-	public void save(PolaganjeIspita ispit) {
-		repository.save(ispit);
+	public PolaganjeIspita save(PolaganjeIspita ispit) {
+		return repository.save(ispit);
 		
 	}
 	
 	
 	public void remove(Long id){
 		repository.deleteById(id);
+	}
+	
+	public Page<PolaganjeIspita> findAll(Pageable page) {
+		return repository.findAll(page);
 	}
 	
 }

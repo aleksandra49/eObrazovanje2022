@@ -42,7 +42,7 @@ public class IspitController {
 	@RequestMapping(value="/all", method = RequestMethod.GET)
 	public ResponseEntity<List<IspitDTO>> getAllIspiti() {
 		List<Ispit> ispiti = ispitService.findAll();
-		//convert Ispits to DTOs
+		
 		List<IspitDTO> ispitiDTO = new ArrayList<>();
 		for (Ispit obj : ispiti) {
 			ispitiDTO.add(new IspitMapper().modelToDto(obj));
@@ -52,11 +52,9 @@ public class IspitController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<IspitDTO>> getIspitiPage(Pageable page) {
-		//page object holds data about pagination and sorting
-		//the object is created based on the url parameters "page", "size" and "sort" 
 		Page<Ispit> ispiti = ispitService.findAll(page);
 		
-		//convert Ispits to DTOs
+		
 		List<IspitDTO> ispitiDTO = new ArrayList<>();
 		for (Ispit obj : ispiti) {
 			ispitiDTO.add(new IspitMapper().modelToDto(obj));
@@ -92,7 +90,7 @@ public class IspitController {
 	
 	@RequestMapping(method=RequestMethod.PUT, consumes="application/json")
 	public ResponseEntity<IspitDTO> updateIspit(@RequestBody IspitDTO ispitDTO){
-		//a student must exist
+		
 		Ispit ispit = ispitService.findOne(ispitDTO.getId()); 
 		if (ispit == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
