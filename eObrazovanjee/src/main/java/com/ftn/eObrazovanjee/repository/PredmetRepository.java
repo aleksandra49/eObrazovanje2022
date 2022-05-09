@@ -13,5 +13,5 @@ import com.ftn.eObrazovanjee.model.Profesor;
 public interface PredmetRepository extends JpaRepository<Predmet, Long> {
 
 	//query
-	 public List<Predmet> getAllThatNastavnikIzvodi(@Param("profesor") Profesor profesor);
+//	 public List<Predmet> getAllThatNastavnikIzvodi(@Param("profesor") Profesor profesor);
 }

@@ -78,7 +78,7 @@ public class PredmetController {
 	}
 	
     // Nastavnik izvodi odredjene predmete
-    @GetMapping(value = "/profesor/{profesorId}")
+/*    @GetMapping(value = "/profesor/{profesorId}")
     public ResponseEntity<List<Predmet>> getAllKojeNastavnikIzvodi(@PathVariable("profesorId") Long id) {
         Profesor profesor = profesorService.findOne(id);
 
@@ -89,7 +89,7 @@ public class PredmetController {
         return new ResponseEntity<List<Predmet>>(predmeti, HttpStatus.OK);
     }
 	
-
+*/
 	
 	
 
