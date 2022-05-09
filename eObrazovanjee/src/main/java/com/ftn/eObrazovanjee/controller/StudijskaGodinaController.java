@@ -43,7 +43,7 @@ public class StudijskaGodinaController {
 	}
 	
 	//see this if i need it!
-	@RequestMapping(method = RequestMethod.GET)
+	/*@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<StudijskaGodinaDTO>> getStudijskeGodine() {
 		List<StudijskaGodina> studijskeGodine = studijskaGodinaService.findAll();
 		
@@ -52,7 +52,7 @@ public class StudijskaGodinaController {
 			studijskeGodineDTO.add(new StudijskaGodinaMapper().modelToDto(sg));
 		}
 		return new ResponseEntity<>(studijskeGodineDTO, HttpStatus.OK);
-	}
+	}*/
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<StudijskaGodinaDTO>> getStudijskeGodinePage(Pageable page) {
