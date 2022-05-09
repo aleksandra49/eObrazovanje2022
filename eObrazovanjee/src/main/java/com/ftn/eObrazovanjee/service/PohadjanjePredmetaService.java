@@ -3,6 +3,8 @@ package com.ftn.eObrazovanjee.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.ftn.eObrazovanjee.model.PohadjanjePredmeta;
@@ -23,12 +25,16 @@ public class PohadjanjePredmetaService {
 		return pohadjanjePredmetaRepository.findAll();
 	}
 	
-	public void save(PohadjanjePredmeta pohadjanjePredmeta) {
-		pohadjanjePredmetaRepository.save(pohadjanjePredmeta);	
+	public PohadjanjePredmeta save(PohadjanjePredmeta pohadjanjePredmeta) {
+		return pohadjanjePredmetaRepository.save(pohadjanjePredmeta);	
 	}
 	
 	public void remove(Long id){
 		pohadjanjePredmetaRepository.deleteById(id);
+	}
+	
+	public Page<PohadjanjePredmeta> findAll(Pageable page) {
+		return pohadjanjePredmetaRepository.findAll(page);
 	}
 
 }
