@@ -22,7 +22,9 @@ import com.ftn.eObrazovanjee.mapper.IspitMapper;
 import com.ftn.eObrazovanjee.mapper.PolaganjeIspitaMapper;
 import com.ftn.eObrazovanjee.model.Ispit;
 import com.ftn.eObrazovanjee.model.PolaganjeIspita;
+import com.ftn.eObrazovanjee.service.IspitService;
 import com.ftn.eObrazovanjee.service.PolaganjeIspitaService;
+import com.ftn.eObrazovanjee.service.StudentService;
 
 @RestController
 @RequestMapping(value="api/polaganje_ispita")
@@ -31,6 +33,12 @@ public class PolaganjeIspitaController {
 	@Autowired
 	private PolaganjeIspitaService polaganjeIspitaService;
 
+	@Autowired
+	private IspitService ispitService;
+	
+	@Autowired
+	private StudentService studentService;
+	
 	@RequestMapping(value="/all", method = RequestMethod.GET)
 	public ResponseEntity<List<PolaganjeIspitaDTO>> getAllPolaganjeIspita() {
 		List<PolaganjeIspita> polaganja = polaganjeIspitaService.findAll();
@@ -69,12 +77,9 @@ public class PolaganjeIspitaController {
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
 	public ResponseEntity<PolaganjeIspitaDTO> saveIspit(@RequestBody PolaganjeIspitaDTO polaganjeIspitaDTO){		
 		PolaganjeIspita polaganjeIspita = new PolaganjeIspita();
-//		ispit.setNaziv(ispitDTO.getNaziv());
-
-
-
-//		ispit.setDeoIspita(new HashSet<>(new DeoIspitaMapper().listDtoToModel(ispitDTO.getDeoIspitaDTO())));
-//		ispit.setPredmetInstanca(predmetInstancaServiceImpl.findOne(ispitDTO.getPredmetInstanca().getId()));
+		
+		polaganjeIspita.setIspit(ispitService.findOne(polaganjeIspitaDTO.getIspit().getId()));
+		polaganjeIspita.setStudent(studentService.findOne(polaganjeIspitaDTO.getStudent().getId()));
 		
 		polaganjeIspita = polaganjeIspitaService.save(polaganjeIspita);
 		return new ResponseEntity<>(new PolaganjeIspitaMapper().modelToDto(polaganjeIspita), HttpStatus.CREATED);	
@@ -88,7 +93,8 @@ public class PolaganjeIspitaController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		
-
+		polaganjeIspita.setIspit(ispitService.findOne(polaganjeIspitaDTO.getIspit().getId()));
+		polaganjeIspita.setStudent(studentService.findOne(polaganjeIspitaDTO.getStudent().getId()));
 		
 		polaganjeIspita = polaganjeIspitaService.save(polaganjeIspita);
 		return new ResponseEntity<>(new PolaganjeIspitaMapper().modelToDto(polaganjeIspita), HttpStatus.OK);	

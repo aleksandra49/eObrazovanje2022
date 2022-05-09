@@ -3,8 +3,6 @@ package com.ftn.eObrazovanjee.controller;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,9 +21,6 @@ import com.ftn.eObrazovanjee.model.Ispit;
 import com.ftn.eObrazovanjee.service.IspitService;
 import com.ftn.eObrazovanjee.service.IspitniRokService;
 import com.ftn.eObrazovanjee.service.PredmetInstancaServiceImpl;
-
-
-
 
 
 @RestController
