@@ -8,19 +8,21 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ftn.eObrazovanjee.dto.IspitDTO;
 import com.ftn.eObrazovanjee.dto.PredmetDTO;
 import com.ftn.eObrazovanjee.mapper.PredmetMapper;
-import com.ftn.eObrazovanjee.model.Ispit;
 import com.ftn.eObrazovanjee.model.Predmet;
+import com.ftn.eObrazovanjee.model.Profesor;
+import com.ftn.eObrazovanjee.repository.PredmetRepository;
 import com.ftn.eObrazovanjee.service.PredmetServiceImpl;
+import com.ftn.eObrazovanjee.service.ProfesorServiceImpl;
+
+
 
 
 @RestController
@@ -30,6 +32,11 @@ public class PredmetController {
 	@Autowired
 	private PredmetServiceImpl predmetService;
 	
+	@Autowired
+	private PredmetRepository predmetRepository;
+	
+	@Autowired
+	private ProfesorServiceImpl profesorService;
 	
 	//findAll
 	@RequestMapping(value="/all", method = RequestMethod.GET)
@@ -70,6 +77,17 @@ public class PredmetController {
 		return new ResponseEntity<>(new PredmetMapper().modelToDto(predmet), HttpStatus.OK);
 	}
 	
+    // Nastavnik izvodi odredjene predmete
+    @GetMapping(value = "/profesor/{profesorId}")
+    public ResponseEntity<List<Predmet>> getAllKojeNastavnikIzvodi(@PathVariable("profesorId") Long id) {
+        Profesor profesor = profesorService.findOne(id);
+
+        List<Predmet> predmeti =predmetRepository.getAllThatNastavnikIzvodi(profesor);
+
+        System.out.println(predmeti);
+
+        return new ResponseEntity<List<Predmet>>(predmeti, HttpStatus.OK);
+    }
 	
 
 	
