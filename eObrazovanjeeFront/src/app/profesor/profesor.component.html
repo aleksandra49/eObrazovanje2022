@@ -1,0 +1,25 @@
+<p>profesor works!</p>
+<style>
+    table, th, td {
+        border: 1px solid #dddddd;
+    }
+    </style>
+<table>
+<header>
+    <tr>
+    <th>Id</th>
+    <th>ime</th>
+    <th>prezime</th>
+    <th>email</th>
+    
+    </tr>
+</header>
+    <tr *ngFor="let profesor of profesori">
+        <td>{{profesor.id}}</td>
+        <td>{{profesor.ime}}</td>
+        <td>{{profesor.prezime}}</td>
+        <td>{{profesor.email}}</td>  
+    </tr>
+    
+
+</table>

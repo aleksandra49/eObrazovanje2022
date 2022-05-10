@@ -18,6 +18,13 @@ public class KorisnikMapper {
 	private KorisnikService service;
 	
 	public KorisnikDTO modelToDto(Korisnik object) {
+		
+		/*
+		kada je prazan entitet u bazi ovako proverimo
+		if (object == null)
+			return null;
+			
+		*/
 		KorisnikDTO objectDTO = new KorisnikDTO();
 		
 		objectDTO.setId(object.getId());

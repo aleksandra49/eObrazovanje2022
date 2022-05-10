@@ -37,6 +37,7 @@ public class ProfesorController {
 		return new ResponseEntity<>(profesoriDTO, HttpStatus.OK);
 		
 	}
+	// dodati funkciju sa paglabe za all
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<ProfesorDTO> getOne(@PathVariable("id") Long id) {
