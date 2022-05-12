@@ -1,7 +1,6 @@
 package com.ftn.eObrazovanjee.controller;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.eObrazovanjee.dto.PohadjanjePredmetaDTO;
-import com.ftn.eObrazovanjee.mapper.DeoIspitaMapper;
 import com.ftn.eObrazovanjee.mapper.PohadjanjePredmetaMapper;
-import com.ftn.eObrazovanjee.mapper.PolaganjeIspitaMapper;
 import com.ftn.eObrazovanjee.model.PohadjanjePredmeta;
 import com.ftn.eObrazovanjee.service.PohadjanjePredmetaService;
 import com.ftn.eObrazovanjee.service.PredmetInstancaServiceImpl;
@@ -61,7 +58,16 @@ public class PohadjanjePredmetaController {
 		return new ResponseEntity<>(pohadjanjaPredmetaDTO, HttpStatus.OK);
 	}
 	
-	//id
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public ResponseEntity<PohadjanjePredmetaDTO> getPohadjanjePredmeta(@PathVariable Long id){
+		PohadjanjePredmeta pohadjanjePredmeta = pohadjanjePredmetaService.findOne(id);
+		if(pohadjanjePredmeta == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
+		return new ResponseEntity<>(new PohadjanjePredmetaMapper().modelToDto(pohadjanjePredmeta), HttpStatus.OK);
+	}
 	
 	
 	
@@ -81,7 +87,25 @@ public class PohadjanjePredmetaController {
 	}
 	
 	
-	//put
+	
+	@RequestMapping(method=RequestMethod.PUT, consumes="application/json")
+	public ResponseEntity<PohadjanjePredmetaDTO> updatePohadjanjePredmeta(@RequestBody PohadjanjePredmetaDTO pohadjanjePredmetaDTO){
+		
+		PohadjanjePredmeta pohadjanjePredmeta = pohadjanjePredmetaService.findOne(pohadjanjePredmetaDTO.getId()); 
+		if (pohadjanjePredmeta == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+		pohadjanjePredmeta.setPocetak(pohadjanjePredmetaDTO.getPocetak());
+		pohadjanjePredmeta.setKraj(pohadjanjePredmetaDTO.getKraj());
+		pohadjanjePredmeta.setPolozen(pohadjanjePredmetaDTO.isPolozen());
+
+		pohadjanjePredmeta.setStudent(studentService.findOne(pohadjanjePredmetaDTO.getStudnetDTO().getId()));
+		pohadjanjePredmeta.setPredmetInstanca(predmetInstancaServiceImpl.findOne(pohadjanjePredmetaDTO.getPredmetInstanca().getId()));
+		
+		pohadjanjePredmeta = pohadjanjePredmetaService.save(pohadjanjePredmeta);
+		return new ResponseEntity<>(new PohadjanjePredmetaMapper().modelToDto(pohadjanjePredmeta), HttpStatus.OK);	
+	}
 	
 	
 	
