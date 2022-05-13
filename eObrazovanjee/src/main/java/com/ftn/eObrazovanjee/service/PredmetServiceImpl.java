@@ -29,8 +29,8 @@ public class PredmetServiceImpl {
 		return repository.findAll(pagable);
 	}
 	
-	public void save(Predmet predmet) {
-		repository.save(predmet);
+	public Predmet save(Predmet predmet) {
+		return repository.save(predmet);
 		
 	}
 	

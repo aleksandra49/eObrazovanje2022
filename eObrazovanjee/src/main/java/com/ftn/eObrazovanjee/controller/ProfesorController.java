@@ -1,21 +1,28 @@
 package com.ftn.eObrazovanjee.controller;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.eObrazovanjee.dto.ProfesorDTO;
+import com.ftn.eObrazovanjee.mapper.PredavanjePredmetaMapper;
 import com.ftn.eObrazovanjee.mapper.ProfesorMapper;
 import com.ftn.eObrazovanjee.model.Profesor;
+import com.ftn.eObrazovanjee.service.KorisnikService;
+import com.ftn.eObrazovanjee.service.PredavanjePredmetaServiceImpl;
 import com.ftn.eObrazovanjee.service.ProfesorServiceImpl;
 
 
@@ -25,6 +32,58 @@ import com.ftn.eObrazovanjee.service.ProfesorServiceImpl;
 public class ProfesorController {
 	
 	@Autowired ProfesorServiceImpl profesorService;
+	
+	@Autowired
+	private KorisnikService korisnikService;
+	@Autowired
+	private PredavanjePredmetaServiceImpl predavanjePredmetaService;
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<ProfesorDTO>> getProfesoriPage(Pageable page) {
+		Page<Profesor> profesori = profesorService.findAll(page);
+		
+		
+		List<ProfesorDTO> profesoriDTO = new ArrayList<>();
+		for (Profesor obj : profesori) {
+			profesoriDTO.add(new ProfesorMapper().modelToDto(obj));
+		}
+		return new ResponseEntity<>(profesoriDTO, HttpStatus.OK);
+	}
+	
+	
+	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
+	public ResponseEntity<ProfesorDTO> saveProfesor(@RequestBody ProfesorDTO profesorDTO){		
+		Profesor profesor = new Profesor();
+		
+		profesor.setIme(profesorDTO.getIme());
+		profesor.setPrezime(profesorDTO.getPrezime());
+		profesor.setEmail(profesorDTO.getEmail());
+
+		profesor.setKorisnik(korisnikService.findOne(profesorDTO.getKorisnik().getId()));
+		profesor.setPredavanja(new HashSet<>(new PredavanjePredmetaMapper().listDtoToModel(profesorDTO.getPredavanja())));
+		
+		profesor = profesorService.save(profesor);
+		return new ResponseEntity<>(new ProfesorMapper().modelToDto(profesor), HttpStatus.CREATED);	
+	}
+	
+	@RequestMapping(method=RequestMethod.PUT, consumes="application/json")
+	public ResponseEntity<ProfesorDTO> updateProfesor(@RequestBody ProfesorDTO profesorDTO){
+		
+		Profesor profesor = profesorService.findOne(profesorDTO.getId()); 
+		if (profesor == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+		profesor.setIme(profesorDTO.getIme());
+		profesor.setPrezime(profesorDTO.getPrezime());
+		profesor.setEmail(profesorDTO.getEmail());
+
+		profesor.setKorisnik(korisnikService.findOne(profesorDTO.getKorisnik().getId()));
+		profesor.setPredavanja(new HashSet<>(new PredavanjePredmetaMapper().listDtoToModel(profesorDTO.getPredavanja())));
+		
+		profesor = profesorService.save(profesor);
+		return new ResponseEntity<>(new ProfesorMapper().modelToDto(profesor), HttpStatus.OK);	
+	}
 	
 	@RequestMapping(value="/all", method = RequestMethod.GET)
 	public ResponseEntity<List<ProfesorDTO>> getAllProfesori() {
