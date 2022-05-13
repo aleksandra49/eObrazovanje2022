@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ftn.eObrazovanjee.dto.TipDokumentaDTO;
 import com.ftn.eObrazovanjee.mapper.TipDokumentaMapper;
 import com.ftn.eObrazovanjee.model.TipDokumenta;
+import com.ftn.eObrazovanjee.service.DokumentService;
 import com.ftn.eObrazovanjee.service.TipDokumentaService;
 
 
@@ -29,7 +30,7 @@ public class TipDokumentaController {
 	@Autowired
 	private TipDokumentaService tipDokumentaService;
 	@Autowired
-	private DokumentService DokumentService;
+	private DokumentService dokumentService;
 	
 	
 	@RequestMapping(value="/all", method = RequestMethod.GET)
@@ -71,7 +72,7 @@ public class TipDokumentaController {
 		
 		tipDokumenta.setNazivDokumenta(tipDokumentaDTO.getNazivDokumenta());
 		
-		tipDokumenta.setDokument(dokumentService.findOne(tipDokumentaDTO.getDokument().getId()));
+		tipDokumenta.setDokument(dokumentService.findOne(tipDokumentaDTO.getDokumentDTO().getId()));
 		
 		tipDokumenta = tipDokumentaService.save(tipDokumenta);
 		return new ResponseEntity<>(new TipDokumentaMapper().modelToDto(tipDokumenta), HttpStatus.CREATED);	
@@ -87,7 +88,7 @@ public class TipDokumentaController {
 		
 		tipDokumenta.setNazivDokumenta(tipDokumentaDTO.getNazivDokumenta());
 		
-		tipDokumenta.setDokument(dokumentService.findOne(tipDokumentaDTO.getDokument().getId()));
+		tipDokumenta.setDokument(dokumentService.findOne(tipDokumentaDTO.getDokumentDTO().getId()));
 		
 		tipDokumenta = tipDokumentaService.save(tipDokumenta);
 		return new ResponseEntity<>(new TipDokumentaMapper().modelToDto(tipDokumenta), HttpStatus.OK);	
@@ -97,7 +98,7 @@ public class TipDokumentaController {
 	public ResponseEntity<Void> deleteTipDokumenta(@PathVariable Long id){
 		TipDokumenta tipDokumenta = tipDokumentaService.findOne(id);
 		if (tipDokumenta != null){
-			tipDokumentaService.remove(id);
+			tipDokumentaService.delete(id);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {		
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

@@ -3,8 +3,9 @@ package com.ftn.eObrazovanjee.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import com.ftn.eObrazovanjee.model.TipDokumenta;
 import com.ftn.eObrazovanjee.repository.TipDokumentaRepository;
 
@@ -28,6 +29,10 @@ public class TipDokumentaService {
 
 	public void delete (Long id) {
 		tipDokumentaRepository.deleteById(id);
+	}
+	
+	public Page<TipDokumenta> findAll(Pageable page) {
+		return tipDokumentaRepository.findAll(page);
 	}
 	
 	

@@ -75,8 +75,8 @@ public class DokumentController {
 		dokument.setNaziv(dokumentDTO.getNaziv());
 		dokument.setUri(dokumentDTO.getUri());
 
-		dokument.setStudent(studentService.findOne(dokumentDTO.getStudent().getId()));
-		dokument.setTipDokumenta(new HashSet<>(new TipDokumentaMapper().listDtoToModel(dokumentDTO.getTipDokumenta())));
+		dokument.setStudent(studentService.findOne(dokumentDTO.getStudentDto().getId()));
+		dokument.setTipDokumenta(new HashSet<>(new TipDokumentaMapper().listDtoToModel(dokumentDTO.getTipDokumentaDTOs())));
 		
 		dokument = dokumentService.save(dokument);
 		return new ResponseEntity<>(new DokumentMapper().modelToDto(dokument), HttpStatus.CREATED);	
@@ -93,8 +93,8 @@ public class DokumentController {
 		dokument.setNaziv(dokumentDTO.getNaziv());
 		dokument.setUri(dokumentDTO.getUri());
 
-		dokument.setStudent(studentService.findOne(dokumentDTO.getStudent().getId()));
-		dokument.setTipDokumenta(new HashSet<>(new TipDokumentaMapper().listDtoToModel(dokumentDTO.getTipDokumenta())));
+		dokument.setStudent(studentService.findOne(dokumentDTO.getStudentDto().getId()));
+		dokument.setTipDokumenta(new HashSet<>(new TipDokumentaMapper().listDtoToModel(dokumentDTO.getTipDokumentaDTOs())));
 		
 		dokument = dokumentService.save(dokument);
 		return new ResponseEntity<>(new DokumentMapper().modelToDto(dokument), HttpStatus.OK);	
@@ -104,7 +104,7 @@ public class DokumentController {
 	public ResponseEntity<Void> deleteDokument(@PathVariable Long id){
 		Dokument dokument = dokumentService.findOne(id);
 		if (dokument != null){
-			dokumentService.remove(id);
+			dokumentService.delete(id);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {		
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

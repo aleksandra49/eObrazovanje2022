@@ -64,14 +64,14 @@ public class TransakcijaController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
-	public ResponseEntity<TransakcijaDTO> saveTransakcija(@RequestBody TransakcijaDTO Datum){		
+	public ResponseEntity<TransakcijaDTO> saveTransakcija(@RequestBody TransakcijaDTO transakcijaDTO){		
 		Transakcija transakcija = new Transakcija();
 		
-		transakcija.setDatum(transakcijaDTO.getNaziv());
+		transakcija.setDatum(transakcijaDTO.getDatum());
 		transakcija.setSvrha(transakcijaDTO.getSvrha());
 		transakcija.setPromenaStanja(transakcijaDTO.getPromenaStanja());
 
-		transakcija.setFinansijskaKartica(finansijskaKarticaService.findOne(transakcijaDTO.getFinansijskaKartica().getId()));
+		transakcija.setFinansijskaKartica(finansijskaKarticaService.findOne(transakcijaDTO.getFinansijskaKarticaDTO().getId()));
 		
 		transakcija = transakcijaService.save(transakcija);
 		return new ResponseEntity<>(new TransakcijaMapper().modelToDto(transakcija), HttpStatus.CREATED);	
@@ -85,11 +85,11 @@ public class TransakcijaController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		
-		transakcija.setDatum(transakcijaDTO.getNaziv());
+		transakcija.setDatum(transakcijaDTO.getDatum());
 		transakcija.setSvrha(transakcijaDTO.getSvrha());
 		transakcija.setPromenaStanja(transakcijaDTO.getPromenaStanja());
 
-		transakcija.setFinansijskaKartica(finansijskaKarticaService.findOne(transakcijaDTO.getFinansijskaKartica().getId()));
+		transakcija.setFinansijskaKartica(finansijskaKarticaService.findOne(transakcijaDTO.getFinansijskaKarticaDTO().getId()));
 		
 		transakcija = transakcijaService.save(transakcija);
 		return new ResponseEntity<>(new TransakcijaMapper().modelToDto(transakcija), HttpStatus.OK);	
@@ -99,7 +99,7 @@ public class TransakcijaController {
 	public ResponseEntity<Void> deleteTransakcija(@PathVariable Long id){
 		Transakcija transakcija = transakcijaService.findOne(id);
 		if (transakcija != null){
-			transakcijaService.remove(id);
+			transakcijaService.delete(id);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {		
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

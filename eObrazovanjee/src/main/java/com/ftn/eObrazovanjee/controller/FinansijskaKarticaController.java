@@ -73,10 +73,10 @@ public class FinansijskaKarticaController {
 		
 		finansijskaKartica.setPersonalniBroj(finansijskaKarticaDTO.getPersonalniBroj());
 		finansijskaKartica.setTrenutnoStanje(finansijskaKarticaDTO.getTrenutnoStanje());
-		finansijskaKartica.setBrojOsvojenihBodova(finansijskaKarticaDTO.getBrojOsvojenihBodova());
+		finansijskaKartica.setRacunFakulteta(finansijskaKarticaDTO.getRacunFakulteta());
 
-		finansijskaKartica.setStudent(studentService.findOne(finansijskaKarticaDTO.getStudent().getId()));
-		finansijskaKartica.setTransakcija(new HashSet<>(new TransakcijaMapper().listDtoToModel(finansijskaKarticaDTO.getTransakcija())));
+		finansijskaKartica.setStudent(studentService.findOne(finansijskaKarticaDTO.getStudentDto().getId()));
+		finansijskaKartica.setTransakcije(new HashSet<>(new TransakcijaMapper().listDtoToModel(finansijskaKarticaDTO.getTransakcijaDTO())));
 		
 		finansijskaKartica = finansijskaKarticaService.save(finansijskaKartica);
 		return new ResponseEntity<>(new FinansijskaKarticaMapper().modelToDto(finansijskaKartica), HttpStatus.CREATED);	
@@ -92,10 +92,10 @@ public class FinansijskaKarticaController {
 		
 		finansijskaKartica.setPersonalniBroj(finansijskaKarticaDTO.getPersonalniBroj());
 		finansijskaKartica.setTrenutnoStanje(finansijskaKarticaDTO.getTrenutnoStanje());
-		finansijskaKartica.setBrojOsvojenihBodova(finansijskaKarticaDTO.getBrojOsvojenihBodova());
+		finansijskaKartica.setRacunFakulteta(finansijskaKarticaDTO.getRacunFakulteta());
 
-		finansijskaKartica.setStudent(studentService.findOne(finansijskaKarticaDTO.getStudent().getId()));
-		finansijskaKartica.setTransakcija(new HashSet<>(new TransakcijaMapper().listDtoToModel(finansijskaKarticaDTO.getTransakcija())));
+		finansijskaKartica.setStudent(studentService.findOne(finansijskaKarticaDTO.getStudentDto().getId()));
+		finansijskaKartica.setTransakcije(new HashSet<>(new TransakcijaMapper().listDtoToModel(finansijskaKarticaDTO.getTransakcijaDTO())));
 		
 		finansijskaKartica = finansijskaKarticaService.save(finansijskaKartica);
 		return new ResponseEntity<>(new FinansijskaKarticaMapper().modelToDto(finansijskaKartica), HttpStatus.OK);	
@@ -105,7 +105,7 @@ public class FinansijskaKarticaController {
 	public ResponseEntity<Void> deleteFinansijskaKartica(@PathVariable Long id){
 		FinansijskaKartica finansijskaKartica = finansijskaKarticaService.findOne(id);
 		if (finansijskaKartica != null){
-			finansijskaKarticaService.remove(id);
+			finansijskaKarticaService.delete(id);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {		
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
