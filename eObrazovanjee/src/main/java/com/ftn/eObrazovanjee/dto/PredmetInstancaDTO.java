@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.ftn.eObrazovanjee.model.Ispit;
 import com.ftn.eObrazovanjee.model.Predmet;
+import com.ftn.eObrazovanjee.model.PredmetInstanca;
 
 public class PredmetInstancaDTO {
 
@@ -77,6 +78,7 @@ public class PredmetInstancaDTO {
 		this.predavanjePredmetaDTO = predavanjePredmetaDTO;
 		this.pohadjanjePredmetaDTO = pohadjanjePredmetaDTO;
 	}
+
 
 	
 

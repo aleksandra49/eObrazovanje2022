@@ -23,14 +23,14 @@ public class PredmetInstancaMapper {
 	@Autowired
 	private PredmetInstancaServiceImpl service;
 	
-	public PredmetInstancaDTO modelToDto(PredmetInstanca predmetInstanca) {
+	public PredmetInstancaDTO modelToDto(PredmetInstanca object) {
 		PredmetInstancaDTO predmetInstancaDTO = new PredmetInstancaDTO();
 			
 
-		predmetInstancaDTO.setId(predmetInstanca.getId());
-		predmetInstancaDTO.setPocetak(predmetInstanca.getPocetak());
-		predmetInstancaDTO.setKraj(predmetInstanca.getKraj());
-		predmetInstancaDTO.setPredmet(new PredmetMapper().modelToDto(predmetInstanca.getPredmet()));
+		predmetInstancaDTO.setId(object.getId());
+		predmetInstancaDTO.setPocetak(object.getPocetak());
+		predmetInstancaDTO.setKraj(object.getKraj());
+		predmetInstancaDTO.setPredmet(new PredmetMapper().modelToDto(object.getPredmet()));
 		predmetInstancaDTO.setPredavanjePredmetaDTO(new ArrayList<PredavanjePredmetaDTO>());
 		predmetInstancaDTO.setPohadjanjePredmetaDTO(new ArrayList<PohadjanjePredmetaDTO>());
 		predmetInstancaDTO.setIspit(new ArrayList<IspitDTO>());
