@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Ispit } from '../model/ispit.model';
-import { ProfesorService } from '../profesor/profesor.service';
 import { IspitService } from './ispit.service';
 
 @Component({

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProfesorComponent } from './profesor/profesor.component';
 import { KorisnikComponent } from './korisnik/korisnik.component';
 import { IspitComponent } from './ispit/ispit.component';
+import { IspitniRokComponent } from './ispitni-rok/ispitni-rok.component';
 
 const routes: Routes = [
 
@@ -11,7 +12,9 @@ const routes: Routes = [
 
   { path: 'korisnici', component: KorisnikComponent },
   // { path: '', component: KorisnikComponent }
-  { path: 'ispiti', component: IspitComponent }
+  { path: 'ispiti', component: IspitComponent },
+
+  { path: 'ispitniRokovi', component: IspitniRokComponent }
 
 ];
 
