@@ -17,7 +17,7 @@ export class KorisnikService {
         return this.http.get<Korisnik[]>(this.korisniciUrl, {observe: 'response'});
     }
 
-    getProfesor(id: number): Observable<HttpResponse<Korisnik>> {
+    getKorisnik(id: number): Observable<HttpResponse<Korisnik>> {
         const url = `${this.korisniciUrl}/${id}`;
         return this.http.get<Korisnik>(url, {observe: 'response'});
     }
