@@ -21,6 +21,11 @@ public class ProfesorMapper {
 	private ProfesorServiceImpl service;
 	
 	public ProfesorDTO modelToDto(Profesor profesor) {
+		
+		if (profesor == null) {
+			return null;
+		}
+		
 		ProfesorDTO profesorDTO = new ProfesorDTO();
 			
 		profesorDTO.setId(profesor.getId());

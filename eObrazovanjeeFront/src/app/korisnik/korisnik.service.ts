@@ -7,7 +7,8 @@ import { Korisnik } from '../model/korisnik.model';
 
 @Injectable()
 export class KorisnikService {
-    private korisniciUrl = 'api/korisnici';
+    //ovo je putanja iz naseg backend-a
+    private korisniciUrl = 'api/korisnik';
 
     constructor(private http: HttpClient) { }
 
