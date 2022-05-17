@@ -33,6 +33,11 @@ public class StudentMapper {
 	
 	public StudentDTO modelToDto(Student object) {
 		
+		//object je student
+		if (object == null) {
+			return null;
+		}
+		
 		StudentDTO objectDTO = new StudentDTO();
 		
 		objectDTO.setId(object.getId());
