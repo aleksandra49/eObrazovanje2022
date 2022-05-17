@@ -1,6 +1,6 @@
 export class Korisnik implements KorisnikInterface{
 	public id: number;
-	public koricnikoIme : string;
+	public korisnickoIme : string;
     public lozinka: string;
 	public uloga: string;
     //public Korisnik : korisnik;
@@ -13,7 +13,7 @@ export class Korisnik implements KorisnikInterface{
 	constructor(objectCfg: KorisnikInterface)
 	{	
 		this.id = objectCfg.id;
-		this.koricnikoIme = objectCfg.koricnikoIme;
+		this.korisnickoIme = objectCfg.korisnickoIme;
         this.lozinka = objectCfg.lozinka;
 		this.uloga = objectCfg.uloga;
 	}
@@ -21,7 +21,7 @@ export class Korisnik implements KorisnikInterface{
 
 interface KorisnikInterface {
 	id: number;
-	koricnikoIme: string;
+	korisnickoIme: string;
     lozinka: string;
     uloga: string;
 }
