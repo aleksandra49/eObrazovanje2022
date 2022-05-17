@@ -17,6 +17,8 @@ import { IspitService } from './ispit/ispit.service';
 import { IspitniRokComponent } from './ispitni-rok/ispitni-rok.component';
 import { IspitniRokService } from './ispitni-rok/ispitni-rok.service';
 import { StudentService } from './student/student.service';
+import { DokumentComponent } from './dokument/dokument.component';
+import { DokumentService } from './dokument/dokument.service';
 
 @NgModule({
   declarations: [
@@ -28,14 +30,15 @@ import { StudentService } from './student/student.service';
     EditStudentComponent,
     StudentProfilComponent,
     IspitComponent,
-    IspitniRokComponent
+    IspitniRokComponent,
+    DokumentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [ProfesorService, KorisnikService, IspitService, IspitniRokService, StudentService],
+  providers: [ProfesorService, KorisnikService, IspitService, IspitniRokService, StudentService, DokumentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

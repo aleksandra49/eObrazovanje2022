@@ -5,6 +5,7 @@ import { KorisnikComponent } from './korisnik/korisnik.component';
 import { IspitComponent } from './ispit/ispit.component';
 import { IspitniRokComponent } from './ispitni-rok/ispitni-rok.component';
 import { StudentComponent } from './student/student.component';
+import { DokumentComponent } from './dokument/dokument.component';
 
 const routes: Routes = [
 
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'ispiti', component: IspitComponent },
 
   { path: 'ispitniRokovi', component: IspitniRokComponent },
-  { path: 'student', component: StudentComponent }
+  { path: 'student', component: StudentComponent },
+  { path: 'dokument', component: DokumentComponent }
 
 ];
 
