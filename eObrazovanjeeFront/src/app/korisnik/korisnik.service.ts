@@ -12,8 +12,6 @@ export class KorisnikService {
 
     constructor(private http: HttpClient) { }
 
-   
-    
     getKorisnici(): Observable<HttpResponse<Korisnik[]>> {
         return this.http.get<Korisnik[]>(this.korisniciUrl, {observe: 'response'});
     }

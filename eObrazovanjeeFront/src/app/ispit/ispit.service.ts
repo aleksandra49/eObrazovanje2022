@@ -13,8 +13,8 @@ export class IspitService {
 
    
     
-    getIspiti(): Observable<HttpResponse<Ispit[]>> {
-        return this.http.get<Ispit[]>(this.ispitiUrl, {observe: 'response'});
+    getIspiti(): Observable<HttpResponse<any[]>> {
+        return this.http.get<any[]>(this.ispitiUrl, {observe: 'response'});
     }
 
     getIspit(id: number): Observable<HttpResponse<Ispit>> {

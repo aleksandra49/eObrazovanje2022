@@ -20,6 +20,9 @@ import { StudentService } from './student/student.service';
 import { DokumentComponent } from './dokument/dokument.component';
 import { DokumentService } from './dokument/dokument.service';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+// import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +39,8 @@ import { DokumentService } from './dokument/dokument.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [ProfesorService, KorisnikService, IspitService, IspitniRokService, StudentService, DokumentService],
   bootstrap: [AppComponent]

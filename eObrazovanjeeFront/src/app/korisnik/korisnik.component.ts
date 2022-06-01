@@ -19,8 +19,11 @@ export class KorisnikComponent implements OnInit {
   }
 
   getKorisnici(){
-    this.korisnikService.getKorisnici().subscribe(res =>
-      this.korisnici = res.body);
+    this.korisnikService.getKorisnici()
+      .subscribe(res => {
+        console.log('res', res);
+        this.korisnici = res.body;
+    });
   }
 
 }

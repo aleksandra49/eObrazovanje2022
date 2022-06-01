@@ -32,7 +32,7 @@ public class ProfesorMapper {
 		profesorDTO.setEmail(profesor.getEmail());
 		profesorDTO.setIme(profesor.getIme());
 		profesorDTO.setPrezime(profesor.getPrezime());	
-		profesorDTO.setKorisnik(new KorisnikMapper().modelToDto(profesor.getKorisnik()));
+//		profesorDTO.setKorisnik(new KorisnikMapper().modelToDto(profesor.getKorisnik()));
 		profesorDTO.setPredavanja(new ArrayList<PredavanjePredmetaDTO>());
 		
 		return profesorDTO;

@@ -31,8 +31,8 @@ public class KorisnikMapper {
 		objectDTO.setKorisnickoIme(object.getKorisnickoIme());
 		objectDTO.setLozinka(object.getLozinka());
 		objectDTO.setUloga(object.getUloga());
-		objectDTO.setProfesor(new ProfesorMapper().modelToDto(object.getProfesor()));
-		objectDTO.setStudent(new StudentMapper().modelToDto(object.getStudent()));
+	//	objectDTO.setProfesor(new ProfesorMapper().modelToDto(object.getProfesor()));
+	//	objectDTO.setStudent(new StudentMapper().modelToDto(object.getStudent()));
 		
 		return objectDTO;
 	}
