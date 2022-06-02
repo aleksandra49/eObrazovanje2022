@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+    <h4 class="display-4">Dodaj nastavnika</h4>
+  </div>
+  <form
+    class="col-md-8 offset-md-2"
+  >
+    <div class="form-group">
+      <label for="inputIme" class="font-weight-bold">Ime</label>
+      <input
+        formControlName="inputIme"
+        type="text"
+        class="form-control"
+        id="inputIme"
+        placeholder=""
+      />
+    </div>
+    <div class="form-group">
+      <label for="inputPrezime" class="font-weight-bold">Prezime</label>
+      <input
+        formControlName="inputPrezime"
+        type="text"
+        class="form-control"
+        id="inputPrezime"
+        placeholder=""
+      />
+    </div>
+    <div class="form-group">
+      <label for="inputJmbg" class="font-weight-bold">JMBG (13 brojeva)</label>
+      <input
+        formControlName="inputJmbg"
+        type="text"
+        class="form-control"
+        id="inputJmbg"
+        placeholder=""
+      />
+    </div>
+    <div class="form-group">
+      <label for="inputMesto" class="font-weight-bold">Mesto stanovanja</label>
+      <input
+        formControlName="inputMesto"
+        type="text"
+        class="form-control"
+        id="inputMesto"
+        placeholder=""
+      />
+    </div>
+  
+    <div class="row">
+      <button type="submit" class="btn btn-success btn-lg ml-3">Sačuvaj</button>
+      <button
+        [routerLink]="['/nastavnik']"
+        class="btn btn-secondary btn-lg ml-auto mr-3"
+      >
+        Odustani
+      </button>
+    </div>
+  </form>

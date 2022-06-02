@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +14,7 @@ import com.ftn.eObrazovanjee.dto.ProfesorDTO;
 import com.ftn.eObrazovanjee.model.Predmet;
 import com.ftn.eObrazovanjee.model.Profesor;
 import com.ftn.eObrazovanjee.service.ProfesorServiceImpl;
+
 
 @Component
 public class ProfesorMapper {
@@ -48,6 +50,8 @@ public class ProfesorMapper {
 		
 	}
 	
+
+	
 //	public Profesor konvertujDtoToEntity(ProfesorDTO profesorDTO) {
 //		
 //		Profesor profesor = new Profesor();
@@ -62,4 +66,8 @@ public class ProfesorMapper {
 //		
 //		return profesor;
 //	}
+	
+
+	
+	
 }

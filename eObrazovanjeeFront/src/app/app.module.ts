@@ -21,6 +21,7 @@ import { DokumentComponent } from './dokument/dokument.component';
 import { DokumentService } from './dokument/dokument.service';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AddProfesorComponent } from './profesor/add-profesor/add-profesor/add-profesor.component';
 // import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -34,7 +35,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     StudentProfilComponent,
     IspitComponent,
     IspitniRokComponent,
-    DokumentComponent
+    DokumentComponent,
+    AddProfesorComponent
   ],
   imports: [
     BrowserModule,
