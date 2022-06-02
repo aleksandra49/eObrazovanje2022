@@ -22,4 +22,10 @@ export class ProfesorComponent implements OnInit {
     this.profesorService.getProfesori().subscribe(res =>
       this.profesori = res.body);
   }
+
+  goToOnRightRoute(val: string) {
+    console.log('val', val);
+
+    this.router.navigate([val]);
+  }
 }

@@ -23,4 +23,5 @@ export class ProfesorService {
         return this.http.get<Profesor>(url, {observe: 'response'});
     }
 
+
 }

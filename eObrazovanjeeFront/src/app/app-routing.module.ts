@@ -6,6 +6,7 @@ import { IspitComponent } from './ispit/ispit.component';
 import { IspitniRokComponent } from './ispitni-rok/ispitni-rok.component';
 import { StudentComponent } from './student/student.component';
 import { DokumentComponent } from './dokument/dokument.component';
+import { AddProfesorComponent } from './profesor/add-profesor/add-profesor/add-profesor.component';
 
 const routes: Routes = [
 
@@ -18,7 +19,11 @@ const routes: Routes = [
 
   { path: 'ispitniRokovi', component: IspitniRokComponent },
   { path: 'student', component: StudentComponent },
-  { path: 'dokument', component: DokumentComponent }
+  { path: 'dokument', component: DokumentComponent },
+
+  { path: 'addProfesor', component: AddProfesorComponent }
+
+
 
 ];
 
