@@ -21,9 +21,9 @@ public class IspitniRokMapper {
 		IspitniRokDTO objectDTO = new IspitniRokDTO();
 		
 		objectDTO.setId(object.getId());
-		object.setNazivRoka(objectDTO.getNazivRoka());
-		object.setPocetakRoka(objectDTO.getPocetakRoka());
-		object.setKrajRoka(objectDTO.getKrajRoka());
+		objectDTO.setNazivRoka(object.getNazivRoka());
+		objectDTO.setPocetakRoka(object.getPocetakRoka());
+		objectDTO.setKrajRoka(object.getKrajRoka());
 //		objectDTO.setIspiti(new ArrayList<IspitDTO>());
 		
 		return objectDTO;
