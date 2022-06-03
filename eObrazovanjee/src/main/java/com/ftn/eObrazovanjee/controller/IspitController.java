@@ -13,13 +13,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.ftn.eObrazovanjee.dto.DeoIspitaDTO;
 import com.ftn.eObrazovanjee.dto.IspitDTO;
+import com.ftn.eObrazovanjee.dto.IspitniRokDTO;
+import com.ftn.eObrazovanjee.dto.PolaganjeIspitaDTO;
+import com.ftn.eObrazovanjee.dto.PredmetInstancaDTO;
 import com.ftn.eObrazovanjee.mapper.DeoIspitaMapper;
 import com.ftn.eObrazovanjee.mapper.IspitMapper;
+import com.ftn.eObrazovanjee.mapper.IspitniRokMapper;
 import com.ftn.eObrazovanjee.mapper.PolaganjeIspitaMapper;
+import com.ftn.eObrazovanjee.mapper.PredmetInstancaMapper;
+import com.ftn.eObrazovanjee.model.DeoIspita;
 import com.ftn.eObrazovanjee.model.Ispit;
+import com.ftn.eObrazovanjee.model.PolaganjeIspita;
 import com.ftn.eObrazovanjee.service.IspitService;
 import com.ftn.eObrazovanjee.service.IspitniRokService;
+import com.ftn.eObrazovanjee.service.PolaganjeIspitaService;
 import com.ftn.eObrazovanjee.service.PredmetInstancaServiceImpl;
 
 
@@ -33,6 +43,8 @@ public class IspitController {
 	private IspitniRokService ispitniRokService;
 	@Autowired
 	private PredmetInstancaServiceImpl predmetInstancaServiceImpl;
+	@Autowired
+	private PolaganjeIspitaService polaganjeIspitaService;
 	
 	@RequestMapping(value="/all", method = RequestMethod.GET)
 	public ResponseEntity<List<IspitDTO>> getAllIspiti() {
@@ -113,6 +125,50 @@ public class IspitController {
 		} else {		
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	@RequestMapping(value="/getPolaganjeIspitaIzIspita/{id}", method=RequestMethod.GET)
+	public ResponseEntity<List<PolaganjeIspitaDTO>> getPolaganjeIspitaIzIspita(@PathVariable Long id){
+		Ispit ispit = ispitService.findOne(id);
+		if(ispit == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		List<PolaganjeIspitaDTO> listaPolaganja = new ArrayList<>();
+		for(PolaganjeIspita polaganje : ispit.getPolaganjeIspita()) {
+			listaPolaganja.add(new PolaganjeIspitaMapper().modelToDto(polaganje));
+		}		
+		return new ResponseEntity<>(listaPolaganja, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/getDeoIspitaIzIspita/{id}", method=RequestMethod.GET)
+	public ResponseEntity<List<DeoIspitaDTO>> getDeoIspitaIzIspita(@PathVariable Long id){
+		Ispit ispit = ispitService.findOne(id);
+		if(ispit == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		List<DeoIspitaDTO> listaDelova = new ArrayList<>();
+		for(DeoIspita polaganje : ispit.getDeoIspita()) {
+			listaDelova.add(new DeoIspitaMapper().modelToDto(polaganje));
+		}		
+		return new ResponseEntity<>(listaDelova, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/getIspitniRokIzIspita/{id}", method=RequestMethod.GET)
+	public ResponseEntity<IspitniRokDTO> getIspitniRokIzIspita(@PathVariable Long id){
+		Ispit ispit = ispitService.findOne(id);
+		if(ispit == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(new IspitniRokMapper().modelToDto(ispit.getIspitniRok()), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/getPredmetInstancaIzIspita/{id}", method=RequestMethod.GET)
+	public ResponseEntity<PredmetInstancaDTO> getPredmetInstancaIzIspita(@PathVariable Long id){
+		Ispit ispit = ispitService.findOne(id);
+		if(ispit == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(new PredmetInstancaMapper().modelToDto(ispit.getPredmetInstanca()), HttpStatus.OK);
 	}
 	
 }
