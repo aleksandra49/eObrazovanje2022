@@ -17,10 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.eObrazovanjee.dto.IspitDTO;
 import com.ftn.eObrazovanjee.dto.PolaganjeIspitaDTO;
+import com.ftn.eObrazovanjee.dto.StudentDTO;
 import com.ftn.eObrazovanjee.mapper.DeoIspitaMapper;
 import com.ftn.eObrazovanjee.mapper.IspitMapper;
 import com.ftn.eObrazovanjee.mapper.PolaganjeIspitaMapper;
+import com.ftn.eObrazovanjee.mapper.StudentMapper;
 import com.ftn.eObrazovanjee.model.Ispit;
+import com.ftn.eObrazovanjee.model.Korisnik;
 import com.ftn.eObrazovanjee.model.PolaganjeIspita;
 import com.ftn.eObrazovanjee.service.IspitService;
 import com.ftn.eObrazovanjee.service.PolaganjeIspitaService;
@@ -113,4 +116,21 @@ public class PolaganjeIspitaController {
 		}
 	}
 	
+	@RequestMapping(value="/getStudentIzPolaganja/{id}", method=RequestMethod.GET)
+	public ResponseEntity<StudentDTO> getStudentIzPolaganja(@PathVariable Long id){
+		PolaganjeIspita polaganjeIspita = polaganjeIspitaService.findOne(id);
+		if(polaganjeIspita == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(new StudentMapper().modelToDto(polaganjeIspita.getStudent()), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/getIspitIzPolaganja/{id}", method=RequestMethod.GET)
+	public ResponseEntity<IspitDTO> getIspitIzPolaganja(@PathVariable Long id){
+		PolaganjeIspita polaganjeIspita = polaganjeIspitaService.findOne(id);
+		if(polaganjeIspita == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(new IspitMapper().modelToDto(polaganjeIspita.getIspit()), HttpStatus.OK);
+	}
 }

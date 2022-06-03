@@ -28,10 +28,10 @@ public class IspitMapper {
 		objectDTO.setNaziv(object.getNaziv());
 		objectDTO.setDatumVreme(object.getDatumVreme());
 		objectDTO.setBrojOsvojenihBodova(object.getBrojOsvojenihBodova());
-		objectDTO.setPolaganjeIspita(new ArrayList<PolaganjeIspitaDTO>());
-		objectDTO.setIspitniRok(new IspitniRokMapper().modelToDto(object.getIspitniRok()));
-		objectDTO.setDeoIspitaDTO(new ArrayList<DeoIspitaDTO>());
-		objectDTO.setPredmetInstanca(new PredmetInstancaMapper().modelToDto(object.getPredmetInstanca()));
+//		objectDTO.setPolaganjeIspita(new ArrayList<PolaganjeIspitaDTO>());
+//		objectDTO.setIspitniRok(new IspitniRokMapper().modelToDto(object.getIspitniRok()));
+//		objectDTO.setDeoIspitaDTO(new ArrayList<DeoIspitaDTO>());
+//		objectDTO.setPredmetInstanca(new PredmetInstancaMapper().modelToDto(object.getPredmetInstanca()));
 		
 		return objectDTO;
 	}

@@ -15,10 +15,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ftn.eObrazovanjee.dto.IspitniRokDTO;
 import com.ftn.eObrazovanjee.dto.KorisnikDTO;
+import com.ftn.eObrazovanjee.dto.ProfesorDTO;
+import com.ftn.eObrazovanjee.dto.StudentDTO;
 import com.ftn.eObrazovanjee.mapper.DeoIspitaMapper;
+import com.ftn.eObrazovanjee.mapper.IspitniRokMapper;
 import com.ftn.eObrazovanjee.mapper.KorisnikMapper;
 import com.ftn.eObrazovanjee.mapper.PolaganjeIspitaMapper;
+import com.ftn.eObrazovanjee.mapper.ProfesorMapper;
+import com.ftn.eObrazovanjee.mapper.StudentMapper;
+import com.ftn.eObrazovanjee.model.Ispit;
 import com.ftn.eObrazovanjee.model.Korisnik;
 import com.ftn.eObrazovanjee.service.KorisnikService;
 import com.ftn.eObrazovanjee.service.ProfesorServiceImpl;
@@ -115,6 +122,24 @@ public class KorisnikController {
 		} else {		
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	@RequestMapping(value="/getStudentIzKorisnika/{id}", method=RequestMethod.GET)
+	public ResponseEntity<StudentDTO> getStudentIzKorisnika(@PathVariable Long id){
+		Korisnik korisnik = korisnikService.findOne(id);
+		if(korisnik == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(new StudentMapper().modelToDto(korisnik.getStudent()), HttpStatus.OK);
+	}
+
+	@RequestMapping(value="/getProfesorIzKorisnika/{id}", method=RequestMethod.GET)
+	public ResponseEntity<ProfesorDTO> getProfesorIzKorisnika(@PathVariable Long id){
+		Korisnik korisnik = korisnikService.findOne(id);
+		if(korisnik == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(new ProfesorMapper().modelToDto(korisnik.getProfesor()), HttpStatus.OK);
 	}
 	
 }

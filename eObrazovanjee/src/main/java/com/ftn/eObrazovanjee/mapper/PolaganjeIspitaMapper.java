@@ -21,8 +21,8 @@ public class PolaganjeIspitaMapper {
 		PolaganjeIspitaDTO objectDTO = new PolaganjeIspitaDTO();
 		
 		objectDTO.setId(object.getId());
-		objectDTO.setIspit(new IspitMapper().modelToDto(object.getIspit()));
-		objectDTO.setStudent(new StudentMapper().modelToDto(object.getStudent()));
+//		objectDTO.setIspit(new IspitMapper().modelToDto(object.getIspit()));
+//		objectDTO.setStudent(new StudentMapper().modelToDto(object.getStudent()));
 		
 		return objectDTO;
 	}

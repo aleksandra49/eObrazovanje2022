@@ -147,8 +147,8 @@ public class IspitController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		List<DeoIspitaDTO> listaDelova = new ArrayList<>();
-		for(DeoIspita polaganje : ispit.getDeoIspita()) {
-			listaDelova.add(new DeoIspitaMapper().modelToDto(polaganje));
+		for(DeoIspita delovi : ispit.getDeoIspita()) {
+			listaDelova.add(new DeoIspitaMapper().modelToDto(delovi));
 		}		
 		return new ResponseEntity<>(listaDelova, HttpStatus.OK);
 	}
