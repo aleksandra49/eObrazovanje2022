@@ -22,6 +22,8 @@ import { DokumentService } from './dokument/dokument.service';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddProfesorComponent } from './profesor/add-profesor/add-profesor/add-profesor.component';
+import { PolaganjeIspitaComponent } from './polaganje-ispita/polaganje-ispita.component';
+import { PolaganjeService } from './polaganje-ispita/polaganje-ispita.service';
 // import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -36,7 +38,8 @@ import { AddProfesorComponent } from './profesor/add-profesor/add-profesor/add-p
     IspitComponent,
     IspitniRokComponent,
     DokumentComponent,
-    AddProfesorComponent
+    AddProfesorComponent,
+    PolaganjeIspitaComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,7 @@ import { AddProfesorComponent } from './profesor/add-profesor/add-profesor/add-p
     HttpClientModule,
     NgbModule
   ],
-  providers: [ProfesorService, KorisnikService, IspitService, IspitniRokService, StudentService, DokumentService],
+  providers: [ProfesorService, KorisnikService, IspitService, IspitniRokService, StudentService, DokumentService, PolaganjeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

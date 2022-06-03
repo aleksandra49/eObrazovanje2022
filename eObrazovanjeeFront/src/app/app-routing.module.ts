@@ -7,6 +7,7 @@ import { IspitniRokComponent } from './ispitni-rok/ispitni-rok.component';
 import { StudentComponent } from './student/student.component';
 import { DokumentComponent } from './dokument/dokument.component';
 import { AddProfesorComponent } from './profesor/add-profesor/add-profesor/add-profesor.component';
+import { PolaganjeIspitaComponent } from './polaganje-ispita/polaganje-ispita.component';
 
 const routes: Routes = [
 
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'ispiti', component: IspitComponent },
 
   { path: 'ispitniRokovi', component: IspitniRokComponent },
+  { path: 'polaganjaIspita', component: PolaganjeIspitaComponent },
   { path: 'student', component: StudentComponent },
   { path: 'dokument', component: DokumentComponent },
 
