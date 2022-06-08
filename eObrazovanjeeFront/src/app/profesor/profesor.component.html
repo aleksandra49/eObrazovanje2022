@@ -29,7 +29,7 @@
       <!-- <td class="h5"><a class="badge badge-secondary" [routerLink]="['/nastavnik-stranica/', nastavnik.id]">Profil</a></td> -->
 
       <td class="h5"><button type="button" class="btn btn-primary">Izmeni</button></td>
-      <td class="h5"><button type="button" class="btn btn-primary">Obrisi</button></td>
+      <td class="h5"><button type="button" class="btn btn-primary" (click)="delete(profesor.id)">Obrisi</button></td>
       <td class="h5"><button type="button" class="btn btn-primary">Profil</button></td>
                 
             </tr>

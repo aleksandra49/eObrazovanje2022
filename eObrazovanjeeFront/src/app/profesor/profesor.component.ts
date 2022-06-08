@@ -28,4 +28,24 @@ export class ProfesorComponent implements OnInit {
 
     this.router.navigate([val]);
   }
+    // splice prvi element start, drugi element delete
+ /*   delete(id: number) {
+      this.profesorService.delete(id).subscribe(() => {
+        if(this.profesori != null) {
+        for (let i = 0; i < this.profesori.length; i++) {
+          if (this.profesori[i].id === id) {
+            this.profesori.splice(i, 1);
+          }
+        }
+      }
+      });
+    }
+    */
+
+    delete(id: number): void {
+      this.profesorService.delete(id).subscribe(
+        () => this.getProfesori()
+      );
+    }
+
 }
