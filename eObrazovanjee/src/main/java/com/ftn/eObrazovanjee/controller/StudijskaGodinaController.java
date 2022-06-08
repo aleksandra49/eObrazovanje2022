@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ftn.eObrazovanjee.dto.StudentDTO;
 import com.ftn.eObrazovanjee.dto.StudijskaGodinaDTO;
+import com.ftn.eObrazovanjee.mapper.StudentMapper;
 import com.ftn.eObrazovanjee.mapper.StudijskaGodinaMapper;
 import com.ftn.eObrazovanjee.model.StudijskaGodina;
 import com.ftn.eObrazovanjee.service.StudentService;
@@ -123,6 +125,16 @@ public class StudijskaGodinaController {
 		} else {		
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	//veza za studenta za studgodi
+	@RequestMapping(value="/studentiIzStudGodine/{id}", method=RequestMethod.GET)
+	public ResponseEntity<StudentDTO> getStudentiIzStudGodine(@PathVariable Long id){
+		StudijskaGodina studijskaGodina = studijskaGodinaService.findOne(id);
+		if(studijskaGodina == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(new StudentMapper().modelToDto(studijskaGodina.getStudent()), HttpStatus.OK);
 	}
 
 }

@@ -40,7 +40,7 @@ public class StudijskaGodinaMapper {
 		studijskaGodinaDTO.setGodinaStudija(studijskaGodina.getGodinaStudija());
 		studijskaGodinaDTO.setSkolskaGodina(studijskaGodina.getSkolskaGodina());
 		
-		studijskaGodinaDTO.setStudnetDTO(new StudentMapper().modelToDto(studijskaGodina.getStudent()));
+		//studijskaGodinaDTO.setStudnetDTO(new StudentMapper().modelToDto(studijskaGodina.getStudent()));
 
 		return studijskaGodinaDTO;
 	}

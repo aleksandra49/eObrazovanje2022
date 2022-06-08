@@ -154,8 +154,8 @@ public class StudentController {
 	}
 	
 	//veza za studgodina za student
-	@RequestMapping(value="/studijskaGodIzStudenta/{id}", method=RequestMethod.GET)
-	public ResponseEntity<List<StudijskaGodinaDTO>> getstudijskaGodIzStudenta(@PathVariable Long id){
+	@RequestMapping(value="/studijskeGodIzStudenta/{id}", method=RequestMethod.GET)
+	public ResponseEntity<List<StudijskaGodinaDTO>> getStudijskeGodIzStudenta(@PathVariable Long id){
 		Student student = studentService.findOne(id);
 		if(student == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -169,8 +169,8 @@ public class StudentController {
 	
 	
 	//veza za dokument  za student
-	@RequestMapping(value="/dokumentIzStudenta/{id}", method=RequestMethod.GET)
-	public ResponseEntity<List<DokumentDTO>> getdokumentIzStudenta(@PathVariable Long id){
+	@RequestMapping(value="/dokumentiIzStudenta/{id}", method=RequestMethod.GET)
+	public ResponseEntity<List<DokumentDTO>> getDokumentiIzStudenta(@PathVariable Long id){
 		Student student = studentService.findOne(id);
 		if(student == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -184,7 +184,7 @@ public class StudentController {
 	
 	//veza za finan kartica za student
 	@RequestMapping(value="/finansijskaKarticaIzStudenta/{id}", method=RequestMethod.GET)
-	public ResponseEntity<FinansijskaKarticaDTO> getfinansijskaKarticaIzStudenta(@PathVariable Long id){
+	public ResponseEntity<FinansijskaKarticaDTO> getFinansijskaKarticaIzStudenta(@PathVariable Long id){
 		Student student = studentService.findOne(id);
 		if(student == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -194,8 +194,8 @@ public class StudentController {
 	
 	
 	//veza za pohadjanje  za student
-	@RequestMapping(value="/pohadjanjeIzStudenta/{id}", method=RequestMethod.GET)
-	public ResponseEntity<List<PohadjanjePredmetaDTO>> getpohadjanjeIzStudenta(@PathVariable Long id){
+	@RequestMapping(value="/pohadjanjaIzStudenta/{id}", method=RequestMethod.GET)
+	public ResponseEntity<List<PohadjanjePredmetaDTO>> getPohadjanjaIzStudenta(@PathVariable Long id){
 		Student student = studentService.findOne(id);
 		if(student == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -210,7 +210,7 @@ public class StudentController {
 	
 	//veza za korisnik za student
 	@RequestMapping(value="/korisnikIzStudenta/{id}", method=RequestMethod.GET)
-	public ResponseEntity<KorisnikDTO> getkorisnikIzStudenta(@PathVariable Long id){
+	public ResponseEntity<KorisnikDTO> getKorisnikIzStudenta(@PathVariable Long id){
 		Student student = studentService.findOne(id);
 		if(student == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
