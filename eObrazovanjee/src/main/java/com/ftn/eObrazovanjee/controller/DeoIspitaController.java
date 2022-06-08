@@ -1,7 +1,6 @@
 package com.ftn.eObrazovanjee.controller;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.eObrazovanjee.dto.DeoIspitaDTO;
+import com.ftn.eObrazovanjee.dto.IspitDTO;
 import com.ftn.eObrazovanjee.mapper.DeoIspitaMapper;
+import com.ftn.eObrazovanjee.mapper.IspitMapper;
 import com.ftn.eObrazovanjee.model.DeoIspita;
 import com.ftn.eObrazovanjee.service.DeoIspitaService;
 import com.ftn.eObrazovanjee.service.IspitService;
@@ -108,6 +109,16 @@ public class DeoIspitaController {
 		} else {		
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	//dobijanje delaispita iz ispita
+	@RequestMapping(value="/IspitIzDeoIspita/{id}", method=RequestMethod.GET)
+	public ResponseEntity<IspitDTO> getIspitIzDeoIspita(@PathVariable Long id){
+		DeoIspita deoIspita = deoIspitaService.findOne(id);
+		if(deoIspita == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(new IspitMapper().modelToDto(deoIspita.getIspit()), HttpStatus.OK);
 	}
 
 }
