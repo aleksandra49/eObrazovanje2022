@@ -15,7 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.eObrazovanjee.dto.PohadjanjePredmetaDTO;
+import com.ftn.eObrazovanjee.dto.PredmetInstancaDTO;
+import com.ftn.eObrazovanjee.dto.StudentDTO;
 import com.ftn.eObrazovanjee.mapper.PohadjanjePredmetaMapper;
+import com.ftn.eObrazovanjee.mapper.PredmetInstancaMapper;
+import com.ftn.eObrazovanjee.mapper.StudentMapper;
+import com.ftn.eObrazovanjee.model.Ispit;
 import com.ftn.eObrazovanjee.model.PohadjanjePredmeta;
 import com.ftn.eObrazovanjee.service.PohadjanjePredmetaService;
 import com.ftn.eObrazovanjee.service.PredmetInstancaServiceImpl;
@@ -120,6 +125,26 @@ public class PohadjanjePredmetaController {
 		} else {		
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	//veza za studenta u pohadjanju
+	@RequestMapping(value="/studentIzPohadjanje/{id}", method=RequestMethod.GET)
+	public ResponseEntity<StudentDTO> getstudentIzPohadjanje(@PathVariable Long id){
+		PohadjanjePredmeta pohadjanjePredmeta = pohadjanjePredmetaService.findOne(id);
+		if(pohadjanjePredmeta == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(new StudentMapper().modelToDto(pohadjanjePredmeta.getStudent()), HttpStatus.OK);
+	}
+	
+	//veza za predmet instancu za pohadjanje
+	@RequestMapping(value="/predmetInstancaIzPohadjanje/{id}", method=RequestMethod.GET)
+	public ResponseEntity<PredmetInstancaDTO> getPredmetInstancaIzPohadjanje(@PathVariable Long id){
+		PohadjanjePredmeta pohadjanjePredmeta = pohadjanjePredmetaService.findOne(id);
+		if(pohadjanjePredmeta == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(new PredmetInstancaMapper().modelToDto(pohadjanjePredmeta.getPredmetInstanca()), HttpStatus.OK);
 	}
 
 }

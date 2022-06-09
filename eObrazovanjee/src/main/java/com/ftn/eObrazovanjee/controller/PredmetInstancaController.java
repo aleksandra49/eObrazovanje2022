@@ -15,11 +15,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ftn.eObrazovanjee.dto.DeoIspitaDTO;
+import com.ftn.eObrazovanjee.dto.IspitDTO;
+import com.ftn.eObrazovanjee.dto.PohadjanjePredmetaDTO;
+import com.ftn.eObrazovanjee.dto.PredavanjePredmetaDTO;
+import com.ftn.eObrazovanjee.dto.PredmetDTO;
 import com.ftn.eObrazovanjee.dto.PredmetInstancaDTO;
+import com.ftn.eObrazovanjee.mapper.DeoIspitaMapper;
 import com.ftn.eObrazovanjee.mapper.IspitMapper;
 import com.ftn.eObrazovanjee.mapper.PohadjanjePredmetaMapper;
 import com.ftn.eObrazovanjee.mapper.PredavanjePredmetaMapper;
 import com.ftn.eObrazovanjee.mapper.PredmetInstancaMapper;
+import com.ftn.eObrazovanjee.mapper.PredmetMapper;
+import com.ftn.eObrazovanjee.model.DeoIspita;
+import com.ftn.eObrazovanjee.model.Ispit;
+import com.ftn.eObrazovanjee.model.PohadjanjePredmeta;
+import com.ftn.eObrazovanjee.model.PredavanjePredmeta;
 import com.ftn.eObrazovanjee.model.PredmetInstanca;
 import com.ftn.eObrazovanjee.service.PohadjanjePredmetaService;
 import com.ftn.eObrazovanjee.service.PredavanjePredmetaServiceImpl;
@@ -122,5 +133,65 @@ public class PredmetInstancaController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	//veza predmet
+	@RequestMapping(value="/predmetIzPredmetInstanca/{id}", method=RequestMethod.GET)
+	public ResponseEntity<PredmetDTO> getPredmetIzPredmetInstanca(@PathVariable Long id){
+		PredmetInstanca instanca = predmetInstancaService.findOne(id);
+		if(instanca == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(new PredmetMapper().modelToDto(instanca.getPredmet()), HttpStatus.OK);
+	}
+	
+	
+	// veza pedavanja
+	@RequestMapping(value="/predavanjaIzPredmetInstanca/{id}", method=RequestMethod.GET)
+	public ResponseEntity<List<PredavanjePredmetaDTO>> getPredavanjaIzPredmetInstanca(@PathVariable Long id){
+		PredmetInstanca instanca = predmetInstancaService.findOne(id);
+		if(instanca == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		List<PredavanjePredmetaDTO> listaPredavanja = new ArrayList<>();
+		for(PredavanjePredmeta predavanja : instanca.getPredavanja()) {
+			listaPredavanja.add(new PredavanjePredmetaMapper().modelToDto(predavanja));
+		}		
+		return new ResponseEntity<>(listaPredavanja, HttpStatus.OK);
+	}
+	
+	
+	
+	//pohadnja
+	@RequestMapping(value="/pohadjanjaIzPredmetInstanca/{id}", method=RequestMethod.GET)
+	public ResponseEntity<List<PohadjanjePredmetaDTO>> getPohadjanjaIzPredmetInstanca(@PathVariable Long id){
+		PredmetInstanca instanca = predmetInstancaService.findOne(id);
+		if(instanca == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		List<PohadjanjePredmetaDTO> listPohadjanja = new ArrayList<>();
+		for(PohadjanjePredmeta pohadjanja : instanca.getPohadjanja()) {
+			listPohadjanja.add(new PohadjanjePredmetaMapper().modelToDto(pohadjanja));
+		}		
+		return new ResponseEntity<>(listPohadjanja, HttpStatus.OK);
+	}
+	
+	
+	
+	//ispit
+	@RequestMapping(value="/ispitIzPredmetInstanca/{id}", method=RequestMethod.GET)
+	public ResponseEntity<List<IspitDTO>> getIspitIzPredmetInstanca(@PathVariable Long id){
+		PredmetInstanca instanca = predmetInstancaService.findOne(id);
+		if(instanca == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		List<IspitDTO> listaIspita = new ArrayList<>();
+		for(Ispit ispiti : instanca.getIspit()) {
+			listaIspita.add(new IspitMapper().modelToDto(ispiti));
+		}		
+		return new ResponseEntity<>(listaIspita, HttpStatus.OK);
+	}
+	
+	
+	
 
 }

@@ -38,7 +38,7 @@ public class DeoIspitaMapper {
 		deoIspitaDTO.setMinBodova(deoIspita.getMinBodova());
 		deoIspitaDTO.setPolozio(deoIspita.isPolozio());
 		
-		deoIspitaDTO.setIspitDTO(new IspitMapper().modelToDto(deoIspita.getIspit()));
+		//deoIspitaDTO.setIspitDTO(new IspitMapper().modelToDto(deoIspita.getIspit()));
 		
 		return deoIspitaDTO;
 	}

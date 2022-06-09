@@ -17,11 +17,17 @@ export class ProfesorService {
         const url = `${this.profesoriUrl}/all`;
         return this.http.get<Profesor[]>(url, {observe: 'response'});
     }
-
     getProfesor(id: number): Observable<HttpResponse<Profesor>> {
         const url = `${this.profesoriUrl}/${id}`;
         return this.http.get<Profesor>(url, {observe: 'response'});
     }
 
-
+ /*   delete(id: number) {
+        return this.http.delete('/api/profesor/delete/' + id);
+      }
+      */
+      delete(id: number): Observable<HttpResponse<any>> {
+        const url = `${this.profesoriUrl}/${id}`;
+        return this.http.delete<any>(url, {observe: 'response'});
+    }
 }

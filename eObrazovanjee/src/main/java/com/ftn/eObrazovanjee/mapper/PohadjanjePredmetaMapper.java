@@ -48,8 +48,8 @@ public class PohadjanjePredmetaMapper {
 		objectDTO.setPocetak(object.getPocetak());
 		objectDTO.setKraj(object.getKraj());
 		objectDTO.setPolozen(object.isPolozen());
-		objectDTO.setStudnetDTO(new StudentMapper().modelToDto(object.getStudent()));
-		objectDTO.setPredmetInstanca(new PredmetInstancaMapper().modelToDto(object.getPredmetInstanca()));
+		//objectDTO.setStudnetDTO(new StudentMapper().modelToDto(object.getStudent()));
+		//objectDTO.setPredmetInstanca(new PredmetInstancaMapper().modelToDto(object.getPredmetInstanca()));
 		
 		return objectDTO;
 	}
