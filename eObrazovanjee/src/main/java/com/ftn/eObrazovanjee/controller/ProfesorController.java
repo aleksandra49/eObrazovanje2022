@@ -10,7 +10,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,7 +40,7 @@ public class ProfesorController {
 	private KorisnikService korisnikService;
 	@Autowired
 	private PredavanjePredmetaServiceImpl predavanjePredmetaService;
-	
+	//page
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<ProfesorDTO>> getProfesoriPage(Pageable page) {
 		Page<Profesor> profesori = profesorService.findAll(page);
@@ -49,7 +48,10 @@ public class ProfesorController {
 		
 		List<ProfesorDTO> profesoriDTO = new ArrayList<>();
 		for (Profesor obj : profesori) {
-			profesoriDTO.add(new ProfesorMapper().modelToDto(obj));
+			ProfesorDTO profesor = new ProfesorMapper().modelToDto(obj);
+			profesor.setKorisnik(getKorisnikaIzProfesora(profesor.getId()));
+			profesor.setPredavanja(getPredavanjePredmetaIzProfesora(profesor.getId()));
+			profesoriDTO.add(profesor);
 		}
 		return new ResponseEntity<>(profesoriDTO, HttpStatus.OK);
 	}
@@ -88,29 +90,36 @@ public class ProfesorController {
 		profesor = profesorService.save(profesor);
 		return new ResponseEntity<>(new ProfesorMapper().modelToDto(profesor), HttpStatus.OK);	
 	}
-	
+	//all
 	@RequestMapping(value="/all", method = RequestMethod.GET)
 	public ResponseEntity<List<ProfesorDTO>> getAllProfesori() {
 		List<Profesor> profesori = profesorService.findAll();
 		List<ProfesorDTO> profesoriDTO = new ArrayList<>();
 		
 		for (Profesor p : profesori) {
-			profesoriDTO.add(new ProfesorMapper().modelToDto(p));
+			ProfesorDTO profesor = new ProfesorMapper().modelToDto(p);
+			profesor.setKorisnik(getKorisnikaIzProfesora(profesor.getId()));
+			profesor.setPredavanja(getPredavanjePredmetaIzProfesora(profesor.getId()));
+			profesoriDTO.add(profesor);
 		}
 		return new ResponseEntity<>(profesoriDTO, HttpStatus.OK);
 		
 	}
 	// dodati funkciju sa paglabe za all
-	
-	@GetMapping(value = "/{id}")
-	public ResponseEntity<ProfesorDTO> getOne(@PathVariable("id") Long id) {
+	//id one
+	@RequestMapping(value = "/{id}" , method=RequestMethod.GET)//vidid taj id
+	public ResponseEntity<ProfesorDTO> getProfesor(@PathVariable("id") Long id) {
 		Profesor profesor = profesorService.findOne(id);
 		if(profesor == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<>(new ProfesorMapper().modelToDto(profesor), HttpStatus.OK);
+		ProfesorDTO profesorDTO = new ProfesorMapper().modelToDto(profesor);
+		profesorDTO.setKorisnik(getKorisnikaIzProfesora(profesor.getId()));
+		profesorDTO.setPredavanja(getPredavanjePredmetaIzProfesora(profesor.getId()));
+		
+		return new ResponseEntity<>(profesorDTO, HttpStatus.OK);
 	}
-	
+	//delete
 	 @DeleteMapping(value = {"/{id}"})
 	 public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
 		 Profesor profesor = profesorService.findOne(id);
@@ -123,27 +132,27 @@ public class ProfesorController {
 	 }
 	 
 	 //veza izmedju korisnika i profesora
-	 @RequestMapping(value="/korisnikIzProfesora/{id}", method=RequestMethod.GET)
-		public ResponseEntity<KorisnikDTO> getKorisnikaIzProfesora(@PathVariable Long id){
+	// @RequestMapping(value="/korisnikIzProfesora/{id}", method=RequestMethod.GET)
+		public KorisnikDTO getKorisnikaIzProfesora(@PathVariable Long id){
 		 Profesor profesor = profesorService.findOne(id);
 			if(profesor == null){
-				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+				return null;
 			}
-			return new ResponseEntity<>(new KorisnikMapper().modelToDto(profesor.getKorisnik()), HttpStatus.OK);
+			return new KorisnikMapper().modelToDto(profesor.getKorisnik());
 		}
 	
 
 	 //veza izmedju predavanja predmeta i profe
-	 @RequestMapping(value="/predavanjePredmetaIzProfesora/{id}", method=RequestMethod.GET)
-		public ResponseEntity<List<PredavanjePredmetaDTO>> getPredavanjePredmetaIzProfesora(@PathVariable Long id){
+	 //@RequestMapping(value="/predavanjePredmetaIzProfesora/{id}", method=RequestMethod.GET)
+		public ArrayList<PredavanjePredmetaDTO> getPredavanjePredmetaIzProfesora(@PathVariable Long id){
 		 Profesor profesor = profesorService.findOne(id);
 			if(profesor == null){
-				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+				return null;
 			}
-			List<PredavanjePredmetaDTO> listaPredavanja = new ArrayList<>();
+			ArrayList<PredavanjePredmetaDTO> listaPredavanja = new ArrayList<>();
 			for(PredavanjePredmeta predavanja : profesor.getPredavanja()) {
 				listaPredavanja.add(new PredavanjePredmetaMapper().modelToDto(predavanja));
 			}		
-			return new ResponseEntity<>(listaPredavanja, HttpStatus.OK);
+			return listaPredavanja;
 		}
 }
