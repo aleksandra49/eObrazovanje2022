@@ -17,12 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.eObrazovanjee.dto.DokumentDTO;
 import com.ftn.eObrazovanjee.dto.FinansijskaKarticaDTO;
+import com.ftn.eObrazovanjee.dto.IspitDTO;
 import com.ftn.eObrazovanjee.dto.KorisnikDTO;
 import com.ftn.eObrazovanjee.dto.PohadjanjePredmetaDTO;
 import com.ftn.eObrazovanjee.dto.StudentDTO;
 import com.ftn.eObrazovanjee.dto.StudijskaGodinaDTO;
 import com.ftn.eObrazovanjee.mapper.DokumentMapper;
 import com.ftn.eObrazovanjee.mapper.FinansijskaKarticaMapper;
+import com.ftn.eObrazovanjee.mapper.IspitMapper;
 import com.ftn.eObrazovanjee.mapper.KorisnikMapper;
 import com.ftn.eObrazovanjee.mapper.PohadjanjePredmetaMapper;
 import com.ftn.eObrazovanjee.mapper.StudentMapper;
@@ -64,7 +66,13 @@ public class StudentController {
 		
 		List<StudentDTO> studentiDTO = new ArrayList<>();
 		for (Student obj : studenti) {
-			studentiDTO.add(new StudentMapper().modelToDto(obj));
+			StudentDTO student = new StudentMapper().modelToDto(obj);
+			student.setStudijskeGodineDTO(getStudijskeGodIzStudenta(student.getId()));
+			student.setDokumentiDTO(getDokumentiIzStudenta(student.getId()));
+			student.setFinansijskaKarticaDTO(getFinansijskaKarticaIzStudenta(student.getId()));
+			student.setPohadjanjaPredmetaDTO(getPohadjanjaIzStudenta(student.getId()));
+			student.setKorisnikDTO(getKorisnikIzStudenta(student.getId()));
+			studentiDTO.add(student);
 		}
 		return new ResponseEntity<>(studentiDTO, HttpStatus.OK);
 	}
@@ -76,7 +84,13 @@ public class StudentController {
 		
 		List<StudentDTO> studentiDTO = new ArrayList<>();
 		for (Student obj : studenti) {
-			studentiDTO.add(new StudentMapper().modelToDto(obj));
+			StudentDTO student = new StudentMapper().modelToDto(obj);
+			student.setStudijskeGodineDTO(getStudijskeGodIzStudenta(student.getId()));
+			student.setDokumentiDTO(getDokumentiIzStudenta(student.getId()));
+			student.setFinansijskaKarticaDTO(getFinansijskaKarticaIzStudenta(student.getId()));
+			student.setPohadjanjaPredmetaDTO(getPohadjanjaIzStudenta(student.getId()));
+			student.setKorisnikDTO(getKorisnikIzStudenta(student.getId()));
+			studentiDTO.add(student);
 		}
 		return new ResponseEntity<>(studentiDTO, HttpStatus.OK);
 	}
@@ -87,8 +101,14 @@ public class StudentController {
 		if(student == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+		StudentDTO studentDTO = new StudentMapper().modelToDto(student);
+		studentDTO.setStudijskeGodineDTO(getStudijskeGodIzStudenta(student.getId()));
+		studentDTO.setDokumentiDTO(getDokumentiIzStudenta(student.getId()));
+		studentDTO.setFinansijskaKarticaDTO(getFinansijskaKarticaIzStudenta(student.getId()));
+		studentDTO.setPohadjanjaPredmetaDTO(getPohadjanjaIzStudenta(student.getId()));
+		studentDTO.setKorisnikDTO(getKorisnikIzStudenta(student.getId()));
 		
-		return new ResponseEntity<>(new StudentMapper().modelToDto(student), HttpStatus.OK);
+		return new ResponseEntity<>(studentDTO, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
@@ -154,68 +174,68 @@ public class StudentController {
 	}
 	
 	//veza za studgodina za student
-	@RequestMapping(value="/studijskeGodIzStudenta/{id}", method=RequestMethod.GET)
-	public ResponseEntity<List<StudijskaGodinaDTO>> getStudijskeGodIzStudenta(@PathVariable Long id){
+	//@RequestMapping(value="/studijskeGodIzStudenta/{id}", method=RequestMethod.GET)
+	public ArrayList<StudijskaGodinaDTO> getStudijskeGodIzStudenta(@PathVariable Long id){
 		Student student = studentService.findOne(id);
 		if(student == null){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return null;
 		}
-		List<StudijskaGodinaDTO> listaStudGodina = new ArrayList<>();
+		ArrayList<StudijskaGodinaDTO> listaStudGodina = new ArrayList<>();
 		for(StudijskaGodina godine : student.getStudijskaGodina()) {
 			listaStudGodina.add(new StudijskaGodinaMapper().modelToDto(godine));
 		}		
-		return new ResponseEntity<>(listaStudGodina, HttpStatus.OK);
+		return listaStudGodina;
 	}
 	
 	
 	//veza za dokument  za student
-	@RequestMapping(value="/dokumentiIzStudenta/{id}", method=RequestMethod.GET)
-	public ResponseEntity<List<DokumentDTO>> getDokumentiIzStudenta(@PathVariable Long id){
+	//@RequestMapping(value="/dokumentiIzStudenta/{id}", method=RequestMethod.GET)
+	public ArrayList<DokumentDTO> getDokumentiIzStudenta(@PathVariable Long id){
 		Student student = studentService.findOne(id);
 		if(student == null){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return null;
 		}
-		List<DokumentDTO> listaDokumenata = new ArrayList<>();
+		ArrayList<DokumentDTO> listaDokumenata = new ArrayList<>();
 		for(Dokument dokumenti : student.getDokumenti()) {
 			listaDokumenata.add(new DokumentMapper().modelToDto(dokumenti));
 		}		
-		return new ResponseEntity<>(listaDokumenata, HttpStatus.OK);
+		return listaDokumenata;
 	}
 	
 	//veza za finan kartica za student
-	@RequestMapping(value="/finansijskaKarticaIzStudenta/{id}", method=RequestMethod.GET)
-	public ResponseEntity<FinansijskaKarticaDTO> getFinansijskaKarticaIzStudenta(@PathVariable Long id){
+	//@RequestMapping(value="/finansijskaKarticaIzStudenta/{id}", method=RequestMethod.GET)
+	public FinansijskaKarticaDTO getFinansijskaKarticaIzStudenta(@PathVariable Long id){
 		Student student = studentService.findOne(id);
 		if(student == null){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return  null;
 		}
-		return new ResponseEntity<>(new FinansijskaKarticaMapper().modelToDto(student.getFinansijskaKartica()), HttpStatus.OK);
+		return new FinansijskaKarticaMapper().modelToDto(student.getFinansijskaKartica());
 	}
 	
 	
 	//veza za pohadjanje  za student
-	@RequestMapping(value="/pohadjanjaIzStudenta/{id}", method=RequestMethod.GET)
-	public ResponseEntity<List<PohadjanjePredmetaDTO>> getPohadjanjaIzStudenta(@PathVariable Long id){
+	//@RequestMapping(value="/pohadjanjaIzStudenta/{id}", method=RequestMethod.GET)
+	public ArrayList<PohadjanjePredmetaDTO> getPohadjanjaIzStudenta(@PathVariable Long id){
 		Student student = studentService.findOne(id);
 		if(student == null){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return null;
 		}
-		List<PohadjanjePredmetaDTO> listaPohadjanja = new ArrayList<>();
+		ArrayList<PohadjanjePredmetaDTO> listaPohadjanja = new ArrayList<>();
 		for(PohadjanjePredmeta pohadjanje : student.getPohadjanjePredmeta()) {
 			listaPohadjanja.add(new PohadjanjePredmetaMapper().modelToDto(pohadjanje));
 		}		
-		return new ResponseEntity<>(listaPohadjanja, HttpStatus.OK);
+		return listaPohadjanja;
 	}
 	
 	
 	//veza za korisnik za student
-	@RequestMapping(value="/korisnikIzStudenta/{id}", method=RequestMethod.GET)
-	public ResponseEntity<KorisnikDTO> getKorisnikIzStudenta(@PathVariable Long id){
+	//@RequestMapping(value="/korisnikIzStudenta/{id}", method=RequestMethod.GET)
+	public KorisnikDTO getKorisnikIzStudenta(@PathVariable Long id){
 		Student student = studentService.findOne(id);
 		if(student == null){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return null;
 		}
-		return new ResponseEntity<>(new KorisnikMapper().modelToDto(student.getKorisnik()), HttpStatus.OK);
+		return new KorisnikMapper().modelToDto(student.getKorisnik());
 	}
 
 }

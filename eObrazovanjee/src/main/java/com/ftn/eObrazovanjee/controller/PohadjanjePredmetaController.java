@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ftn.eObrazovanjee.dto.IspitDTO;
 import com.ftn.eObrazovanjee.dto.PohadjanjePredmetaDTO;
 import com.ftn.eObrazovanjee.dto.PredmetInstancaDTO;
 import com.ftn.eObrazovanjee.dto.StudentDTO;
+import com.ftn.eObrazovanjee.mapper.IspitMapper;
 import com.ftn.eObrazovanjee.mapper.PohadjanjePredmetaMapper;
 import com.ftn.eObrazovanjee.mapper.PredmetInstancaMapper;
 import com.ftn.eObrazovanjee.mapper.StudentMapper;
@@ -46,7 +48,10 @@ public class PohadjanjePredmetaController {
 		
 		List<PohadjanjePredmetaDTO> pohadjanjaPredmetaDTO = new ArrayList<>();
 		for (PohadjanjePredmeta obj : pohadjanjaPredmeta) {
-			pohadjanjaPredmetaDTO.add(new PohadjanjePredmetaMapper().modelToDto(obj));
+			PohadjanjePredmetaDTO pohadjanje = new PohadjanjePredmetaMapper().modelToDto(obj);
+			pohadjanje.setStudnetDTO(getStudentIzPohadjanje(pohadjanje.getId()));
+			pohadjanje.setPredmetInstanca(getPredmetInstancaIzPohadjanje(pohadjanje.getId()));
+			pohadjanjaPredmetaDTO.add(pohadjanje);
 		}
 		return new ResponseEntity<>(pohadjanjaPredmetaDTO, HttpStatus.OK);
 	}
@@ -58,7 +63,11 @@ public class PohadjanjePredmetaController {
 		
 		List<PohadjanjePredmetaDTO> pohadjanjaPredmetaDTO = new ArrayList<>();
 		for (PohadjanjePredmeta obj : pohadjanjaPredmeta) {
-			pohadjanjaPredmetaDTO.add(new PohadjanjePredmetaMapper().modelToDto(obj));
+			PohadjanjePredmetaDTO pohadjanja = new PohadjanjePredmetaMapper().modelToDto(obj);
+			pohadjanja.setStudnetDTO(getStudentIzPohadjanje(pohadjanja.getId()));
+			pohadjanja.setPredmetInstanca(getPredmetInstancaIzPohadjanje(pohadjanja.getId()));
+			pohadjanjaPredmetaDTO.add(pohadjanja);
+			
 		}
 		return new ResponseEntity<>(pohadjanjaPredmetaDTO, HttpStatus.OK);
 	}
@@ -70,8 +79,11 @@ public class PohadjanjePredmetaController {
 		if(pohadjanjePredmeta == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+		PohadjanjePredmetaDTO pohadjanjeDTO = new PohadjanjePredmetaMapper().modelToDto(pohadjanjePredmeta);
+		pohadjanjeDTO.setStudnetDTO(getStudentIzPohadjanje(pohadjanjePredmeta.getId()));
+		pohadjanjeDTO.setPredmetInstanca(getPredmetInstancaIzPohadjanje(pohadjanjePredmeta.getId()));
 		
-		return new ResponseEntity<>(new PohadjanjePredmetaMapper().modelToDto(pohadjanjePredmeta), HttpStatus.OK);
+		return new ResponseEntity<>(pohadjanjeDTO, HttpStatus.OK);
 	}
 	
 	
@@ -128,23 +140,23 @@ public class PohadjanjePredmetaController {
 	}
 	
 	//veza za studenta u pohadjanju
-	@RequestMapping(value="/studentIzPohadjanje/{id}", method=RequestMethod.GET)
-	public ResponseEntity<StudentDTO> getstudentIzPohadjanje(@PathVariable Long id){
+	//@RequestMapping(value="/studentIzPohadjanje/{id}", method=RequestMethod.GET)
+	public StudentDTO getStudentIzPohadjanje(@PathVariable Long id){
 		PohadjanjePredmeta pohadjanjePredmeta = pohadjanjePredmetaService.findOne(id);
 		if(pohadjanjePredmeta == null){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return null;
 		}
-		return new ResponseEntity<>(new StudentMapper().modelToDto(pohadjanjePredmeta.getStudent()), HttpStatus.OK);
+		return new StudentMapper().modelToDto(pohadjanjePredmeta.getStudent());
 	}
 	
 	//veza za predmet instancu za pohadjanje
-	@RequestMapping(value="/predmetInstancaIzPohadjanje/{id}", method=RequestMethod.GET)
-	public ResponseEntity<PredmetInstancaDTO> getPredmetInstancaIzPohadjanje(@PathVariable Long id){
+	//@RequestMapping(value="/predmetInstancaIzPohadjanje/{id}", method=RequestMethod.GET)
+	public PredmetInstancaDTO getPredmetInstancaIzPohadjanje(@PathVariable Long id){
 		PohadjanjePredmeta pohadjanjePredmeta = pohadjanjePredmetaService.findOne(id);
 		if(pohadjanjePredmeta == null){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return null;
 		}
-		return new ResponseEntity<>(new PredmetInstancaMapper().modelToDto(pohadjanjePredmeta.getPredmetInstanca()), HttpStatus.OK);
+		return new PredmetInstancaMapper().modelToDto(pohadjanjePredmeta.getPredmetInstanca());
 	}
 
 }

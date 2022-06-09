@@ -40,7 +40,10 @@ public class DeoIspitaController {
 		
 		List<DeoIspitaDTO> deloviIspitaDTO = new ArrayList<>();
 		for (DeoIspita obj : deloviIspita) {
-			deloviIspitaDTO.add(new DeoIspitaMapper().modelToDto(obj));
+			DeoIspitaDTO deo = new DeoIspitaMapper().modelToDto(obj);
+			deo.setIspitDTO(getIspitIzDeoIspita(deo.getId()));
+			deloviIspitaDTO.add(deo);
+			//deloviIspitaDTO.add(new DeoIspitaMapper().modelToDto(obj));
 		}
 		return new ResponseEntity<>(deloviIspitaDTO, HttpStatus.OK);
 	}
@@ -52,7 +55,10 @@ public class DeoIspitaController {
 		
 		List<DeoIspitaDTO> deloviIspitaDTO = new ArrayList<>();
 		for (DeoIspita obj : deloviIspita) {
-			deloviIspitaDTO.add(new DeoIspitaMapper().modelToDto(obj));
+			DeoIspitaDTO deo = new DeoIspitaMapper().modelToDto(obj);
+			deo.setIspitDTO(getIspitIzDeoIspita(deo.getId()));
+			deloviIspitaDTO.add(deo);
+			//deloviIspitaDTO.add(new DeoIspitaMapper().modelToDto(obj));
 		}
 		return new ResponseEntity<>(deloviIspitaDTO, HttpStatus.OK);
 	}
@@ -63,8 +69,12 @@ public class DeoIspitaController {
 		if(deoIspita == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+		DeoIspitaDTO deoDTO = new DeoIspitaMapper().modelToDto(deoIspita);
+		deoDTO.setIspitDTO(getIspitIzDeoIspita(deoIspita.getId()));
 		
-		return new ResponseEntity<>(new DeoIspitaMapper().modelToDto(deoIspita), HttpStatus.OK);
+		return new ResponseEntity<>(deoDTO, HttpStatus.OK);
+		
+		//return new ResponseEntity<>(new DeoIspitaMapper().modelToDto(deoIspita), HttpStatus.OK);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
@@ -112,13 +122,16 @@ public class DeoIspitaController {
 	}
 	
 	//dobijanje delaispita iz ispita
-	@RequestMapping(value="/IspitIzDeoIspita/{id}", method=RequestMethod.GET)
-	public ResponseEntity<IspitDTO> getIspitIzDeoIspita(@PathVariable Long id){
+	//@RequestMapping(value="/IspitIzDeoIspita/{id}", method=RequestMethod.GET)
+	//public ResponseEntity<IspitDTO> getIspitIzDeoIspita(@PathVariable Long id){
+	public IspitDTO getIspitIzDeoIspita(@PathVariable Long id){
 		DeoIspita deoIspita = deoIspitaService.findOne(id);
 		if(deoIspita == null){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return null;
+			//return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<>(new IspitMapper().modelToDto(deoIspita.getIspit()), HttpStatus.OK);
+		return new IspitMapper().modelToDto(deoIspita.getIspit());
+		//return new ResponseEntity<>(new IspitMapper().modelToDto(deoIspita.getIspit()), HttpStatus.OK);
 	}
 
 }

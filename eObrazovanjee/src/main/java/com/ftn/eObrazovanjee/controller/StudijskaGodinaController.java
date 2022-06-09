@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ftn.eObrazovanjee.dto.IspitDTO;
 import com.ftn.eObrazovanjee.dto.StudentDTO;
 import com.ftn.eObrazovanjee.dto.StudijskaGodinaDTO;
+import com.ftn.eObrazovanjee.mapper.IspitMapper;
 import com.ftn.eObrazovanjee.mapper.StudentMapper;
 import com.ftn.eObrazovanjee.mapper.StudijskaGodinaMapper;
 import com.ftn.eObrazovanjee.model.StudijskaGodina;
@@ -39,7 +41,10 @@ public class StudijskaGodinaController {
 		//convert studijskeGodine to DTOs
 		List<StudijskaGodinaDTO> studijskeGodineDTO = new ArrayList<>();
 		for (StudijskaGodina s : studijskeGodine) {
-			studijskeGodineDTO.add(new StudijskaGodinaMapper().modelToDto(s));
+			
+			StudijskaGodinaDTO studGod = new StudijskaGodinaMapper().modelToDto(s);
+			studGod.setStudnetDTO(getStudentiIzStudGodine(studGod.getId()));
+			studijskeGodineDTO.add(studGod);
 		}
 		return new ResponseEntity<>(studijskeGodineDTO, HttpStatus.OK);
 	}
@@ -62,7 +67,9 @@ public class StudijskaGodinaController {
 		
 		List<StudijskaGodinaDTO> studijskeGodineDTO = new ArrayList<>();
 		for (StudijskaGodina sg : studijskeGodine) {
-			studijskeGodineDTO.add(new StudijskaGodinaMapper().modelToDto(sg));
+			StudijskaGodinaDTO studGodina = new StudijskaGodinaMapper().modelToDto(sg);
+			studGodina.setStudnetDTO(getStudentiIzStudGodine(studGodina.getId()));
+			studijskeGodineDTO.add(studGodina);
 		}
 		return new ResponseEntity<>(studijskeGodineDTO, HttpStatus.OK);
 	}
@@ -74,8 +81,11 @@ public class StudijskaGodinaController {
 		if(sg == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+
+		StudijskaGodinaDTO sgodinaDTO = new StudijskaGodinaMapper().modelToDto(sg);
+		sgodinaDTO.setStudnetDTO(getStudentiIzStudGodine(sg.getId()));
 		
-		return new ResponseEntity<>(new StudijskaGodinaMapper().modelToDto(sg), HttpStatus.OK);
+		return new ResponseEntity<>(sgodinaDTO, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
@@ -128,13 +138,13 @@ public class StudijskaGodinaController {
 	}
 	
 	//veza za studenta za studgodi
-	@RequestMapping(value="/studentiIzStudGodine/{id}", method=RequestMethod.GET)
-	public ResponseEntity<StudentDTO> getStudentiIzStudGodine(@PathVariable Long id){
+	//@RequestMapping(value="/studentiIzStudGodine/{id}", method=RequestMethod.GET)
+	public StudentDTO getStudentiIzStudGodine(@PathVariable Long id){
 		StudijskaGodina studijskaGodina = studijskaGodinaService.findOne(id);
 		if(studijskaGodina == null){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return null;
 		}
-		return new ResponseEntity<>(new StudentMapper().modelToDto(studijskaGodina.getStudent()), HttpStatus.OK);
+		return new StudentMapper().modelToDto(studijskaGodina.getStudent());
 	}
 
 }

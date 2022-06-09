@@ -1,5 +1,9 @@
 use eobrazovanjee;
 
+insert into korisnik (id, korisnicko_ime, lozinka,uloga) values (1,'admin', '123', 'ADMIN' );
+insert into korisnik (id, korisnicko_ime, lozinka,uloga) values (2,'profica', '123', 'PROFESOR' );
+insert into korisnik (id, korisnicko_ime, lozinka,uloga) values (3,'student', '123', 'STUDENT' );
+
 
 insert into student (id,active,email,ime,indeks,prezime) values (1, false, 'student@gmail.com', 'Student', 'SF49/2018', 'Studentic');
 insert into student (id,active,email,ime,indeks,prezime) values (2, false, 'jana@gmail.com', 'Jana', 'SF02/2017', 'Jankovic');
@@ -60,6 +64,12 @@ insert into predmet (id, espb, naziv,oznaka) values (3,6, 'Osnove softverskih ar
 insert into predmet (id, espb, naziv,oznaka) values (4,6, 'Matematika', 'M04');
 insert into predmet (id, espb, naziv,oznaka) values (5,4, 'Engleski jezik', 'E5');
 
+insert into predmetinstanca (id, kraj, pocetak,predmet_id) values (1,'2022-01-14', '2022-06-24', 1);
+insert into predmetinstanca (id, kraj, pocetak,predmet_id) values (2,'2022-01-14', '2022-06-24', 2);
+insert into predmetinstanca (id, kraj, pocetak,predmet_id) values (3,'2022-01-14', '2022-06-24', 3);
+insert into predmetinstanca (id, kraj, pocetak,predmet_id) values (4,'2022-01-14', '2022-06-24', 4);
+insert into predmetinstanca (id, kraj, pocetak,predmet_id) values (5,'2022-01-14', '2022-06-24', 5);
+
 insert into studijska_godina (id,godina_studija,kraj_studija,nacin_finansiranja,pocetak_studija,skolska_godina,student) values (1, 2017, '2023-08-08', 1, '2020-08-09', 2021, 1);
 insert into studijska_godina (id,godina_studija,kraj_studija,nacin_finansiranja,pocetak_studija,skolska_godina,student) values (2, 2017, '2023-08-08', 1, '2020-08-09', 2021, 1);
 insert into studijska_godina (id,godina_studija,kraj_studija,nacin_finansiranja,pocetak_studija,skolska_godina,student) values (3, 2018, '2023-08-08', 2, '2020-08-09', 2021, 1);
@@ -79,6 +89,16 @@ insert into finansijska_kartica (id,personalni_broj,racun_fakulteta,trenutno_sta
 insert into finansijska_kartica (id,personalni_broj,racun_fakulteta,trenutno_stanje) values (10, '26-99211-1-1234-1739 ', '840-1710666-12', 500);
 
 use eobrazovanjee;
+
+insert into ispitni_rok (id, kraj_roka, naziv_roka, pocetak_roka) values (1, '2022-01-10', 'Januarski rok', '2022-01-20');
+insert into ispitni_rok (id, kraj_roka, naziv_roka, pocetak_roka) values (2, '2022-02-10', 'Februarski rok', '2022-02-25');
+insert into ispitni_rok (id, kraj_roka, naziv_roka, pocetak_roka) values (3, '2022-04-10', 'Aprilski rok', '2022-04-15');
+insert into ispitni_rok (id, kraj_roka, naziv_roka, pocetak_roka) values (4, '2022-06-21', 'Junski rok', '2022-06-30');
+insert into ispitni_rok (id, kraj_roka, naziv_roka, pocetak_roka) values (5, '2022-07-02', 'Julski rok', '2022-07-28');
+insert into ispitni_rok (id, kraj_roka, naziv_roka, pocetak_roka) values (6, '2022-08-25', 'Avgustovski rok', '2022-08-30');
+insert into ispitni_rok (id, kraj_roka, naziv_roka, pocetak_roka) values (7, '2022-09-10', 'Septembarski rok', '2022-09-28');
+insert into ispitni_rok (id, kraj_roka, naziv_roka, pocetak_roka) values (8, '2022-10-04', 'Oktobarski rok', '2022-10-30');
+
 insert into deoIspita (naziv, brojOsvojenihBodova, minBodova,polozio) values ('Matematika trigonometrija', 19, 20, false);
 insert into deoIspita (naziv, brojOsvojenihBodova, minBodova,polozio) values ('Engleski jezik Verbs', 80, 20, true);
 insert into deoIspita (naziv, brojOsvojenihBodova, minBodova,polozio) values ('Engleski jezik Vremena', 70, 20, true);
