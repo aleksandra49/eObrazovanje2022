@@ -27,7 +27,7 @@ public class PredmetMapper {
 		predmetDTO.setNaziv(predmet.getNaziv());
 		predmetDTO.setEspb(predmet.getEspb());
 		predmetDTO.setOznaka(predmet.getOznaka());
-		predmetDTO.setPredmetInstancaDTO(new ArrayList<PredmetInstancaDTO>());
+		//predmetDTO.setPredmetInstancaDTO(new ArrayList<PredmetInstancaDTO>());
 			
 		
 		return predmetDTO;

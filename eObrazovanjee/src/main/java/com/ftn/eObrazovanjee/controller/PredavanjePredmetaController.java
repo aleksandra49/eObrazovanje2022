@@ -16,7 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.eObrazovanjee.dto.PredavanjePredmetaDTO;
+import com.ftn.eObrazovanjee.dto.PredmetInstancaDTO;
+import com.ftn.eObrazovanjee.dto.ProfesorDTO;
 import com.ftn.eObrazovanjee.mapper.PredavanjePredmetaMapper;
+import com.ftn.eObrazovanjee.mapper.PredmetInstancaMapper;
+import com.ftn.eObrazovanjee.mapper.ProfesorMapper;
+import com.ftn.eObrazovanjee.model.Ispit;
 import com.ftn.eObrazovanjee.model.PredavanjePredmeta;
 import com.ftn.eObrazovanjee.service.PredavanjePredmetaServiceImpl;
 import com.ftn.eObrazovanjee.service.PredmetInstancaServiceImpl;
@@ -107,6 +112,26 @@ public class PredavanjePredmetaController {
 		} else {		
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	//veza profa i predavanje
+	@RequestMapping(value="/profesorIzPredavanjePredmeta/{id}", method=RequestMethod.GET)
+	public ResponseEntity<ProfesorDTO> getProfesorIzPredavanjePredmeta(@PathVariable Long id){
+		PredavanjePredmeta predavanje = predavanjePredmetaServiceImpl.findOne(id);
+		if(predavanje == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(new ProfesorMapper().modelToDto(predavanje.getProfesor()), HttpStatus.OK);
+	}
+	
+	//instanca predmet i predavanje
+	@RequestMapping(value="/predmetInstancaIzPredavanjePredmeta/{id}", method=RequestMethod.GET)
+	public ResponseEntity<PredmetInstancaDTO> getPredmetInstancaIzPredavanjePredmeta(@PathVariable Long id){
+		PredavanjePredmeta predavanje = predavanjePredmetaServiceImpl.findOne(id);
+		if(predavanje == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(new PredmetInstancaMapper().modelToDto(predavanje.getInstanca()), HttpStatus.OK);
 	}
 	
 }

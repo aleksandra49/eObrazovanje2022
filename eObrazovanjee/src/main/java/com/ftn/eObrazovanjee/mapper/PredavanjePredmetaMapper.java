@@ -24,8 +24,8 @@ public class PredavanjePredmetaMapper {
 		PredavanjePredmetaDTO predavanjePredmetaDTO = new PredavanjePredmetaDTO();
 			
 		predavanjePredmetaDTO.setId(predavanjePredmeta.getId());
-		predavanjePredmetaDTO.setProfesor(new ProfesorMapper().modelToDto(predavanjePredmeta.getProfesor()));
-		predavanjePredmetaDTO.setPredmetInstanca(new PredmetInstancaMapper().modelToDto(predavanjePredmeta.getInstanca()));
+		//predavanjePredmetaDTO.setProfesor(new ProfesorMapper().modelToDto(predavanjePredmeta.getProfesor()));
+		//predavanjePredmetaDTO.setPredmetInstanca(new PredmetInstancaMapper().modelToDto(predavanjePredmeta.getInstanca()));
 		predavanjePredmetaDTO.setTipPredavaca(predavanjePredmeta.getTipPredavaca());
 
 

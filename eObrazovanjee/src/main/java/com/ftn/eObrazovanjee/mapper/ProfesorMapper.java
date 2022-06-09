@@ -35,7 +35,7 @@ public class ProfesorMapper {
 		profesorDTO.setIme(profesor.getIme());
 		profesorDTO.setPrezime(profesor.getPrezime());	
 //		profesorDTO.setKorisnik(new KorisnikMapper().modelToDto(profesor.getKorisnik()));
-		profesorDTO.setPredavanja(new ArrayList<PredavanjePredmetaDTO>());
+		//profesorDTO.setPredavanja(new ArrayList<PredavanjePredmetaDTO>());
 		
 		return profesorDTO;
 		

@@ -16,10 +16,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ftn.eObrazovanjee.dto.DeoIspitaDTO;
 import com.ftn.eObrazovanjee.dto.PredmetDTO;
+import com.ftn.eObrazovanjee.dto.PredmetInstancaDTO;
+import com.ftn.eObrazovanjee.mapper.DeoIspitaMapper;
 import com.ftn.eObrazovanjee.mapper.PredmetInstancaMapper;
 import com.ftn.eObrazovanjee.mapper.PredmetMapper;
+import com.ftn.eObrazovanjee.model.DeoIspita;
+import com.ftn.eObrazovanjee.model.Ispit;
 import com.ftn.eObrazovanjee.model.Predmet;
+import com.ftn.eObrazovanjee.model.PredmetInstanca;
 import com.ftn.eObrazovanjee.model.Profesor;
 import com.ftn.eObrazovanjee.repository.PredmetRepository;
 import com.ftn.eObrazovanjee.service.PredmetInstancaServiceImpl;
@@ -142,6 +148,19 @@ public class PredmetController {
 	
 */
 	
+	//veza instanca sa predmetom
+	@RequestMapping(value="/predmetInstancaIzPredmet/{id}", method=RequestMethod.GET)
+	public ResponseEntity<List<PredmetInstancaDTO>> getPredmetInstancaIzPredmet(@PathVariable Long id){
+		Predmet predmet = predmetService.findOne(id);
+		if(predmet == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		List<PredmetInstancaDTO> listaInstanci = new ArrayList<>();
+		for(PredmetInstanca instance : predmet.getPredmetInstanca()) {
+			listaInstanci.add(new PredmetInstancaMapper().modelToDto(instance));
+		}		
+		return new ResponseEntity<>(listaInstanci, HttpStatus.OK);
+	}
 	
 
 }

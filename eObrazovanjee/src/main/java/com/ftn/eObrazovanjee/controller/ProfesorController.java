@@ -17,9 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ftn.eObrazovanjee.dto.KorisnikDTO;
+import com.ftn.eObrazovanjee.dto.PredavanjePredmetaDTO;
 import com.ftn.eObrazovanjee.dto.ProfesorDTO;
+import com.ftn.eObrazovanjee.mapper.KorisnikMapper;
 import com.ftn.eObrazovanjee.mapper.PredavanjePredmetaMapper;
 import com.ftn.eObrazovanjee.mapper.ProfesorMapper;
+import com.ftn.eObrazovanjee.model.PredavanjePredmeta;
 import com.ftn.eObrazovanjee.model.Profesor;
 import com.ftn.eObrazovanjee.service.KorisnikService;
 import com.ftn.eObrazovanjee.service.PredavanjePredmetaServiceImpl;
@@ -117,6 +121,29 @@ public class ProfesorController {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}
 	 }
+	 
+	 //veza izmedju korisnika i profesora
+	 @RequestMapping(value="/korisnikIzProfesora/{id}", method=RequestMethod.GET)
+		public ResponseEntity<KorisnikDTO> getKorisnikaIzProfesora(@PathVariable Long id){
+		 Profesor profesor = profesorService.findOne(id);
+			if(profesor == null){
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+			return new ResponseEntity<>(new KorisnikMapper().modelToDto(profesor.getKorisnik()), HttpStatus.OK);
+		}
 	
 
+	 //veza izmedju predavanja predmeta i profe
+	 @RequestMapping(value="/predavanjePredmetaIzProfesora/{id}", method=RequestMethod.GET)
+		public ResponseEntity<List<PredavanjePredmetaDTO>> getPredavanjePredmetaIzProfesora(@PathVariable Long id){
+		 Profesor profesor = profesorService.findOne(id);
+			if(profesor == null){
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+			List<PredavanjePredmetaDTO> listaPredavanja = new ArrayList<>();
+			for(PredavanjePredmeta predavanja : profesor.getPredavanja()) {
+				listaPredavanja.add(new PredavanjePredmetaMapper().modelToDto(predavanja));
+			}		
+			return new ResponseEntity<>(listaPredavanja, HttpStatus.OK);
+		}
 }
