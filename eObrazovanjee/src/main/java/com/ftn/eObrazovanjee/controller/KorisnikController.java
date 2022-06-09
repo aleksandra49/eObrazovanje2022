@@ -53,7 +53,10 @@ public class KorisnikController {
 		
 		List<KorisnikDTO> korisniciDTO = new ArrayList<>();
 		for (Korisnik obj : korisnici) {
-			korisniciDTO.add(new KorisnikMapper().modelToDto(obj));
+			KorisnikDTO korisnik = new KorisnikMapper().modelToDto(obj);
+			korisnik.setProfesor(getProfesorIzKorisnika(korisnik.getId()));
+			korisnik.setStudent(getStudentIzKorisnika(korisnik.getId()));
+			korisniciDTO.add(korisnik);
 		}
 		return new ResponseEntity<>(korisniciDTO, HttpStatus.OK);
 	}
@@ -65,7 +68,10 @@ public class KorisnikController {
 		
 		List<KorisnikDTO> korisniciDTO = new ArrayList<>();
 		for (Korisnik obj : korisnici) {
-			korisniciDTO.add(new KorisnikMapper().modelToDto(obj));
+			KorisnikDTO korisnik = new KorisnikMapper().modelToDto(obj);
+			korisnik.setProfesor(getProfesorIzKorisnika(korisnik.getId()));
+			korisnik.setStudent(getStudentIzKorisnika(korisnik.getId()));
+			korisniciDTO.add(korisnik);
 		}
 		return new ResponseEntity<>(korisniciDTO, HttpStatus.OK);
 	}
@@ -76,8 +82,11 @@ public class KorisnikController {
 		if(korisnik == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+		KorisnikDTO korisnikDTO = new KorisnikMapper().modelToDto(korisnik);
+		korisnikDTO.setProfesor(getProfesorIzKorisnika(korisnik.getId()));
+		korisnikDTO.setStudent(getStudentIzKorisnika(korisnik.getId()));
 		
-		return new ResponseEntity<>(new KorisnikMapper().modelToDto(korisnik), HttpStatus.OK);
+		return new ResponseEntity<>(korisnikDTO, HttpStatus.OK);
 	}
 	
 //	>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -124,22 +133,22 @@ public class KorisnikController {
 		}
 	}
 	
-	@RequestMapping(value="/getStudentIzKorisnika/{id}", method=RequestMethod.GET)
-	public ResponseEntity<StudentDTO> getStudentIzKorisnika(@PathVariable Long id){
+//	@RequestMapping(value="/getStudentIzKorisnika/{id}", method=RequestMethod.GET)
+	public StudentDTO getStudentIzKorisnika(Long id){
 		Korisnik korisnik = korisnikService.findOne(id);
 		if(korisnik == null){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return null;
 		}
-		return new ResponseEntity<>(new StudentMapper().modelToDto(korisnik.getStudent()), HttpStatus.OK);
+		return new StudentMapper().modelToDto(korisnik.getStudent());
 	}
 
-	@RequestMapping(value="/getProfesorIzKorisnika/{id}", method=RequestMethod.GET)
-	public ResponseEntity<ProfesorDTO> getProfesorIzKorisnika(@PathVariable Long id){
+//	@RequestMapping(value="/getProfesorIzKorisnika/{id}", method=RequestMethod.GET)
+	public ProfesorDTO getProfesorIzKorisnika(Long id){
 		Korisnik korisnik = korisnikService.findOne(id);
 		if(korisnik == null){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return null;
 		}
-		return new ResponseEntity<>(new ProfesorMapper().modelToDto(korisnik.getProfesor()), HttpStatus.OK);
+		return new ProfesorMapper().modelToDto(korisnik.getProfesor());
 	}
 	
 }

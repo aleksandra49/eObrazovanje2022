@@ -52,7 +52,12 @@ public class IspitController {
 		
 		List<IspitDTO> ispitiDTO = new ArrayList<>();
 		for (Ispit obj : ispiti) {
-			ispitiDTO.add(new IspitMapper().modelToDto(obj));
+			IspitDTO ispit = new IspitMapper().modelToDto(obj);
+			ispit.setPredmetInstanca(getPredmetInstancaIzIspita(ispit.getId()));
+			ispit.setDeoIspitaDTO(getDeoIspitaIzIspita(ispit.getId()));
+			ispit.setIspitniRok(getIspitniRokIzIspita(ispit.getId()));
+			ispit.setPolaganjeIspita(getPolaganjeIspitaIzIspita(ispit.getId()));
+			ispitiDTO.add(ispit);
 		}
 		return new ResponseEntity<>(ispitiDTO, HttpStatus.OK);
 	}
@@ -64,7 +69,12 @@ public class IspitController {
 		
 		List<IspitDTO> ispitiDTO = new ArrayList<>();
 		for (Ispit obj : ispiti) {
-			ispitiDTO.add(new IspitMapper().modelToDto(obj));
+			IspitDTO ispit = new IspitMapper().modelToDto(obj);
+			ispit.setPredmetInstanca(getPredmetInstancaIzIspita(ispit.getId()));
+			ispit.setDeoIspitaDTO(getDeoIspitaIzIspita(ispit.getId()));
+			ispit.setIspitniRok(getIspitniRokIzIspita(ispit.getId()));
+			ispit.setPolaganjeIspita(getPolaganjeIspitaIzIspita(ispit.getId()));
+			ispitiDTO.add(ispit);
 		}
 		return new ResponseEntity<>(ispitiDTO, HttpStatus.OK);
 	}
@@ -76,7 +86,13 @@ public class IspitController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		
-		return new ResponseEntity<>(new IspitMapper().modelToDto(ispit), HttpStatus.OK);
+		IspitDTO ispitDTO = new IspitMapper().modelToDto(ispit);
+		ispitDTO.setPredmetInstanca(getPredmetInstancaIzIspita(ispit.getId()));
+		ispitDTO.setDeoIspitaDTO(getDeoIspitaIzIspita(ispit.getId()));
+		ispitDTO.setIspitniRok(getIspitniRokIzIspita(ispit.getId()));
+		ispitDTO.setPolaganjeIspita(getPolaganjeIspitaIzIspita(ispit.getId()));
+		
+		return new ResponseEntity<>(ispitDTO, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
@@ -127,48 +143,48 @@ public class IspitController {
 		}
 	}
 	
-	@RequestMapping(value="/getPolaganjeIspitaIzIspita/{id}", method=RequestMethod.GET)
-	public ResponseEntity<List<PolaganjeIspitaDTO>> getPolaganjeIspitaIzIspita(@PathVariable Long id){
+//	@RequestMapping(value="/getPolaganjeIspitaIzIspita/{id}", method=RequestMethod.GET)
+	public ArrayList<PolaganjeIspitaDTO> getPolaganjeIspitaIzIspita(Long id){
 		Ispit ispit = ispitService.findOne(id);
 		if(ispit == null){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return null;
 		}
-		List<PolaganjeIspitaDTO> listaPolaganja = new ArrayList<>();
+		ArrayList<PolaganjeIspitaDTO> listaPolaganja = new ArrayList<>();
 		for(PolaganjeIspita polaganje : ispit.getPolaganjeIspita()) {
 			listaPolaganja.add(new PolaganjeIspitaMapper().modelToDto(polaganje));
 		}		
-		return new ResponseEntity<>(listaPolaganja, HttpStatus.OK);
+		return listaPolaganja;
 	}
 	
-	@RequestMapping(value="/getDeoIspitaIzIspita/{id}", method=RequestMethod.GET)
-	public ResponseEntity<List<DeoIspitaDTO>> getDeoIspitaIzIspita(@PathVariable Long id){
+//	@RequestMapping(value="/getDeoIspitaIzIspita/{id}", method=RequestMethod.GET)
+	public ArrayList<DeoIspitaDTO> getDeoIspitaIzIspita(Long id){
 		Ispit ispit = ispitService.findOne(id);
 		if(ispit == null){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return null;
 		}
-		List<DeoIspitaDTO> listaDelova = new ArrayList<>();
+		ArrayList<DeoIspitaDTO> listaDelova = new ArrayList<>();
 		for(DeoIspita delovi : ispit.getDeoIspita()) {
 			listaDelova.add(new DeoIspitaMapper().modelToDto(delovi));
 		}		
-		return new ResponseEntity<>(listaDelova, HttpStatus.OK);
+		return listaDelova;
 	}
 	
-	@RequestMapping(value="/getIspitniRokIzIspita/{id}", method=RequestMethod.GET)
-	public ResponseEntity<IspitniRokDTO> getIspitniRokIzIspita(@PathVariable Long id){
+//	@RequestMapping(value="/getIspitniRokIzIspita/{id}", method=RequestMethod.GET)
+	public IspitniRokDTO getIspitniRokIzIspita(Long id){
 		Ispit ispit = ispitService.findOne(id);
 		if(ispit == null){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return null;
 		}
-		return new ResponseEntity<>(new IspitniRokMapper().modelToDto(ispit.getIspitniRok()), HttpStatus.OK);
+		return new IspitniRokMapper().modelToDto(ispit.getIspitniRok());
 	}
 	
-	@RequestMapping(value="/getPredmetInstancaIzIspita/{id}", method=RequestMethod.GET)
-	public ResponseEntity<PredmetInstancaDTO> getPredmetInstancaIzIspita(@PathVariable Long id){
+//	@RequestMapping(value="/getPredmetInstancaIzIspita/{id}", method=RequestMethod.GET)
+	public PredmetInstancaDTO getPredmetInstancaIzIspita(Long id){
 		Ispit ispit = ispitService.findOne(id);
 		if(ispit == null){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return null;
 		}
-		return new ResponseEntity<>(new PredmetInstancaMapper().modelToDto(ispit.getPredmetInstanca()), HttpStatus.OK);
+		return new PredmetInstancaMapper().modelToDto(ispit.getPredmetInstanca());
 	}
 	
 }

@@ -48,7 +48,10 @@ public class PolaganjeIspitaController {
 		
 		List<PolaganjeIspitaDTO> polaganjaDTO = new ArrayList<>();
 		for (PolaganjeIspita obj : polaganja) {
-			polaganjaDTO.add(new PolaganjeIspitaMapper().modelToDto(obj));
+			PolaganjeIspitaDTO polaganje = new PolaganjeIspitaMapper().modelToDto(obj);
+			polaganje.setIspit(getIspitIzPolaganja(polaganje.getId()));
+			polaganje.setStudent(getStudentIzPolaganja(polaganje.getId()));
+			polaganjaDTO.add(polaganje);
 		}
 		return new ResponseEntity<>(polaganjaDTO, HttpStatus.OK);
 	}
@@ -60,7 +63,10 @@ public class PolaganjeIspitaController {
 		
 		List<PolaganjeIspitaDTO> polaganjaDTO = new ArrayList<>();
 		for (PolaganjeIspita obj : polaganja) {
-			polaganjaDTO.add(new PolaganjeIspitaMapper().modelToDto(obj));
+			PolaganjeIspitaDTO polaganje = new PolaganjeIspitaMapper().modelToDto(obj);
+			polaganje.setIspit(getIspitIzPolaganja(polaganje.getId()));
+			polaganje.setStudent(getStudentIzPolaganja(polaganje.getId()));
+			polaganjaDTO.add(polaganje);
 		}
 		return new ResponseEntity<>(polaganjaDTO, HttpStatus.OK);
 	}
@@ -71,8 +77,11 @@ public class PolaganjeIspitaController {
 		if(polaganjeIspita == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+		PolaganjeIspitaDTO polaganjeDTO = new PolaganjeIspitaMapper().modelToDto(polaganjeIspita) ;
+		polaganjeDTO.setIspit(getIspitIzPolaganja(polaganjeIspita.getId()));
+		polaganjeDTO.setStudent(getStudentIzPolaganja(polaganjeIspita.getId()));
 		
-		return new ResponseEntity<>(new PolaganjeIspitaMapper().modelToDto(polaganjeIspita), HttpStatus.OK);
+		return new ResponseEntity<>(polaganjeDTO, HttpStatus.OK);
 	}
 	
 //	>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -116,21 +125,21 @@ public class PolaganjeIspitaController {
 		}
 	}
 	
-	@RequestMapping(value="/getStudentIzPolaganja/{id}", method=RequestMethod.GET)
-	public ResponseEntity<StudentDTO> getStudentIzPolaganja(@PathVariable Long id){
+//	@RequestMapping(value="/getStudentIzPolaganja/{id}", method=RequestMethod.GET)
+	public StudentDTO getStudentIzPolaganja(Long id){
 		PolaganjeIspita polaganjeIspita = polaganjeIspitaService.findOne(id);
 		if(polaganjeIspita == null){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return null;
 		}
-		return new ResponseEntity<>(new StudentMapper().modelToDto(polaganjeIspita.getStudent()), HttpStatus.OK);
+		return new StudentMapper().modelToDto(polaganjeIspita.getStudent());
 	}
 	
-	@RequestMapping(value="/getIspitIzPolaganja/{id}", method=RequestMethod.GET)
-	public ResponseEntity<IspitDTO> getIspitIzPolaganja(@PathVariable Long id){
+//	@RequestMapping(value="/getIspitIzPolaganja/{id}", method=RequestMethod.GET)
+	public IspitDTO getIspitIzPolaganja(Long id){
 		PolaganjeIspita polaganjeIspita = polaganjeIspitaService.findOne(id);
 		if(polaganjeIspita == null){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return null;
 		}
-		return new ResponseEntity<>(new IspitMapper().modelToDto(polaganjeIspita.getIspit()), HttpStatus.OK);
+		return new IspitMapper().modelToDto(polaganjeIspita.getIspit());
 	}
 }

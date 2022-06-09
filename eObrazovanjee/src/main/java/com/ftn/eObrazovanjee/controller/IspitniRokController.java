@@ -42,11 +42,13 @@ public class IspitniRokController {
 	
 	@RequestMapping(value="/all", method = RequestMethod.GET)
 	public ResponseEntity<List<IspitniRokDTO>> getAllIspitniRokovi() {
-		List<IspitniRok> ispiti = ispitniRokService.findAll();
+		List<IspitniRok> rokovi = ispitniRokService.findAll();
 		
 		List<IspitniRokDTO> ispitiDTO = new ArrayList<>();
-		for (IspitniRok obj : ispiti) {
-			ispitiDTO.add(new IspitniRokMapper().modelToDto(obj));
+		for (IspitniRok obj : rokovi) {
+			IspitniRokDTO ispitniRok = new IspitniRokMapper().modelToDto(obj);
+			ispitniRok.setIspiti(getIspitiIzIspitnogRoka(ispitniRok.getId()));
+			ispitiDTO.add(ispitniRok);
 		}
 		return new ResponseEntity<>(ispitiDTO, HttpStatus.OK);
 	}
@@ -58,19 +60,24 @@ public class IspitniRokController {
 		
 		List<IspitniRokDTO> ispitiDTO = new ArrayList<>();
 		for (IspitniRok obj : ispiti) {
-			ispitiDTO.add(new IspitniRokMapper().modelToDto(obj));
+			IspitniRokDTO ispitniRok = new IspitniRokMapper().modelToDto(obj);
+			ispitniRok.setIspiti(getIspitiIzIspitnogRoka(ispitniRok.getId()));
+			
+			ispitiDTO.add(ispitniRok);
 		}
 		return new ResponseEntity<>(ispitiDTO, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<IspitniRokDTO> getIspit(@PathVariable Long id){
+	public ResponseEntity<IspitniRokDTO> getIspitniRok(@PathVariable Long id){
 		IspitniRok ispitniRok = ispitniRokService.findOne(id);
 		if(ispitniRok == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+		IspitniRokDTO rok = new IspitniRokMapper().modelToDto(ispitniRok);
+		rok.setIspiti(getIspitiIzIspitnogRoka(ispitniRok.getId()));
 		
-		return new ResponseEntity<>(new IspitniRokMapper().modelToDto(ispitniRok), HttpStatus.OK);
+		return new ResponseEntity<>(rok, HttpStatus.OK);
 	}
 	
 //	>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -117,16 +124,16 @@ public class IspitniRokController {
 		}
 	}
 	
-	@RequestMapping(value="/getIspitiIzIspitnogRoka/{id}", method=RequestMethod.GET)
-	public ResponseEntity<List<IspitDTO>> getIspitiIzIspitnogRoka(@PathVariable Long id){
+//	@RequestMapping(value="/getIspitiIzIspitnogRoka/{id}", method=RequestMethod.GET)
+	public ArrayList<IspitDTO> getIspitiIzIspitnogRoka(Long id){
 		IspitniRok ispitniRok = ispitniRokService.findOne(id);
 		if(ispitniRok == null){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return null;
 		}
-		List<IspitDTO> listaIspita = new ArrayList<>();
+		ArrayList<IspitDTO> listaIspita = new ArrayList<>();
 		for(Ispit ispit : ispitniRok.getIspit()) {
 			listaIspita.add(new IspitMapper().modelToDto(ispit));
 		}		
-		return new ResponseEntity<>(listaIspita, HttpStatus.OK);
+		return listaIspita;
 	}
 }
