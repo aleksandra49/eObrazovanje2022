@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ftn.eObrazovanjee.dto.DokumentDTO;
 import com.ftn.eObrazovanjee.dto.TipDokumentaDTO;
+import com.ftn.eObrazovanjee.mapper.DokumentMapper;
 import com.ftn.eObrazovanjee.mapper.TipDokumentaMapper;
 import com.ftn.eObrazovanjee.model.TipDokumenta;
 import com.ftn.eObrazovanjee.service.DokumentService;
@@ -39,7 +41,9 @@ public class TipDokumentaController {
 		
 		List<TipDokumentaDTO> tipoviDokumentaDTO = new ArrayList<>();
 		for (TipDokumenta obj : tipoviDokumenta) {
-			tipoviDokumentaDTO.add(new TipDokumentaMapper().modelToDto(obj));
+			TipDokumentaDTO dokument = new TipDokumentaMapper().modelToDto(obj);
+			dokument.setDokumentDTO(geDokumentIzTipDokumenta(dokument.getId()));
+			tipoviDokumentaDTO.add(dokument);
 		}
 		return new ResponseEntity<>(tipoviDokumentaDTO, HttpStatus.OK);
 	}
@@ -51,7 +55,9 @@ public class TipDokumentaController {
 		
 		List<TipDokumentaDTO> tipoviDokumentaDTO = new ArrayList<>();
 		for (TipDokumenta obj : tipoviDokumenta) {
-			tipoviDokumentaDTO.add(new TipDokumentaMapper().modelToDto(obj));
+			TipDokumentaDTO dokument = new TipDokumentaMapper().modelToDto(obj);
+			dokument.setDokumentDTO(geDokumentIzTipDokumenta(dokument.getId()));
+			tipoviDokumentaDTO.add(dokument);
 		}
 		return new ResponseEntity<>(tipoviDokumentaDTO, HttpStatus.OK);
 	}
@@ -62,8 +68,10 @@ public class TipDokumentaController {
 		if(tipDokumenta == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+		TipDokumentaDTO tipDokumentaDTO = new TipDokumentaMapper().modelToDto(tipDokumenta);
+		tipDokumentaDTO.setDokumentDTO(geDokumentIzTipDokumenta(tipDokumenta.getId()));
 		
-		return new ResponseEntity<>(new TipDokumentaMapper().modelToDto(tipDokumenta), HttpStatus.OK);
+		return new ResponseEntity<>(tipDokumentaDTO, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
@@ -104,5 +112,14 @@ public class TipDokumentaController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	//veza dok i tipkdok
+		public DokumentDTO geDokumentIzTipDokumenta(Long id){
+			TipDokumenta tipDokumenta = tipDokumentaService.findOne(id);
+			if(tipDokumenta == null){
+				return null;
+			}
+			return new DokumentMapper().modelToDto(tipDokumenta.getDokument());
+		}
 
 }

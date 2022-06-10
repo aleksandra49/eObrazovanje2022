@@ -16,9 +16,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.eObrazovanjee.dto.DokumentDTO;
+import com.ftn.eObrazovanjee.dto.StudentDTO;
+import com.ftn.eObrazovanjee.dto.TipDokumentaDTO;
 import com.ftn.eObrazovanjee.mapper.DokumentMapper;
+import com.ftn.eObrazovanjee.mapper.StudentMapper;
 import com.ftn.eObrazovanjee.mapper.TipDokumentaMapper;
 import com.ftn.eObrazovanjee.model.Dokument;
+import com.ftn.eObrazovanjee.model.TipDokumenta;
 import com.ftn.eObrazovanjee.service.DokumentService;
 import com.ftn.eObrazovanjee.service.StudentService;
 import com.ftn.eObrazovanjee.service.TipDokumentaService;
@@ -41,7 +45,10 @@ public class DokumentController {
 		
 		List<DokumentDTO> dokumentiDTO = new ArrayList<>();
 		for (Dokument obj : dokumenti) {
-			dokumentiDTO.add(new DokumentMapper().modelToDto(obj));
+			DokumentDTO dokument = new DokumentMapper().modelToDto(obj);
+			dokument.setStudentDto(getStudentIzDokumenta(dokument.getId()));
+			dokument.setTipDokumentaDTOs(getTipDokumentaIzDokumenta(dokument.getId()));
+			dokumentiDTO.add(dokument);
 		}
 		return new ResponseEntity<>(dokumentiDTO, HttpStatus.OK);
 	}
@@ -53,7 +60,10 @@ public class DokumentController {
 		
 		List<DokumentDTO> dokumentiDTO = new ArrayList<>();
 		for (Dokument obj : dokumenti) {
-			dokumentiDTO.add(new DokumentMapper().modelToDto(obj));
+			DokumentDTO dokument = new DokumentMapper().modelToDto(obj);
+			dokument.setStudentDto(getStudentIzDokumenta(dokument.getId()));
+			dokument.setTipDokumentaDTOs(getTipDokumentaIzDokumenta(dokument.getId()));
+			dokumentiDTO.add(dokument);
 		}
 		return new ResponseEntity<>(dokumentiDTO, HttpStatus.OK);
 	}
@@ -64,8 +74,11 @@ public class DokumentController {
 		if(dokument == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+		DokumentDTO dokumentDTO = new DokumentMapper().modelToDto(dokument);
+		dokumentDTO.setStudentDto(getStudentIzDokumenta(dokument.getId()));
+		dokumentDTO.setTipDokumentaDTOs(getTipDokumentaIzDokumenta(dokument.getId()));
 		
-		return new ResponseEntity<>(new DokumentMapper().modelToDto(dokument), HttpStatus.OK);
+		return new ResponseEntity<>(dokumentDTO, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
@@ -110,5 +123,27 @@ public class DokumentController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	//veza stud i dok
+		public StudentDTO getStudentIzDokumenta(Long id){
+			Dokument dokument = dokumentService.findOne(id);
+			if(dokument == null){
+				return null;
+			}
+			return new StudentMapper().modelToDto(dokument.getStudent());
+		}
+		
+		//vez tip dok i dok
+		public ArrayList<TipDokumentaDTO> getTipDokumentaIzDokumenta(Long id){
+			Dokument dokument = dokumentService.findOne(id);
+			if(dokument == null){
+				return null;
+			}
+			ArrayList<TipDokumentaDTO> listaTipova = new ArrayList<>();
+			for(TipDokumenta tipovi : dokument.getTipDokumenta()) {
+				listaTipova.add(new TipDokumentaMapper().modelToDto(tipovi));
+			}		
+			return listaTipova;
+		}
 
 }

@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ftn.eObrazovanjee.dto.FinansijskaKarticaDTO;
 import com.ftn.eObrazovanjee.dto.TransakcijaDTO;
+import com.ftn.eObrazovanjee.mapper.FinansijskaKarticaMapper;
 import com.ftn.eObrazovanjee.mapper.TransakcijaMapper;
 import com.ftn.eObrazovanjee.model.Transakcija;
 import com.ftn.eObrazovanjee.service.FinansijskaKarticaService;
@@ -36,7 +38,9 @@ public class TransakcijaController {
 		
 		List<TransakcijaDTO> transakcijeDTO = new ArrayList<>();
 		for (Transakcija obj : transakcije) {
-			transakcijeDTO.add(new TransakcijaMapper().modelToDto(obj));
+			TransakcijaDTO transakcija = new TransakcijaMapper().modelToDto(obj);
+			transakcija.setFinansijskaKarticaDTO(getFinansijskaKarticaIzTransakcija(transakcija.getId()));
+			transakcijeDTO.add(transakcija);
 		}
 		return new ResponseEntity<>(transakcijeDTO, HttpStatus.OK);
 	}
@@ -48,7 +52,9 @@ public class TransakcijaController {
 		
 		List<TransakcijaDTO> transakcijeDTO = new ArrayList<>();
 		for (Transakcija obj : transakcije) {
-			transakcijeDTO.add(new TransakcijaMapper().modelToDto(obj));
+			TransakcijaDTO transakcija = new TransakcijaMapper().modelToDto(obj);
+			transakcija.setFinansijskaKarticaDTO(getFinansijskaKarticaIzTransakcija(transakcija.getId()));
+			transakcijeDTO.add(transakcija);
 		}
 		return new ResponseEntity<>(transakcijeDTO, HttpStatus.OK);
 	}
@@ -60,7 +66,10 @@ public class TransakcijaController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		
-		return new ResponseEntity<>(new TransakcijaMapper().modelToDto(transakcija), HttpStatus.OK);
+		TransakcijaDTO transakcijaDTO = new TransakcijaMapper().modelToDto(transakcija);
+		transakcijaDTO.setFinansijskaKarticaDTO(getFinansijskaKarticaIzTransakcija(transakcija.getId()));
+		
+		return new ResponseEntity<>(transakcijaDTO, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
@@ -104,6 +113,15 @@ public class TransakcijaController {
 		} else {		
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	//veza fina u trans
+	public FinansijskaKarticaDTO getFinansijskaKarticaIzTransakcija(Long id){
+		Transakcija transakcija = transakcijaService.findOne(id);
+		if(transakcija == null){
+			return null;
+		}
+		return new FinansijskaKarticaMapper().modelToDto(transakcija.getFinansijskaKartica());
 	}
 
 }

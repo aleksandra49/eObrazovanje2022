@@ -15,9 +15,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.eObrazovanjee.dto.FinansijskaKarticaDTO;
+import com.ftn.eObrazovanjee.dto.StudentDTO;
+import com.ftn.eObrazovanjee.dto.TransakcijaDTO;
 import com.ftn.eObrazovanjee.mapper.FinansijskaKarticaMapper;
+import com.ftn.eObrazovanjee.mapper.StudentMapper;
 import com.ftn.eObrazovanjee.mapper.TransakcijaMapper;
 import com.ftn.eObrazovanjee.model.FinansijskaKartica;
+import com.ftn.eObrazovanjee.model.Transakcija;
 import com.ftn.eObrazovanjee.service.FinansijskaKarticaService;
 import com.ftn.eObrazovanjee.service.StudentService;
 import com.ftn.eObrazovanjee.service.TransakcijaService;
@@ -40,8 +44,12 @@ public class FinansijskaKarticaController {
 		
 		List<FinansijskaKarticaDTO> finansijskeKarticeDTO = new ArrayList<>();
 		for (FinansijskaKartica obj : finansijskeKartice) {
-			finansijskeKarticeDTO.add(new FinansijskaKarticaMapper().modelToDto(obj));
+			FinansijskaKarticaDTO finansijskaKartica = new FinansijskaKarticaMapper().modelToDto(obj);
+			finansijskaKartica.setStudentDto(getStudentIFinansijskaKartica(finansijskaKartica.getId()));
+			finansijskaKartica.setTransakcijaDTO(getTransakcijaIzFinansijskaKartica(finansijskaKartica.getId()));
+			finansijskeKarticeDTO.add(finansijskaKartica);
 		}
+		
 		return new ResponseEntity<>(finansijskeKarticeDTO, HttpStatus.OK);
 	}
 	
@@ -52,7 +60,10 @@ public class FinansijskaKarticaController {
 		
 		List<FinansijskaKarticaDTO> finansijskeKarticeDTO = new ArrayList<>();
 		for (FinansijskaKartica obj : finansijskeKartice) {
-			finansijskeKarticeDTO.add(new FinansijskaKarticaMapper().modelToDto(obj));
+			FinansijskaKarticaDTO finansijskaKartica = new FinansijskaKarticaMapper().modelToDto(obj);
+			finansijskaKartica.setStudentDto(getStudentIFinansijskaKartica(finansijskaKartica.getId()));
+			finansijskaKartica.setTransakcijaDTO(getTransakcijaIzFinansijskaKartica(finansijskaKartica.getId()));
+			finansijskeKarticeDTO.add(finansijskaKartica);
 		}
 		return new ResponseEntity<>(finansijskeKarticeDTO, HttpStatus.OK);
 	}
@@ -63,8 +74,12 @@ public class FinansijskaKarticaController {
 		if(finansijskaKartica == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+		FinansijskaKarticaDTO finansijskaKarticaDTO = new FinansijskaKarticaMapper().modelToDto(finansijskaKartica);
+		finansijskaKarticaDTO.setStudentDto(getStudentIFinansijskaKartica(finansijskaKartica.getId()));
+		finansijskaKarticaDTO.setTransakcijaDTO(getTransakcijaIzFinansijskaKartica(finansijskaKartica.getId()));
 		
-		return new ResponseEntity<>(new FinansijskaKarticaMapper().modelToDto(finansijskaKartica), HttpStatus.OK);
+		return new ResponseEntity<>(finansijskaKarticaDTO, HttpStatus.OK);
+		
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
@@ -111,4 +126,26 @@ public class FinansijskaKarticaController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	//veza studenta sa fina karticom
+		public StudentDTO getStudentIFinansijskaKartica(Long id){
+			FinansijskaKartica finansijskaKartica = finansijskaKarticaService.findOne(id);
+			if(finansijskaKartica == null){
+				return null;
+			}
+			return new StudentMapper().modelToDto(finansijskaKartica.getStudent());
+		}
+		
+		//veza transakcija i fina kartica
+		public ArrayList<TransakcijaDTO> getTransakcijaIzFinansijskaKartica(Long id){
+			FinansijskaKartica finansijskaKartica = finansijskaKarticaService.findOne(id);
+			if(finansijskaKartica == null){
+				return null;
+			}
+			ArrayList<TransakcijaDTO> listaTransakcija = new ArrayList<>();
+			for(Transakcija transakcije : finansijskaKartica.getTransakcije()) { // jed trans jed fins
+				listaTransakcija.add(new TransakcijaMapper().modelToDto(transakcije));
+			}		
+			return listaTransakcija;
+		}
 }
