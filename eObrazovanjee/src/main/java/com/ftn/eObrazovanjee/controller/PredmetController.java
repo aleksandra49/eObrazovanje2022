@@ -97,27 +97,31 @@ public class PredmetController {
 	}
 	//findAll
 	@RequestMapping(value="/all", method = RequestMethod.GET)
-	public ResponseEntity<List<PredmetDTO>> getAllIspiti() {
-		List<Predmet> ispiti = predmetService.findAll();
-		//convert Ispits to DTOs
-		List<PredmetDTO> ispitiDTO = new ArrayList<>();
-		for (Predmet s : ispiti) {
+	public ResponseEntity<List<PredmetDTO>> getAllPredmeti() {
+		List<Predmet> predmeti = predmetService.findAll();
+		//convert predmeti to DTOs
+		List<PredmetDTO> predmetiDTO = new ArrayList<>();
+		for (Predmet s : predmeti) {
 			
-			ispitiDTO.add(new PredmetMapper().modelToDto(s));
+			PredmetDTO predmet = new PredmetMapper().modelToDto(s);
+			predmet.setPredmetInstancaDTO(getPredmetInstancaIzPredmet(predmet.getId()));
+			predmetiDTO.add(predmet);
 		}
-		return new ResponseEntity<>(ispitiDTO, HttpStatus.OK);
+		return new ResponseEntity<>(predmetiDTO, HttpStatus.OK);
 	}
 	
 	
 	//findAll + pagable
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<PredmetDTO>> getCourses(Pageable pageable) {
+	public ResponseEntity<List<PredmetDTO>> getPredmetiPage(Pageable pageable) {
 		//int page = 0; int pageSize = 5;
 		Page<Predmet> predmeti = predmetService.findAll(pageable);
 		//konvertuje kurseve u DTOs
 		List<PredmetDTO> predmetiDTO = new ArrayList<>();
 		for (Predmet p : predmeti) {
-			predmetiDTO.add(new PredmetMapper().modelToDto(p));
+			PredmetDTO predmet = new PredmetMapper().modelToDto(p);
+			predmet.setPredmetInstancaDTO(getPredmetInstancaIzPredmet(predmet.getId()));
+			predmetiDTO.add(predmet);
 		}
 		return new ResponseEntity<>(predmetiDTO, HttpStatus.OK);
 	}
@@ -125,13 +129,17 @@ public class PredmetController {
 	
 	//findOne
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<PredmetDTO> getCourse(@PathVariable Long id){
+	public ResponseEntity<PredmetDTO> getPredmet(@PathVariable Long id){
 		Predmet predmet = predmetService.findOne(id);
 		if(predmet == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		
-		return new ResponseEntity<>(new PredmetMapper().modelToDto(predmet), HttpStatus.OK);
+		PredmetDTO predmetDTO = new PredmetMapper().modelToDto(predmet);
+		predmetDTO.setPredmetInstancaDTO(getPredmetInstancaIzPredmet(predmet.getId()));
+		
+		return new ResponseEntity<>(predmetDTO, HttpStatus.OK);
+		
 	}
 	
     // Nastavnik izvodi odredjene predmete
@@ -149,17 +157,17 @@ public class PredmetController {
 */
 	
 	//veza instanca sa predmetom
-	@RequestMapping(value="/predmetInstancaIzPredmet/{id}", method=RequestMethod.GET)
-	public ResponseEntity<List<PredmetInstancaDTO>> getPredmetInstancaIzPredmet(@PathVariable Long id){
+	//@RequestMapping(value="/predmetInstancaIzPredmet/{id}", method=RequestMethod.GET)
+	public ArrayList<PredmetInstancaDTO> getPredmetInstancaIzPredmet(@PathVariable Long id){
 		Predmet predmet = predmetService.findOne(id);
 		if(predmet == null){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return null;
 		}
-		List<PredmetInstancaDTO> listaInstanci = new ArrayList<>();
+		ArrayList<PredmetInstancaDTO> listaInstanci = new ArrayList<>();
 		for(PredmetInstanca instance : predmet.getPredmetInstanca()) {
 			listaInstanci.add(new PredmetInstancaMapper().modelToDto(instance));
 		}		
-		return new ResponseEntity<>(listaInstanci, HttpStatus.OK);
+		return listaInstanci;
 	}
 	
 

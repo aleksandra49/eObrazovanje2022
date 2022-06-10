@@ -60,7 +60,12 @@ public class PredmetInstancaController {
 		
 		List<PredmetInstancaDTO> predmetiInstancaDTO = new ArrayList<>();
 		for (PredmetInstanca obj : predmetiInstanca) {
-			predmetiInstancaDTO.add(new PredmetInstancaMapper().modelToDto(obj));
+			PredmetInstancaDTO predmetI = new PredmetInstancaMapper().modelToDto(obj);
+			predmetI.setPredmet(getPredmetIzPredmetInstanca(predmetI.getId()));
+			predmetI.setPredavanjePredmetaDTO(getPredavanjaIzPredmetInstanca(predmetI.getId()));
+			predmetI.setPohadjanjePredmetaDTO(getPohadjanjaIzPredmetInstanca(predmetI.getId()));
+			predmetI.setIspit(getIspitIzPredmetInstanca(predmetI.getId()));
+			predmetiInstancaDTO.add(predmetI);
 		}
 		return new ResponseEntity<>(predmetiInstancaDTO, HttpStatus.OK);
 	}
@@ -72,7 +77,12 @@ public class PredmetInstancaController {
 		
 		List<PredmetInstancaDTO> predmetiInstancaDTO = new ArrayList<>();
 		for (PredmetInstanca obj : predmetiInstanca) {
-			predmetiInstancaDTO.add(new PredmetInstancaMapper().modelToDto(obj));
+			PredmetInstancaDTO predmetI = new PredmetInstancaMapper().modelToDto(obj);
+			predmetI.setPredmet(getPredmetIzPredmetInstanca(predmetI.getId()));
+			predmetI.setPredavanjePredmetaDTO(getPredavanjaIzPredmetInstanca(predmetI.getId()));
+			predmetI.setPohadjanjePredmetaDTO(getPohadjanjaIzPredmetInstanca(predmetI.getId()));
+			predmetI.setIspit(getIspitIzPredmetInstanca(predmetI.getId()));
+			predmetiInstancaDTO.add(predmetI);
 		}
 		return new ResponseEntity<>(predmetiInstancaDTO, HttpStatus.OK);
 	}
@@ -84,7 +94,13 @@ public class PredmetInstancaController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		
-		return new ResponseEntity<>(new PredmetInstancaMapper().modelToDto(predmetInstanca), HttpStatus.OK);
+		PredmetInstancaDTO predmetInstancaDTO = new PredmetInstancaMapper().modelToDto(predmetInstanca);
+		predmetInstancaDTO.setPredmet(getPredmetIzPredmetInstanca(predmetInstanca.getId()));
+		predmetInstancaDTO.setPredavanjePredmetaDTO(getPredavanjaIzPredmetInstanca(predmetInstanca.getId()));
+		predmetInstancaDTO.setPohadjanjePredmetaDTO(getPohadjanjaIzPredmetInstanca(predmetInstanca.getId()));
+		predmetInstancaDTO.setIspit(getIspitIzPredmetInstanca(predmetInstanca.getId()));
+		
+		return new ResponseEntity<>(predmetInstancaDTO, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
@@ -135,60 +151,60 @@ public class PredmetInstancaController {
 	}
 	
 	//veza predmet
-	@RequestMapping(value="/predmetIzPredmetInstanca/{id}", method=RequestMethod.GET)
-	public ResponseEntity<PredmetDTO> getPredmetIzPredmetInstanca(@PathVariable Long id){
+	//@RequestMapping(value="/predmetIzPredmetInstanca/{id}", method=RequestMethod.GET)
+	public PredmetDTO getPredmetIzPredmetInstanca(@PathVariable Long id){
 		PredmetInstanca instanca = predmetInstancaService.findOne(id);
 		if(instanca == null){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return null;
 		}
-		return new ResponseEntity<>(new PredmetMapper().modelToDto(instanca.getPredmet()), HttpStatus.OK);
+		return new PredmetMapper().modelToDto(instanca.getPredmet());
 	}
 	
 	
 	// veza pedavanja
-	@RequestMapping(value="/predavanjaIzPredmetInstanca/{id}", method=RequestMethod.GET)
-	public ResponseEntity<List<PredavanjePredmetaDTO>> getPredavanjaIzPredmetInstanca(@PathVariable Long id){
+	//@RequestMapping(value="/predavanjaIzPredmetInstanca/{id}", method=RequestMethod.GET)
+	public ArrayList<PredavanjePredmetaDTO> getPredavanjaIzPredmetInstanca(@PathVariable Long id){
 		PredmetInstanca instanca = predmetInstancaService.findOne(id);
 		if(instanca == null){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return null;
 		}
-		List<PredavanjePredmetaDTO> listaPredavanja = new ArrayList<>();
+		ArrayList<PredavanjePredmetaDTO> listaPredavanja = new ArrayList<>();
 		for(PredavanjePredmeta predavanja : instanca.getPredavanja()) {
 			listaPredavanja.add(new PredavanjePredmetaMapper().modelToDto(predavanja));
 		}		
-		return new ResponseEntity<>(listaPredavanja, HttpStatus.OK);
+		return listaPredavanja;
 	}
 	
 	
 	
 	//pohadnja
-	@RequestMapping(value="/pohadjanjaIzPredmetInstanca/{id}", method=RequestMethod.GET)
-	public ResponseEntity<List<PohadjanjePredmetaDTO>> getPohadjanjaIzPredmetInstanca(@PathVariable Long id){
+	//@RequestMapping(value="/pohadjanjaIzPredmetInstanca/{id}", method=RequestMethod.GET)
+	public ArrayList<PohadjanjePredmetaDTO> getPohadjanjaIzPredmetInstanca(@PathVariable Long id){
 		PredmetInstanca instanca = predmetInstancaService.findOne(id);
 		if(instanca == null){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return null;
 		}
-		List<PohadjanjePredmetaDTO> listPohadjanja = new ArrayList<>();
+		ArrayList<PohadjanjePredmetaDTO> listPohadjanja = new ArrayList<>();
 		for(PohadjanjePredmeta pohadjanja : instanca.getPohadjanja()) {
 			listPohadjanja.add(new PohadjanjePredmetaMapper().modelToDto(pohadjanja));
 		}		
-		return new ResponseEntity<>(listPohadjanja, HttpStatus.OK);
+		return listPohadjanja;
 	}
 	
 	
 	
 	//ispit
-	@RequestMapping(value="/ispitIzPredmetInstanca/{id}", method=RequestMethod.GET)
-	public ResponseEntity<List<IspitDTO>> getIspitIzPredmetInstanca(@PathVariable Long id){
+	//@RequestMapping(value="/ispitIzPredmetInstanca/{id}", method=RequestMethod.GET)
+	public ArrayList<IspitDTO> getIspitIzPredmetInstanca(@PathVariable Long id){
 		PredmetInstanca instanca = predmetInstancaService.findOne(id);
 		if(instanca == null){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return null;
 		}
-		List<IspitDTO> listaIspita = new ArrayList<>();
+		ArrayList<IspitDTO> listaIspita = new ArrayList<>();
 		for(Ispit ispiti : instanca.getIspit()) {
 			listaIspita.add(new IspitMapper().modelToDto(ispiti));
 		}		
-		return new ResponseEntity<>(listaIspita, HttpStatus.OK);
+		return listaIspita;
 	}
 	
 	

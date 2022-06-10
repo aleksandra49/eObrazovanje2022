@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ftn.eObrazovanjee.dto.IspitDTO;
 import com.ftn.eObrazovanjee.dto.PredavanjePredmetaDTO;
 import com.ftn.eObrazovanjee.dto.PredmetInstancaDTO;
 import com.ftn.eObrazovanjee.dto.ProfesorDTO;
+import com.ftn.eObrazovanjee.mapper.IspitMapper;
 import com.ftn.eObrazovanjee.mapper.PredavanjePredmetaMapper;
 import com.ftn.eObrazovanjee.mapper.PredmetInstancaMapper;
 import com.ftn.eObrazovanjee.mapper.ProfesorMapper;
@@ -47,7 +49,10 @@ public class PredavanjePredmetaController {
 		
 		List<PredavanjePredmetaDTO> predavanjePredDTO = new ArrayList<>();
 		for (PredavanjePredmeta obj : predavanjePred) {
-			predavanjePredDTO.add(new PredavanjePredmetaMapper().modelToDto(obj));
+			PredavanjePredmetaDTO predavanje = new PredavanjePredmetaMapper().modelToDto(obj);
+			predavanje.setProfesor(getProfesorIzPredavanjePredmeta(predavanje.getId()));
+			predavanje.setPredmetInstanca(getPredmetInstancaIzPredavanjePredmeta(predavanje.getId()));
+			predavanjePredDTO.add(predavanje);
 		}
 		return new ResponseEntity<>(predavanjePredDTO, HttpStatus.OK);
 	}
@@ -59,7 +64,10 @@ public class PredavanjePredmetaController {
 		
 		List<PredavanjePredmetaDTO> predavanjePredDTO = new ArrayList<>();
 		for (PredavanjePredmeta obj : predavanjePred) {
-			predavanjePredDTO.add(new PredavanjePredmetaMapper().modelToDto(obj));
+			PredavanjePredmetaDTO predavanje = new PredavanjePredmetaMapper().modelToDto(obj);
+			predavanje.setProfesor(getProfesorIzPredavanjePredmeta(predavanje.getId()));
+			predavanje.setPredmetInstanca(getPredmetInstancaIzPredavanjePredmeta(predavanje.getId()));
+			predavanjePredDTO.add(predavanje);
 		}
 		return new ResponseEntity<>(predavanjePredDTO, HttpStatus.OK);
 	}
@@ -71,7 +79,11 @@ public class PredavanjePredmetaController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		
-		return new ResponseEntity<>(new PredavanjePredmetaMapper().modelToDto(predavanjePredmeta), HttpStatus.OK);
+		PredavanjePredmetaDTO predavanjePredmetaDTO = new PredavanjePredmetaMapper().modelToDto(predavanjePredmeta);
+		predavanjePredmetaDTO.setProfesor(getProfesorIzPredavanjePredmeta(predavanjePredmeta.getId()));
+		predavanjePredmetaDTO.setPredmetInstanca(getPredmetInstancaIzPredavanjePredmeta(predavanjePredmeta.getId()));
+		
+		return new ResponseEntity<>(predavanjePredmetaDTO, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
@@ -115,23 +127,23 @@ public class PredavanjePredmetaController {
 	}
 	
 	//veza profa i predavanje
-	@RequestMapping(value="/profesorIzPredavanjePredmeta/{id}", method=RequestMethod.GET)
-	public ResponseEntity<ProfesorDTO> getProfesorIzPredavanjePredmeta(@PathVariable Long id){
+	//@RequestMapping(value="/profesorIzPredavanjePredmeta/{id}", method=RequestMethod.GET)
+	public ProfesorDTO getProfesorIzPredavanjePredmeta(@PathVariable Long id){
 		PredavanjePredmeta predavanje = predavanjePredmetaServiceImpl.findOne(id);
 		if(predavanje == null){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return null;
 		}
-		return new ResponseEntity<>(new ProfesorMapper().modelToDto(predavanje.getProfesor()), HttpStatus.OK);
+		return new ProfesorMapper().modelToDto(predavanje.getProfesor());
 	}
 	
 	//instanca predmet i predavanje
-	@RequestMapping(value="/predmetInstancaIzPredavanjePredmeta/{id}", method=RequestMethod.GET)
-	public ResponseEntity<PredmetInstancaDTO> getPredmetInstancaIzPredavanjePredmeta(@PathVariable Long id){
+	//@RequestMapping(value="/predmetInstancaIzPredavanjePredmeta/{id}", method=RequestMethod.GET)
+	public PredmetInstancaDTO getPredmetInstancaIzPredavanjePredmeta(@PathVariable Long id){
 		PredavanjePredmeta predavanje = predavanjePredmetaServiceImpl.findOne(id);
 		if(predavanje == null){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return null;
 		}
-		return new ResponseEntity<>(new PredmetInstancaMapper().modelToDto(predavanje.getInstanca()), HttpStatus.OK);
+		return new  PredmetInstancaMapper().modelToDto(predavanje.getInstanca());
 	}
 	
 }
