@@ -3,6 +3,7 @@ package com.ftn.eObrazovanjee.controller;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.eObrazovanjee.dto.IspitniRokDTO;
@@ -150,5 +152,28 @@ public class KorisnikController {
 		}
 		return new ProfesorMapper().modelToDto(korisnik.getProfesor());
 	}
+	
+	@RequestMapping(value = "/feedback", method = RequestMethod.POST)
+    public KorisnikDTO getUserFeedback(@RequestParam Map<String,String> requestParams) throws Exception{
+        String username=requestParams.get("username");
+        String password=requestParams.get("password");
+        String feedback=requestParams.get("feedback");
+
+        List<Korisnik> korisnici = korisnikService.findAll();
+		
+		
+		for (Korisnik obj : korisnici) {
+			if(obj.getKorisnickoIme().equals(username) && obj.getLozinka() == password) {
+				KorisnikDTO korisnik = new KorisnikMapper().modelToDto(obj);
+				korisnik.setProfesor(getProfesorIzKorisnika(korisnik.getId()));
+				korisnik.setStudent(getStudentIzKorisnika(korisnik.getId()));
+				
+				return korisnik;
+			}
+			
+		}
+        
+        return null;
+    }
 	
 }
