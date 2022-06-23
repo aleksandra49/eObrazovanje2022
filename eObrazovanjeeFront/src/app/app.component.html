@@ -32,6 +32,9 @@
       <button ngbDropdownItem>Separated link</button> -->
     </div>
   </li>
+  <li [ngbNavItem]="1" (click)="goToOnRightRoute('login')">
+    <a ngbNavLink>Login</a>
+  </li>
   <li ngbNavItem [disabled]="false" class="ms-auto">
     <a ngbNavLink>Logout</a>
     <ng-template ngbNavContent>

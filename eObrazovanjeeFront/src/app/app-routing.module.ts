@@ -8,6 +8,7 @@ import { StudentComponent } from './student/student.component';
 import { DokumentComponent } from './dokument/dokument.component';
 import { AddProfesorComponent } from './profesor/add-profesor/add-profesor/add-profesor.component';
 import { PolaganjeIspitaComponent } from './polaganje-ispita/polaganje-ispita.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
 
@@ -23,7 +24,9 @@ const routes: Routes = [
   { path: 'student', component: StudentComponent },
   { path: 'dokument', component: DokumentComponent },
 
-  { path: 'addProfesor', component: AddProfesorComponent }
+  { path: 'addProfesor', component: AddProfesorComponent },
+
+  { path: 'login', component: LoginComponent }
 
 
 
