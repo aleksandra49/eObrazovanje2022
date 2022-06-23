@@ -153,8 +153,8 @@ public class KorisnikController {
 		return new ProfesorMapper().modelToDto(korisnik.getProfesor());
 	}
 	
-	@RequestMapping(value = "/feedback", method = RequestMethod.POST)
-    public KorisnikDTO getUserFeedback(@RequestParam Map<String,String> requestParams) throws Exception{
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+    public KorisnikDTO login(@RequestParam Map<String,String> requestParams) throws Exception{
         String username=requestParams.get("username");
         String password=requestParams.get("password");
         String feedback=requestParams.get("feedback");
