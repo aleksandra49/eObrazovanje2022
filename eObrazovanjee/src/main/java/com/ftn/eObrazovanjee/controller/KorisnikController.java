@@ -10,6 +10,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,6 +52,31 @@ public class KorisnikController {
 	@Autowired
 	private StudentService studentService;
 	
+	@RequestMapping(value="/", method = RequestMethod.GET)
+	public String userModel(Model model) {
+		Korisnik korisnik = new Korisnik();
+		model.addAttribute("korisnik", korisnik);
+		return "login";
+	}
+	
+	@RequestMapping(value="/login", method = RequestMethod.POST)
+	public KorisnikDTO login(@ModelAttribute("korisnik") Korisnik korisnik) {
+		List<Korisnik> korisnici = korisnikService.findAll();
+		
+		for(Korisnik kor: korisnici){
+			if(kor.getKorisnickoIme().equals(korisnik.getKorisnickoIme()) && kor.getLozinka().equals(korisnik.getLozinka())){
+				KorisnikDTO korisnikDTO = new KorisnikMapper().modelToDto(kor);
+				korisnikDTO.setProfesor(getProfesorIzKorisnika(korisnik.getId()));
+				korisnikDTO.setStudent(getStudentIzKorisnika(korisnik.getId()));
+				return korisnikDTO;
+			}
+		}
+		
+		return null;
+		
+	}
+	
+	
 	@RequestMapping(value="/all", method = RequestMethod.GET)
 	public ResponseEntity<List<KorisnikDTO>> getAllKorisnici() {
 		List<Korisnik> korisnici = korisnikService.findAll();
@@ -62,6 +90,8 @@ public class KorisnikController {
 		}
 		return new ResponseEntity<>(korisniciDTO, HttpStatus.OK);
 	}
+	
+	
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<KorisnikDTO>> getKorisnikPage(Pageable page) {
@@ -153,27 +183,5 @@ public class KorisnikController {
 		return new ProfesorMapper().modelToDto(korisnik.getProfesor());
 	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-    public KorisnikDTO login(@RequestParam Map<String,String> requestParams) throws Exception{
-        String username=requestParams.get("username");
-        String password=requestParams.get("password");
-        String feedback=requestParams.get("feedback");
-
-        List<Korisnik> korisnici = korisnikService.findAll();
-		
-		
-		for (Korisnik obj : korisnici) {
-			if(obj.getKorisnickoIme().equals(username) && obj.getLozinka() == password) {
-				KorisnikDTO korisnik = new KorisnikMapper().modelToDto(obj);
-				korisnik.setProfesor(getProfesorIzKorisnika(korisnik.getId()));
-				korisnik.setStudent(getStudentIzKorisnika(korisnik.getId()));
-				
-				return korisnik;
-			}
-			
-		}
-        
-        return null;
-    }
 	
 }
