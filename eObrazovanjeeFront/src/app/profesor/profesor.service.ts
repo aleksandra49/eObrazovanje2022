@@ -26,8 +26,18 @@ export class ProfesorService {
         return this.http.delete('/api/profesor/delete/' + id);
       }
       */
-      delete(id: number): Observable<HttpResponse<any>> {
+    delete(id: number): Observable<HttpResponse<any>> {
         const url = `${this.profesoriUrl}/${id}`;
         return this.http.delete<any>(url, {observe: 'response'});
+    }
+
+    saveProfesor(): Observable<HttpResponse<any>> {
+        const url = `${this.profesoriUrl}`;
+
+        const body = {
+            ime: 'Petar', prezime: 'Medic', user: 'Pera', password: '12345'
+        };
+
+        return this.http.post<any>(url, body , {observe: 'response'});
     }
 }

@@ -65,8 +65,8 @@ public class ProfesorController {
 		profesor.setPrezime(profesorDTO.getPrezime());
 		profesor.setEmail(profesorDTO.getEmail());
 
-		profesor.setKorisnik(korisnikService.findOne(profesorDTO.getKorisnik().getId()));
-		profesor.setPredavanja(new HashSet<>(new PredavanjePredmetaMapper().listDtoToModel(profesorDTO.getPredavanja())));
+	//	profesor.setKorisnik(korisnikService.findOne(profesorDTO.getKorisnik().getId()));
+	//	profesor.setPredavanja(new HashSet<>(new PredavanjePredmetaMapper().listDtoToModel(profesorDTO.getPredavanja())));
 		
 		profesor = profesorService.save(profesor);
 		return new ResponseEntity<>(new ProfesorMapper().modelToDto(profesor), HttpStatus.CREATED);	
