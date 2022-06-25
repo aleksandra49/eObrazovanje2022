@@ -1,9 +1,12 @@
+import { Korisnik } from './korisnik.model';
+
 export class Profesor implements ProfesorInterface{
 	public id: number;
 	public ime : string;
     public prezime: string;
 	public email: string;
-    //public Korisnik : korisnik;
+    public korisnik : Korisnik;
+	
     //public PredavanjePredmeta : predavanja;
 
 
@@ -16,6 +19,7 @@ export class Profesor implements ProfesorInterface{
 		this.ime = profesorCfg.ime;
         this.prezime = profesorCfg.prezime;
 		this.email = profesorCfg.email;
+		this.korisnik = profesorCfg.korisnik;
 	}
 }
 
@@ -24,4 +28,5 @@ interface ProfesorInterface {
 	ime: string;
     prezime: string;
     email: string;
+	korisnik : Korisnik;
 }

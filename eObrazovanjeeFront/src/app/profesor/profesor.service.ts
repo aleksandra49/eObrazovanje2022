@@ -3,6 +3,8 @@ import { HttpResponse, HttpClient } from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 
 import { Profesor } from '../model/profesor.model';
+import { Korisnik } from '../model/korisnik.model';
+import { Student } from '../model/student.model';
 
 
 @Injectable()
@@ -35,7 +37,14 @@ export class ProfesorService {
         const url = `${this.profesoriUrl}`;
 
         const body = {
-            ime: 'Petar', prezime: 'Medic', user: 'Pera', password: '12345'
+            ime: 'Petar',
+            email: 'Medic',
+            prezime: '12345',
+            korisnik: {
+                id: 2,
+                korisnickoIme: 'micko333',
+                prezime: '123'
+            }
         };
 
         return this.http.post<any>(url, body , {observe: 'response'});

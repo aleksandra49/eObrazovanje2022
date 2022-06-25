@@ -29,12 +29,16 @@ public class ProfesorMapper {
 		}
 		
 		ProfesorDTO profesorDTO = new ProfesorDTO();
-			
+		
+		Integer y = 1;
+		long x = y.longValue();
+		// profesor.setId(x);
+		
 		profesorDTO.setId(profesor.getId());
 		profesorDTO.setEmail(profesor.getEmail());
 		profesorDTO.setIme(profesor.getIme());
 		profesorDTO.setPrezime(profesor.getPrezime());	
-//		profesorDTO.setKorisnik(new KorisnikMapper().modelToDto(profesor.getKorisnik()));
+//		profesorDTO.setKorisnik(x);
 		//profesorDTO.setPredavanja(new ArrayList<PredavanjePredmetaDTO>());
 		
 		return profesorDTO;

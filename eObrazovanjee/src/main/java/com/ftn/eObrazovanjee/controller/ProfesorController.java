@@ -22,6 +22,7 @@ import com.ftn.eObrazovanjee.dto.ProfesorDTO;
 import com.ftn.eObrazovanjee.mapper.KorisnikMapper;
 import com.ftn.eObrazovanjee.mapper.PredavanjePredmetaMapper;
 import com.ftn.eObrazovanjee.mapper.ProfesorMapper;
+import com.ftn.eObrazovanjee.model.Korisnik;
 import com.ftn.eObrazovanjee.model.PredavanjePredmeta;
 import com.ftn.eObrazovanjee.model.Profesor;
 import com.ftn.eObrazovanjee.service.KorisnikService;
@@ -60,13 +61,29 @@ public class ProfesorController {
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
 	public ResponseEntity<ProfesorDTO> saveProfesor(@RequestBody ProfesorDTO profesorDTO){		
 		Profesor profesor = new Profesor();
+		Korisnik korisnik = new Korisnik();
+		Korisnik korisnikProba = new Korisnik();
+		
+//		Korisnik korisnik1 = new Korisnik();
+//		korisnik1.setId(1L);
+		Korisnik korisnik1 = new Korisnik();
+		korisnik1.setKorisnickoIme(profesorDTO.getKorisnik().getKorisnickoIme());
+		
+		System.out.println(korisnik);
 		
 		profesor.setIme(profesorDTO.getIme());
 		profesor.setPrezime(profesorDTO.getPrezime());
 		profesor.setEmail(profesorDTO.getEmail());
-
-	//	profesor.setKorisnik(korisnikService.findOne(profesorDTO.getKorisnik().getId()));
-	//	profesor.setPredavanja(new HashSet<>(new PredavanjePredmetaMapper().listDtoToModel(profesorDTO.getPredavanja())));
+		profesor.setKorisnik(korisnik1);
+		
+		// profesor.setKorisnik(korisnik1);
+		
+		//	profesor.setPredavanja(new HashSet<>(new PredavanjePredmetaMapper().listDtoToModel(profesorDTO.getPredavanja())));
+		
+		korisnik = korisnikService.save(korisnik1);
+		
+//		korisnikProba = korisnikService.findOne(korisnik1.getId());
+		System.out.println(korisnik);
 		
 		profesor = profesorService.save(profesor);
 		return new ResponseEntity<>(new ProfesorMapper().modelToDto(profesor), HttpStatus.CREATED);	
@@ -143,7 +160,7 @@ public class ProfesorController {
 	
 
 	 //veza izmedju predavanja predmeta i profe
-	 //@RequestMapping(value="/predavanjePredmetaIzProfesora/{id}", method=RequestMethod.GET)
+	 //@RequestMapping(value="/predavanjePredmetaIzProfesora/{id}", method=Req)uestMethod.GET)
 		public ArrayList<PredavanjePredmetaDTO> getPredavanjePredmetaIzProfesora(@PathVariable Long id){
 		 Profesor profesor = profesorService.findOne(id);
 			if(profesor == null){

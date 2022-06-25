@@ -104,6 +104,12 @@ public class Korisnik {
 		this.student = student;
 	}
 
+	@Override
+	public String toString() {
+		return "Korisnik [id=" + id + ", korisnickoIme=" + korisnickoIme + ", lozinka=" + lozinka + ", uloga=" + uloga
+				+ ", profesor=" + profesor + ", student=" + student + "]";
+	}
+
 	
 	
 	
