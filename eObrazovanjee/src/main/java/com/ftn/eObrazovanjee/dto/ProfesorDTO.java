@@ -10,6 +10,7 @@ public class ProfesorDTO {
     private String email;
     private KorisnikDTO korisnik;
     private ArrayList<PredavanjePredmetaDTO> predavanja;
+    private Long korisnikId;
     
     
 	
@@ -24,6 +25,12 @@ public class ProfesorDTO {
 	}
 	public void setKorisnik(KorisnikDTO korisnik) {
 		this.korisnik = korisnik;
+	}
+	public Long getKorisnikId() {
+		return korisnikId;
+	}
+	public void setKorisnikId(Long id) {
+		this.korisnikId = id;
 	}
 	public Long getId() {
 		return id;
@@ -54,7 +61,7 @@ public class ProfesorDTO {
 		super();
 	}
 	public ProfesorDTO(Long id, String ime, String prezime, String email, KorisnikDTO korisnik,
-			ArrayList<PredavanjePredmetaDTO> predavanja) {
+			ArrayList<PredavanjePredmetaDTO> predavanja, Long korisnikId) {
 		super();
 		this.id = id;
 		this.ime = ime;
@@ -62,6 +69,7 @@ public class ProfesorDTO {
 		this.email = email;
 		this.korisnik = korisnik;
 		this.predavanja = predavanja;
+		this.korisnikId = korisnikId;
 	}
 	
 

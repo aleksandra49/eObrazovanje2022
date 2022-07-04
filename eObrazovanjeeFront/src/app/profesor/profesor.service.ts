@@ -3,6 +3,8 @@ import { HttpResponse, HttpClient } from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 
 import { Profesor } from '../model/profesor.model';
+import { Korisnik } from '../model/korisnik.model';
+import { Student } from '../model/student.model';
 
 
 @Injectable()
@@ -26,8 +28,25 @@ export class ProfesorService {
         return this.http.delete('/api/profesor/delete/' + id);
       }
       */
-      delete(id: number): Observable<HttpResponse<any>> {
+    delete(id: number): Observable<HttpResponse<any>> {
         const url = `${this.profesoriUrl}/${id}`;
         return this.http.delete<any>(url, {observe: 'response'});
+    }
+
+    saveProfesor(): Observable<HttpResponse<any>> {
+        const url = `${this.profesoriUrl}`;
+
+        const body = {
+            ime: 'Petar',
+            email: 'Medic',
+            prezime: '12345',
+            korisnik: {
+                id: 2,
+                korisnickoIme: 'micko333',
+                prezime: '123'
+            }
+        };
+
+        return this.http.post<any>(url, body , {observe: 'response'});
     }
 }
