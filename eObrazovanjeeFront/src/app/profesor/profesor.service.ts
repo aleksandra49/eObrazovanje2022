@@ -33,7 +33,7 @@ export class ProfesorService {
         return this.http.delete<any>(url, {observe: 'response'});
     }
 
-    saveProfesor(): Observable<HttpResponse<any>> {
+    saveProfesor(profesor: Profesor): Observable<HttpResponse<any>> {
         const url = `${this.profesoriUrl}`;
 
         const body = {
@@ -47,6 +47,6 @@ export class ProfesorService {
             }
         };
 
-        return this.http.post<any>(url, body , {observe: 'response'});
+        return this.http.post<any>(url, profesor , {observe: 'response'});
     }
 }
