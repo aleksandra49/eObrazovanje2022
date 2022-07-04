@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Korisnik } from 'src/app/model/korisnik.model';
+import { Profesor } from 'src/app/model/profesor.model';
 import { ProfesorService } from '../../profesor.service';
 
 @Component({
@@ -14,6 +16,14 @@ export class AddProfesorComponent implements OnInit {
 
   constructor(private profesorService: ProfesorService) { }
 
+  profesor: Profesor = new Profesor({
+    id: 15,
+    ime: "",
+    prezime: "",
+    email: "",
+    korisnik: new Korisnik({id: 20, korisnickoIme: "", lozinka: "", uloga: "PROFESOR"})
+  });
+
   ngOnInit(): void {
   }
 
@@ -23,9 +33,9 @@ export class AddProfesorComponent implements OnInit {
     console.log('password', this.password);
     console.log('user', this.user);
 
-    this.profesorService.saveProfesor()
-      .subscribe(data => {
-        console.log('data', data);
+    this.profesorService.saveProfesor(this.profesor)
+      .subscribe(() => {
+        alert("Usepsno dodat profesor!")
       })
   }
 

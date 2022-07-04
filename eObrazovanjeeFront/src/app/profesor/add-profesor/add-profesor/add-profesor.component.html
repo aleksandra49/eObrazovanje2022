@@ -4,19 +4,23 @@ class="col-md-8 offset-md-2"
   <div class="form-row">
     <div class="col-md-5 offset-md-3">
       <label for="inputIme">Ime</label>
-      <input [(ngModel)]="ime" type="ime" class="form-control" id="inputIme" placeholder="Ime">
+      <input [(ngModel)]="profesor.ime" type="ime" class="form-control" id="inputIme" placeholder="Ime">
     </div>
     <div class="col-md-5 offset-md-3">
       <label for="inputPrezime">Prezime</label>
-      <input [(ngModel)]="prezime" type="prezime" class="form-control" id="inputPrezime" placeholder="Prezime">
+      <input [(ngModel)]="profesor.prezime" type="prezime" class="form-control" id="inputPrezime" placeholder="Prezime">
+    </div>
+    <div class="col-md-5 offset-md-3">
+      <label for="inputUser">Email</label>
+      <input [(ngModel)]="profesor.email" type="user" class="form-control" id="inputUser" placeholder="Email">
     </div>
     <div class="col-md-5 offset-md-3">
       <label for="inputUser">Username</label>
-      <input [(ngModel)]="user" type="user" class="form-control" id="inputUser" placeholder="User">
+      <input [(ngModel)]="profesor.korisnik.korisnickoIme" type="user" class="form-control" id="inputUser" placeholder="User">
     </div>
     <div class="col-md-5 offset-md-3">
       <label for="inputPassword">Password</label>
-      <input [(ngModel)]="password" type="password" class="form-control" id="inputPassword" placeholder="Password">
+      <input [(ngModel)]="profesor.korisnik.lozinka" type="password" class="form-control" id="inputPassword" placeholder="Password">
     </div>
   </div>
 
