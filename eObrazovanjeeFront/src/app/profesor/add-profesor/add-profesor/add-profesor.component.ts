@@ -17,11 +17,11 @@ export class AddProfesorComponent implements OnInit {
   constructor(private profesorService: ProfesorService) { }
 
   profesor: Profesor = new Profesor({
-    id: 15,
+    id: 0,
     ime: "",
     prezime: "",
     email: "",
-    korisnik: new Korisnik({id: 20, korisnickoIme: "", lozinka: "", uloga: "PROFESOR"})
+    korisnik: new Korisnik({id: 0, korisnickoIme: "", lozinka: "", uloga: "PROFESOR"})
   });
 
   ngOnInit(): void {

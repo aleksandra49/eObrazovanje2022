@@ -1,6 +1,9 @@
 package com.ftn.eObrazovanjee.model;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -17,8 +20,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 @Entity
-public class Korisnik {
+public class Korisnik implements UserDetails{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -41,6 +47,37 @@ public class Korisnik {
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "id", nullable = false)
 	private Student student;
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		List<Uloga> uloge = new ArrayList<>();
+		uloge.add(this.uloga);
+		return uloge;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 
 	public Korisnik(Long id, String korisnickoIme, String lozinka, Uloga uloga, Profesor profesor, Student student) {
 		super();
@@ -108,6 +145,18 @@ public class Korisnik {
 	public String toString() {
 		return "Korisnik [id=" + id + ", korisnickoIme=" + korisnickoIme + ", lozinka=" + lozinka + ", uloga=" + uloga
 				+ ", profesor=" + profesor + ", student=" + student + "]";
+	}
+
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return lozinka;
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return korisnickoIme;
 	}
 
 	

@@ -1,7 +1,15 @@
 package com.ftn.eObrazovanjee.model;
 
-public enum Uloga {
+import org.springframework.security.core.GrantedAuthority;
+
+public enum Uloga implements GrantedAuthority{
 	ADMIN,
 	PROFESOR,
-	STUDENT
+	STUDENT;
+
+	@Override
+	public String getAuthority() {
+		// TODO Auto-generated method stub
+		return name();
+	}
 }
