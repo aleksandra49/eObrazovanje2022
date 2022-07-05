@@ -45,6 +45,9 @@ import { AddTransakcijaComponent } from './transakcija/add-transakcija/add-trans
 import { AddIspitniRokComponent } from './ispitni-rok/add-ispitni-rok/add-ispitni-rok.component';
 import { TransakcijaService } from './transakcija/transakcija.service';
 import { AddPolaganjeIspitaComponent } from './polaganje-ispita/add-polaganje-ispita/add-polaganje-ispita.component';
+import { PohadjanjePredmetaComponent } from './pohadjanje-predmeta/pohadjanje-predmeta.component';
+import { AddPohadanjePredmetaComponent } from './pohadjanje-predmeta/add-pohadanje-predmeta/add-pohadanje-predmeta.component';
+import { EditPohadanjePredmetaComponent } from './pohadjanje-predmeta/edit-pohadanje-predmeta/edit-pohadanje-predmeta.component';
 // import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -78,7 +81,10 @@ import { AddPolaganjeIspitaComponent } from './polaganje-ispita/add-polaganje-is
     TransakcijaComponent,
     AddTransakcijaComponent,
     AddIspitniRokComponent,
-    AddPolaganjeIspitaComponent
+    AddPolaganjeIspitaComponent,
+    PohadjanjePredmetaComponent,
+    AddPohadanjePredmetaComponent,
+    EditPohadanjePredmetaComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,41 @@
+
+<div class="container">
+    <h4 class="display-4 text-center">Profesori</h4>
+    <div class="row  mt-3 mb-3" >
+      <button type="button" class="btn btn-primary" (click)="goToOnRightRoute('addPohadjanjePredmeta')">Dodaj pohadjanjaPredmeta</button>
+    </div>
+    <div class="container">
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>pocetak</th>
+            <th>kraj</th>
+            <th>polozen</th> 
+            <th>Izmeni</th>
+            <th>Obriši</th>
+            <th>Profil</th>       
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let pohadjanjePredmeta of pohadjanjaPredmeta">
+                <td>{{pohadjanjePredmeta.id}}</td>
+                <td>{{pohadjanjePredmeta.pocetak}}</td>
+                <td>{{pohadjanjePredmeta.kraj}}</td>
+                <td>{{pohadjanjePredmeta.polozen}}</td> 
+                
+                
+      <!-- <td class="h5"><a class="badge badge-primary" [routerLink]="['/nastavnik/', nastavnik.id]"> <i class="fa fa-edit"></i> Izmeni</a></td> -->
+      <!-- <td class="h5" style="cursor: pointer; color: white"><a class="badge badge-danger" (click)="delete(nastavnik.id)"> <i class="fa fa-trash"></i> Obriši</a></td> -->
+      <!-- <td class="h5"><a class="badge badge-secondary" [routerLink]="['/nastavnik-stranica/', nastavnik.id]">Profil</a></td> -->
+
+      <td class="h5"><button type="button" class="btn btn-primary">Izmeni</button></td>
+      <td class="h5"><button type="button" class="btn btn-primary" (click)="delete(pohadjanjePredmeta.id)">Obrisi</button></td>
+      <td class="h5"><button type="button" class="btn btn-primary">Profil</button></td>
+                
+            </tr>
+        </tbody>
+      </table>
+     
+    </div>
+

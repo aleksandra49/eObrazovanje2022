@@ -24,6 +24,8 @@ import { TransakcijaComponent } from './transakcija/transakcija.component';
 import { AddTransakcijaComponent } from './transakcija/add-transakcija/add-transakcija.component';
 import { AddDokumentComponent } from './dokument/add-dokument/add-dokument.component';
 import { AddPolaganjeIspitaComponent } from './polaganje-ispita/add-polaganje-ispita/add-polaganje-ispita.component';
+import { PohadjanjePredmetaComponent } from './pohadjanje-predmeta/pohadjanje-predmeta.component';
+import { AddPohadanjePredmetaComponent } from './pohadjanje-predmeta/add-pohadanje-predmeta/add-pohadanje-predmeta.component';
 
 const routes: Routes = [
 
@@ -59,6 +61,10 @@ const routes: Routes = [
 
   { path: 'dokument', component: DokumentComponent },
   { path: 'addDokument', component: AddDokumentComponent },
+
+  { path: 'pohadjanje', component: PohadjanjePredmetaComponent },
+  { path: 'addPohadjanje', component: AddPohadanjePredmetaComponent },
+  //{ path: 'editStudijskaGodina', component: EditStudijskaGodinaComponent },
 
   { path: 'addProfesor', component: AddProfesorComponent },
   

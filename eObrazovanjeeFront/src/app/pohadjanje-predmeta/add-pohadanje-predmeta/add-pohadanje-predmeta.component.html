@@ -1,0 +1,24 @@
+<div
+class="col-md-8 offset-md-2"
+>
+  <div class="form-row">
+    <div class="col-md-5 offset-md-3">
+      <label for="inputIme">Pocetak</label>
+      <input [(ngModel)]="pohadjanje.pocetak" type="pocetak" class="form-control" id="inputPocetak" placeholder="Pocetak">
+    </div>
+    <div class="col-md-5 offset-md-3">
+      <label for="inputPrezime">Kraj</label>
+      <input [(ngModel)]="pohadjanje.kraj" type="kraj" class="form-control" id="inputKraj" placeholder="Kraj">
+    </div>
+    <div class="col-md-5 offset-md-3">
+      <label for="inputUser">Polozen</label>
+      <input [(ngModel)]="pohadjanje.polozen" type="polozen" class="form-control" id="inputPolozen" placeholder="Polozen">
+    </div>
+   
+  </div>
+
+  <div class="col-md-5 offset-md-3">
+  <button type="submit" class="btn btn-primary"
+   (click)="onSubmit()" >Dodaj pohadjanje</button>
+  </div> <!-- [routerLink]="['/profesor']" -->
+</div>
