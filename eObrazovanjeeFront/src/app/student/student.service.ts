@@ -35,9 +35,28 @@ export class StudentService {
         return this.http.put<Student>(this.studentUrl, student, {observe: 'response'});
     }
 
-    deleteStudent(studentId: number): Observable<HttpResponse<any>> {
+    delete(studentId: number): Observable<HttpResponse<any>> {
         const url = `${this.studentUrl}/${studentId}`;
         return this.http.delete<any>(url, {observe: 'response'});
     }
+
+
+    saveStudent(student: Student): Observable<HttpResponse<any>> {
+        const url = `${this.studentUrl}`;
+
+        /*const body = {
+            ime: 'Anja',
+            email: 'anjiko@',
+            prezime: 'Anjic',
+            korisnik: {
+                id: 3,
+                korisnickoIme: 'anjica',
+                prezime: 'Anjika'
+            }
+        };*/
+
+        return this.http.post<any>(url, student , {observe: 'response'});
+    }
+
 
 }

@@ -1,0 +1,43 @@
+
+<div class="container">
+    <h4 class="display-4 text-center">Deolvi Ispita</h4>
+    <div class="row  mt-3 mb-3" >
+      <button type="button" class="btn btn-primary" (click)="goToOnRightRoute('addDeoIspita')">Dodaj deo ispita</button>
+    </div>
+    <div class="container">
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Naziv</th>
+            <th>brojOsvojenihBodova</th>
+            <th>minBodova</th> 
+            <th>polozio</th> <!-- ovo j eboolean proverii sta ces-->
+            <th>Izmeni</th>
+            <th>Obriši</th>
+            <th>Profil</th>       
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let deoIspita of deolviIspita">
+                <td>{{deoIspita.id}}</td>
+                <td>{{deoIspita.naziv}}</td>
+                <td>{{deoIspita.brojOsvojenihBodova}}</td>
+                <td>{{deoIspita.minBodova}}</td> 
+                <td>{{deoIspita.polozio}}</td> 
+                
+                
+      <!-- <td class="h5"><a class="badge badge-primary" [routerLink]="['/nastavnik/', nastavnik.id]"> <i class="fa fa-edit"></i> Izmeni</a></td> -->
+      <!-- <td class="h5" style="cursor: pointer; color: white"><a class="badge badge-danger" (click)="delete(nastavnik.id)"> <i class="fa fa-trash"></i> Obriši</a></td> -->
+      <!-- <td class="h5"><a class="badge badge-secondary" [routerLink]="['/nastavnik-stranica/', nastavnik.id]">Profil</a></td> -->
+
+      <td class="h5"><button type="button" class="btn btn-primary">Izmeni</button></td>
+      <td class="h5"><button type="button" class="btn btn-primary" (click)="delete(deoIspita.id)">Obrisi</button></td>
+      <td class="h5"><button type="button" class="btn btn-primary">Profil</button></td>
+                
+            </tr>
+        </tbody>
+      </table>
+     
+    </div>
+

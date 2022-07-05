@@ -1,0 +1,28 @@
+<div
+class="col-md-8 offset-md-2"
+>
+  <div class="form-row">
+    <div class="col-md-5 offset-md-3">
+      <label for="inputIme">Naziv</label>
+      <input [(ngModel)]="deoIspita.naziv" type="naziv" class="form-control" id="inputnaziv" placeholder="naziv">
+    </div>
+    <div class="col-md-5 offset-md-3">
+      <label for="inputPrezime">brojOsvojenihBodova</label>
+      <input [(ngModel)]="deoIspita.brojOsvojenihBodova" type="brojOsvojenihBodova" class="form-control" id="inputbrojOsvojenihBodova" placeholder="brojOsvojenihBodova">
+    </div>
+    <div class="col-md-5 offset-md-3">
+      <label for="inputUser">minBodova</label>
+      <input [(ngModel)]="deoIspita.minBodova" type="minBodova" class="form-control" id="inputMinBodova" placeholder="minBodova">
+    </div>
+    <div class="col-md-5 offset-md-3">
+      <label for="inputUser">polozio</label>
+      <input [(ngModel)]="deoIspita.polozio" type="polozio" class="form-control" id="inputPolozio" placeholder="polozio">
+    </div>
+    
+  </div>
+
+  <div class="col-md-5 offset-md-3">
+  <button type="submit" class="btn btn-primary"
+   (click)="onSubmit()" >Dodaj deo ispita</button>
+  </div> <!-- [routerLink]="['/profesor']" -->
+</div>

@@ -28,6 +28,13 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { AddIspitComponent } from './ispit/add-ispit/add-ispit.component';
 import { AddKorisnikComponent } from './korisnik/add-korisnik/add-korisnik.component';
+import { DeoIspitaComponent } from './deo-ispita/deo-ispita.component';
+import { AddDeoIspitaComponent } from './deo-ispita/add-deo-ispita/add-deo-ispita.component';
+import { EditDeoIspitaComponent } from './deo-ispita/edit-deo-ispita/edit-deo-ispita.component';
+import { StudijskaGodinaComponent } from './studijska-godina/studijska-godina.component';
+import { EditStudijskaGodinaComponent } from './studijska-godina/edit-studijska-godina/edit-studijska-godina.component';
+import { AddStudijskaGodinaComponent } from './studijska-godina/add-studijska-godina/add-studijska-godina.component';
+import { DeoIspitaService } from './deo-ispita/deoIspita.service';
 // import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -46,7 +53,13 @@ import { AddKorisnikComponent } from './korisnik/add-korisnik/add-korisnik.compo
     PolaganjeIspitaComponent,
     LoginComponent,
     AddIspitComponent,
-    AddKorisnikComponent
+    AddKorisnikComponent,
+    DeoIspitaComponent,
+    AddDeoIspitaComponent,
+    EditDeoIspitaComponent,
+    StudijskaGodinaComponent,
+    EditStudijskaGodinaComponent,
+    AddStudijskaGodinaComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +68,8 @@ import { AddKorisnikComponent } from './korisnik/add-korisnik/add-korisnik.compo
     FormsModule,
     NgbModule
   ],
-  providers: [ProfesorService, KorisnikService, IspitService, IspitniRokService, StudentService, DokumentService, PolaganjeService],
+  providers: [ProfesorService, KorisnikService, IspitService, IspitniRokService, StudentService,
+               DokumentService, PolaganjeService, DeoIspitaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -26,6 +26,18 @@ export class StudentComponent implements OnInit {
       res => this.studenti = res.body);
   }
 
+  goToOnRightRoute(val: string) {
+    console.log('val', val);
+
+    this.router.navigate([val]);
+  }
+
+  delete(id: number): void {
+    this.studentService.delete(id).subscribe(
+      () => this.getStudenti()
+    );
+  }
+
  
 
 }

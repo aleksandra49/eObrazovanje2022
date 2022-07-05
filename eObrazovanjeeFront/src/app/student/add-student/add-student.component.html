@@ -1,1 +1,36 @@
-<p>add-student works!</p>
+
+<div
+class="col-md-8 offset-md-2"
+>
+  <div class="form-row">
+    <div class="col-md-5 offset-md-3">
+      <label for="inputIme">Ime</label>
+      <input [(ngModel)]="student.ime" type="ime" class="form-control" id="inputIme" placeholder="Ime">
+    </div>
+    <div class="col-md-5 offset-md-3">
+      <label for="inputPrezime">Prezime</label>
+      <input [(ngModel)]="student.prezime" type="prezime" class="form-control" id="inputPrezime" placeholder="Prezime">
+    </div>
+    <div class="col-md-5 offset-md-3">
+      <label for="inputUser">Broj indeksa</label>
+      <input [(ngModel)]="student.indeks" type="user" class="form-control" id="inputIndeks" placeholder="BrojIndeksa">
+    </div>
+    <div class="col-md-5 offset-md-3">
+        <label for="inputUser">Email</label>
+        <input [(ngModel)]="student.email" type="user" class="form-control" id="inputEmail" placeholder="Email">
+      </div>
+    <div class="col-md-5 offset-md-3">
+      <label for="inputUser">Username</label>
+      <input [(ngModel)]="student.korisnik.korisnickoIme" type="user" class="form-control" id="inputUser" placeholder="User">
+    </div>
+    <div class="col-md-5 offset-md-3">
+      <label for="inputPassword">Password</label>
+      <input [(ngModel)]="student.korisnik.lozinka" type="password" class="form-control" id="inputPassword" placeholder="Password">
+    </div>
+  </div>
+
+  <div class="col-md-5 offset-md-3">
+  <button type="submit" class="btn btn-primary"
+   (click)="onSubmit()" >Dodaj studenta</button>
+  </div> <!-- [routerLink]="['/profesor']" -->
+</div>

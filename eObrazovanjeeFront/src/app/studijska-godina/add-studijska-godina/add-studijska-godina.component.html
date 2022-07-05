@@ -1,0 +1,31 @@
+<div
+class="col-md-8 offset-md-2"
+>
+  <div class="form-row">
+    <div class="col-md-5 offset-md-3">
+      <label for="inputIme">pocetak Studija</label>
+      <input [(ngModel)]="studijskaGodina.pocetakStudija" type="ime" class="form-control" id="inputpocetakStudija" placeholder="pocetakStudija">
+    </div>
+    <div class="col-md-5 offset-md-3">
+      <label for="inputPrezime">kraj Studija</label>
+      <input [(ngModel)]="studijskaGodina.krajStudija" type="prezime" class="form-control" id="inputkrajStudija" placeholder="krajStudija">
+    </div>
+    <div class="col-md-5 offset-md-3">
+      <label for="inputUser">nacin Finansiranja</label>
+      <input [(ngModel)]="studijskaGodina.nacinFinansiranja" type="user" class="form-control" id="inputnacinFinansiranja" placeholder="nacinFinansiranja">
+    </div>
+    <div class="col-md-5 offset-md-3">
+      <label for="inputUser">godina Studija</label>
+      <input [(ngModel)]="studijskaGodina.godinaStudija" type="user" class="form-control" id="inputgodinaStudija" placeholder="godinaStudija">
+    </div>
+    <div class="col-md-5 offset-md-3">
+      <label for="inputPassword">skolska Godina</label>
+      <input [(ngModel)]="studijskaGodina.skolskaGodina" type="password" class="form-control" id="inputskolskaGodina" placeholder="skolskaGodina">
+    </div>
+  </div>
+
+  <div class="col-md-5 offset-md-3">
+  <button type="submit" class="btn btn-primary"
+   (click)="onSubmit()" >Dodaj studijsku godinu</button>
+  </div> <!-- [routerLink]="['/profesor']" -->
+</div>

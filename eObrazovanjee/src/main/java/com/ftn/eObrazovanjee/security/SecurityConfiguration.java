@@ -72,10 +72,27 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 				.antMatchers("/auth/login").permitAll()
 				.antMatchers("/auth/parent/signup")
 				.permitAll()
+				//.antMatchers("api/profesori/all").permitAll()
 				.antMatchers("api/korisnik/get").permitAll()
 				.antMatchers("api/ispit/get").permitAll()
 				.antMatchers("api/ispit/add").permitAll()
 				.antMatchers("api/korisnik/add").permitAll()
+				
+				.antMatchers("api/student").permitAll()
+				.antMatchers("api/student/all").permitAll()
+				.antMatchers("api/student/add").permitAll()
+				.antMatchers("api/student/edit").permitAll()
+				.antMatchers("api/student/delete").permitAll()
+				
+				.antMatchers("api/deoIspita/all").permitAll()
+				.antMatchers("api/deoIspita/add").permitAll()
+				.antMatchers("api/deoIspita/edit").permitAll()
+				.antMatchers("api/deoIspita/delete").permitAll()
+				
+				.antMatchers("api/studijskaGodina/all").permitAll()
+				.antMatchers("api/studijskaGodina/add").permitAll()
+				.antMatchers("api/studijskaGodina/edit").permitAll()
+				.antMatchers("api/studijskaGodina/delete").permitAll()
 
 				.anyRequest().authenticated().and()
 

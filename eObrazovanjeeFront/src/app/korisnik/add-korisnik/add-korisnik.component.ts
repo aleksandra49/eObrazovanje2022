@@ -7,7 +7,7 @@ import { KorisnikService } from '../korisnik.service';
   templateUrl: './add-korisnik.component.html',
   styleUrls: ['./add-korisnik.component.css']
 })
-export class AddIspitComponent implements OnInit {
+export class AddKorisnikComponent implements OnInit {
   korisnickoIme = '';
   lozinka = '';
   uloga = '';

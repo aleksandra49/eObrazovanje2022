@@ -10,8 +10,8 @@ export class Student implements StudentInterface{
 	/*public studijskaGodina: StudijskaGodina;
 	public dokumenti: Dokument;
     public finansijskaKartica: FinansijskaKartica;
-	public pohadjanjePredmeta: PohadjanjePredmeta;
-	public korisnik: Korisnik;*/
+	public pohadjanjePredmeta: PohadjanjePredmeta;*/
+	public korisnik: Korisnik;
 	
 		
 	constructor(studentCfg:StudentInterface)
@@ -21,7 +21,8 @@ export class Student implements StudentInterface{
 		this.prezime = studentCfg.prezime;
 		this.indeks = studentCfg.indeks;	
         this.email = studentCfg.email;
-		this.active = studentCfg.active;	
+		this.active = studentCfg.active;
+		this.korisnik = studentCfg.korisnik;	
 	}
 }
 
@@ -35,6 +36,6 @@ interface StudentInterface{
    /* studijskaGodina: string;
 	dokumenti: string;
     finansijskaKartica: number;
-	pohadjanjePredmeta: boolean;
-	korisnik: string;*/
+	pohadjanjePredmeta: boolean;*/
+	korisnik: Korisnik;
 }

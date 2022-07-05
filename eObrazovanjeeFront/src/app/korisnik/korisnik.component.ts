@@ -26,4 +26,16 @@ export class KorisnikComponent implements OnInit {
     });
   }
 
+  goToOnRightRoute(val: string) {
+    console.log('val', val);
+
+    this.router.navigate([val]);
+  }
+
+  delete(id: number): void {
+    this.korisnikService.delete(id).subscribe(
+      () => this.getKorisnici()
+    );
+  }
+
 }
