@@ -34,6 +34,4 @@ export class TransakcijaService {
     }
 }
 
-function Injectable() {
-    throw new Error('Function not implemented.');
-}
+
