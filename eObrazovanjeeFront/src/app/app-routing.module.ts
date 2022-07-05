@@ -9,6 +9,7 @@ import { DokumentComponent } from './dokument/dokument.component';
 import { AddProfesorComponent } from './profesor/add-profesor/add-profesor/add-profesor.component';
 import { PolaganjeIspitaComponent } from './polaganje-ispita/polaganje-ispita.component';
 import { LoginComponent } from './login/login.component';
+import { AddIspitComponent } from './ispit/add-ispit/add-ispit.component';
 
 const routes: Routes = [
 
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'korisnici', component: KorisnikComponent },
   // { path: '', component: KorisnikComponent }
   { path: 'ispiti', component: IspitComponent },
+  { path: 'addIspit', component: AddIspitComponent },
 
   { path: 'ispitniRokovi', component: IspitniRokComponent },
   { path: 'polaganjaIspita', component: PolaganjeIspitaComponent },
@@ -25,6 +27,7 @@ const routes: Routes = [
   { path: 'dokument', component: DokumentComponent },
 
   { path: 'addProfesor', component: AddProfesorComponent },
+  
 
   { path: 'login', component: LoginComponent }
 

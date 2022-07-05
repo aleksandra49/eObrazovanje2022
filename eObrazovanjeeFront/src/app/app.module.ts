@@ -26,6 +26,8 @@ import { PolaganjeIspitaComponent } from './polaganje-ispita/polaganje-ispita.co
 import { PolaganjeService } from './polaganje-ispita/polaganje-ispita.service';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
+import { AddIspitComponent } from './ispit/add-ispit/add-ispit.component';
+import { AddKorisnikComponent } from './korisnik/add-korisnik/add-korisnik.component';
 // import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -42,7 +44,9 @@ import { FormsModule } from '@angular/forms';
     DokumentComponent,
     AddProfesorComponent,
     PolaganjeIspitaComponent,
-    LoginComponent
+    LoginComponent,
+    AddIspitComponent,
+    AddKorisnikComponent
   ],
   imports: [
     BrowserModule,

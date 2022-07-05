@@ -72,6 +72,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 				.antMatchers("/auth/login").permitAll()
 				.antMatchers("/auth/parent/signup")
 				.permitAll()
+				.antMatchers("api/korisnik/get").permitAll()
+				.antMatchers("api/ispit/get").permitAll()
+				.antMatchers("api/ispit/add").permitAll()
+				.antMatchers("api/korisnik/add").permitAll()
 
 				.anyRequest().authenticated().and()
 

@@ -1,1 +1,37 @@
 
+<div class="container">
+    <h4 class="display-4 text-center">Ispiti</h4>
+    <div class="row  mt-3 mb-3" >
+      <button type="button" class="btn btn-primary" (click)="goToOnRightRoute('addIspit')">Dodaj Ispit</button>
+    </div>
+    <div class="container">
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>naziv</th>
+            <th>datum</th>
+            <th>broj bodova</th> 
+            <th>Izmeni</th>
+            <th>Obriši</th>      
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let ispit of ispiti">
+                <td>{{ispit.id}}</td>
+                <td>{{ispit.naziv}}</td>
+                <td>{{ispit.datumVreme}}</td>
+                <td>{{ispit.brojBodova}}</td> 
+                
+                
+      
+      <td class="h5"><button type="button" class="btn btn-primary">Izmeni</button></td>
+      <td class="h5"><button type="button" class="btn btn-primary" (click)="delete(ispit.id)">Obrisi</button></td>
+      <td class="h5"><button type="button" class="btn btn-primary">Profil</button></td>
+                
+            </tr>
+        </tbody>
+      </table>
+     
+    </div>
+
