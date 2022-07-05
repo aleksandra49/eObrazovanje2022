@@ -25,6 +25,8 @@ import com.ftn.eObrazovanjee.mapper.ProfesorMapper;
 import com.ftn.eObrazovanjee.model.Korisnik;
 import com.ftn.eObrazovanjee.model.PredavanjePredmeta;
 import com.ftn.eObrazovanjee.model.Profesor;
+import com.ftn.eObrazovanjee.model.Uloga;
+import com.ftn.eObrazovanjee.security.SecurityConfiguration;
 import com.ftn.eObrazovanjee.service.KorisnikService;
 import com.ftn.eObrazovanjee.service.PredavanjePredmetaServiceImpl;
 import com.ftn.eObrazovanjee.service.ProfesorServiceImpl;
@@ -36,6 +38,9 @@ import com.ftn.eObrazovanjee.service.ProfesorServiceImpl;
 public class ProfesorController {
 	
 	@Autowired ProfesorServiceImpl profesorService;
+	
+	@Autowired
+	SecurityConfiguration configuration;
 	
 	@Autowired
 	private KorisnikService korisnikService;
@@ -68,7 +73,8 @@ public class ProfesorController {
 //		korisnik1.setId(1L);
 		Korisnik korisnik1 = new Korisnik();
 		korisnik1.setKorisnickoIme(profesorDTO.getKorisnik().getKorisnickoIme());
-		
+		korisnik1.setLozinka(configuration.passwordEncoder().encode(profesorDTO.getKorisnik().getLozinka()));
+		korisnik1.setUloga(Uloga.PROFESOR);
 		System.out.println(korisnik);
 		
 		profesor.setIme(profesorDTO.getIme());
@@ -140,6 +146,7 @@ public class ProfesorController {
 	 @DeleteMapping(value = {"/{id}"})
 	 public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
 		 Profesor profesor = profesorService.findOne(id);
+		 Korisnik korisnik = korisnikService.findOne(profesor.getKorisnik().getId());
 			if (profesor != null){
 				profesorService.remove(id);
 				return new ResponseEntity<>(HttpStatus.OK);

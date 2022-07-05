@@ -5,15 +5,28 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +35,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.eObrazovanjee.dto.IspitniRokDTO;
 import com.ftn.eObrazovanjee.dto.KorisnikDTO;
+import com.ftn.eObrazovanjee.dto.KorisnikTokenStateDTO;
+import com.ftn.eObrazovanjee.dto.LoginDTO;
 import com.ftn.eObrazovanjee.dto.ProfesorDTO;
 import com.ftn.eObrazovanjee.dto.StudentDTO;
 import com.ftn.eObrazovanjee.mapper.DeoIspitaMapper;
@@ -32,6 +47,7 @@ import com.ftn.eObrazovanjee.mapper.ProfesorMapper;
 import com.ftn.eObrazovanjee.mapper.StudentMapper;
 import com.ftn.eObrazovanjee.model.Ispit;
 import com.ftn.eObrazovanjee.model.Korisnik;
+import com.ftn.eObrazovanjee.security.TokenUtils;
 import com.ftn.eObrazovanjee.service.KorisnikService;
 import com.ftn.eObrazovanjee.service.ProfesorServiceImpl;
 import com.ftn.eObrazovanjee.service.StudentService;
@@ -52,6 +68,12 @@ public class KorisnikController {
 	@Autowired
 	private StudentService studentService;
 	
+	@Autowired
+	private AuthenticationManager authenticationManager;
+	
+	@Autowired
+	private TokenUtils tokenUtils;
+	
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	public String userModel(Model model) {
 		Korisnik korisnik = new Korisnik();
@@ -59,21 +81,23 @@ public class KorisnikController {
 		return "login";
 	}
 	
-	@RequestMapping(value="/login", method = RequestMethod.POST)
-	public KorisnikDTO login(@ModelAttribute("korisnik") Korisnik korisnik) {
-		List<Korisnik> korisnici = korisnikService.findAll();
+	@PostMapping("/login")
+	public ResponseEntity<KorisnikTokenStateDTO> createAuthenticationToken(@RequestBody LoginDTO loginDTOreq,
+			HttpServletResponse response) {
 		
-		for(Korisnik kor: korisnici){
-			if(kor.getKorisnickoIme().equals(korisnik.getKorisnickoIme()) && kor.getLozinka().equals(korisnik.getLozinka())){
-				KorisnikDTO korisnikDTO = new KorisnikMapper().modelToDto(kor);
-				korisnikDTO.setProfesor(getProfesorIzKorisnika(korisnik.getId()));
-				korisnikDTO.setStudent(getStudentIzKorisnika(korisnik.getId()));
-				return korisnikDTO;
-			}
-		}
-		
-		return null;
-		
+		Authentication authentication = authenticationManager
+				.authenticate(new UsernamePasswordAuthenticationToken(loginDTOreq.getKorisnickoIme(),
+						loginDTOreq.getLozinka()));
+
+		// Ubaci korisnika u trenutni security kontekst
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		// Kreiraj token za tog korisnika
+		Korisnik user = (Korisnik) authentication.getPrincipal();
+		String jwt = tokenUtils.generateToken(user.getUsername(), user.getId(), user.getUloga().toString());
+		Long expiresIn = tokenUtils.getExpiredIn();
+		System.out.println(user.getAuthorities());
+		// Vrati token kao odgovor na uspesnu autentifikaciju
+		return ResponseEntity.ok(new KorisnikTokenStateDTO(jwt, expiresIn));
 	}
 	
 	

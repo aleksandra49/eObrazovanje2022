@@ -69,56 +69,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
 				// svim korisnicima dopusti da pristupe putanjama /auth/**
 				.authorizeRequests()
-				.antMatchers("/auth/login").permitAll()
-				.antMatchers("/auth/parent/signup")
-				.permitAll()
+				.antMatchers("/api/korisnik/login").permitAll()
+				.antMatchers("/api/profesori").permitAll()
 				//.antMatchers("api/profesori/all").permitAll()
-				.antMatchers("api/korisnik/all").permitAll()
-				.antMatchers("api/korisnik/add").permitAll()
-				.antMatchers("api/korisnik/get").permitAll()
 				
-				.antMatchers("api/ispit/all").permitAll()
-				.antMatchers("api/ispit/get").permitAll()
-				.antMatchers("api/ispit/add").permitAll()
-				
-				
-				.antMatchers("api/student").permitAll()
-				.antMatchers("api/student/all").permitAll()
-				.antMatchers("api/student/add").permitAll()
-				.antMatchers("api/student/edit").permitAll()
-				.antMatchers("api/student/delete").permitAll()
-				
-				.antMatchers("api/deoIspita/all").permitAll()
-				.antMatchers("api/deoIspita/add").permitAll()
-				.antMatchers("api/deoIspita/edit").permitAll()
-				.antMatchers("api/deoIspita/delete").permitAll()
-				
-				.antMatchers("api/studijskaGodina/all").permitAll()
-				.antMatchers("api/studijskaGodina/add").permitAll()
-				.antMatchers("api/studijskaGodina/edit").permitAll()
-				.antMatchers("api/studijskaGodina/delete").permitAll()
-				
-				.antMatchers("api/dokument/all").permitAll()
-				.antMatchers("api/dokument/add").permitAll()
-				.antMatchers("api/dokument/edit").permitAll()
-				.antMatchers("api/dokument/delete").permitAll()
-				
-				.antMatchers("api/finansijskaKartica/all").permitAll()
-				.antMatchers("api/finansijskaKartica/add").permitAll()
-				.antMatchers("api/finansijskaKartica/edit").permitAll()
-				.antMatchers("api/finansijskaKartica/delete").permitAll()
-				
-				.antMatchers("api/transakcija/all").permitAll()
-				.antMatchers("api/transakcija/add").permitAll()
-				.antMatchers("api/transakcija/edit").permitAll()
-				.antMatchers("api/transakcija/delete").permitAll()
-				
-				.antMatchers("api/pohadjanje/all").permitAll()
-				.antMatchers("api/pohadjanje/add").permitAll()
-				.antMatchers("api/pohadjanje/edit").permitAll()
-				.antMatchers("api/pohadjanje/delete").permitAll()
-
-				.anyRequest().authenticated().and()
+// ODKOMENTARISI, PROVERAVA AUTORIZACIJU ZA SVE OSTALE PUTANJE KOJE NISU PERMITALL
+				//.anyRequest().authenticated()
+				.and()
 
 		
 				.addFilterBefore(new AuthentictionTokenFilter(tokenUtils, userDetailsService),
