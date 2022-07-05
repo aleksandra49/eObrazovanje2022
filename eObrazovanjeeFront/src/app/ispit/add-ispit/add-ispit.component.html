@@ -1,0 +1,23 @@
+<div
+class="col-md-8 offset-md-2"
+>
+  <div class="form-row">
+    <div class="col-md-5 offset-md-3">
+      <label for="inputIme">Naziv</label>
+      <input [(ngModel)]="ispit.naziv" type="naziv" class="form-control" id="inputNaziv" placeholder="naziv">
+    </div>
+    <div class="col-md-5 offset-md-3">
+      <label for="inputPrezime">Prezime</label>
+      <input [(ngModel)]="ispit.datumVreme" type="datumVreme" class="form-control" id="inputDatumVreme" placeholder="datum">
+    </div>
+    <div class="col-md-5 offset-md-3">
+      <label for="inputUser">Broj bodova</label>
+      <input [(ngModel)]="ispit.brojBodova" type="brojBodova" class="form-control" id="inputBrojBodova" placeholder="bodovi">
+    </div>
+  </div>
+
+  <div class="col-md-5 offset-md-3">
+  <button type="submit" class="btn btn-primary"
+   (click)="onSubmit()" >Dodaj ispit</button>
+  </div> 
+</div>

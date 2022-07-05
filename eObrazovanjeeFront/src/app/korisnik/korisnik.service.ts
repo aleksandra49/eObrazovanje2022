@@ -21,4 +21,15 @@ export class KorisnikService {
         return this.http.get<Korisnik>(url, {observe: 'response'});
     }
 
+    delete(id: number): Observable<HttpResponse<any>> {
+        const url = `${this.korisniciUrl}/${id}`;
+        return this.http.delete<any>(url, {observe: 'response'});
+    }
+
+    saveKorisnik(korisnik: Korisnik): Observable<HttpResponse<any>> {
+        const url = `${this.korisniciUrl}`;
+
+        return this.http.post<any>(url, korisnik , {observe: 'response'});
+    }
+
 }

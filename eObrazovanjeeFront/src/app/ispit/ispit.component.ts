@@ -23,4 +23,16 @@ export class IspitComponent implements OnInit {
       this.ispiti = res.body);
   }
 
+  goToOnRightRoute(val: string) {
+    console.log('val', val);
+
+    this.router.navigate([val]);
+  }
+
+  delete(id: number): void {
+    this.ispitService.delete(id).subscribe(
+      () => this.getIspiti()
+    );
+  }
+
 }
