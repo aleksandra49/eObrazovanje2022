@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -8,10 +9,23 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  private korisnik: any = {};
-  constructor() { }
+  constructor(private loginService: LoginService) {}
+
+  loginRequest = {
+    korisnickoIme: "",
+    lozinka: ""
+  }
 
   ngOnInit(): void {
+  }
+
+  onSubmit() {
+
+    this.loginService.login(this.loginRequest)
+      .subscribe((data : any) => {
+        console.log(data)
+        alert("Usepsan login!")
+      })
   }
 
   login(form: NgForm): void {};

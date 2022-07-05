@@ -16,7 +16,7 @@ export class ProfesorService {
    
     
     getProfesori(): Observable<HttpResponse<Profesor[]>> {
-        const url = `${this.profesoriUrl}/all`;
+        const url = `${this.profesoriUrl}`;
         return this.http.get<Profesor[]>(url, {observe: 'response'});
     }
     getProfesor(id: number): Observable<HttpResponse<Profesor>> {

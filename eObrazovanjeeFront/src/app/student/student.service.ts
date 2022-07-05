@@ -19,7 +19,7 @@ export class StudentService {
       }*/
     
     getStudenti(): Observable<HttpResponse<Student[]>> {
-        return this.http.get<Student[]>(this.studentUrl, {observe: 'response'});
+        return this.http.get<Student[]>(this.studentUrl+"/all", {observe: 'response'});
     }
 
    getStudent(id: number): Observable<HttpResponse<Student>> {
