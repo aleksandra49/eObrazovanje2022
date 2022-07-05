@@ -23,5 +23,15 @@ export class PolaganjeService {
         return this.http.get<PolaganjeIspita>(url, {observe: 'response'});
     }
 
+    delete(id: number): Observable<HttpResponse<any>> {
+        const url = `${this.polaganjaUrl}/${id}`;
+        return this.http.delete<any>(url, {observe: 'response'});
+    }
+
+    savePolaganje(polaganjeIspita: PolaganjeIspita): Observable<HttpResponse<any>> {
+        const url = `${this.polaganjaUrl}`;
+
+        return this.http.post<any>(url, polaganjeIspita , {observe: 'response'});
+    }
 
 }

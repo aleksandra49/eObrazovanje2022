@@ -23,6 +23,7 @@ import { AddFinansijskaKarticaComponent } from './finansijska-kartica/add-finans
 import { TransakcijaComponent } from './transakcija/transakcija.component';
 import { AddTransakcijaComponent } from './transakcija/add-transakcija/add-transakcija.component';
 import { AddDokumentComponent } from './dokument/add-dokument/add-dokument.component';
+import { AddPolaganjeIspitaComponent } from './polaganje-ispita/add-polaganje-ispita/add-polaganje-ispita.component';
 
 const routes: Routes = [
 
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: 'addIspit', component: AddIspitComponent },
   { path: 'ispitniRokovi', component: IspitniRokComponent },
   { path: 'polaganjaIspita', component: PolaganjeIspitaComponent },
+  { path: 'addPolaganjaIspita', component: AddPolaganjeIspitaComponent },
 
   { path: 'student', component: StudentComponent },
   { path: 'addStudent', component: AddStudentComponent },

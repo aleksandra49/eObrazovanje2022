@@ -44,6 +44,7 @@ import { TransakcijaComponent } from './transakcija/transakcija.component';
 import { AddTransakcijaComponent } from './transakcija/add-transakcija/add-transakcija.component';
 import { AddIspitniRokComponent } from './ispitni-rok/add-ispitni-rok/add-ispitni-rok.component';
 import { TransakcijaService } from './transakcija/transakcija.service';
+import { AddPolaganjeIspitaComponent } from './polaganje-ispita/add-polaganje-ispita/add-polaganje-ispita.component';
 // import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -76,7 +77,8 @@ import { TransakcijaService } from './transakcija/transakcija.service';
     AddTipDokumentaComponent,
     TransakcijaComponent,
     AddTransakcijaComponent,
-    AddIspitniRokComponent
+    AddIspitniRokComponent,
+    AddPolaganjeIspitaComponent
   ],
   imports: [
     BrowserModule,
