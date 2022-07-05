@@ -16,7 +16,7 @@ export class AddFinansijskaKarticaComponent implements OnInit {
 
 constructor(private karticaService: FinansijskaKarticaService) { }
 
-kartica: FinansijskaKartica = new FinansijskaKartica({
+finansijskaKartica: FinansijskaKartica = new FinansijskaKartica({
   id: 0,
   personalniBroj: "",
   trenutnoStanje: 0,
@@ -31,7 +31,7 @@ onSubmit() {
   console.log('trenutnoStanje', this.trenutnoStanje);
   console.log('racunFakulteta', this.racunFakulteta);
 
-  this.karticaService.saveFinanKarica(this.kartica)
+  this.karticaService.saveFinanKarica(this.finansijskaKartica)
     .subscribe(() => {
       alert("Usepsno dodat fiann kartica!")
     })

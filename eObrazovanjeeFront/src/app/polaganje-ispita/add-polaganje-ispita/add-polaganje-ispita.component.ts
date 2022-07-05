@@ -21,7 +21,7 @@ constructor(private polaganjeIspitaService: PolaganjeService) { }
 ngOnInit(): void {
 }
 
-onSubmit() {
+/*onSubmit() {
   // console.log('ime', this.naziv);
   // console.log('prezime', this.datumVreme);
   // console.log('password', this.brojBodova);
@@ -30,7 +30,7 @@ onSubmit() {
     .subscribe(() => {
       alert("Usepsno dodato polaganje!")
     })
-}
+}*/
 
 
 }

@@ -19,7 +19,7 @@ export class TipDokumentaComponent implements OnInit {
   }
 
   getTipoveDok() {
-    this.tipoviService.getTipoveDok().subscribe(res =>
+    this.tipoviService.getTipoviDokumenta().subscribe(res =>
       this.tipovi = res.body);
   }
 

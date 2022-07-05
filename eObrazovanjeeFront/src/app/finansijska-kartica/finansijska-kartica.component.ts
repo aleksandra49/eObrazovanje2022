@@ -10,7 +10,7 @@ import { FinansijskaKarticaService } from './finansijska-kartica.service';
 })
 export class FinansijskaKarticaComponent implements OnInit {
 
-  kartice: FinansijskaKartica[] | null = [];
+  finansijskeKartice: FinansijskaKartica[] | null = [];
 
   constructor(private karitcaService: FinansijskaKarticaService, private router: Router) { }
 
@@ -20,7 +20,7 @@ export class FinansijskaKarticaComponent implements OnInit {
 
   getFinanKartice() {
     this.karitcaService.getFinanKartice().subscribe(res =>
-      this.kartice = res.body);
+      this.finansijskeKartice = res.body);
   }
 
   goToOnRightRoute(val: string) {

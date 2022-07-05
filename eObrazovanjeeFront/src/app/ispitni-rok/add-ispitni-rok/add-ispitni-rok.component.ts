@@ -15,7 +15,7 @@ export class AddIspitniRokComponent implements OnInit {
 
 constructor(private rokService: IspitniRokService) { }
 
-rok: IspitniRok = new IspitniRok({
+ispitniRok: IspitniRok = new IspitniRok({
   id: 0,
   naziv: "",
   pocetakRoka: "",
@@ -31,7 +31,7 @@ onSubmit() {
   console.log('krajRoka', this.krajRoka);
  
 
-  this.rokService.saveIspitniRok(this.rok)
+  this.rokService.saveIspitniRok(this.ispitniRok)
     .subscribe(() => {
       alert("Usepsno dodat ispitni rok!")
     })

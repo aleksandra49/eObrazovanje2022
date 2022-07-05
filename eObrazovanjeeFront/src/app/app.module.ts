@@ -94,7 +94,7 @@ import { EditPohadanjePredmetaComponent } from './pohadjanje-predmeta/edit-pohad
     NgbModule
   ],
   providers: [ProfesorService, KorisnikService, IspitService, IspitniRokService, StudentService,
-               DokumentService, PolaganjeService, DeoIspitaService, TransakcijaService],
+               DokumentService, PolaganjeService, DeoIspitaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
