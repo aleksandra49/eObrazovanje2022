@@ -18,6 +18,11 @@ import { EditDeoIspitaComponent } from './deo-ispita/edit-deo-ispita/edit-deo-is
 import { StudijskaGodinaComponent } from './studijska-godina/studijska-godina.component';
 import { AddStudijskaGodinaComponent } from './studijska-godina/add-studijska-godina/add-studijska-godina.component';
 import { EditStudijskaGodinaComponent } from './studijska-godina/edit-studijska-godina/edit-studijska-godina.component';
+import { FinansijskaKartica } from './model/finansijskaKartica';
+import { AddFinansijskaKarticaComponent } from './finansijska-kartica/add-finansijska-kartica/add-finansijska-kartica.component';
+import { TransakcijaComponent } from './transakcija/transakcija.component';
+import { AddTransakcijaComponent } from './transakcija/add-transakcija/add-transakcija.component';
+import { AddDokumentComponent } from './dokument/add-dokument/add-dokument.component';
 
 const routes: Routes = [
 
@@ -43,7 +48,15 @@ const routes: Routes = [
   { path: 'addStudijskaGodina', component: AddStudijskaGodinaComponent },
   { path: 'editStudijskaGodina', component: EditStudijskaGodinaComponent },
 
+  { path: 'finansijskaKartica', component: FinansijskaKartica },
+  { path: 'addFinansijskaKartica', component: AddFinansijskaKarticaComponent },
+
+  { path: 'transakcija', component: TransakcijaComponent },
+  { path: 'addTransakcija', component: AddTransakcijaComponent },
+  //{ path: 'editTransakcija', component: EditStudijskaGodinaComponent },
+
   { path: 'dokument', component: DokumentComponent },
+  { path: 'addDokument', component: AddDokumentComponent },
 
   { path: 'addProfesor', component: AddProfesorComponent },
   

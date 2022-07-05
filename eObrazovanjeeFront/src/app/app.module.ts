@@ -42,6 +42,8 @@ import { AddFinansijskaKarticaComponent } from './finansijska-kartica/add-finans
 import { AddTipDokumentaComponent } from './tip-dokumenta/add-tip-dokumenta/add-tip-dokumenta.component';
 import { TransakcijaComponent } from './transakcija/transakcija.component';
 import { AddTransakcijaComponent } from './transakcija/add-transakcija/add-transakcija.component';
+import { AddIspitniRokComponent } from './ispitni-rok/add-ispitni-rok/add-ispitni-rok.component';
+import { TransakcijaService } from './transakcija/transakcija.service';
 // import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -73,7 +75,8 @@ import { AddTransakcijaComponent } from './transakcija/add-transakcija/add-trans
     AddFinansijskaKarticaComponent,
     AddTipDokumentaComponent,
     TransakcijaComponent,
-    AddTransakcijaComponent
+    AddTransakcijaComponent,
+    AddIspitniRokComponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +86,7 @@ import { AddTransakcijaComponent } from './transakcija/add-transakcija/add-trans
     NgbModule
   ],
   providers: [ProfesorService, KorisnikService, IspitService, IspitniRokService, StudentService,
-               DokumentService, PolaganjeService, DeoIspitaService],
+               DokumentService, PolaganjeService, DeoIspitaService, TransakcijaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

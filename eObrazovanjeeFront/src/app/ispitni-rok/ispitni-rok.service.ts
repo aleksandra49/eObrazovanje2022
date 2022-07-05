@@ -7,7 +7,7 @@ import { IspitniRok } from '../model/ispitniRok.model';
 
 @Injectable()
 export class IspitniRokService {
-    private rokoviUrl = 'api/korisnici';
+    private rokoviUrl = 'api/ispitni_rok';
 
     constructor(private http: HttpClient) { }
 
@@ -20,6 +20,24 @@ export class IspitniRokService {
     getRok(id: number): Observable<HttpResponse<IspitniRok>> {
         const url = `${this.rokoviUrl}/${id}`;
         return this.http.get<IspitniRok>(url, {observe: 'response'});
+    }
+
+    delete(id: number): Observable<HttpResponse<any>> {
+        const url = `${this.rokoviUrl}/${id}`;
+        return this.http.delete<any>(url, {observe: 'response'});
+    }
+
+    saveIspitniRok(rok: IspitniRok): Observable<HttpResponse<any>> {
+        const url = `${this.rokoviUrl}`;
+
+       /* const body = {
+            naizv: 'Januarski',
+            pocetakRoka: new Date,
+            krajRoka: new Date,
+           
+        };*/
+
+        return this.http.post<any>(url, rok , {observe: 'response'});
     }
 
 }

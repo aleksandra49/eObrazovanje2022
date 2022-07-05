@@ -1,0 +1,24 @@
+<div
+class="col-md-8 offset-md-2"
+>
+  <div class="form-row">
+    <div class="col-md-5 offset-md-3">
+      <label for="inputIme">naziv</label>
+      <input [(ngModel)]="ispitniRok.naziv" type="naziv" class="form-control" id="inputnaziv" placeholder="naziv">
+    </div>
+    <div class="col-md-5 offset-md-3">
+      <label for="inputPrezime">pocetakRoka</label>
+      <input [(ngModel)]="ispitniRok.pocetakRoka" type="pocetakRoka" class="form-control" id="inputpocetakRoka" placeholder="pocetakRoka">
+    </div>
+    <div class="col-md-5 offset-md-3">
+        <label for="inputUser">Username</label>
+        <input [(ngModel)]="ispitniRok.krajRoka" type="krajRoka" class="form-control" id="inputKrajRoka" placeholder="krajRoka">
+      </div>
+    
+  </div>
+
+  <div class="col-md-5 offset-md-3">
+  <button type="submit" class="btn btn-primary"
+   (click)="onSubmit()" >Dodaj ispitni rok</button>
+  </div> <!-- [routerLink]="['/profesor']" -->
+</div>
