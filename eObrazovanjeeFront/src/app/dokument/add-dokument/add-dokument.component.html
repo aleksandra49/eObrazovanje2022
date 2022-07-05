@@ -1,0 +1,20 @@
+<div
+class="col-md-8 offset-md-2"
+>
+  <div class="form-row">
+    <div class="col-md-5 offset-md-3">
+      <label for="inputIme">Naziv</label>
+      <input [(ngModel)]="dokument.naziv" type="ime" class="form-control" id="inputnaziv" placeholder="naziv">
+    </div>
+    <div class="col-md-5 offset-md-3">
+      <label for="inputPrezime">Uri</label>
+      <input [(ngModel)]="dokument.uri" type="prezime" class="form-control" id="inputuri" placeholder="uri">
+    </div>
+    
+  </div>
+
+  <div class="col-md-5 offset-md-3">
+  <button type="submit" class="btn btn-primary"
+   (click)="onSubmit()" >Dodaj dokument</button>
+  </div> <!-- [routerLink]="['/profesor']" -->
+</div>

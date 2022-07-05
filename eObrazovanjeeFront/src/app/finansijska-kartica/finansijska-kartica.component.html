@@ -1,26 +1,28 @@
 
 <div class="container">
-    <h4 class="display-4 text-center">Dokumenti</h4>
+    <h4 class="display-4 text-center">Finansijska kartica</h4>
     <div class="row  mt-3 mb-3" >
-      <button type="button" class="btn btn-primary" (click)="goToOnRightRoute('addDokument')">Dodaj dokument</button>
+
     </div>
     <div class="container">
       <table class="table table-hover table-striped">
         <thead>
           <tr>
             <th>id</th>
-            <th>naziv</th>
-            <th>uri</th>
+            <th>personalniBroj</th>
+            <th>trenutnoStanje</th>
+            <th>racunFakulteta</th> 
             <th>Izmeni</th>
             <th>Obriši</th>
             <th>Profil</th>       
           </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let dokument of dokumenti">
-                <td>{{dokument.id}}</td>
-                <td>{{dokument.naziv}}</td>
-                <td>{{dokument.pruriezime}}</td>
+            <tr *ngFor="let kartica of finansijskaKartica">
+                <td>{{kartica.id}}</td>
+                <td>{{kartica.personalniBroj}}</td>
+                <td>{{kartica.trenutnoStanje}}</td>
+                <td>{{kartica.racunFakulteta}}</td> 
                 
                 
       <!-- <td class="h5"><a class="badge badge-primary" [routerLink]="['/nastavnik/', nastavnik.id]"> <i class="fa fa-edit"></i> Izmeni</a></td> -->
@@ -28,7 +30,7 @@
       <!-- <td class="h5"><a class="badge badge-secondary" [routerLink]="['/nastavnik-stranica/', nastavnik.id]">Profil</a></td> -->
 
       <td class="h5"><button type="button" class="btn btn-primary">Izmeni</button></td>
-      <td class="h5"><button type="button" class="btn btn-primary" (click)="delete(dokument.id)">Obrisi</button></td>
+      <td class="h5"><button type="button" class="btn btn-primary" (click)="delete(kartica.id)">Obrisi</button></td>
       <td class="h5"><button type="button" class="btn btn-primary">Profil</button></td>
                 
             </tr>

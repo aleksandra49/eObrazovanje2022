@@ -31,4 +31,26 @@ export class DokumentService {
         return this.http.delete<any>(url, {observe: 'response'});
     }
 
+    delete(id: number): Observable<HttpResponse<any>> {
+        const url = `${this.dokumentUrl}/${id}`;
+        return this.http.delete<any>(url, {observe: 'response'});
+    }
+
+    saveProfesor(dokument: Dokument): Observable<HttpResponse<any>> {
+        const url = `${this.dokumentUrl}`;
+
+        /*const body = {
+            ime: 'Petar',
+            email: 'Medic',
+            prezime: '12345',
+            korisnik: {
+                id: 2,
+                korisnickoIme: 'micko333',
+                prezime: '123'
+            }
+        };*/
+
+        return this.http.post<any>(url, dokument , {observe: 'response'});
+    }
+
 }

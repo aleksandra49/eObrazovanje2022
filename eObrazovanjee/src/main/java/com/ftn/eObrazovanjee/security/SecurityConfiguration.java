@@ -93,6 +93,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 				.antMatchers("api/studijskaGodina/add").permitAll()
 				.antMatchers("api/studijskaGodina/edit").permitAll()
 				.antMatchers("api/studijskaGodina/delete").permitAll()
+				
+				.antMatchers("api/dokument/all").permitAll()
+				.antMatchers("api/dokument/add").permitAll()
+				.antMatchers("api/dokument/edit").permitAll()
+				.antMatchers("api/dokument/delete").permitAll()
+				
+				.antMatchers("api/finansijskaKartica/all").permitAll()
+				.antMatchers("api/finansijskaKartica/add").permitAll()
+				.antMatchers("api/finansijskaKartica/edit").permitAll()
+				.antMatchers("api/finansijskaKartica/delete").permitAll()
+				
+				.antMatchers("api/transakcija/all").permitAll()
+				.antMatchers("api/transakcija/add").permitAll()
+				.antMatchers("api/transakcija/edit").permitAll()
+				.antMatchers("api/transakcija/delete").permitAll()
 
 				.anyRequest().authenticated().and()
 

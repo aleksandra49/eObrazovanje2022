@@ -1,0 +1,24 @@
+<div
+class="col-md-8 offset-md-2"
+>
+  <div class="form-row">
+    <div class="col-md-5 offset-md-3">
+      <label for="inputIme">personalniBroj</label>
+      <input [(ngModel)]="finansijskaKartica.personalniBroj" type="personalniBroj" class="form-control" id="inputpersonalniBroj" placeholder="personalniBroj">
+    </div>
+    <div class="col-md-5 offset-md-3">
+      <label for="inputPrezime">trenutnoStanje</label>
+      <input [(ngModel)]="finansijskaKartica.trenutnoStanje" type="trenutnoSTanje" class="form-control" id="inputstanje" placeholder="stanje">
+    </div>
+    <div class="col-md-5 offset-md-3">
+      <label for="inputUser">racunFakulteta</label>
+      <input [(ngModel)]="finansijskaKartica.racunFakulteta" type="racun" class="form-control" id="inputracun" placeholder="racun">
+    </div>
+   
+  </div>
+
+  <div class="col-md-5 offset-md-3">
+  <button type="submit" class="btn btn-primary"
+   (click)="onSubmit()" >Dodaj finan karticu</button>
+  </div> <!-- [routerLink]="['/profesor']" -->
+</div>

@@ -35,6 +35,13 @@ import { StudijskaGodinaComponent } from './studijska-godina/studijska-godina.co
 import { EditStudijskaGodinaComponent } from './studijska-godina/edit-studijska-godina/edit-studijska-godina.component';
 import { AddStudijskaGodinaComponent } from './studijska-godina/add-studijska-godina/add-studijska-godina.component';
 import { DeoIspitaService } from './deo-ispita/deoIspita.service';
+import { AddDokumentComponent } from './dokument/add-dokument/add-dokument.component';
+import { FinansijskaKarticaComponent } from './finansijska-kartica/finansijska-kartica.component';
+import { TipDokumentaComponent } from './tip-dokumenta/tip-dokumenta.component';
+import { AddFinansijskaKarticaComponent } from './finansijska-kartica/add-finansijska-kartica/add-finansijska-kartica.component';
+import { AddTipDokumentaComponent } from './tip-dokumenta/add-tip-dokumenta/add-tip-dokumenta.component';
+import { TransakcijaComponent } from './transakcija/transakcija.component';
+import { AddTransakcijaComponent } from './transakcija/add-transakcija/add-transakcija.component';
 // import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -59,7 +66,14 @@ import { DeoIspitaService } from './deo-ispita/deoIspita.service';
     EditDeoIspitaComponent,
     StudijskaGodinaComponent,
     EditStudijskaGodinaComponent,
-    AddStudijskaGodinaComponent
+    AddStudijskaGodinaComponent,
+    AddDokumentComponent,
+    FinansijskaKarticaComponent,
+    TipDokumentaComponent,
+    AddFinansijskaKarticaComponent,
+    AddTipDokumentaComponent,
+    TransakcijaComponent,
+    AddTransakcijaComponent
   ],
   imports: [
     BrowserModule,

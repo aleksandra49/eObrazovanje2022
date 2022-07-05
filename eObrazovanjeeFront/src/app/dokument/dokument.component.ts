@@ -27,6 +27,18 @@ export class DokumentComponent implements OnInit {
       res => this.dokumenti = res.body);
   }
 
+  goToOnRightRoute(val: string) {
+    console.log('val', val);
+
+    this.router.navigate([val]);
+  }
+
+
+  delete(id: number): void {
+    this.dokumentService.delete(id).subscribe(
+      () => this.getDokumenti()
+    );
+  }
  
 
 }
