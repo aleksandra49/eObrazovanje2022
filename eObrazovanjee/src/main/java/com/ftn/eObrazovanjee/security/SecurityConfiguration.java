@@ -73,10 +73,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 				.antMatchers("/auth/parent/signup")
 				.permitAll()
 				//.antMatchers("api/profesori/all").permitAll()
+				.antMatchers("api/korisnik/all").permitAll()
+				.antMatchers("api/korisnik/add").permitAll()
 				.antMatchers("api/korisnik/get").permitAll()
+				
+				.antMatchers("api/ispit/all").permitAll()
 				.antMatchers("api/ispit/get").permitAll()
 				.antMatchers("api/ispit/add").permitAll()
-				.antMatchers("api/korisnik/add").permitAll()
+				
 				
 				.antMatchers("api/student").permitAll()
 				.antMatchers("api/student/all").permitAll()
@@ -108,6 +112,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 				.antMatchers("api/transakcija/add").permitAll()
 				.antMatchers("api/transakcija/edit").permitAll()
 				.antMatchers("api/transakcija/delete").permitAll()
+				
+				.antMatchers("api/pohadjanje/all").permitAll()
+				.antMatchers("api/pohadjanje/add").permitAll()
+				.antMatchers("api/pohadjanje/edit").permitAll()
+				.antMatchers("api/pohadjanje/delete").permitAll()
 
 				.anyRequest().authenticated().and()
 
