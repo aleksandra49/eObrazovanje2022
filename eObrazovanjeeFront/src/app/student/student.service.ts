@@ -27,16 +27,16 @@ export class StudentService {
         return this.http.get<Student>(url, {observe: 'response'});
     }
 
-    addStudent(student: Student): Observable<HttpResponse<Student>> {
+    /*addStudent(student: Student): Observable<HttpResponse<Student>> {
         return this.http.post<Student>(this.studentUrl, student, {observe: 'response'});
     }
 
     editStudent(student: Student): Observable<HttpResponse<Student>> {
         return this.http.put<Student>(this.studentUrl, student, {observe: 'response'});
-    }
+    }*/
 
-    delete(studentId: number): Observable<HttpResponse<any>> {
-        const url = `${this.studentUrl}/${studentId}`;
+    delete(Id: number): Observable<HttpResponse<any>> {
+        const url = `${this.studentUrl}/${Id}`;
         return this.http.delete<any>(url, {observe: 'response'});
     }
 

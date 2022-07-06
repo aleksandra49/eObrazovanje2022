@@ -128,6 +128,7 @@ public class StudentController {
 		}
 		
 		if(studentDTO.getKorisnikDTO() == null) {
+			System.out.println(studentDTO.getIme());
 			System.out.println("korisnik null");
 		}
 		
