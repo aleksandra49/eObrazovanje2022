@@ -144,7 +144,7 @@ public class StudentController {
 		student.setActive(studentDTO.isActive());
 		student.setKorisnik(korisnik1);
 		
-		
+		korisnik = korisnikService.save(korisnik1);
 		
 		//student.setStudijskaGodina(new HashSet<>(new StudijskaGodinaMapper().listDtoToModel(studentDTO.getStudijskeGodineDTO())));
 		//student.setDokumenti(new HashSet<>(new DokumentMapper().listDtoToModel(studentDTO.getDokumentiDTO())));

@@ -26,6 +26,7 @@ import { AddDokumentComponent } from './dokument/add-dokument/add-dokument.compo
 import { AddPolaganjeIspitaComponent } from './polaganje-ispita/add-polaganje-ispita/add-polaganje-ispita.component';
 import { PohadjanjePredmetaComponent } from './pohadjanje-predmeta/pohadjanje-predmeta.component';
 import { AddPohadanjePredmetaComponent } from './pohadjanje-predmeta/add-pohadanje-predmeta/add-pohadanje-predmeta.component';
+import { StudentProfilComponent } from './student/student-profil/student-profil.component';
 
 const routes: Routes = [
 
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path: 'student', component: StudentComponent },
   { path: 'addStudent', component: AddStudentComponent },
   { path: 'editstudent', component: EditStudentComponent },
+  { path: 'profil', component: StudentProfilComponent },
 
   { path: 'deoIspita', component: DeoIspitaComponent },
   { path: 'addDeoIspita', component: AddDeoIspitaComponent },
