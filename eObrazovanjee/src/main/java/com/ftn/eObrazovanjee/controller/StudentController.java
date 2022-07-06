@@ -30,9 +30,12 @@ import com.ftn.eObrazovanjee.mapper.PohadjanjePredmetaMapper;
 import com.ftn.eObrazovanjee.mapper.StudentMapper;
 import com.ftn.eObrazovanjee.mapper.StudijskaGodinaMapper;
 import com.ftn.eObrazovanjee.model.Dokument;
+import com.ftn.eObrazovanjee.model.Korisnik;
 import com.ftn.eObrazovanjee.model.PohadjanjePredmeta;
 import com.ftn.eObrazovanjee.model.Student;
 import com.ftn.eObrazovanjee.model.StudijskaGodina;
+import com.ftn.eObrazovanjee.model.Uloga;
+import com.ftn.eObrazovanjee.security.SecurityConfiguration;
 import com.ftn.eObrazovanjee.service.DokumentService;
 import com.ftn.eObrazovanjee.service.FinansijskaKarticaService;
 import com.ftn.eObrazovanjee.service.KorisnikService;
@@ -58,6 +61,8 @@ public class StudentController {
     private PohadjanjePredmetaService pohadjanjePredmetaService;
 	@Autowired
     private KorisnikService korisnikService;
+	@Autowired
+	SecurityConfiguration configuration;
 	
 	
 	@RequestMapping(value="/all", method = RequestMethod.GET)
@@ -114,20 +119,37 @@ public class StudentController {
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
 	public ResponseEntity<StudentDTO> saveStudent(@RequestBody StudentDTO studentDTO){		
 		Student student = new Student();
+		Korisnik korisnik = new Korisnik();
+		
+		Korisnik korisnik1 = new Korisnik();
+		
+		if(studentDTO == null) {
+			System.out.println("student null");
+		}
+		
+		if(studentDTO.getKorisnikDTO() == null) {
+			System.out.println("korisnik null");
+		}
+		
+		korisnik1.setKorisnickoIme(studentDTO.getKorisnikDTO().getKorisnickoIme());
+		korisnik1.setLozinka(configuration.passwordEncoder().encode(studentDTO.getKorisnikDTO().getLozinka()));
+		korisnik1.setUloga(Uloga.STUDENT);
+		System.out.println(korisnik);
 		
 		student.setIme(studentDTO.getIme());
 		student.setPrezime(studentDTO.getPrezime());
 		student.setIndeks(studentDTO.getIndeks());
 		student.setEmail(studentDTO.getEmail());
 		student.setActive(studentDTO.isActive());
+		student.setKorisnik(korisnik1);
 		
 		
 		
-		student.setStudijskaGodina(new HashSet<>(new StudijskaGodinaMapper().listDtoToModel(studentDTO.getStudijskeGodineDTO())));
-		student.setDokumenti(new HashSet<>(new DokumentMapper().listDtoToModel(studentDTO.getDokumentiDTO())));
-		student.setFinansijskaKartica(finansijskaKarticaService.findOne(studentDTO.getFinansijskaKarticaDTO().getId()));
-		student.setPohadjanjePredmeta(new HashSet<>(new PohadjanjePredmetaMapper().listDtoToModel(studentDTO.getPohadjanjaPredmetaDTO())));
-		student.setKorisnik(korisnikService.findOne(studentDTO.getKorisnikDTO().getId()));
+		//student.setStudijskaGodina(new HashSet<>(new StudijskaGodinaMapper().listDtoToModel(studentDTO.getStudijskeGodineDTO())));
+		//student.setDokumenti(new HashSet<>(new DokumentMapper().listDtoToModel(studentDTO.getDokumentiDTO())));
+		//student.setFinansijskaKartica(finansijskaKarticaService.findOne(studentDTO.getFinansijskaKarticaDTO().getId()));
+		//student.setPohadjanjePredmeta(new HashSet<>(new PohadjanjePredmetaMapper().listDtoToModel(studentDTO.getPohadjanjaPredmetaDTO())));
+		//student.setKorisnik(korisnikService.findOne(studentDTO.getKorisnikDTO().getId()));
 
 		
 		

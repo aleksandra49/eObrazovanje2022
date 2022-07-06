@@ -44,7 +44,7 @@ export class StudentService {
     saveStudent(student: Student): Observable<HttpResponse<any>> {
         const url = `${this.studentUrl}`;
 
-        /*const body = {
+        const body = {
             ime: 'Anja',
             email: 'anjiko@',
             prezime: 'Anjic',
@@ -53,7 +53,7 @@ export class StudentService {
                 korisnickoIme: 'anjica',
                 prezime: 'Anjika'
             }
-        };*/
+        };
 
         return this.http.post<any>(url, student , {observe: 'response'});
     }
