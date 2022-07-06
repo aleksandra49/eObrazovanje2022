@@ -40,6 +40,9 @@ public class StudentMapper {
 		
 		StudentDTO objectDTO = new StudentDTO();
 		
+		Integer y = 1;
+		long x = y.longValue();
+		
 		objectDTO.setId(object.getId());
 		objectDTO.setIme(object.getIme());
 		objectDTO.setPrezime(object.getPrezime());

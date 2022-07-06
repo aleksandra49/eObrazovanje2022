@@ -3,7 +3,15 @@ use eobrazovanjee;
 insert into korisnik (id, korisnicko_ime, lozinka,uloga) values (1,'admin', '123', 'ADMIN' );
 insert into korisnik (id, korisnicko_ime, lozinka,uloga) values (2,'profica', '123', 'PROFESOR' );
 insert into korisnik (id, korisnicko_ime, lozinka,uloga) values (3,'student', '123', 'STUDENT' );
-
+insert into korisnik (id, korisnicko_ime, lozinka,uloga) values (5,'jana', '123', 'STUDENT' );
+insert into korisnik (id, korisnicko_ime, lozinka,uloga) values (6,'filip', '123', 'STUDENT' );
+insert into korisnik (id, korisnicko_ime, lozinka,uloga) values (7,'marko', '123', 'STUDENT' );
+insert into korisnik (id, korisnicko_ime, lozinka,uloga) values (8,'milan', '123', 'STUDENT' );
+insert into korisnik (id, korisnicko_ime, lozinka,uloga) values (9,'sara', '123', 'STUDENT' );
+insert into korisnik (id, korisnicko_ime, lozinka,uloga) values (10,'kosta', '123', 'STUDENT' );
+insert into korisnik (id, korisnicko_ime, lozinka,uloga) values (11,'visnja', '123', 'STUDENT' );
+insert into korisnik (id, korisnicko_ime, lozinka,uloga) values (12,'lazar', '123', 'STUDENT' );
+insert into korisnik (id, korisnicko_ime, lozinka,uloga) values (13,'tasa', '123', 'STUDENT' );
 
 insert into student (id,active,email,ime,indeks,prezime) values (1, false, 'student@gmail.com', 'Student', 'SF49/2018', 'Studentic');
 insert into student (id,active,email,ime,indeks,prezime) values (2, false, 'jana@gmail.com', 'Jana', 'SF02/2017', 'Jankovic');

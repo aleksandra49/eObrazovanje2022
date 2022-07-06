@@ -75,7 +75,7 @@ public class Student {
 //	private Set<PolaganjeIspita> polaganjeIspita = new HashSet<PolaganjeIspita>();
 	
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "id", nullable = false)
+    @JoinColumn(name = "korisnik", referencedColumnName = "id")
     private Korisnik korisnik;
 	
 	
