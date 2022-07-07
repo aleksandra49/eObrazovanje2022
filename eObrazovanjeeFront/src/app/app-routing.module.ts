@@ -27,6 +27,7 @@ import { AddPolaganjeIspitaComponent } from './polaganje-ispita/add-polaganje-is
 import { PohadjanjePredmetaComponent } from './pohadjanje-predmeta/pohadjanje-predmeta.component';
 import { AddPohadanjePredmetaComponent } from './pohadjanje-predmeta/add-pohadanje-predmeta/add-pohadanje-predmeta.component';
 import { StudentProfilComponent } from './student/student-profil/student-profil.component';
+import { EditProfesorComponent } from './profesor/edit-profesor/edit-profesor.component';
 
 const routes: Routes = [
 
@@ -40,7 +41,7 @@ const routes: Routes = [
   { path: 'ispitniRokovi', component: IspitniRokComponent },
   { path: 'polaganjaIspita', component: PolaganjeIspitaComponent },
   { path: 'addPolaganjaIspita', component: AddPolaganjeIspitaComponent },
-
+  { path: 'profesori/:id', component: EditProfesorComponent },
   { path: 'student', component: StudentComponent },
   { path: 'addStudent', component: AddStudentComponent },
   { path: 'editstudent', component: EditStudentComponent },

@@ -146,7 +146,6 @@ public class ProfesorController {
 	 @DeleteMapping(value = {"/{id}"})
 	 public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
 		 Profesor profesor = profesorService.findOne(id);
-		 Korisnik korisnik = korisnikService.findOne(profesor.getKorisnik().getId());
 			if (profesor != null){
 				profesorService.remove(id);
 				return new ResponseEntity<>(HttpStatus.OK);
