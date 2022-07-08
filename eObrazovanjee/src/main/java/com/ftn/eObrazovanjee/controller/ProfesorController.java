@@ -26,6 +26,7 @@ import com.ftn.eObrazovanjee.model.Korisnik;
 import com.ftn.eObrazovanjee.model.PredavanjePredmeta;
 import com.ftn.eObrazovanjee.model.Profesor;
 import com.ftn.eObrazovanjee.model.Uloga;
+import com.ftn.eObrazovanjee.repository.ProfesorRepository;
 import com.ftn.eObrazovanjee.security.SecurityConfiguration;
 import com.ftn.eObrazovanjee.service.KorisnikService;
 import com.ftn.eObrazovanjee.service.PredavanjePredmetaServiceImpl;
@@ -44,6 +45,10 @@ public class ProfesorController {
 	
 	@Autowired
 	private KorisnikService korisnikService;
+	
+	@Autowired
+	private ProfesorRepository repository;
+	
 	@Autowired
 	private PredavanjePredmetaServiceImpl predavanjePredmetaService;
 	//page
@@ -97,19 +102,19 @@ public class ProfesorController {
 	
 	@RequestMapping(method=RequestMethod.PUT, consumes="application/json")
 	public ResponseEntity<ProfesorDTO> updateProfesor(@RequestBody ProfesorDTO profesorDTO){
-		
-		Profesor profesor = profesorService.findOne(profesorDTO.getId()); 
+		System.out.println("udje u metodu");
+		Profesor profesor = repository.getById(profesorDTO.getId()); 
 		if (profesor == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		
+		System.out.println("nadje profesora");
 		profesor.setIme(profesorDTO.getIme());
 		profesor.setPrezime(profesorDTO.getPrezime());
 		profesor.setEmail(profesorDTO.getEmail());
 
 		profesor.setKorisnik(korisnikService.findOne(profesorDTO.getKorisnik().getId()));
 		profesor.setPredavanja(new HashSet<>(new PredavanjePredmetaMapper().listDtoToModel(profesorDTO.getPredavanja())));
-		
+		System.out.println("nadjeni korisnik je ======" + profesor);
 		profesor = profesorService.save(profesor);
 		return new ResponseEntity<>(new ProfesorMapper().modelToDto(profesor), HttpStatus.OK);	
 	}

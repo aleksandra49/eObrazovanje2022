@@ -26,7 +26,11 @@ export class EditProfesorComponent implements OnInit {
       this.profesor = res.body);
   }
 
-
+  edit(){
+    this.profesorService.editProfesor(this.profesor).subscribe(
+      () => window.location.reload()
+    )
+  }
 
   
 

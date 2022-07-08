@@ -49,4 +49,10 @@ export class ProfesorService {
 
         return this.http.post<any>(url, profesor , {observe: 'response'});
     }
+
+    editProfesor(profesor: Profesor): Observable<HttpResponse<any>>{
+        const url = `${this.profesoriUrl}`;
+
+        return this.http.put<any>(url, profesor , {observe: 'response'});
+    }
 }
