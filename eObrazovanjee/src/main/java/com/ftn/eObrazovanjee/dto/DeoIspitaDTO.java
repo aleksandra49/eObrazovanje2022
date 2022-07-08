@@ -10,7 +10,7 @@ public class DeoIspitaDTO {
 	
 	private Long id;
 	private String naziv;
-	private Double brojOsvojenihBodova;
+	private int brojOsvojenihBodova;
 	private int minBodova;
 	private boolean polozio;
 	
@@ -26,7 +26,7 @@ public class DeoIspitaDTO {
 	//pun
 	
 
-//	public DeoIspitaDTO(Long id, String naziv, Double brojOsvojenihBodova, int minBodova, boolean polozio,
+//	public DeoIspitaDTO(Long id, String naziv, int brojOsvojenihBodova, int minBodova, boolean polozio,
 //			List<StudentDTO> studentDTO, ArrayList<IspitDTO> ispitDTO) {
 //		super();
 //		this.id = id;
@@ -38,7 +38,7 @@ public class DeoIspitaDTO {
 //		this.ispitDTO = ispitDTO;
 //	}
 	
-	public DeoIspitaDTO(Long id, String naziv, Double brojOsvojenihBodova, int minBodova, boolean polozio,
+	public DeoIspitaDTO(Long id, String naziv, int brojOsvojenihBodova, int minBodova, boolean polozio,
 			IspitDTO ispitDTO) {
 		super();
 		this.id = id;
@@ -65,11 +65,11 @@ public class DeoIspitaDTO {
 		this.naziv = naziv;
 	}
 
-	public Double getBrojOsvojenihBodova() {
+	public int getBrojOsvojenihBodova() {
 		return brojOsvojenihBodova;
 	}
 
-	public void setBrojOsvojenihBodova(Double brojOsvojenihBodova) {
+	public void setBrojOsvojenihBodova(int brojOsvojenihBodova) {
 		this.brojOsvojenihBodova = brojOsvojenihBodova;
 	}
 

@@ -24,6 +24,7 @@ import com.ftn.eObrazovanjee.dto.PohadjanjePredmetaDTO;
 import com.ftn.eObrazovanjee.dto.PolaganjeIspitaDTO;
 import com.ftn.eObrazovanjee.dto.StudentDTO;
 import com.ftn.eObrazovanjee.dto.StudijskaGodinaDTO;
+import com.ftn.eObrazovanjee.mapper.DeoIspitaMapper;
 import com.ftn.eObrazovanjee.mapper.DokumentMapper;
 import com.ftn.eObrazovanjee.mapper.FinansijskaKarticaMapper;
 import com.ftn.eObrazovanjee.mapper.IspitMapper;
@@ -111,6 +112,23 @@ public class StudentController {
 		return new ResponseEntity<>(polozeniIspiti, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/svaPolaganja", method = RequestMethod.GET)
+	public ResponseEntity<List<IspitDTO>> getSvaPolaganja(@PathVariable Long id) {
+		
+		Student student = studentService.findOne(id);
+		List<Ispit> ispiti = ispitService.findAll();
+		ArrayList<PolaganjeIspitaDTO> polaganjaStudenta = getPolaganjaIzStudenta(student.getId());
+		List<IspitDTO> polozeniIspiti = new ArrayList<>();
+		
+		for(PolaganjeIspitaDTO polaganje : polaganjaStudenta) {
+			if(polaganje.getIspit().getBrojOsvojenihBodova() >= 51) {
+				polozeniIspiti.add(polaganje.getIspit());
+			}		
+		}
+		
+		return new ResponseEntity<>(polozeniIspiti, HttpStatus.OK);
+	}
+	
 	@RequestMapping(value="/NepolozeniIspiti", method = RequestMethod.GET)
 	public ResponseEntity<List<IspitDTO>> getNepolozeniIspiti(@PathVariable Long id) {
 		
@@ -127,6 +145,7 @@ public class StudentController {
 		
 		return new ResponseEntity<>(nepolozeniIspiti, HttpStatus.OK);
 	}
+
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<StudentDTO>> getStudentiPage(Pageable page) {

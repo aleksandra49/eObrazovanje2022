@@ -1,6 +1,7 @@
 package com.ftn.eObrazovanjee.controller;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,9 @@ import com.ftn.eObrazovanjee.dto.DeoIspitaDTO;
 import com.ftn.eObrazovanjee.dto.IspitDTO;
 import com.ftn.eObrazovanjee.mapper.DeoIspitaMapper;
 import com.ftn.eObrazovanjee.mapper.IspitMapper;
+import com.ftn.eObrazovanjee.mapper.PolaganjeIspitaMapper;
 import com.ftn.eObrazovanjee.model.DeoIspita;
+import com.ftn.eObrazovanjee.model.Ispit;
 import com.ftn.eObrazovanjee.service.DeoIspitaService;
 import com.ftn.eObrazovanjee.service.IspitService;
 
@@ -86,9 +89,23 @@ public class DeoIspitaController {
 		deoIspita.setPolozio(deoIspitaDTO.isPolozio());
 
 		deoIspita.setIspit(ispitService.findOne(deoIspitaDTO.getIspitDTO().getId()));
+		dodajBodove(deoIspita);
 		
 		deoIspita = deoIspitaService.save(deoIspita);
 		return new ResponseEntity<>(new DeoIspitaMapper().modelToDto(deoIspita), HttpStatus.CREATED);	
+	}
+	
+	public Void dodajBodove(DeoIspita deo){		
+		Ispit ispit = ispitService.findOne(deo.getIspit().getId());
+		if(ispit.getBrojOsvojenihBodova() + deo.getBrojOsvojenihBodova() > 100) {
+			ispit.setBrojOsvojenihBodova(100);
+		}
+		else {
+			ispit.setBrojOsvojenihBodova(ispit.getBrojOsvojenihBodova() + deo.getBrojOsvojenihBodova());
+		}
+		ispit = ispitService.save(ispit);
+		
+		return null;
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, consumes="application/json")

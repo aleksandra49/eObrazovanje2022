@@ -57,20 +57,40 @@ public class PohadjanjePredmetaController {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<PohadjanjePredmetaDTO>> getPohadjanjaPage(Pageable page) {
-		Page<PohadjanjePredmeta> pohadjanjaPredmeta = pohadjanjePredmetaService.findAll(page);
-		
+    public ResponseEntity<List<PohadjanjePredmetaDTO>> getPohadjanjaPage(Pageable page) {
+        Page<PohadjanjePredmeta> pohadjanjaPredmeta = pohadjanjePredmetaService.findAll(page);
+
+
+        List<PohadjanjePredmetaDTO> pohadjanjaPredmetaDTO = new ArrayList<>();
+        for (PohadjanjePredmeta obj : pohadjanjaPredmeta) {
+            PohadjanjePredmetaDTO pohadjanja = new PohadjanjePredmetaMapper().modelToDto(obj);
+            pohadjanja.setStudnetDTO(getStudentIzPohadjanje(pohadjanja.getId()));
+            pohadjanja.setPredmetInstanca(getPredmetInstancaIzPohadjanje(pohadjanja.getId()));
+            pohadjanjaPredmetaDTO.add(pohadjanja);
+
+        }
+        return new ResponseEntity<>(pohadjanjaPredmetaDTO, HttpStatus.OK);
+    }
+	
+	@RequestMapping(value="/pohagadjanjaStudenta", method = RequestMethod.GET)
+	public ResponseEntity<List<PohadjanjePredmetaDTO>> getPohadjanjaStudenta(@PathVariable Long id) {
+		List<PohadjanjePredmeta> pohadjanjaPredmeta = pohadjanjePredmetaService.findAll();
 		
 		List<PohadjanjePredmetaDTO> pohadjanjaPredmetaDTO = new ArrayList<>();
-		for (PohadjanjePredmeta obj : pohadjanjaPredmeta) {
-			PohadjanjePredmetaDTO pohadjanja = new PohadjanjePredmetaMapper().modelToDto(obj);
-			pohadjanja.setStudnetDTO(getStudentIzPohadjanje(pohadjanja.getId()));
-			pohadjanja.setPredmetInstanca(getPredmetInstancaIzPohadjanje(pohadjanja.getId()));
-			pohadjanjaPredmetaDTO.add(pohadjanja);
+		for (PohadjanjePredmeta pohadjanjeEntity : pohadjanjaPredmeta) {
+			if(pohadjanjeEntity.getStudent().getId() == id) {
+				PohadjanjePredmetaDTO pohadjanjeDTO = new PohadjanjePredmetaMapper().modelToDto(pohadjanjeEntity);
+				pohadjanjeDTO.setStudnetDTO(getStudentIzPohadjanje(pohadjanjeEntity.getId()));
+				pohadjanjeDTO.setPredmetInstanca(getPredmetInstancaIzPohadjanje(pohadjanjeEntity.getId()));
+				
+				pohadjanjaPredmetaDTO.add(pohadjanjeDTO);
+			}
 			
 		}
 		return new ResponseEntity<>(pohadjanjaPredmetaDTO, HttpStatus.OK);
 	}
+	
+
 	
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)

@@ -26,7 +26,7 @@ public class DeoIspita {
 	private String naziv;
 	
 	@Column(name = "broj_osvojenih_bodova")
-	private Double brojOsvojenihBodova;
+	private int brojOsvojenihBodova;
 	
 	@Column(name = "min_bodova")
 	private int minBodova;
@@ -47,7 +47,7 @@ public class DeoIspita {
 		super();
 	}
 
-	public DeoIspita(Long id, String naziv, Double brojOsvojenihBodova, int minBodova, boolean polozio, Ispit ispit) {
+	public DeoIspita(Long id, String naziv, int brojOsvojenihBodova, int minBodova, boolean polozio, Ispit ispit) {
 		super();
 		this.id = id;
 		this.naziv = naziv;
@@ -59,7 +59,7 @@ public class DeoIspita {
 	
 	
 
-	public DeoIspita(String naziv, Double brojOsvojenihBodova, int minBodova, boolean polozio, Ispit ispit) {
+	public DeoIspita(String naziv, int brojOsvojenihBodova, int minBodova, boolean polozio, Ispit ispit) {
 		super();
 		this.naziv = naziv;
 		this.brojOsvojenihBodova = brojOsvojenihBodova;
@@ -84,11 +84,11 @@ public class DeoIspita {
 		this.naziv = naziv;
 	}
 
-	public Double getBrojOsvojenihBodova() {
+	public int getBrojOsvojenihBodova() {
 		return brojOsvojenihBodova;
 	}
 
-	public void setBrojOsvojenihBodova(Double brojOsvojenihBodova) {
+	public void setBrojOsvojenihBodova(int brojOsvojenihBodova) {
 		this.brojOsvojenihBodova = brojOsvojenihBodova;
 	}
 
