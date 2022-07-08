@@ -103,6 +103,8 @@ public class ProfesorController {
 	@RequestMapping(method=RequestMethod.PUT, consumes="application/json")
 	public ResponseEntity<ProfesorDTO> updateProfesor(@RequestBody ProfesorDTO profesorDTO){
 		System.out.println("udje u metodu");
+		
+		Korisnik korisnik = new Korisnik();
 		Profesor profesor = repository.getById(profesorDTO.getId()); 
 		if (profesor == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -112,9 +114,16 @@ public class ProfesorController {
 		profesor.setPrezime(profesorDTO.getPrezime());
 		profesor.setEmail(profesorDTO.getEmail());
 
-		profesor.setKorisnik(korisnikService.findOne(profesorDTO.getKorisnik().getId()));
+		Korisnik korisnik1 = new Korisnik();
+		korisnik1.setKorisnickoIme(profesorDTO.getKorisnik().getKorisnickoIme());
+		korisnik1.setLozinka(configuration.passwordEncoder().encode(profesorDTO.getKorisnik().getLozinka()));
+		korisnik1.setUloga(Uloga.PROFESOR);
+		
+		profesor.setKorisnik(korisnik1);
 		profesor.setPredavanja(new HashSet<>(new PredavanjePredmetaMapper().listDtoToModel(profesorDTO.getPredavanja())));
 		System.out.println("nadjeni korisnik je ======" + profesor);
+		
+		korisnik = korisnikService.save(korisnik1);
 		profesor = profesorService.save(profesor);
 		return new ResponseEntity<>(new ProfesorMapper().modelToDto(profesor), HttpStatus.OK);	
 	}
