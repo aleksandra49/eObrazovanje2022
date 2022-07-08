@@ -70,9 +70,9 @@ public class Student {
 //	@OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 //	private Set<PohadjanjePredmeta> pohadjanjePredmeta = new HashSet<PohadjanjePredmeta>();
 //	
-//	//polaganjeispit
-//	@OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-//	private Set<PolaganjeIspita> polaganjeIspita = new HashSet<PolaganjeIspita>();
+	//polaganjeispit
+	@OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	private Set<PolaganjeIspita> polaganjeIspita = new HashSet<PolaganjeIspita>();
 	
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "korisnik", referencedColumnName = "id")
@@ -87,10 +87,9 @@ public class Student {
 	}
 	
 	
-	
 	public Student(Long id, String ime, String prezime, String indeks, String email, boolean active,
 			Set<StudijskaGodina> studijskaGodina, Set<Dokument> dokumenti, FinansijskaKartica finansijskaKartica,
-			Set<PohadjanjePredmeta> pohadjanjePredmeta, Korisnik korisnik) {
+			Set<PohadjanjePredmeta> pohadjanjePredmeta, Set<PolaganjeIspita> polaganjeIspita, Korisnik korisnik) {
 		super();
 		this.id = id;
 		this.ime = ime;
@@ -102,25 +101,7 @@ public class Student {
 		this.dokumenti = dokumenti;
 		this.finansijskaKartica = finansijskaKartica;
 		this.pohadjanjePredmeta = pohadjanjePredmeta;
-		this.korisnik = korisnik;
-	}
-
-
-	
-
-	public Student(String ime, String prezime, String indeks, String email, boolean active,
-			Set<StudijskaGodina> studijskaGodina, Set<Dokument> dokumenti, FinansijskaKartica finansijskaKartica,
-			Set<PohadjanjePredmeta> pohadjanjePredmeta, Korisnik korisnik) {
-		super();
-		this.ime = ime;
-		this.prezime = prezime;
-		this.indeks = indeks;
-		this.email = email;
-		this.active = active;
-		this.studijskaGodina = studijskaGodina;
-		this.dokumenti = dokumenti;
-		this.finansijskaKartica = finansijskaKartica;
-		this.pohadjanjePredmeta = pohadjanjePredmeta;
+		this.polaganjeIspita = polaganjeIspita;
 		this.korisnik = korisnik;
 	}
 
@@ -129,84 +110,145 @@ public class Student {
 	public Long getId() {
 		return id;
 	}
+
+
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+
+
 	public String getIme() {
 		return ime;
 	}
+
+
+
 	public void setIme(String ime) {
 		this.ime = ime;
 	}
+
+
+
 	public String getPrezime() {
 		return prezime;
 	}
+
+
+
 	public void setPrezime(String prezime) {
 		this.prezime = prezime;
 	}
+
+
+
 	public String getIndeks() {
 		return indeks;
 	}
+
+
+
 	public void setIndeks(String indeks) {
 		this.indeks = indeks;
 	}
+
+
+
 	public String getEmail() {
 		return email;
 	}
+
+
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+
+
 	public boolean isActive() {
 		return active;
 	}
+
+
+
 	public void setActive(boolean active) {
 		this.active = active;
 	}
+
+
 
 	public Set<StudijskaGodina> getStudijskaGodina() {
 		return studijskaGodina;
 	}
 
+
+
 	public void setStudijskaGodina(Set<StudijskaGodina> studijskaGodina) {
 		this.studijskaGodina = studijskaGodina;
 	}
+
+
 
 	public Set<Dokument> getDokumenti() {
 		return dokumenti;
 	}
 
+
+
 	public void setDokumenti(Set<Dokument> dokumenti) {
 		this.dokumenti = dokumenti;
 	}
+
+
 
 	public FinansijskaKartica getFinansijskaKartica() {
 		return finansijskaKartica;
 	}
 
+
+
 	public void setFinansijskaKartica(FinansijskaKartica finansijskaKartica) {
 		this.finansijskaKartica = finansijskaKartica;
 	}
+
+
 
 	public Set<PohadjanjePredmeta> getPohadjanjePredmeta() {
 		return pohadjanjePredmeta;
 	}
 
+
+
 	public void setPohadjanjePredmeta(Set<PohadjanjePredmeta> pohadjanjePredmeta) {
 		this.pohadjanjePredmeta = pohadjanjePredmeta;
 	}
+
+
+
+	public Set<PolaganjeIspita> getPolaganjeIspita() {
+		return polaganjeIspita;
+	}
+
+
+
+	public void setPolaganjeIspita(Set<PolaganjeIspita> polaganjeIspita) {
+		this.polaganjeIspita = polaganjeIspita;
+	}
+
+
 
 	public Korisnik getKorisnik() {
 		return korisnik;
 	}
 
+
+
 	public void setKorisnik(Korisnik korisnik) {
 		this.korisnik = korisnik;
 	}
-	
-	
-	
-	
-	
+
 	
 
 }

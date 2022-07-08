@@ -3,6 +3,7 @@ package com.ftn.eObrazovanjee.controller;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,6 +21,7 @@ import com.ftn.eObrazovanjee.dto.FinansijskaKarticaDTO;
 import com.ftn.eObrazovanjee.dto.IspitDTO;
 import com.ftn.eObrazovanjee.dto.KorisnikDTO;
 import com.ftn.eObrazovanjee.dto.PohadjanjePredmetaDTO;
+import com.ftn.eObrazovanjee.dto.PolaganjeIspitaDTO;
 import com.ftn.eObrazovanjee.dto.StudentDTO;
 import com.ftn.eObrazovanjee.dto.StudijskaGodinaDTO;
 import com.ftn.eObrazovanjee.mapper.DokumentMapper;
@@ -27,19 +29,24 @@ import com.ftn.eObrazovanjee.mapper.FinansijskaKarticaMapper;
 import com.ftn.eObrazovanjee.mapper.IspitMapper;
 import com.ftn.eObrazovanjee.mapper.KorisnikMapper;
 import com.ftn.eObrazovanjee.mapper.PohadjanjePredmetaMapper;
+import com.ftn.eObrazovanjee.mapper.PolaganjeIspitaMapper;
 import com.ftn.eObrazovanjee.mapper.StudentMapper;
 import com.ftn.eObrazovanjee.mapper.StudijskaGodinaMapper;
 import com.ftn.eObrazovanjee.model.Dokument;
+import com.ftn.eObrazovanjee.model.Ispit;
 import com.ftn.eObrazovanjee.model.Korisnik;
 import com.ftn.eObrazovanjee.model.PohadjanjePredmeta;
+import com.ftn.eObrazovanjee.model.PolaganjeIspita;
 import com.ftn.eObrazovanjee.model.Student;
 import com.ftn.eObrazovanjee.model.StudijskaGodina;
 import com.ftn.eObrazovanjee.model.Uloga;
 import com.ftn.eObrazovanjee.security.SecurityConfiguration;
 import com.ftn.eObrazovanjee.service.DokumentService;
 import com.ftn.eObrazovanjee.service.FinansijskaKarticaService;
+import com.ftn.eObrazovanjee.service.IspitService;
 import com.ftn.eObrazovanjee.service.KorisnikService;
 import com.ftn.eObrazovanjee.service.PohadjanjePredmetaService;
+import com.ftn.eObrazovanjee.service.PolaganjeIspitaService;
 import com.ftn.eObrazovanjee.service.StudentService;
 import com.ftn.eObrazovanjee.service.StudijskaGodinaService;
 
@@ -56,11 +63,15 @@ public class StudentController {
 	@Autowired
     private DokumentService dokumentService;
 	@Autowired
+    private PolaganjeIspitaService polaganjeService;
+	@Autowired
 	private FinansijskaKarticaService finansijskaKarticaService;
 	@Autowired
     private PohadjanjePredmetaService pohadjanjePredmetaService;
 	@Autowired
     private KorisnikService korisnikService;
+	@Autowired
+	private IspitService ispitService;
 	@Autowired
 	SecurityConfiguration configuration;
 	
@@ -77,9 +88,44 @@ public class StudentController {
 			student.setFinansijskaKarticaDTO(getFinansijskaKarticaIzStudenta(student.getId()));
 			student.setPohadjanjaPredmetaDTO(getPohadjanjaIzStudenta(student.getId()));
 			student.setKorisnikDTO(getKorisnikIzStudenta(student.getId()));
+			student.setPolaganjeIspita(getPolaganjaIzStudenta(student.getId()));
 			studentiDTO.add(student);
 		}
 		return new ResponseEntity<>(studentiDTO, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/polozeniIspiti", method = RequestMethod.GET)
+	public ResponseEntity<List<IspitDTO>> getPolozeniIspiti(@PathVariable Long id) {
+		
+		Student student = studentService.findOne(id);
+		List<Ispit> ispiti = ispitService.findAll();
+		ArrayList<PolaganjeIspitaDTO> polaganjaStudenta = getPolaganjaIzStudenta(student.getId());
+		List<IspitDTO> polozeniIspiti = new ArrayList<>();
+		
+		for(PolaganjeIspitaDTO polaganje : polaganjaStudenta) {
+			if(polaganje.getIspit().getBrojOsvojenihBodova() >= 51) {
+				polozeniIspiti.add(polaganje.getIspit());
+			}		
+		}
+		
+		return new ResponseEntity<>(polozeniIspiti, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/NepolozeniIspiti", method = RequestMethod.GET)
+	public ResponseEntity<List<IspitDTO>> getNepolozeniIspiti(@PathVariable Long id) {
+		
+		Student student = studentService.findOne(id);
+		List<Ispit> ispiti = ispitService.findAll();
+		ArrayList<PolaganjeIspitaDTO> polaganjaStudenta = getPolaganjaIzStudenta(student.getId());
+		List<IspitDTO> nepolozeniIspiti = new ArrayList<>();
+		
+		for(PolaganjeIspitaDTO polaganje : polaganjaStudenta) {
+			if(polaganje.getIspit().getBrojOsvojenihBodova() <= 51) {
+				nepolozeniIspiti.add(polaganje.getIspit());
+			}		
+		}
+		
+		return new ResponseEntity<>(nepolozeniIspiti, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
@@ -95,6 +141,7 @@ public class StudentController {
 			student.setFinansijskaKarticaDTO(getFinansijskaKarticaIzStudenta(student.getId()));
 			student.setPohadjanjaPredmetaDTO(getPohadjanjaIzStudenta(student.getId()));
 			student.setKorisnikDTO(getKorisnikIzStudenta(student.getId()));
+			student.setPolaganjeIspita(getPolaganjaIzStudenta(student.getId()));
 			studentiDTO.add(student);
 		}
 		return new ResponseEntity<>(studentiDTO, HttpStatus.OK);
@@ -112,6 +159,7 @@ public class StudentController {
 		studentDTO.setFinansijskaKarticaDTO(getFinansijskaKarticaIzStudenta(student.getId()));
 		studentDTO.setPohadjanjaPredmetaDTO(getPohadjanjaIzStudenta(student.getId()));
 		studentDTO.setKorisnikDTO(getKorisnikIzStudenta(student.getId()));
+		studentDTO.setPolaganjeIspita(getPolaganjaIzStudenta(student.getId()));
 		
 		return new ResponseEntity<>(studentDTO, HttpStatus.OK);
 	}
@@ -151,7 +199,7 @@ public class StudentController {
 		//student.setFinansijskaKartica(finansijskaKarticaService.findOne(studentDTO.getFinansijskaKarticaDTO().getId()));
 		//student.setPohadjanjePredmeta(new HashSet<>(new PohadjanjePredmetaMapper().listDtoToModel(studentDTO.getPohadjanjaPredmetaDTO())));
 		//student.setKorisnik(korisnikService.findOne(studentDTO.getKorisnikDTO().getId()));
-
+		//student.setPolaganjeIspita(getPolaganjaIzStudenta(student.getId()));
 		
 		
 		
@@ -180,6 +228,7 @@ public class StudentController {
 		student.setFinansijskaKartica(finansijskaKarticaService.findOne(studentDTO.getFinansijskaKarticaDTO().getId()));
 		student.setPohadjanjePredmeta(new HashSet<>(new PohadjanjePredmetaMapper().listDtoToModel(studentDTO.getPohadjanjaPredmetaDTO())));
 		student.setKorisnik(korisnikService.findOne(studentDTO.getKorisnikDTO().getId()));
+		student.setPolaganjeIspita(new HashSet<>(new PolaganjeIspitaMapper().listDtoToModel(studentDTO.getPolaganjeIspita())));
 		
 		student = studentService.save(student);
 		return new ResponseEntity<>(new StudentMapper().modelToDto(student), HttpStatus.OK);	
@@ -213,7 +262,7 @@ public class StudentController {
 	
 	//veza za dokument  za student
 	//@RequestMapping(value="/dokumentiIzStudenta/{id}", method=RequestMethod.GET)
-	public ArrayList<DokumentDTO> getDokumentiIzStudenta(@PathVariable Long id){
+	public ArrayList<DokumentDTO> getDokumentiIzStudenta(Long id){
 		Student student = studentService.findOne(id);
 		if(student == null){
 			return null;
@@ -227,7 +276,7 @@ public class StudentController {
 	
 	//veza za finan kartica za student
 	//@RequestMapping(value="/finansijskaKarticaIzStudenta/{id}", method=RequestMethod.GET)
-	public FinansijskaKarticaDTO getFinansijskaKarticaIzStudenta(@PathVariable Long id){
+	public FinansijskaKarticaDTO getFinansijskaKarticaIzStudenta(Long id){
 		Student student = studentService.findOne(id);
 		if(student == null){
 			return  null;
@@ -238,7 +287,7 @@ public class StudentController {
 	
 	//veza za pohadjanje  za student
 	//@RequestMapping(value="/pohadjanjaIzStudenta/{id}", method=RequestMethod.GET)
-	public ArrayList<PohadjanjePredmetaDTO> getPohadjanjaIzStudenta(@PathVariable Long id){
+	public ArrayList<PohadjanjePredmetaDTO> getPohadjanjaIzStudenta(Long id){
 		Student student = studentService.findOne(id);
 		if(student == null){
 			return null;
@@ -253,12 +302,26 @@ public class StudentController {
 	
 	//veza za korisnik za student
 	//@RequestMapping(value="/korisnikIzStudenta/{id}", method=RequestMethod.GET)
-	public KorisnikDTO getKorisnikIzStudenta(@PathVariable Long id){
+	public KorisnikDTO getKorisnikIzStudenta( Long id){
 		Student student = studentService.findOne(id);
 		if(student == null){
 			return null;
 		}
 		return new KorisnikMapper().modelToDto(student.getKorisnik());
 	}
+	
+	public ArrayList<PolaganjeIspitaDTO> getPolaganjaIzStudenta(Long id){
+		Student student = studentService.findOne(id);
+		if(student == null){
+			return null;
+		}
+		ArrayList<PolaganjeIspitaDTO> listaPolaganja = new ArrayList<>();
+		for(PolaganjeIspita polaganje : student.getPolaganjeIspita()) {
+			listaPolaganja.add(new PolaganjeIspitaMapper().modelToDto(polaganje));
+		}		
+		return listaPolaganja;
+	}
 
+	
+	
 }

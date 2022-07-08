@@ -22,16 +22,18 @@ public class StudentDTO {
 	//private Set<PohadjanjePredmetaDTO> pohadjanjaPredmetaDTO = new HashSet();
 	private ArrayList<PohadjanjePredmetaDTO> pohadjanjaPredmetaDTO;
 	private KorisnikDTO korisnikDTO;
+	private ArrayList<PolaganjeIspitaDTO> polaganjeIspita;
 	
 	
 	public StudentDTO() {
 		super();
 	}
-	
+
+
 	public StudentDTO(Long id, String ime, String prezime, String indeks, String email, boolean active,
 			ArrayList<StudijskaGodinaDTO> studijskeGodineDTO, ArrayList<DokumentDTO> dokumentiDTO,
 			FinansijskaKarticaDTO finansijskaKarticaDTO, ArrayList<PohadjanjePredmetaDTO> pohadjanjaPredmetaDTO,
-			KorisnikDTO korisnikDTO) {
+			KorisnikDTO korisnikDTO, ArrayList<PolaganjeIspitaDTO> polaganjeIspita) {
 		super();
 		this.id = id;
 		this.ime = ime;
@@ -44,10 +46,8 @@ public class StudentDTO {
 		this.finansijskaKarticaDTO = finansijskaKarticaDTO;
 		this.pohadjanjaPredmetaDTO = pohadjanjaPredmetaDTO;
 		this.korisnikDTO = korisnikDTO;
+		this.polaganjeIspita = polaganjeIspita;
 	}
-
-
-
 
 
 	public Long getId() {
@@ -109,57 +109,67 @@ public class StudentDTO {
 		this.active = active;
 	}
 
+
 	public ArrayList<StudijskaGodinaDTO> getStudijskeGodineDTO() {
 		return studijskeGodineDTO;
 	}
+
 
 	public void setStudijskeGodineDTO(ArrayList<StudijskaGodinaDTO> studijskeGodineDTO) {
 		this.studijskeGodineDTO = studijskeGodineDTO;
 	}
 
+
 	public ArrayList<DokumentDTO> getDokumentiDTO() {
 		return dokumentiDTO;
 	}
+
 
 	public void setDokumentiDTO(ArrayList<DokumentDTO> dokumentiDTO) {
 		this.dokumentiDTO = dokumentiDTO;
 	}
 
+
 	public FinansijskaKarticaDTO getFinansijskaKarticaDTO() {
 		return finansijskaKarticaDTO;
 	}
+
 
 	public void setFinansijskaKarticaDTO(FinansijskaKarticaDTO finansijskaKarticaDTO) {
 		this.finansijskaKarticaDTO = finansijskaKarticaDTO;
 	}
 
+
 	public ArrayList<PohadjanjePredmetaDTO> getPohadjanjaPredmetaDTO() {
 		return pohadjanjaPredmetaDTO;
 	}
+
 
 	public void setPohadjanjaPredmetaDTO(ArrayList<PohadjanjePredmetaDTO> pohadjanjaPredmetaDTO) {
 		this.pohadjanjaPredmetaDTO = pohadjanjaPredmetaDTO;
 	}
 
+
 	public KorisnikDTO getKorisnikDTO() {
 		return korisnikDTO;
 	}
 
+
 	public void setKorisnikDTO(KorisnikDTO korisnikDTO) {
 		this.korisnikDTO = korisnikDTO;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
-	
+
+	public ArrayList<PolaganjeIspitaDTO> getPolaganjeIspita() {
+		return polaganjeIspita;
+	}
+
+
+	public void setPolaganjeIspita(ArrayList<PolaganjeIspitaDTO> polaganjeIspita) {
+		this.polaganjeIspita = polaganjeIspita;
+	}
+
+
 	
 	
 
