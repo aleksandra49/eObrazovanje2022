@@ -42,5 +42,11 @@ export class StudijskaGodinaService {
 
         return this.http.post<any>(url, godina , {observe: 'response'});
     }
+
+    editStudijskaGodina(studijskaGodina: StudijskaGodina): Observable<HttpResponse<any>>{
+        const url = `${this.studijskeGodineUrl}`;
+
+        return this.http.put<any>(url, studijskaGodina , {observe: 'response'});
+    }
   
 }

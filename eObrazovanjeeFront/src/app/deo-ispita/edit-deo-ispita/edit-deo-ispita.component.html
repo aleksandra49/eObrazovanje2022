@@ -1,1 +1,29 @@
-<p>edit-deo-ispita works!</p>
+
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Izmena dela ispita</h4>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6"><label class="labels">Naziv</label><input [(ngModel)]="deoIspita.naziv" type="text" class="form-control" placeholder="naziv" value=""></div>
+                    <div class="col-md-6"><label class="labels">broj osvojenih bodova</label><input [(ngModel)]="deoIspita.prezibrojOsvojenihBodovame" type="text" class="form-control" value="" placeholder="brojOsvojenihBodova"></div>
+                    <div class="col-md-6"><label class="labels">minumum bodova</label><input [(ngModel)]="deoIspita.minBodova" type="text" class="form-control" placeholder="minBodova" value=""></div>
+                    <div class="col-md-6"><label class="labels">polozio</label><input [(ngModel)]="deoIspita.polozio" type="boolean" class="form-control" value="" placeholder="polozio"></div>
+                </div>
+                
+                
+                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" (click)="edit()" type="button">Sacuvaj izmene </button></div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+    
+
+
+

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PohadjanjePredmetaService } from '../pohadjanje-predmeta.service';
 
 @Component({
   selector: 'app-edit-pohadanje-predmeta',
@@ -7,9 +9,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditPohadanjePredmetaComponent implements OnInit {
 
-  constructor() { }
+  loaded = false;
+  pohadjanjePredmeta: any;
+  id: string | null | undefined;
+
+
+
+  constructor(private pohadjanjePredmetaService: PohadjanjePredmetaService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+     this.id = this.route.snapshot.paramMap.get('id');
+     this.getPohadjanjePredmeta();
   }
 
+  getPohadjanjePredmeta() {
+    this.pohadjanjePredmetaService.getPohadjanjePredmeta(Number(this.id)).subscribe(res =>
+      this.pohadjanjePredmeta = res.body);
+  }
+
+  edit(){
+    this.pohadjanjePredmetaService.editPohadjanjePredmeta(this.pohadjanjePredmeta).subscribe(
+      () => window.location.reload()
+    )
+  }
+
+  
+
+
 }
+

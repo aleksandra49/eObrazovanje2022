@@ -1,1 +1,32 @@
-<p>edit-studijska-godina works!</p>
+
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Izmena studijske godine </h4>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6"><label class="labels">pocetakStudija</label><input [(ngModel)]="studijskaGodina.pocetakStudija" type="date" class="form-control" placeholder="pocetakStudija" value=""></div>
+                    <div class="col-md-6"><label class="labels">krajStudija</label><input [(ngModel)]="studijskaGodina.krajStudija" type="date" class="form-control" value="" placeholder="krajStudija"></div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12"><label class="labels">nacinFinansiranja</label><input [(ngModel)]="studijskaGodina.nacinFinansiranja" type="text" class="form-control" placeholder="nacinFinansiranja" value=""></div>
+                    <div class="col-md-12"><label class="labels">godinaStudija </label><input [(ngModel)]="studijskaGodina.godinaStudija" type="number" class="form-control" placeholder="emaigodinaStudijal" value=""></div>
+                    <div class="col-md-12"><label class="labels">skolskaGodina</label><input [(ngModel)]="studijskaGodina.korisnik.skolskaGodina" type="number" class="form-control" placeholder="skolskaGodina" value=""></div>
+                    
+                </div>
+                
+                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" (click)="edit()" type="button">sacuvaj izmene</button></div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+    
+
+
+

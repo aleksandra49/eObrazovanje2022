@@ -33,6 +33,7 @@ import { AddIspitniRokComponent } from './ispitni-rok/add-ispitni-rok/add-ispitn
 import { EditIspitniRokComponent } from './ispitni-rok/edit-ispitni-rok/edit-ispitni-rok.component';
 import { AddKorisnikComponent } from './korisnik/add-korisnik/add-korisnik.component';
 import { EditKorisnikComponent } from './korisnik/edit-korisnik/edit-korisnik.component';
+import { EditPohadanjePredmetaComponent } from './pohadjanje-predmeta/edit-pohadanje-predmeta/edit-pohadanje-predmeta.component';
 
 const routes: Routes = [
 
@@ -55,9 +56,11 @@ const routes: Routes = [
   { path: 'addPolaganjaIspita', component: AddPolaganjeIspitaComponent },
 
   { path: 'profesori/:id', component: EditProfesorComponent },
+
   { path: 'student', component: StudentComponent },
   { path: 'addStudent', component: AddStudentComponent },
   { path: 'editstudent', component: EditStudentComponent },
+  { path: 'student/:id', component: EditStudentComponent },
   { path: 'profil', component: StudentProfilComponent },
 
   { path: 'deoIspita', component: DeoIspitaComponent },
@@ -80,7 +83,7 @@ const routes: Routes = [
 
   { path: 'pohadjanje', component: PohadjanjePredmetaComponent },
   { path: 'addPohadjanje', component: AddPohadanjePredmetaComponent },
-  //{ path: 'editStudijskaGodina', component: EditStudijskaGodinaComponent },
+  { path: 'editPohadjanje', component: EditPohadanjePredmetaComponent },
 
   { path: 'addProfesor', component: AddProfesorComponent },
 

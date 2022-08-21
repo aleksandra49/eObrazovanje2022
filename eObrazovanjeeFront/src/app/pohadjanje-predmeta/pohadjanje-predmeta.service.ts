@@ -43,4 +43,10 @@ export class PohadjanjePredmetaService {
 
         return this.http.post<any>(url, pohadjanje , {observe: 'response'});
     }
+
+    editPohadjanjePredmeta(pohadanje: PohadjanjePredmeta): Observable<HttpResponse<any>>{
+        const url = `${this.pohadjanjaUrl}`;
+
+        return this.http.put<any>(url, pohadanje , {observe: 'response'});
+    }
 }

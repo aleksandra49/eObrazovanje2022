@@ -59,4 +59,11 @@ export class StudentService {
     }
 
 
+    editStudent(student: Student): Observable<HttpResponse<any>>{
+        const url = `${this.studentUrl}`;
+
+        return this.http.put<any>(url, student , {observe: 'response'});
+    }
+
+
 }

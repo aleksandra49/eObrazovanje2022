@@ -38,4 +38,10 @@ export class DeoIspitaService {
 
         return this.http.post<any>(url, deoIspita , {observe: 'response'});
     }
+
+    editDeoIspita(deoIspita: DeoIspita): Observable<HttpResponse<any>>{
+        const url = `${this.deoloviIspitaUrl}`;
+
+        return this.http.put<any>(url, deoIspita , {observe: 'response'});
+    }
 }
