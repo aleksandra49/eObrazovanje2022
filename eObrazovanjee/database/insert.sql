@@ -12,25 +12,25 @@ insert into korisnik (id, korisnicko_ime, lozinka,uloga) values (10,'kosta', '12
 insert into korisnik (id, korisnicko_ime, lozinka,uloga) values (11,'visnja', '123', 'STUDENT' );
 insert into korisnik (id, korisnicko_ime, lozinka,uloga) values (12,'lazar', '123', 'STUDENT' );
 insert into korisnik (id, korisnicko_ime, lozinka,uloga) values (13,'tasa', '123', 'STUDENT' );
+use eobrazovanjee;
+insert into student (id,active,email,ime,indeks,prezime,korisnik) values (1, false, 'student@gmail.com', 'Student', 'SF49/2018', 'Studentic',3);
+insert into student (id,active,email,ime,indeks,prezime,korisnik) values (2, false, 'jana@gmail.com', 'Jana', 'SF02/2017', 'Jankovic',5);
+insert into student (id,active,email,ime,indeks,prezime,korisnik) values (3, false, 'filip@gmail.com', 'Filip', 'SF03/2019', 'Simic',6);
+insert into student (id,active,email,ime,indeks,prezime,korisnik) values (4, false, 'marko@gmail.com', 'Marko', 'SF44/2019', 'Lazic',7);
+insert into student (id,active,email,ime,indeks,prezime,korisnik) values (5, false, 'milan@gmail.com', 'Milan', 'SF50/2018', 'Gibic',8);
+insert into student (id,active,email,ime,indeks,prezime,korisnik) values (6, false, 'sara@gmail.com', 'Sara', 'SF61/2016', 'Laninic',9);
+insert into student (id,active,email,ime,indeks,prezime,korisnik) values (7, false, 'kosta@gmail.com', 'Kostantin', 'SF07/2017', 'Jostic',10);
+insert into student (id,active,email,ime,indeks,prezime,korisnik) values (8, false, 'visnja@gmail.com', 'Visnja', 'SF18/2017', 'Viskov',11);
+insert into student (id,active,email,ime,indeks,prezime,korisnik) values (9, false, 'lazar@gmail.com', 'Lazar', 'SF09/2017', 'Lazic',12);
+insert into student (id,active,email,ime,indeks,prezime,korisnik) values (10, false, 'tasa@gmail.com', 'Tanja', 'SF39/2017', 'Tanjic',13);
 
-insert into student (id,active,email,ime,indeks,prezime) values (1, false, 'student@gmail.com', 'Student', 'SF49/2018', 'Studentic');
-insert into student (id,active,email,ime,indeks,prezime) values (2, false, 'jana@gmail.com', 'Jana', 'SF02/2017', 'Jankovic');
-insert into student (id,active,email,ime,indeks,prezime) values (3, false, 'filip@gmail.com', 'Filip', 'SF03/2019', 'Simic');
-insert into student (id,active,email,ime,indeks,prezime) values (4, false, 'marko@gmail.com', 'Marko', 'SF44/2019', 'Lazic');
-insert into student (id,active,email,ime,indeks,prezime) values (5, false, 'milan@gmail.com', 'Milan', 'SF50/2018', 'Gibic');
-insert into student (id,active,email,ime,indeks,prezime) values (6, false, 'sara@gmail.com', 'Sara', 'SF61/2016', 'Laninic');
-insert into student (id,active,email,ime,indeks,prezime) values (7, false, 'kosta@gmail.com', 'Kostantin', 'SF07/2017', 'Jostic');
-insert into student (id,active,email,ime,indeks,prezime) values (8, false, 'visnja@gmail.com', 'Visnja', 'SF18/2017', 'Viskov');
-insert into student (id,active,email,ime,indeks,prezime) values (9, false, 'lazar@gmail.com', 'Lazar', 'SF09/2017', 'Lazic');
-insert into student (id,active,email,ime,indeks,prezime) values (10, false, 'tasa@gmail.com', 'Tanja', 'SF39/2017', 'Tanjic');
-
-
+use eobrazovanjee;
 insert into profesori (id,email,ime,prezime,korisnik) values (1, 'savic071@gmail.com', 'Goran', 'Savic', 2);
 insert into profesori (id,email,ime,prezime,korisnik) values (2, 'milan@gmail.com', 'Milan', 'Segedinac', 2);
 insert into profesori (id,email,ime,prezime,korisnik) values (3, 'dragan@gmail.com', 'Dragan', 'Ivanovic', 2);
 insert into profesori (id,email,ime,prezime,korisnik) values (4, 'gabriela@gmail.com', 'Gabriela', 'Grujic', 2);
 insert into profesori (id,email,ime,prezime,korisnik) values (5, 'jasna@gmail.com', 'Jasna', 'Englezac', 2);
-
+use eobrazovanjee;
 insert into dokument (id,naziv,uri,student_id) values (1, 'Overa semestra', 'uri1', 1);
 insert into dokument (id,naziv,uri,student_id) values (2, 'Uverenje o studiranju', 'uri2', 1);
 insert into dokument (id,naziv,uri,student_id) values (3, 'Uverenje o studiranju', 'uri3', 2);
@@ -42,7 +42,7 @@ insert into dokument (id,naziv,uri,student_id) values (8, 'Overa semestra', 'uri
 insert into dokument (id,naziv,uri,student_id) values (9, 'Potvrda', 'uri8', 5);
 insert into dokument (id,naziv,uri,student_id) values (10, 'Potvrda o stipendiji', 'uri4', 8);
 
-
+use eobrazovanjee;
 insert into tip_dokumenta (id,naziv_dokumenta, dokument_id) values (1, 'Overa',1);
 insert into tip_dokumenta (id,naziv_dokumenta, dokument_id) values (2, 'Uverenje',1);
 insert into tip_dokumenta (id,naziv_dokumenta, dokument_id) values (3, 'Uverenje',2);
@@ -50,20 +50,9 @@ insert into tip_dokumenta (id,naziv_dokumenta, dokument_id) values (4, 'Overa ',
 insert into tip_dokumenta (id,naziv_dokumenta, dokument_id) values (5, 'Overa ',4);
 insert into tip_dokumenta (id,naziv_dokumenta, dokument_id) values (6, 'Uverenje ',5);
 insert into tip_dokumenta (id,naziv_dokumenta, dokument_id) values (7, 'Overa ',6);
-insert into tip_dokumenta (id,naziv_dokumenta, dokument_id) values (4, 'Overa ',7);
-insert into tip_dokumenta (id,naziv_dokumenta, dokument_id) values (3, 'Uverenje ',8);
-insert into tip_dokumenta (id,naziv_dokumenta, dokument_id) values (4, 'Uverenje ',9);
-
-insert into dokument_tip_dokumenta (dokument_id,tip_dokumenta_id) values (1, 1);
-insert into dokument_tip_dokumenta (dokument_id,tip_dokumenta_id) values (2, 2);
-insert into dokument_tip_dokumenta (dokument_id,tip_dokumenta_id) values (3, 2);
-insert into dokument_tip_dokumenta (dokument_id,tip_dokumenta_id) values (4, 1);
-insert into dokument_tip_dokumenta (dokument_id,tip_dokumenta_id) values (5, 1);
-insert into dokument_tip_dokumenta (dokument_id,tip_dokumenta_id) values (6, 2);
-insert into dokument_tip_dokumenta (dokument_id,tip_dokumenta_id) values (7, 1);
-insert into dokument_tip_dokumenta (dokument_id,tip_dokumenta_id) values (8, 1);
-insert into dokument_tip_dokumenta (dokument_id,tip_dokumenta_id) values (9, 3);
-insert into dokument_tip_dokumenta (dokument_id,tip_dokumenta_id) values (10, 3);
+insert into tip_dokumenta (id,naziv_dokumenta, dokument_id) values (8, 'Overa ',7);
+insert into tip_dokumenta (id,naziv_dokumenta, dokument_id) values (9, 'Uverenje ',8);
+insert into tip_dokumenta (id,naziv_dokumenta, dokument_id) values (10, 'Uverenje ',9);
 
 use eobrazovanjee;
 insert into predmet (id, espb, naziv,oznaka) values (1,8, 'Platforme za objektno programiranje', 'POP01');
@@ -71,13 +60,13 @@ insert into predmet (id, espb, naziv,oznaka) values (2,8, 'Osnove programiranja'
 insert into predmet (id, espb, naziv,oznaka) values (3,6, 'Osnove softverskih arhitektura', 'OSA22');
 insert into predmet (id, espb, naziv,oznaka) values (4,6, 'Matematika', 'M04');
 insert into predmet (id, espb, naziv,oznaka) values (5,4, 'Engleski jezik', 'E5');
-
+use eobrazovanjee;
 insert into predmetinstanca (id, kraj, pocetak,predmet_id) values (1,'2022-01-14', '2022-06-24', 1);
 insert into predmetinstanca (id, kraj, pocetak,predmet_id) values (2,'2022-01-14', '2022-06-24', 2);
 insert into predmetinstanca (id, kraj, pocetak,predmet_id) values (3,'2022-01-14', '2022-06-24', 3);
 insert into predmetinstanca (id, kraj, pocetak,predmet_id) values (4,'2022-01-14', '2022-06-24', 4);
 insert into predmetinstanca (id, kraj, pocetak,predmet_id) values (5,'2022-01-14', '2022-06-24', 5);
-
+use eobrazovanjee;
 insert into studijska_godina (id,godina_studija,kraj_studija,nacin_finansiranja,pocetak_studija,skolska_godina,student) values (1, 2017, '2023-08-08', 1, '2020-08-09', 2021, 1);
 insert into studijska_godina (id,godina_studija,kraj_studija,nacin_finansiranja,pocetak_studija,skolska_godina,student) values (2, 2017, '2023-08-08', 1, '2020-08-09', 2021, 1);
 insert into studijska_godina (id,godina_studija,kraj_studija,nacin_finansiranja,pocetak_studija,skolska_godina,student) values (3, 2018, '2023-08-08', 2, '2020-08-09', 2021, 1);
@@ -107,9 +96,18 @@ insert into ispitni_rok (id, kraj_roka, naziv_roka, pocetak_roka) values (6, '20
 insert into ispitni_rok (id, kraj_roka, naziv_roka, pocetak_roka) values (7, '2022-09-10', 'Septembarski rok', '2022-09-28');
 insert into ispitni_rok (id, kraj_roka, naziv_roka, pocetak_roka) values (8, '2022-10-04', 'Oktobarski rok', '2022-10-30');
 
-insert into deoIspita (naziv, brojOsvojenihBodova, minBodova,polozio) values ('Matematika trigonometrija', 19, 20, false);
-insert into deoIspita (naziv, brojOsvojenihBodova, minBodova,polozio) values ('Engleski jezik Verbs', 80, 20, true);
-insert into deoIspita (naziv, brojOsvojenihBodova, minBodova,polozio) values ('Engleski jezik Vremena', 70, 20, true);
-insert into deoIspita (naziv, brojOsvojenihBodova, minBodova,polozio) values ('Osnove programiranja zadatak', 50, 20, true);
-insert into deoIspita (naziv, brojOsvojenihBodova, minBodova,polozio) values ('POP01 Kontrolna tacka', 15, 10, true);
-insert into deoIspita (naziv, brojOsvojenihBodova, minBodova,polozio) values ('Matematika kolokvijum 2', 38, 40, false);
+
+use eobrazovanjee;
+insert into ispit (id,broj_osvojenih_bodova, datum_vreme, naziv,ispitni_rok_id,predmet_instanca_id) values (1,15,'2022-01-20','POP01', 1, 1);
+insert into ispit (id,broj_osvojenih_bodova, datum_vreme, naziv,ispitni_rok_id,predmet_instanca_id) values (2,50,'2022-01-20','Osnove programiranja', 2, 1);
+insert into ispit (id,broj_osvojenih_bodova, datum_vreme, naziv,ispitni_rok_id,predmet_instanca_id) values (3,20,'2022-01-20','OSA', 5, 3);
+insert into ispit (id,broj_osvojenih_bodova, datum_vreme, naziv,ispitni_rok_id,predmet_instanca_id) values (4,19,'2022-01-20','Matematika', 5, 4);
+insert into ispit (id,broj_osvojenih_bodova, datum_vreme, naziv,ispitni_rok_id,predmet_instanca_id) values (5,80,'2022-01-20','Engleski', 6, 5);
+
+use eobrazovanjee;
+insert into deo_ispita (id,naziv, broj_osvojenih_bodova, min_bodova,polozio,ispit) values (1,'Matematika trigonometrija', 19, 20, false,4);
+insert into deo_ispita (id,naziv, broj_osvojenih_bodova, min_bodova,polozio,ispit) values (2,'Engleski jezik Verbs', 80, 20, true,5);
+insert into deo_ispita (id,naziv, broj_osvojenih_bodova, min_bodova,polozio,ispit) values (3,'Engleski jezik Vremena', 70, 20, true,5);
+insert into deo_ispita (id,naziv, broj_osvojenih_bodova, min_bodova,polozio,ispit) values (4,'Osnove programiranja zadatak', 50, 20, true,2);
+insert into deo_ispita (id,naziv, broj_osvojenih_bodova, min_bodova,polozio,ispit) values (5,'POP01 Kontrolna tacka', 15, 10, true,1);
+insert into deo_ispita (id,naziv, broj_osvojenih_bodova, min_bodova,polozio,ispit) values (6,'Matematika kolokvijum 2', 38, 40, false,4);
