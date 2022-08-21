@@ -11,8 +11,8 @@ export class IspitniRokService {
 
     constructor(private http: HttpClient) { }
 
-   
-    
+
+
     getRokovi(): Observable<HttpResponse<IspitniRok[]>> {
         return this.http.get<IspitniRok[]>(this.rokoviUrl, {observe: 'response'});
     }
@@ -34,10 +34,15 @@ export class IspitniRokService {
             naizv: 'Januarski',
             pocetakRoka: new Date,
             krajRoka: new Date,
-           
+
         };*/
 
         return this.http.post<any>(url, rok , {observe: 'response'});
     }
 
+    editIspitniRok(ispitniRok: IspitniRok): Observable<HttpResponse<any>>{
+      const url = `${this.rokoviUrl}`;
+
+      return this.http.put<any>(url, ispitniRok , {observe: 'response'});
+  }
 }

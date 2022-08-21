@@ -11,9 +11,9 @@
             <th>id</th>
             <th>naziv</th>
             <th>datum</th>
-            <th>broj bodova</th> 
+            <th>broj bodova</th>
             <th>Izmeni</th>
-            <th>Obriši</th>      
+            <th>Obriši</th>
           </tr>
         </thead>
         <tbody>
@@ -21,17 +21,19 @@
                 <td>{{ispit.id}}</td>
                 <td>{{ispit.naziv}}</td>
                 <td>{{ispit.datumVreme}}</td>
-                <td>{{ispit.brojBodova}}</td> 
-                
-                
-      
+                <td>{{ispit.brojBodova}}</td>
+
+
+
       <td class="h5"><button type="button" class="btn btn-primary">Izmeni</button></td>
       <td class="h5"><button type="button" class="btn btn-primary" (click)="delete(ispit.id)">Obrisi</button></td>
-      <td class="h5"><button type="button" class="btn btn-primary">Profil</button></td>
-                
+      <td class="h5"><button type="button" class="btn btn-primary">Detalji</button></td>
+
+
+
             </tr>
         </tbody>
       </table>
-     
+
     </div>
 

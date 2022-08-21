@@ -11,8 +11,8 @@ export class IspitService {
 
     constructor(private http: HttpClient) { }
 
-   
-    
+
+
     getIspiti(): Observable<HttpResponse<any[]>> {
         return this.http.get<any[]>(this.ispitiUrl, {observe: 'response'});
     }
@@ -32,5 +32,11 @@ export class IspitService {
 
         return this.http.post<any>(url, ispit , {observe: 'response'});
     }
+
+    editIspit(ispit: Ispit): Observable<HttpResponse<any>>{
+      const url = `${this.ispitiUrl}`;
+
+      return this.http.put<any>(url, ispit , {observe: 'response'});
+  }
 
 }

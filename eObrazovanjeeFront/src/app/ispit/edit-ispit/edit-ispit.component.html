@@ -1,0 +1,31 @@
+
+<div class="container rounded bg-white mt-5 mb-5">
+  <div class="row">
+      <div class="col-md-3 border-right">
+          <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">Edogaru</span><span class="text-black-50">edogaru@mail.com.my</span><span> </span></div>
+      </div>
+      <div class="col-md-5 border-right">
+          <div class="p-3 py-5">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h4 class="text-right">Izmene ispita</h4>
+              </div>
+              <div class="row mt-2">
+                  <div class="col-md-6"><label class="labels">Naziv</label><input [(ngModel)]="ispit.naziv" type="text" class="form-control" placeholder="naziv" value=""></div>
+                  <div class="col-md-6"><label class="labels">Datum i vreme</label><input [(ngModel)]="ispit.datumVreme" type="text" class="form-control" value="" placeholder="datum"></div>
+              </div>
+              <div class="row mt-3">
+                  <div class="col-md-12"><label class="labels">Broj osvojenih bodova</label><input [(ngModel)]="ispit.brojBodova" type="text" class="form-control" placeholder="0" value=""></div>
+
+              </div>
+
+              <div class="mt-5 text-center"><button class="btn btn-primary profile-button" (click)="edit()" type="button">Sacuvaj izmene</button></div>
+          </div>
+      </div>
+
+  </div>
+</div>
+
+
+
+
+

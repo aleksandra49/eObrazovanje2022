@@ -49,6 +49,10 @@ import { PohadjanjePredmetaComponent } from './pohadjanje-predmeta/pohadjanje-pr
 import { AddPohadanjePredmetaComponent } from './pohadjanje-predmeta/add-pohadanje-predmeta/add-pohadanje-predmeta.component';
 import { EditPohadanjePredmetaComponent } from './pohadjanje-predmeta/edit-pohadanje-predmeta/edit-pohadanje-predmeta.component';
 import { EditProfesorComponent } from './profesor/edit-profesor/edit-profesor.component';
+import { EditIspitComponent } from './ispit/edit-ispit/edit-ispit.component';
+import { EditIspitniRokComponent } from './ispitni-rok/edit-ispitni-rok/edit-ispitni-rok.component';
+import { EditKorisnikComponent } from './korisnik/edit-korisnik/edit-korisnik.component';
+import { EditPolaganjeIspitaComponent } from './polaganje-ispita/edit-polaganje-ispita/edit-polaganje-ispita.component';
 // import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -86,7 +90,11 @@ import { EditProfesorComponent } from './profesor/edit-profesor/edit-profesor.co
     PohadjanjePredmetaComponent,
     AddPohadanjePredmetaComponent,
     EditPohadanjePredmetaComponent,
-    EditProfesorComponent
+    EditProfesorComponent,
+    EditIspitComponent,
+    EditIspitniRokComponent,
+    EditKorisnikComponent,
+    EditPolaganjeIspitaComponent
   ],
   imports: [
     BrowserModule,

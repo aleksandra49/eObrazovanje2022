@@ -32,4 +32,10 @@ export class KorisnikService {
         return this.http.post<any>(url, korisnik , {observe: 'response'});
     }
 
+    editKorisnik(korisnik: Korisnik): Observable<HttpResponse<any>>{
+      const url = `${this.korisniciUrl}`;
+
+      return this.http.put<any>(url, korisnik , {observe: 'response'});
+  }
+
 }

@@ -11,8 +11,8 @@ export class PolaganjeService {
 
     constructor(private http: HttpClient) { }
 
-   
-    
+
+
     getPolaganja(): Observable<HttpResponse<PolaganjeIspita[]>> {
         const url = `${this.polaganjaUrl}/all`;
         return this.http.get<PolaganjeIspita[]>(url, {observe: 'response'});
@@ -33,5 +33,11 @@ export class PolaganjeService {
 
         return this.http.post<any>(url, polaganjeIspita , {observe: 'response'});
     }
+
+    editProfesor(polaganjeIspita: PolaganjeIspita): Observable<HttpResponse<any>>{
+      const url = `${this.polaganjaUrl}`;
+
+      return this.http.put<any>(url, polaganjeIspita , {observe: 'response'});
+  }
 
 }

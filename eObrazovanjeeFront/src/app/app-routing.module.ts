@@ -28,6 +28,11 @@ import { PohadjanjePredmetaComponent } from './pohadjanje-predmeta/pohadjanje-pr
 import { AddPohadanjePredmetaComponent } from './pohadjanje-predmeta/add-pohadanje-predmeta/add-pohadanje-predmeta.component';
 import { StudentProfilComponent } from './student/student-profil/student-profil.component';
 import { EditProfesorComponent } from './profesor/edit-profesor/edit-profesor.component';
+import { EditIspitComponent } from './ispit/edit-ispit/edit-ispit.component';
+import { AddIspitniRokComponent } from './ispitni-rok/add-ispitni-rok/add-ispitni-rok.component';
+import { EditIspitniRokComponent } from './ispitni-rok/edit-ispitni-rok/edit-ispitni-rok.component';
+import { AddKorisnikComponent } from './korisnik/add-korisnik/add-korisnik.component';
+import { EditKorisnikComponent } from './korisnik/edit-korisnik/edit-korisnik.component';
 
 const routes: Routes = [
 
@@ -35,12 +40,20 @@ const routes: Routes = [
   // { path: '', component: ProfesorComponent },
 
   { path: 'korisnici', component: KorisnikComponent },
-  // { path: '', component: KorisnikComponent }
+  { path: 'addKorisnici', component: AddKorisnikComponent },
+  { path: 'editKorisnici', component: EditKorisnikComponent },
+
   { path: 'ispiti', component: IspitComponent },
   { path: 'addIspit', component: AddIspitComponent },
+  { path: 'editIspit', component: EditIspitComponent },
+
   { path: 'ispitniRokovi', component: IspitniRokComponent },
+  { path: 'addIspitniRokovi', component: AddIspitniRokComponent },
+  { path: 'editIspitniRokovi', component: EditIspitniRokComponent },
+
   { path: 'polaganjaIspita', component: PolaganjeIspitaComponent },
   { path: 'addPolaganjaIspita', component: AddPolaganjeIspitaComponent },
+
   { path: 'profesori/:id', component: EditProfesorComponent },
   { path: 'student', component: StudentComponent },
   { path: 'addStudent', component: AddStudentComponent },
@@ -70,7 +83,7 @@ const routes: Routes = [
   //{ path: 'editStudijskaGodina', component: EditStudijskaGodinaComponent },
 
   { path: 'addProfesor', component: AddProfesorComponent },
-  
+
 
   { path: 'login', component: LoginComponent }
 
