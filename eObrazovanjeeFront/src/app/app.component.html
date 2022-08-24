@@ -11,7 +11,7 @@
     <a ngbNavLink>Korisnici</a>
   </li>
   <li [ngbNavItem]="2" (click)="goToOnRightRoute('profesori')">
-    <a ngbNavLink><b>Profesori</b> title</a>
+    <a ngbNavLink><b>Profesori</b></a>
   </li>
   <li [ngbNavItem]="3" (click)="goToOnRightRoute('student')">
     <a ngbNavLink>Studenti </a>
@@ -44,7 +44,7 @@
   <li [ngbNavItem]="1" (click)="goToOnRightRoute('login')">
     <a ngbNavLink>Login</a>
   </li>
-  <li ngbNavItem [disabled]="false" class="ms-auto">
+  <li ngbNavItem [disabled]="false" class="ms-auto" (click)="logout()">
     <a ngbNavLink>Logout</a>
     <ng-template ngbNavContent>
 

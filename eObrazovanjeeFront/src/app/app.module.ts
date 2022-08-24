@@ -55,6 +55,7 @@ import { EditKorisnikComponent } from './korisnik/edit-korisnik/edit-korisnik.co
 import { EditPolaganjeIspitaComponent } from './polaganje-ispita/edit-polaganje-ispita/edit-polaganje-ispita.component';
 import { StudijskaGodinaService } from './studijska-godina/studijska-godina.service';
 import { PohadjanjePredmetaService } from './pohadjanje-predmeta/pohadjanje-predmeta.service';
+import { authInterceptorProviders } from './auth.interceptor';
 // import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -108,7 +109,7 @@ import { PohadjanjePredmetaService } from './pohadjanje-predmeta/pohadjanje-pred
   providers: [ProfesorService, 
               KorisnikService, IspitService, IspitniRokService, PolaganjeService, 
               StudentService, DeoIspitaService, StudijskaGodinaService, PohadjanjePredmetaService,
-              DokumentService, ],
+              DokumentService, authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

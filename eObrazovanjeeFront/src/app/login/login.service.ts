@@ -5,7 +5,7 @@ import {Observable, Subject} from 'rxjs';
 @Injectable()
 export class LoginService {
     //ovo je putanja iz naseg backend-a
-    private loginUrl = 'api/login';
+    private loginUrl = 'api/korisnik/login';
 
     constructor(private http: HttpClient) { }
 
