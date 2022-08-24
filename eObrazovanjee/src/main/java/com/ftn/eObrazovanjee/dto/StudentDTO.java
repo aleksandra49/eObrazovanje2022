@@ -21,7 +21,7 @@ public class StudentDTO {
 	private FinansijskaKarticaDTO finansijskaKarticaDTO;
 	//private Set<PohadjanjePredmetaDTO> pohadjanjaPredmetaDTO = new HashSet();
 	private ArrayList<PohadjanjePredmetaDTO> pohadjanjaPredmetaDTO;
-	private KorisnikDTO korisnikDTO;
+	private KorisnikDTO korisnik;
 	private ArrayList<PolaganjeIspitaDTO> polaganjeIspita;
 	
 	
@@ -45,7 +45,7 @@ public class StudentDTO {
 		this.dokumentiDTO = dokumentiDTO;
 		this.finansijskaKarticaDTO = finansijskaKarticaDTO;
 		this.pohadjanjaPredmetaDTO = pohadjanjaPredmetaDTO;
-		this.korisnikDTO = korisnikDTO;
+		this.korisnik = korisnikDTO;
 		this.polaganjeIspita = polaganjeIspita;
 	}
 
@@ -150,15 +150,12 @@ public class StudentDTO {
 	}
 
 
-	public KorisnikDTO getKorisnikDTO() {
-		return korisnikDTO;
+	public KorisnikDTO getKorisnik() {
+		return korisnik;
 	}
-
-
-	public void setKorisnikDTO(KorisnikDTO korisnikDTO) {
-		this.korisnikDTO = korisnikDTO;
+	public void setKorisnik(KorisnikDTO korisnik) {
+		this.korisnik = korisnik;
 	}
-
 
 	public ArrayList<PolaganjeIspitaDTO> getPolaganjeIspita() {
 		return polaganjeIspita;

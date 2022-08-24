@@ -22,6 +22,7 @@ import com.ftn.eObrazovanjee.dto.IspitDTO;
 import com.ftn.eObrazovanjee.dto.KorisnikDTO;
 import com.ftn.eObrazovanjee.dto.PohadjanjePredmetaDTO;
 import com.ftn.eObrazovanjee.dto.PolaganjeIspitaDTO;
+import com.ftn.eObrazovanjee.dto.ProfesorDTO;
 import com.ftn.eObrazovanjee.dto.StudentDTO;
 import com.ftn.eObrazovanjee.dto.StudijskaGodinaDTO;
 import com.ftn.eObrazovanjee.mapper.DeoIspitaMapper;
@@ -31,6 +32,7 @@ import com.ftn.eObrazovanjee.mapper.IspitMapper;
 import com.ftn.eObrazovanjee.mapper.KorisnikMapper;
 import com.ftn.eObrazovanjee.mapper.PohadjanjePredmetaMapper;
 import com.ftn.eObrazovanjee.mapper.PolaganjeIspitaMapper;
+import com.ftn.eObrazovanjee.mapper.ProfesorMapper;
 import com.ftn.eObrazovanjee.mapper.StudentMapper;
 import com.ftn.eObrazovanjee.mapper.StudijskaGodinaMapper;
 import com.ftn.eObrazovanjee.model.Dokument;
@@ -38,6 +40,7 @@ import com.ftn.eObrazovanjee.model.Ispit;
 import com.ftn.eObrazovanjee.model.Korisnik;
 import com.ftn.eObrazovanjee.model.PohadjanjePredmeta;
 import com.ftn.eObrazovanjee.model.PolaganjeIspita;
+import com.ftn.eObrazovanjee.model.Profesor;
 import com.ftn.eObrazovanjee.model.Student;
 import com.ftn.eObrazovanjee.model.StudijskaGodina;
 import com.ftn.eObrazovanjee.model.Uloga;
@@ -88,7 +91,7 @@ public class StudentController {
 			student.setDokumentiDTO(getDokumentiIzStudenta(student.getId()));
 			student.setFinansijskaKarticaDTO(getFinansijskaKarticaIzStudenta(student.getId()));
 			student.setPohadjanjaPredmetaDTO(getPohadjanjaIzStudenta(student.getId()));
-			student.setKorisnikDTO(getKorisnikIzStudenta(student.getId()));
+			student.setKorisnik(getKorisnikIzStudenta(student.getId()));
 			student.setPolaganjeIspita(getPolaganjaIzStudenta(student.getId()));
 			studentiDTO.add(student);
 		}
@@ -159,7 +162,7 @@ public class StudentController {
 			student.setDokumentiDTO(getDokumentiIzStudenta(student.getId()));
 			student.setFinansijskaKarticaDTO(getFinansijskaKarticaIzStudenta(student.getId()));
 			student.setPohadjanjaPredmetaDTO(getPohadjanjaIzStudenta(student.getId()));
-			student.setKorisnikDTO(getKorisnikIzStudenta(student.getId()));
+			student.setKorisnik(getKorisnikIzStudenta(student.getId()));
 			student.setPolaganjeIspita(getPolaganjaIzStudenta(student.getId()));
 			studentiDTO.add(student);
 		}
@@ -177,7 +180,7 @@ public class StudentController {
 		studentDTO.setDokumentiDTO(getDokumentiIzStudenta(student.getId()));
 		studentDTO.setFinansijskaKarticaDTO(getFinansijskaKarticaIzStudenta(student.getId()));
 		studentDTO.setPohadjanjaPredmetaDTO(getPohadjanjaIzStudenta(student.getId()));
-		studentDTO.setKorisnikDTO(getKorisnikIzStudenta(student.getId()));
+		studentDTO.setKorisnik(getKorisnikIzStudenta(student.getId()));
 		studentDTO.setPolaganjeIspita(getPolaganjaIzStudenta(student.getId()));
 		
 		return new ResponseEntity<>(studentDTO, HttpStatus.OK);
@@ -187,43 +190,34 @@ public class StudentController {
 	public ResponseEntity<StudentDTO> saveStudent(@RequestBody StudentDTO studentDTO){		
 		Student student = new Student();
 		Korisnik korisnik = new Korisnik();
+		Korisnik korisnikProba = new Korisnik();
 		
+//		Korisnik korisnik1 = new Korisnik();
+//		korisnik1.setId(1L);
 		Korisnik korisnik1 = new Korisnik();
-		
-		if(studentDTO == null) {
-			System.out.println("student null");
-		}
-		
-		if(studentDTO.getKorisnikDTO() == null) {
-			System.out.println(studentDTO.getIme());
-			System.out.println("korisnik null");
-		}
-		
-		korisnik1.setKorisnickoIme(studentDTO.getKorisnikDTO().getKorisnickoIme());
-		korisnik1.setLozinka(configuration.passwordEncoder().encode(studentDTO.getKorisnikDTO().getLozinka()));
+		korisnik1.setKorisnickoIme(studentDTO.getKorisnik().getKorisnickoIme());
+		korisnik1.setLozinka(configuration.passwordEncoder().encode(studentDTO.getKorisnik().getLozinka()));
 		korisnik1.setUloga(Uloga.STUDENT);
 		System.out.println(korisnik);
 		
 		student.setIme(studentDTO.getIme());
 		student.setPrezime(studentDTO.getPrezime());
-		student.setIndeks(studentDTO.getIndeks());
 		student.setEmail(studentDTO.getEmail());
+		student.setIndeks(studentDTO.getIndeks());
 		student.setActive(studentDTO.isActive());
 		student.setKorisnik(korisnik1);
 		
+		// profesor.setKorisnik(korisnik1);
+		
+		//	profesor.setPredavanja(new HashSet<>(new PredavanjePredmetaMapper().listDtoToModel(profesorDTO.getPredavanja())));
+		
 		korisnik = korisnikService.save(korisnik1);
 		
-		//student.setStudijskaGodina(new HashSet<>(new StudijskaGodinaMapper().listDtoToModel(studentDTO.getStudijskeGodineDTO())));
-		//student.setDokumenti(new HashSet<>(new DokumentMapper().listDtoToModel(studentDTO.getDokumentiDTO())));
-		//student.setFinansijskaKartica(finansijskaKarticaService.findOne(studentDTO.getFinansijskaKarticaDTO().getId()));
-		//student.setPohadjanjePredmeta(new HashSet<>(new PohadjanjePredmetaMapper().listDtoToModel(studentDTO.getPohadjanjaPredmetaDTO())));
-		//student.setKorisnik(korisnikService.findOne(studentDTO.getKorisnikDTO().getId()));
-		//student.setPolaganjeIspita(getPolaganjaIzStudenta(student.getId()));
-		
-		
+//		korisnikProba = korisnikService.findOne(korisnik1.getId());
+		System.out.println(korisnik);
 		
 		student = studentService.save(student);
-		return new ResponseEntity<>(new StudentMapper().modelToDto(student), HttpStatus.CREATED);	
+		return new ResponseEntity<>(new StudentMapper().modelToDto(student), HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, consumes="application/json")
@@ -246,7 +240,7 @@ public class StudentController {
 		student.setDokumenti(new HashSet<>(new DokumentMapper().listDtoToModel(studentDTO.getDokumentiDTO())));
 		student.setFinansijskaKartica(finansijskaKarticaService.findOne(studentDTO.getFinansijskaKarticaDTO().getId()));
 		student.setPohadjanjePredmeta(new HashSet<>(new PohadjanjePredmetaMapper().listDtoToModel(studentDTO.getPohadjanjaPredmetaDTO())));
-		student.setKorisnik(korisnikService.findOne(studentDTO.getKorisnikDTO().getId()));
+		student.setKorisnik(korisnikService.findOne(studentDTO.getKorisnik().getId()));
 		student.setPolaganjeIspita(new HashSet<>(new PolaganjeIspitaMapper().listDtoToModel(studentDTO.getPolaganjeIspita())));
 		
 		student = studentService.save(student);
