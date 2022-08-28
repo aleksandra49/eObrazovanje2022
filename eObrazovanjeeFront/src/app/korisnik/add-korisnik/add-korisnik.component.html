@@ -7,14 +7,14 @@ class="col-md-8 offset-md-2"
       <input [(ngModel)]="korisnik.korisnickoIme" type="naziv" class="form-control" id="inputNaziv" placeholder="naziv">
     </div>
     <div class="col-md-5 offset-md-3">
-      <label for="inputPrezime">Lozinka</label>
-      <input [(ngModel)]="korisnik.lozinka" type="datumVreme" class="form-control" id="inputDatumVreme" placeholder="datum">
+      <label for="inputLozinka">Lozinka</label>
+      <input [(ngModel)]="korisnik.lozinka" type="password" class="form-control" id="inputLozinka" placeholder="datum">
     </div>
-    
+
   </div>
 
   <div class="col-md-5 offset-md-3">
   <button type="submit" class="btn btn-primary"
    (click)="onSubmit()" >Dodaj korisnika</button>
-  </div> 
+  </div>
 </div>
