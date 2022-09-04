@@ -1,17 +1,22 @@
 use eobrazovanjee;
 
-insert into korisnik (id, korisnicko_ime, lozinka,uloga) values (1,'admin', '123', 'ADMIN' );
-insert into korisnik (id, korisnicko_ime, lozinka,uloga) values (2,'profica', '123', 'PROFESOR' );
-insert into korisnik (id, korisnicko_ime, lozinka,uloga) values (3,'student', '123', 'STUDENT' );
-insert into korisnik (id, korisnicko_ime, lozinka,uloga) values (5,'jana', '123', 'STUDENT' );
-insert into korisnik (id, korisnicko_ime, lozinka,uloga) values (6,'filip', '123', 'STUDENT' );
-insert into korisnik (id, korisnicko_ime, lozinka,uloga) values (7,'marko', '123', 'STUDENT' );
-insert into korisnik (id, korisnicko_ime, lozinka,uloga) values (8,'milan', '123', 'STUDENT' );
-insert into korisnik (id, korisnicko_ime, lozinka,uloga) values (9,'sara', '123', 'STUDENT' );
-insert into korisnik (id, korisnicko_ime, lozinka,uloga) values (10,'kosta', '123', 'STUDENT' );
-insert into korisnik (id, korisnicko_ime, lozinka,uloga) values (11,'visnja', '123', 'STUDENT' );
-insert into korisnik (id, korisnicko_ime, lozinka,uloga) values (12,'lazar', '123', 'STUDENT' );
-insert into korisnik (id, korisnicko_ime, lozinka,uloga) values (13,'tasa', '123', 'STUDENT' );
+insert into korisnik (id, korisnicko_ime, lozinka,uloga, prof_id, stud_id) values (1,'admin', '123', 'ADMIN', null, null );
+insert into korisnik (id, korisnicko_ime, lozinka,uloga, prof_id, stud_id) values (2,'profica', '123', 'PROFESOR', 1, null );
+insert into korisnik (id, korisnicko_ime, lozinka,uloga, prof_id, stud_id) values (3,'student', '123', 'STUDENT', null, 1 );
+insert into korisnik (id, korisnicko_ime, lozinka,uloga, prof_id, stud_id) values (5,'jana', '123', 'STUDENT', null, 2 );
+insert into korisnik (id, korisnicko_ime, lozinka,uloga, prof_id, stud_id) values (6,'filip', '123', 'STUDENT', null, 3 );
+insert into korisnik (id, korisnicko_ime, lozinka,uloga, prof_id, stud_id) values (7,'marko', '123', 'STUDENT', null, 4 );
+insert into korisnik (id, korisnicko_ime, lozinka,uloga, prof_id, stud_id) values (8,'milan', '123', 'STUDENT', null, 5 );
+insert into korisnik (id, korisnicko_ime, lozinka,uloga, prof_id, stud_id) values (9,'sara', '123', 'STUDENT', null, 6 );
+insert into korisnik (id, korisnicko_ime, lozinka,uloga, prof_id, stud_id) values (10,'kosta', '123', 'STUDENT', null, 7 );
+insert into korisnik (id, korisnicko_ime, lozinka,uloga, prof_id, stud_id) values (11,'visnja', '123', 'STUDENT', null, 8 );
+insert into korisnik (id, korisnicko_ime, lozinka,uloga, prof_id, stud_id) values (12,'lazar', '123', 'STUDENT', null, 9 );
+insert into korisnik (id, korisnicko_ime, lozinka,uloga, prof_id, stud_id) values (13,'tasa', '123', 'STUDENT', null, 10 );
+insert into korisnik (id, korisnicko_ime, lozinka,uloga, prof_id, stud_id) values (14,'milanProfa', '123', 'PROFESOR', 2, null );
+insert into korisnik (id, korisnicko_ime, lozinka,uloga, prof_id, stud_id) values (15,'draganProfa', '123', 'PROFESOR', 3, null );
+insert into korisnik (id, korisnicko_ime, lozinka,uloga, prof_id, stud_id) values (16,'gabiProfa', '123', 'PROFESOR', 4, null );
+insert into korisnik (id, korisnicko_ime, lozinka,uloga, prof_id, stud_id) values (17,'jasnaPorfa', '123', 'PROFESOR', 5, null );
+
 use eobrazovanjee;
 insert into student (id,active,email,ime,indeks,prezime,korisnik) values (1, false, 'student@gmail.com', 'Student', 'SF49/2018', 'Studentic',3);
 insert into student (id,active,email,ime,indeks,prezime,korisnik) values (2, false, 'jana@gmail.com', 'Jana', 'SF02/2017', 'Jankovic',5);
@@ -26,10 +31,10 @@ insert into student (id,active,email,ime,indeks,prezime,korisnik) values (10, fa
 
 use eobrazovanjee;
 insert into profesori (id,email,ime,prezime,korisnik) values (1, 'savic071@gmail.com', 'Goran', 'Savic', 2);
-insert into profesori (id,email,ime,prezime,korisnik) values (2, 'milan@gmail.com', 'Milan', 'Segedinac', 2);
-insert into profesori (id,email,ime,prezime,korisnik) values (3, 'dragan@gmail.com', 'Dragan', 'Ivanovic', 2);
-insert into profesori (id,email,ime,prezime,korisnik) values (4, 'gabriela@gmail.com', 'Gabriela', 'Grujic', 2);
-insert into profesori (id,email,ime,prezime,korisnik) values (5, 'jasna@gmail.com', 'Jasna', 'Englezac', 2);
+insert into profesori (id,email,ime,prezime,korisnik) values (2, 'milan@gmail.com', 'Milan', 'Segedinac', 14);
+insert into profesori (id,email,ime,prezime,korisnik) values (3, 'dragan@gmail.com', 'Dragan', 'Ivanovic', 15);
+insert into profesori (id,email,ime,prezime,korisnik) values (4, 'gabriela@gmail.com', 'Gabriela', 'Grujic', 16);
+insert into profesori (id,email,ime,prezime,korisnik) values (5, 'jasna@gmail.com', 'Jasna', 'Englezac', 17);
 use eobrazovanjee;
 insert into dokument (id,naziv,uri,student_id) values (1, 'Overa semestra', 'uri1', 1);
 insert into dokument (id,naziv,uri,student_id) values (2, 'Uverenje o studiranju', 'uri2', 1);
