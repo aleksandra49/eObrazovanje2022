@@ -190,9 +190,7 @@ public class KorisnikController {
 		Korisnik korisnik = korisnikService.findOne(id);
 		if (korisnik != null){
 			
-			System.out.println("pre-kor-rem");
 			korisnikService.remove(id);
-			System.out.println("post-kor-rem");
 			
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {		

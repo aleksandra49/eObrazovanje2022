@@ -161,10 +161,10 @@ public class ProfesorController {
 	 public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
 		 Profesor profesor = profesorService.findOne(id);
 			if (profesor != null){
-				
+				profesorService.remove(id);
 				deleteKorisnik(profesor.getKorisnik().getId());
 				
-				profesorService.remove(id);
+				
 				return new ResponseEntity<>(HttpStatus.OK);
 			} else {		
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);

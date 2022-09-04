@@ -253,16 +253,26 @@ public class StudentController {
 	public ResponseEntity<Void> deleteStudent(@PathVariable Long id){
 		Student student = studentService.findOne(id);
 		if (student != null){
-			
-			deleteFinansijskaKartica(student.getFinansijskaKartica().getId());
-			
 			studentService.remove(id);
+			deleteFinansijskaKartica(student.getFinansijskaKartica().getId());
+			deleteKorisnik(student.getKorisnik().getId());
+			
+			
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {		
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 	
+	public Void deleteKorisnik(Long id){
+		Korisnik korisnik = korisnikService.findOne(id);
+		if (korisnik != null){
+			korisnikService.remove(id);
+			return null;
+		} else {		
+			return null;
+		}
+	}
 	
 	public Void deleteFinansijskaKartica(Long id){
 		FinansijskaKartica finansijskaKartica = finansijskaKarticaService.findOne(id);
