@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
     const token = localStorage.getItem('auth-token');
 
     console.log('AppComponent', token)
-
+// Ovde je greska, ternarni operator ako ima token da otvori profesore ako nema token login i onda ne mozes otvoriti profil profesora
     token ? this.router.navigate(['profesori']) : this.router.navigate(['login']);
     
   }
