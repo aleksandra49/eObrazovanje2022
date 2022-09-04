@@ -27,6 +27,7 @@ import com.ftn.eObrazovanjee.mapper.PredmetInstancaMapper;
 import com.ftn.eObrazovanjee.model.DeoIspita;
 import com.ftn.eObrazovanjee.model.Ispit;
 import com.ftn.eObrazovanjee.model.PolaganjeIspita;
+import com.ftn.eObrazovanjee.service.DeoIspitaService;
 import com.ftn.eObrazovanjee.service.IspitService;
 import com.ftn.eObrazovanjee.service.IspitniRokService;
 import com.ftn.eObrazovanjee.service.PolaganjeIspitaService;
@@ -45,6 +46,8 @@ public class IspitController {
 	private PredmetInstancaServiceImpl predmetInstancaServiceImpl;
 	@Autowired
 	private PolaganjeIspitaService polaganjeIspitaService;
+	@Autowired
+    private DeoIspitaService deoIspitaService;
 	
 	@RequestMapping(value="/all", method = RequestMethod.GET)
 	public ResponseEntity<List<IspitDTO>> getAllIspiti() {
@@ -135,12 +138,26 @@ public class IspitController {
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteIspit(@PathVariable Long id){
 		Ispit ispit = ispitService.findOne(id);
+
 		if (ispit != null){
+			
+			for(DeoIspita deo : ispit.getDeoIspita()) {
+				deleteDeoIspita(deo.getId());
+			}
+			
 			ispitService.remove(id);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {		
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	public Void deleteDeoIspita(Long id){
+		DeoIspita deoIspita = deoIspitaService.findOne(id);
+		if (deoIspita != null){
+			deoIspitaService.remove(id);
+		}
+		return null;
 	}
 	
 //	@RequestMapping(value="/getPolaganjeIspitaIzIspita/{id}", method=RequestMethod.GET)

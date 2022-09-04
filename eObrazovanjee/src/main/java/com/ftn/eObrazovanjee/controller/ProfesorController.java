@@ -161,12 +161,26 @@ public class ProfesorController {
 	 public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
 		 Profesor profesor = profesorService.findOne(id);
 			if (profesor != null){
+				
+				deleteKorisnik(profesor.getKorisnik().getId());
+				
 				profesorService.remove(id);
 				return new ResponseEntity<>(HttpStatus.OK);
 			} else {		
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}
 	 }
+	 
+
+		public Void deleteKorisnik(Long id){
+			Korisnik korisnik = korisnikService.findOne(id);
+			if (korisnik != null){
+				korisnikService.remove(id);
+				return null;
+			} else {		
+				return null;
+			}
+		}
 	 
 	 //veza izmedju korisnika i profesora
 	// @RequestMapping(value="/korisnikIzProfesora/{id}", method=RequestMethod.GET)

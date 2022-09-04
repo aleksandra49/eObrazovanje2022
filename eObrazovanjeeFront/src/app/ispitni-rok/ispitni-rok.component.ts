@@ -24,11 +24,12 @@ export class IspitniRokComponent implements OnInit {
   }
 
   goToOnRightRoute(val: string) {
-    console.log('val', val);
+    console.log('val1', val);
+    console.log('val2', val[0]);
 
     this.router.navigate([val]);
   }
-  
+
 
     delete(id: number): void {
       this.ispitniRokService.delete(id).subscribe(

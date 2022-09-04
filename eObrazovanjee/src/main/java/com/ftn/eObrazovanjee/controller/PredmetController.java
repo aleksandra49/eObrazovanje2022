@@ -51,6 +51,9 @@ public class PredmetController {
 	@Autowired
 	private PredmetInstancaServiceImpl predmetInstancaServiceImpl;
 	
+	@Autowired
+	private PredmetInstancaServiceImpl predmetInstancaService;
+	
 	
 	
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
@@ -89,12 +92,29 @@ public class PredmetController {
 	public ResponseEntity<Void> deletePredmet(@PathVariable Long id){
 		Predmet predmet = predmetService.findOne(id);
 		if (predmet != null){
+			
+			for(PredmetInstanca inst : predmet.getPredmetInstanca()) {
+				deletePredmetInstanca(inst.getId());
+			}
+			
 			predmetService.remove(id);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {		
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	
+	public Void deletePredmetInstanca(Long id){
+		PredmetInstanca predmetInstanca = predmetInstancaService.findOne(id);
+		if (predmetInstanca != null){
+			predmetInstancaService.remove(id);
+			return null;
+		} else {		
+			return null;
+		}
+	}
+	
 	//findAll
 	@RequestMapping(value="/all", method = RequestMethod.GET)
 	public ResponseEntity<List<PredmetDTO>> getAllPredmeti() {

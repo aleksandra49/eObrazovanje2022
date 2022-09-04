@@ -36,6 +36,7 @@ import com.ftn.eObrazovanjee.mapper.ProfesorMapper;
 import com.ftn.eObrazovanjee.mapper.StudentMapper;
 import com.ftn.eObrazovanjee.mapper.StudijskaGodinaMapper;
 import com.ftn.eObrazovanjee.model.Dokument;
+import com.ftn.eObrazovanjee.model.FinansijskaKartica;
 import com.ftn.eObrazovanjee.model.Ispit;
 import com.ftn.eObrazovanjee.model.Korisnik;
 import com.ftn.eObrazovanjee.model.PohadjanjePredmeta;
@@ -78,6 +79,7 @@ public class StudentController {
 	private IspitService ispitService;
 	@Autowired
 	SecurityConfiguration configuration;
+	
 	
 	
 	@RequestMapping(value="/all", method = RequestMethod.GET)
@@ -251,10 +253,24 @@ public class StudentController {
 	public ResponseEntity<Void> deleteStudent(@PathVariable Long id){
 		Student student = studentService.findOne(id);
 		if (student != null){
+			
+			deleteFinansijskaKartica(student.getFinansijskaKartica().getId());
+			
 			studentService.remove(id);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {		
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	
+	public Void deleteFinansijskaKartica(Long id){
+		FinansijskaKartica finansijskaKartica = finansijskaKarticaService.findOne(id);
+		if (finansijskaKartica != null){
+			finansijskaKarticaService.delete(id);
+			return null;
+		} else {		
+			return null;
 		}
 	}
 	

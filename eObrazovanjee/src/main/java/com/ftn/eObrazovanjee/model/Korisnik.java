@@ -20,6 +20,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -41,11 +43,11 @@ public class Korisnik implements UserDetails{
 	private Uloga uloga;
 	
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "id", nullable = false)
+    @JoinColumn(name = "id", nullable = false, referencedColumnName = "prof_id")
 	private Profesor profesor;
 	
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "id", nullable = false)
+    @JoinColumn(name = "id", nullable = false, referencedColumnName = "stud_id")
 	private Student student;
 	
 	@Override

@@ -23,6 +23,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,6 +48,9 @@ import com.ftn.eObrazovanjee.mapper.ProfesorMapper;
 import com.ftn.eObrazovanjee.mapper.StudentMapper;
 import com.ftn.eObrazovanjee.model.Ispit;
 import com.ftn.eObrazovanjee.model.Korisnik;
+import com.ftn.eObrazovanjee.model.Profesor;
+import com.ftn.eObrazovanjee.model.Student;
+import com.ftn.eObrazovanjee.repository.ProfesorRepository;
 import com.ftn.eObrazovanjee.security.TokenUtils;
 import com.ftn.eObrazovanjee.service.KorisnikService;
 import com.ftn.eObrazovanjee.service.ProfesorServiceImpl;
@@ -180,14 +184,42 @@ public class KorisnikController {
 //	>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteKorisnik(@PathVariable Long id){
+		
+		System.out.println("del");
+		
 		Korisnik korisnik = korisnikService.findOne(id);
 		if (korisnik != null){
+			
+			System.out.println("pre-kor-rem");
 			korisnikService.remove(id);
+			System.out.println("post-kor-rem");
+			
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {		
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	
+	public Void deleteStudent(Long id){
+		Student student = studentService.findOne(id);
+		if (student != null){
+			studentService.remove(id);
+			return null;
+		} else {		
+			return null;
+		}
+	}
+	
+	 public Void deleteProfesor(Long id) {
+		 Profesor profesor = profesorService.findOne(id);
+			if (profesor != null){
+				profesorService.remove(id);
+				return null;
+			} else {		
+				return null;
+			}
+	 }
 	
 //	@RequestMapping(value="/getStudentIzKorisnika/{id}", method=RequestMethod.GET)
 	public StudentDTO getStudentIzKorisnika(Long id){

@@ -38,6 +38,7 @@ public class FinansijskaKarticaController {
 	@Autowired
 	private TransakcijaService transakcijaService;
 	
+	
 	@RequestMapping(value="/all", method = RequestMethod.GET)
 	public ResponseEntity<List<FinansijskaKarticaDTO>> getAllFinansijskeKartice() {
 		List<FinansijskaKartica> finansijskeKartice = finansijskaKarticaService.findAll();
@@ -120,10 +121,26 @@ public class FinansijskaKarticaController {
 	public ResponseEntity<Void> deleteFinansijskaKartica(@PathVariable Long id){
 		FinansijskaKartica finansijskaKartica = finansijskaKarticaService.findOne(id);
 		if (finansijskaKartica != null){
+			
+			for(Transakcija trans : finansijskaKartica.getTransakcije()) {
+				deleteTransakcija(trans.getId());
+			}
+			
 			finansijskaKarticaService.delete(id);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {		
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	
+	public Void deleteTransakcija(Long id){
+		Transakcija transakcija = transakcijaService.findOne(id);
+		if (transakcija != null){
+			transakcijaService.delete(id);
+			return null;
+		} else {		
+			return null;
 		}
 	}
 	
