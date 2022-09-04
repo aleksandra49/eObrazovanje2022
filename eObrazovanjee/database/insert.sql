@@ -1,3 +1,23 @@
+--set foreign_key_checks = 0;
+-- delete sve podatke u bazii 
+--TRUNCATE TABLE eobrazovanjee.korisnik;
+--TRUNCATE TABLE eobrazovanjee.student;
+--TRUNCATE TABLE eobrazovanjee.profesori;
+--TRUNCATE TABLE eobrazovanjee.dokument;
+--TRUNCATE TABLE eobrazovanjee.tip_dokumenta;
+--TRUNCATE TABLE eobrazovanjee.predmet;
+--TRUNCATE TABLE eobrazovanjee.predmetinstanca;
+--TRUNCATE TABLE eobrazovanjee.studijska_godina;
+--TRUNCATE TABLE eobrazovanjee.finansijska_kartica;
+--TRUNCATE TABLE eobrazovanjee.ispitni_rok;
+--TRUNCATE TABLE eobrazovanjee.ispit;
+--TRUNCATE TABLE eobrazovanjee.deo_ispita;
+--TRUNCATE TABLE eobrazovanjee.transakcije;
+--set foreign_key_checks = 1;
+
+
+
+
 use eobrazovanjee;
 
 insert into korisnik (id, korisnicko_ime, lozinka,uloga, prof_id, stud_id) values (1,'admin', '123', 'ADMIN', null, null );
