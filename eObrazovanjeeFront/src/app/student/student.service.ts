@@ -66,4 +66,8 @@ export class StudentService {
     }
 
 
+    getUlogovanStudent(id: number): Observable<HttpResponse<Student>> {
+        const url = `${this.studentUrl}/${id}`;
+        return this.http.get<Student>(url, {observe: 'response'});
+    }
 }

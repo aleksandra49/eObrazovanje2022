@@ -99,9 +99,11 @@ public class KorisnikController {
 		Korisnik user = (Korisnik) authentication.getPrincipal();
 		String jwt = tokenUtils.generateToken(user.getUsername(), user.getId(), user.getUloga().toString());
 		Long expiresIn = tokenUtils.getExpiredIn();
-		System.out.println(user.getAuthorities());
+		System.out.println(user.getKorisnickoIme());
+		KorisnikDTO korisnikZaFront = new KorisnikDTO(user.getId(), user.getKorisnickoIme(), user.getLozinka(), user.getUloga());
+		Korisnik korisnikFromDb = korisnikService.findBykorisnickoIme(user.getKorisnickoIme());
 		// Vrati token kao odgovor na uspesnu autentifikaciju
-		return ResponseEntity.ok(new KorisnikTokenStateDTO(jwt, expiresIn));
+		return ResponseEntity.ok(new KorisnikTokenStateDTO(jwt, expiresIn,user.getId(),user.getKorisnickoIme(),user.getLozinka(),user.getUloga()));
 	}
 	
 	

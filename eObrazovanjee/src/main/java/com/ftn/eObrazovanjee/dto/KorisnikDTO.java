@@ -13,6 +13,16 @@ public class KorisnikDTO {
 	private ProfesorDTO profesor;
 	private StudentDTO student;
 	
+	
+	
+	public KorisnikDTO(Long id, String korisnickoIme, String lozinka, Uloga uloga) {
+		super();
+		this.id = id;
+		this.korisnickoIme = korisnickoIme;
+		this.lozinka = lozinka;
+		this.uloga = uloga;
+	}
+
 	public KorisnikDTO(Long id, String korisnickoIme, String lozinka, Uloga uloga, ProfesorDTO profesor, StudentDTO student) {
 		super();
 		this.id = id;

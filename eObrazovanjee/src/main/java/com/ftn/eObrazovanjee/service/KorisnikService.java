@@ -23,6 +23,10 @@ public class KorisnikService {
 	}
 	
 	
+	public Korisnik findBykorisnickoIme(String korisnickoIme) {
+		return repository.findBykorisnickoIme(korisnickoIme).orElse(null);
+	}
+	
 	public List<Korisnik> findAll() {
 
 		return repository.findAll();
@@ -42,5 +46,6 @@ public class KorisnikService {
 	public Page<Korisnik> findAll(Pageable page) {
 		return repository.findAll(page);
 	}
+	
 	
 }

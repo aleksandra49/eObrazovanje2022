@@ -100,7 +100,7 @@ public class StudentController {
 		return new ResponseEntity<>(studentiDTO, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/polozeniIspiti", method = RequestMethod.GET)
+	@RequestMapping(value="/polozeniIspiti/{id}", method = RequestMethod.GET)
 	public ResponseEntity<List<IspitDTO>> getPolozeniIspiti(@PathVariable Long id) {
 		
 		Student student = studentService.findOne(id);
