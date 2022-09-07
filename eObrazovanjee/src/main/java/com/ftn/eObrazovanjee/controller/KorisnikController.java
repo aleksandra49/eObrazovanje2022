@@ -103,7 +103,7 @@ public class KorisnikController {
 		KorisnikDTO korisnikZaFront = new KorisnikDTO(user.getId(), user.getKorisnickoIme(), user.getLozinka(), user.getUloga());
 		Korisnik korisnikFromDb = korisnikService.findBykorisnickoIme(user.getKorisnickoIme());
 		// Vrati token kao odgovor na uspesnu autentifikaciju
-		return ResponseEntity.ok(new KorisnikTokenStateDTO(jwt, expiresIn,user.getId(),user.getKorisnickoIme(),user.getLozinka(),user.getUloga()));
+		return ResponseEntity.ok(new KorisnikTokenStateDTO(jwt, expiresIn, korisnikZaFront));
 	}
 	
 	

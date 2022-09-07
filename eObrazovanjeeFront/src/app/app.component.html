@@ -1,58 +1,65 @@
 
-<ul ngbNav #nav="ngbNav" [activeId]="3" class="nav-tabs justify-content-center">
-  <li [ngbNavItem]="1" > <!--dodati rutu ka profilu korisnika(click)="goToOnRightRoute('profil')"-->
-    <a ngbNavLink>Profil</a>
-  </li>
-  <li [ngbNavItem]="1"  (click)="goToOnRightRoute('profil')">
-    <a ngbNavLink>Profil studenta</a>
-  </li>
-  <!--dodati rutu ka profilu korisnika-->
-<!--  <li [ngbNavItem]="1" (click)="goToOnRightRoute('korisnici')">
-    <a ngbNavLink>Korisnici</a>
-  </li> 
-  -->
-  <li [ngbNavItem]="2" (click)="goToOnRightRoute('profesori')">
-    <a ngbNavLink><b>Profesori</b></a>
-  </li>
-  <li [ngbNavItem]="3" (click)="goToOnRightRoute('student')">
-    <a ngbNavLink>Studenti </a>
-  </li>
-  <li [ngbNavItem]="4" (click)="goToOnRightRoute('dokument')">
-    <a ngbNavLink>Dokumenti </a>
-  </li>
-  <li ngbDropdown class="nav-item">
-    <a href (click)="false" class="nav-link" ngbDropdownToggle>Predmet</a>
-    <div ngbDropdownMenu>
-      <button ngbDropdownItem >Polozeni predmeti</button>
-      <button ngbDropdownItem >Nepolozeni predmeti</button>
-      <!-- <button ngbDropdownItem>Something else here</button>
-      <div class="dropdown-divider"></div>
-      <button ngbDropdownItem>Separated link</button> -->
-    </div>
-  </li>
-  <li ngbDropdown class="nav-item">
-    <a href (click)="false" class="nav-link" ngbDropdownToggle>Ispiti</a>
-    <div ngbDropdownMenu>
-      <button ngbDropdownItem (click)="goToOnRightRoute('ispiti')">Ispiti</button>
-      <button ngbDropdownItem (click)="goToOnRightRoute('ispitniRokovi')">Ispitni rok</button>
-      <button ngbDropdownItem >Prijava ispita</button>
-      <button ngbDropdownItem >Odjavljivanje ispita</button>
-      <!-- <button ngbDropdownItem>Something else here</button>
-      <div class="dropdown-divider"></div>
-      <button ngbDropdownItem>Separated link</button> -->
-    </div>
-  </li>
-  <li [ngbNavItem]="1" (click)="goToOnRightRoute('login')">
-    <a ngbNavLink>Login</a>
-  </li>
-  <li ngbNavItem [disabled]="false" class="ms-auto" (click)="logout()">
-    <a ngbNavLink>Logout</a>
-    <ng-template ngbNavContent>
+<ng-container *ngIf="uloga">
+  <ul ngbNav #nav="ngbNav" [activeId]="3" class="nav-tabs justify-content-center" >
+    <li [ngbNavItem]="1"  *ngIf="uloga === 'STUDENT'"
+      (click)="goToOnRightRouteParams('student', idKorisnika)"> <!--dodati id od ulogovanog studenta ugoToOnRightRoute(student/UologovanStudentID) -->
+      <a ngbNavLink>Profil Studenta</a>
+    </li>
+  
+    <li *ngIf="uloga === 'PROFESOR'" [ngbNavItem]="2" 
+        (click)="goToOnRightRouteParams('profesori', idKorisnika)"> <!--dodati id od ulogovanog studenta ugoToOnRightRoute(student/UologovanStudentID) -->
+      <a ngbNavLink>Profil Profesora</a>
+    </li>
+    <!--dodati rutu ka profilu korisnika-->
+  <!--  <li [ngbNavItem]="1" (click)="goToOnRightRoute('korisnici')">
+      <a ngbNavLink>Korisnici</a>
+    </li> 
+    -->
+    <li [ngbNavItem]="3" (click)="goToOnRightRoute('profesori')">
+      <a ngbNavLink><b>Profesori</b></a>
+    </li>
+    <li [ngbNavItem]="4" (click)="goToOnRightRoute('student')">
+      <a ngbNavLink>Studenti </a>
+    </li>
+    <li [ngbNavItem]="5" (click)="goToOnRightRoute('dokument')">
+      <a ngbNavLink>Dokumenti </a>
+    </li>
+    <li ngbDropdown class="nav-item">
+      <a href (click)="false" class="nav-link" ngbDropdownToggle>Predmet</a>
+      <div ngbDropdownMenu>
+        <button ngbDropdownItem >Polozeni predmeti</button>
+        <button ngbDropdownItem >Nepolozeni predmeti</button>
+        <!-- <button ngbDropdownItem>Something else here</button>
+        <div class="dropdown-divider"></div>
+        <button ngbDropdownItem>Separated link</button> -->
+      </div>
+    </li>
+    <li ngbDropdown class="nav-item">
+      <a href (click)="false" class="nav-link" ngbDropdownToggle>Ispiti</a>
+      <div ngbDropdownMenu>
+        <button ngbDropdownItem (click)="goToOnRightRoute('ispiti')">Ispiti</button>
+        <button ngbDropdownItem (click)="goToOnRightRoute('ispitniRokovi')">Ispitni rok</button>
+        <button ngbDropdownItem >Prijava ispita</button>
+        <button ngbDropdownItem >Odjavljivanje ispita</button>
+        <!-- <button ngbDropdownItem>Something else here</button>
+        <div class="dropdown-divider"></div>
+        <button ngbDropdownItem>Separated link</button> -->
+      </div>
+    </li>
+    <li [ngbNavItem]="1" (click)="goToOnRightRoute('login')">
+      <a ngbNavLink>Login</a>
+    </li>
+    <li ngbNavItem [disabled]="false" class="ms-auto" (click)="logout()">
+      <a ngbNavLink>Logout</a>
+      <ng-template ngbNavContent>
+  
+      </ng-template>
+    </li>
+  </ul>
 
-    </ng-template>
-  </li>
-</ul>
 
-<div [ngbNavOutlet]="nav" class="mt-2"></div>
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+</ng-container>
 
 <router-outlet></router-outlet>

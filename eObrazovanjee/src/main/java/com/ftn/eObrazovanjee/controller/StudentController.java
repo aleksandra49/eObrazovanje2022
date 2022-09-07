@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.eObrazovanjee.dto.DokumentDTO;
@@ -100,8 +101,8 @@ public class StudentController {
 		return new ResponseEntity<>(studentiDTO, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/polozeniIspiti/{id}", method = RequestMethod.GET)
-	public ResponseEntity<List<IspitDTO>> getPolozeniIspiti(@PathVariable Long id) {
+	@RequestMapping(value="/polozeniIspiti", method = RequestMethod.GET)
+	public ResponseEntity<List<IspitDTO>> getPolozeniIspiti(@RequestParam Long id) {
 		
 		Student student = studentService.findOne(id);
 		List<Ispit> ispiti = ispitService.findAll();
@@ -118,7 +119,7 @@ public class StudentController {
 	}
 	
 	@RequestMapping(value="/svaPolaganja", method = RequestMethod.GET)
-	public ResponseEntity<List<IspitDTO>> getSvaPolaganja(@PathVariable Long id) {
+	public ResponseEntity<List<IspitDTO>> getSvaPolaganja(@RequestParam Long id) {
 		
 		Student student = studentService.findOne(id);
 		List<Ispit> ispiti = ispitService.findAll();
@@ -135,7 +136,7 @@ public class StudentController {
 	}
 	
 	@RequestMapping(value="/NepolozeniIspiti", method = RequestMethod.GET)
-	public ResponseEntity<List<IspitDTO>> getNepolozeniIspiti(@PathVariable Long id) {
+	public ResponseEntity<List<IspitDTO>> getNepolozeniIspiti(@RequestParam Long id) {
 		
 		Student student = studentService.findOne(id);
 		List<Ispit> ispiti = ispitService.findAll();
@@ -173,6 +174,23 @@ public class StudentController {
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<StudentDTO> getStudent(@PathVariable Long id){
+		Student student = studentService.findOne(id);
+		if(student == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		StudentDTO studentDTO = new StudentMapper().modelToDto(student);
+		studentDTO.setStudijskeGodineDTO(getStudijskeGodIzStudenta(student.getId()));
+		studentDTO.setDokumentiDTO(getDokumentiIzStudenta(student.getId()));
+		studentDTO.setFinansijskaKarticaDTO(getFinansijskaKarticaIzStudenta(student.getId()));
+		studentDTO.setPohadjanjaPredmetaDTO(getPohadjanjaIzStudenta(student.getId()));
+		studentDTO.setKorisnik(getKorisnikIzStudenta(student.getId()));
+		studentDTO.setPolaganjeIspita(getPolaganjaIzStudenta(student.getId()));
+		
+		return new ResponseEntity<>(studentDTO, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/profil", method=RequestMethod.GET)
+	public ResponseEntity<StudentDTO> getStudentProfil(@RequestParam Long id){
 		Student student = studentService.findOne(id);
 		if(student == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

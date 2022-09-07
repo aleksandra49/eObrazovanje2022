@@ -23,6 +23,10 @@ export class ProfesorComponent implements OnInit {
       this.profesori = res.body);
   }
 
+  goToOnRightRouteParams(val: string, id: any) {
+    this.router.navigate([val, id]);
+  }
+
   goToOnRightRoute(val: string) {
     console.log('val', val);
 

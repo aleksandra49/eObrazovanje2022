@@ -1,10 +1,13 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { StudentService } from '../student/student.service';
 import { LoginService } from './login.service';
 
 const TOKEN_KEY = 'auth-token';
-const USER_ID = 'ulogovanUserId';
+const USER = 'ulogovanUser';
+const USER_ID = 'ulogovanUserID';
+const ULOGA = 'uloga';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,7 +18,11 @@ const USER_ID = 'ulogovanUserId';
 
 export class LoginComponent implements OnInit {
 
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(
+    private loginService: LoginService,
+    private router: Router,
+    private studentService: StudentService
+  ) {}
 
    public loginRequest = {
     korisnickoIme: "",
@@ -34,11 +41,18 @@ export class LoginComponent implements OnInit {
         console.log('response', data);
         // alert("Usepsan login!")
         localStorage.setItem(TOKEN_KEY, data.body.accessToken);
-        localStorage.setItem(USER_ID, data.body.id)
+        localStorage.setItem(USER, JSON.stringify(data.body.korisnikDTO))
+        localStorage.setItem(USER_ID, data.body.korisnikDTO.id)
+        localStorage.setItem(ULOGA, data.body.korisnikDTO.uloga);
 
-        console.log('ID KORISNIKA', data.body.id);
+        console.log('KORISNIK', data.body.korisnikDTO);
+        console.log('ID KORISNIK', data.body.korisnikDTO.id);
+        this.studentService.sendUloga.next({
+          uloga: data.body.korisnikDTO.uloga,
+          id: data.body.korisnikDTO.id
+        });
    
-        this.router.navigate(['profesori']);
+        this.router.navigate(['dokument']);// profesori
       }, (error) => {
         this.router.navigate(['login']);
       })

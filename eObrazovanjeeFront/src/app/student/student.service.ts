@@ -10,6 +10,8 @@ import { Student } from '../model/student.model';
 export class StudentService {
     private studentUrl = 'api/student';
 
+    public sendUloga = new Subject();
+
     constructor(private http: HttpClient) { }
 
    
@@ -66,8 +68,18 @@ export class StudentService {
     }
 
 
-    getUlogovanStudent(id: number): Observable<HttpResponse<Student>> {
-        const url = `${this.studentUrl}/${id}`;
+    getStudentProfil(id: number): Observable<HttpResponse<Student>> {
+        const url = `${this.studentUrl} + "/profil"`;
+        const body = {
+            ime:  "anja",
+            email: 'anjiko@',
+            prezime: 'Anjic',
+            korisnik: {
+                id: 3,
+                korisnickoIme: 'anjica',
+                prezime: 'Anjika'
+            }
+        };
         return this.http.get<Student>(url, {observe: 'response'});
     }
 }

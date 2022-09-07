@@ -25,7 +25,10 @@
           <tr *ngFor="let student of studenti">
             <!--<td>{{ student.ime }}</td>-->
             <td>
-              <a href="student/{{ student.id }}">{{student.ime}}</a>
+              <div (click)="goToOnRightRouteParams('student', student.id)">
+                {{student.ime}}
+              </div>
+              <!-- <a href="profesori/{{ profesor.id }}"></a> -->
             </td>
             <td>{{ student.prezime }}</td>
             <td>{{ student.indeks }}</td>

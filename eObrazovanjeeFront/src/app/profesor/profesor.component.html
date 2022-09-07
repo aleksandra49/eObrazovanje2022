@@ -20,7 +20,10 @@
         <tbody>
             <tr *ngFor="let profesor of profesori">
                 <td>
-                  <a href="profesori/{{ profesor.id }}">{{profesor.ime}}</a>
+                  <div (click)="goToOnRightRouteParams('profesori', profesor.id)">
+                    {{profesor.ime}}
+                  </div>
+                  <!-- <a href="profesori/{{ profesor.id }}"></a> -->
                 </td>
                 <td>{{profesor.prezime}}</td>
                 <td>{{profesor.email}}</td>
