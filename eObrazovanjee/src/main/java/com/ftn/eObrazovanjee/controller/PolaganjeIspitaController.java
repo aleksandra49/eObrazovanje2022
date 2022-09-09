@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.eObrazovanjee.dto.IspitDTO;
 import com.ftn.eObrazovanjee.dto.PolaganjeIspitaDTO;
+import com.ftn.eObrazovanjee.dto.PolozenPredmetDTO;
 import com.ftn.eObrazovanjee.dto.StudentDTO;
 import com.ftn.eObrazovanjee.mapper.DeoIspitaMapper;
 import com.ftn.eObrazovanjee.mapper.IspitMapper;
@@ -146,13 +147,16 @@ public class PolaganjeIspitaController {
 	}
 	
 	//drugi nacin
-//	@GetMapping("/polozeniIspitiZaStudenta")
-//	public ResponseEntity<?> polozeniIspitiZaStudenta(@RequestParam("idStudenta") int idStudenta){
-//		try {
-//			List<PolozenIspitResponseDTO> response = polaganjeIspitaService.polozeniIspitiZaStudenta(idStudenta);
-//			return new ResponseEntity<List<PolozenIspitResponseDTO>>(response, HttpStatus.OK);
-//		}catch(Exception e) {
-//			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-//		}
-//	}
+	@GetMapping("/polozeniIspitiZaStudenta")
+	public ResponseEntity<?> polozeniIspitiZaStudenta(@RequestParam("idStudenta") int idStudenta){
+		try {
+			List<PolozenPredmetDTO> response = polaganjeIspitaService.polozeniIspitiZaStudenta(idStudenta);
+			System.out.println(response);
+			return new ResponseEntity<List<PolozenPredmetDTO>>(response, HttpStatus.OK);
+		}catch(Exception e) {
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+
 }
