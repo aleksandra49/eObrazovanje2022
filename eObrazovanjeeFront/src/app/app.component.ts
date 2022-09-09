@@ -32,11 +32,8 @@ export class AppComponent implements OnInit {
       this.uloga = uloga;
       this.idKorisnika = id;
     })
-// Ovde je greska, ternarni operator ako ima token da otvori profesore ako nema token login i onda ne mozes otvoriti profil profesora
-    token ? this.router.navigate(['dokument']) : this.router.navigate(['login']);
-
-    
-    
+    // Ovde je greska, ternarni operator ako ima token da otvori profesore ako nema token login i onda ne mozes otvoriti profil profesora
+    token ? this.router.navigate(['profesori']) : this.router.navigate(['login']);
   }
 
   goToOnRightRoute(val: string) {

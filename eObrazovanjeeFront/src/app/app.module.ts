@@ -56,6 +56,9 @@ import { EditPolaganjeIspitaComponent } from './polaganje-ispita/edit-polaganje-
 import { StudijskaGodinaService } from './studijska-godina/studijska-godina.service';
 import { PohadjanjePredmetaService } from './pohadjanje-predmeta/pohadjanje-predmeta.service';
 import { authInterceptorProviders } from './auth.interceptor';
+import { PolozeniIspitiComponent } from './polozeni-ispiti/polozeni-ispiti.component';
+import { PolozenIspitService } from './polozeni-ispiti/polozeni-ispiti.service';
+import { NepolozeniIspitiComponent } from './nepolozeni-ispiti/nepolozeni-ispiti.component';
 // import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -97,7 +100,9 @@ import { authInterceptorProviders } from './auth.interceptor';
     EditIspitComponent,
     EditIspitniRokComponent,
     EditKorisnikComponent,
-    EditPolaganjeIspitaComponent
+    EditPolaganjeIspitaComponent,
+    PolozeniIspitiComponent,
+    NepolozeniIspitiComponent
   ],
   imports: [
     BrowserModule,
@@ -109,7 +114,7 @@ import { authInterceptorProviders } from './auth.interceptor';
   providers: [ProfesorService, 
               KorisnikService, IspitService, IspitniRokService, PolaganjeService, 
               StudentService, DeoIspitaService, StudijskaGodinaService, PohadjanjePredmetaService,
-              DokumentService, authInterceptorProviders],
+              DokumentService, authInterceptorProviders, PolozenIspitService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

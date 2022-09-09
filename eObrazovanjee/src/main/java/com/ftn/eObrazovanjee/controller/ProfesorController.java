@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.eObrazovanjee.dto.KorisnikDTO;
+import com.ftn.eObrazovanjee.dto.PolozenPredmetDTO;
 import com.ftn.eObrazovanjee.dto.PredavanjePredmetaDTO;
 import com.ftn.eObrazovanjee.dto.ProfesorDTO;
+import com.ftn.eObrazovanjee.dto.UlogovaniProfesorDTO;
 import com.ftn.eObrazovanjee.mapper.KorisnikMapper;
 import com.ftn.eObrazovanjee.mapper.PredavanjePredmetaMapper;
 import com.ftn.eObrazovanjee.mapper.ProfesorMapper;
@@ -123,6 +126,13 @@ public class ProfesorController {
 		profesor.setPredavanja(new HashSet<>(new PredavanjePredmetaMapper().listDtoToModel(profesorDTO.getPredavanja())));
 		System.out.println("nadjeni korisnik je ======" + profesor);
 		
+		Long korisnikId = profesorDTO.getKorisnik().getId();
+		Long profesorId = profesorDTO.getId();
+		
+		profesorService.remove(profesorId);
+		korisnikService.remove(korisnikId);
+
+		
 		korisnik = korisnikService.save(korisnik1);
 		profesor = profesorService.save(profesor);
 		return new ResponseEntity<>(new ProfesorMapper().modelToDto(profesor), HttpStatus.OK);	
@@ -156,6 +166,9 @@ public class ProfesorController {
 		
 		return new ResponseEntity<>(profesorDTO, HttpStatus.OK);
 	}
+	
+	
+
 	//delete
 	 @DeleteMapping(value = {"/{id}"})
 	 public ResponseEntity<Void> delete(@PathVariable("id") Long id) {

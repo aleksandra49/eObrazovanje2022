@@ -8,6 +8,7 @@ const TOKEN_KEY = 'auth-token';
 const USER = 'ulogovanUser';
 const USER_ID = 'ulogovanUserID';
 const ULOGA = 'uloga';
+const PROFIL_ID = 'profilID';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -44,6 +45,8 @@ export class LoginComponent implements OnInit {
         localStorage.setItem(USER, JSON.stringify(data.body.korisnikDTO))
         localStorage.setItem(USER_ID, data.body.korisnikDTO.id)
         localStorage.setItem(ULOGA, data.body.korisnikDTO.uloga);
+ 
+        
 
         console.log('KORISNIK', data.body.korisnikDTO);
         console.log('ID KORISNIK', data.body.korisnikDTO.id);
