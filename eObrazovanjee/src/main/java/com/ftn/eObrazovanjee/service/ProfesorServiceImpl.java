@@ -33,7 +33,8 @@ public class ProfesorServiceImpl  {
 	
 	public List<Profesor> findAll() {
 
-		return repository.findAll();
+		List<Profesor> profesori = repository.findAll();
+		return profesori;
 	}
 	
 	public Profesor save(Profesor profesor) {

@@ -50,6 +50,7 @@ public class StudentMapper {
 		objectDTO.setEmail(object.getEmail());
 		objectDTO.setActive(object.isActive());
 		
+		
 		//zakomentarisana fina kartica jer izaziva beskoancnu petlju
 		//objectDTO.setStudijskeGodineDTO(new ArrayList<StudijskaGodinaDTO>());
 		//objectDTO.setDokumentiDTO(new ArrayList<DokumentDTO>());

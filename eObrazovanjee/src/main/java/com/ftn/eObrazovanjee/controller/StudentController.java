@@ -90,12 +90,12 @@ public class StudentController {
 		List<StudentDTO> studentiDTO = new ArrayList<>();
 		for (Student obj : studenti) {
 			StudentDTO student = new StudentMapper().modelToDto(obj);
-			student.setStudijskeGodineDTO(getStudijskeGodIzStudenta(student.getId()));
-			student.setDokumentiDTO(getDokumentiIzStudenta(student.getId()));
-			student.setFinansijskaKarticaDTO(getFinansijskaKarticaIzStudenta(student.getId()));
-			student.setPohadjanjaPredmetaDTO(getPohadjanjaIzStudenta(student.getId()));
-			student.setKorisnik(getKorisnikIzStudenta(student.getId()));
-			student.setPolaganjeIspita(getPolaganjaIzStudenta(student.getId()));
+			student.setStudijskeGodineDTO(getStudijskeGodIzStudenta(obj.getId()));
+			student.setDokumentiDTO(getDokumentiIzStudenta(obj.getId()));
+			student.setFinansijskaKarticaDTO(getFinansijskaKarticaIzStudenta(obj.getId()));
+			student.setPohadjanjaPredmetaDTO(getPohadjanjaIzStudenta(obj.getId()));
+			student.setKorisnik(getKorisnikIzStudenta(obj.getId()));
+			student.setPolaganjeIspita(getPolaganjaIzStudenta(obj.getId()));
 			studentiDTO.add(student);
 		}
 		return new ResponseEntity<>(studentiDTO, HttpStatus.OK);
@@ -364,7 +364,7 @@ public class StudentController {
 		if(student == null){
 			return null;
 		}
-		return new KorisnikMapper().modelToDto(student.getKorisnik());
+		return new KorisnikMapper().modelFromStudentToDto(student.getKorisnik());
 	}
 	
 	public ArrayList<PolaganjeIspitaDTO> getPolaganjaIzStudenta(Long id){

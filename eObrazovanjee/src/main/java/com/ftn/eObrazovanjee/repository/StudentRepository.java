@@ -5,12 +5,14 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.ftn.eObrazovanjee.model.Korisnik;
 import com.ftn.eObrazovanjee.model.Student;
 
 
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {
 
+	Student findByKorisnik(Korisnik korisnik);
 //	public Student findOne(Long id);
 //	public List<Student> findAll();
 //	Student findOneByIndeks(String indeks);

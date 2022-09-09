@@ -9,7 +9,12 @@ import org.springframework.stereotype.Service;
 
 import com.ftn.eObrazovanjee.model.Korisnik;
 import com.ftn.eObrazovanjee.model.PolaganjeIspita;
+import com.ftn.eObrazovanjee.model.Profesor;
+import com.ftn.eObrazovanjee.model.Student;
+import com.ftn.eObrazovanjee.model.Uloga;
 import com.ftn.eObrazovanjee.repository.KorisnikRepository;
+import com.ftn.eObrazovanjee.repository.ProfesorRepository;
+import com.ftn.eObrazovanjee.repository.StudentRepository;
 
 
 @Service
@@ -18,13 +23,29 @@ public class KorisnikService {
 	@Autowired
 	KorisnikRepository repository;
 	
+	@Autowired
+	ProfesorRepository profesorRepository;
+	
+	@Autowired
+	StudentRepository studentRepository;
+	
 	public Korisnik findOne(Long id) {
 		return repository.findById(id).orElse(null);
 	}
 	
 	
 	public Korisnik findBykorisnickoIme(String korisnickoIme) {
-		return repository.findBykorisnickoIme(korisnickoIme).orElse(null);
+		Korisnik korisnik = repository.findBykorisnickoIme(korisnickoIme).orElse(null);
+		if(korisnik.getUloga().equals(Uloga.PROFESOR)) {
+			System.out.println("Profesor je");
+			Profesor profesor = profesorRepository.findByKorisnik(korisnik);
+			
+			korisnik.setProfesor(profesor);
+		}else if(korisnik.getUloga().equals(Uloga.STUDENT)){
+			Student student = studentRepository.findByKorisnik(korisnik);
+			korisnik.setStudent(student);
+		}
+		return korisnik;
 	}
 	
 	public List<Korisnik> findAll() {

@@ -78,6 +78,9 @@ public class KorisnikController {
 	@Autowired
 	private TokenUtils tokenUtils;
 	
+	@Autowired
+	private KorisnikMapper korisnikMapper;
+	
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	public String userModel(Model model) {
 		Korisnik korisnik = new Korisnik();
@@ -100,11 +103,9 @@ public class KorisnikController {
 		String jwt = tokenUtils.generateToken(user.getUsername(), user.getId(), user.getUloga().toString());
 		Long expiresIn = tokenUtils.getExpiredIn();
 		
-		
-		KorisnikDTO korisnikZaFront = new KorisnikDTO(user.getId(), user.getKorisnickoIme(), user.getLozinka(), user.getUloga());
 		Korisnik korisnikFromDb = korisnikService.findBykorisnickoIme(user.getKorisnickoIme());
 		// Vrati token kao odgovor na uspesnu autentifikaciju
-		return ResponseEntity.ok(new KorisnikTokenStateDTO(jwt, expiresIn, korisnikZaFront));
+		return ResponseEntity.ok(new KorisnikTokenStateDTO(jwt, expiresIn, korisnikMapper.modelToDto(korisnikFromDb)));
 	}
 	
 	

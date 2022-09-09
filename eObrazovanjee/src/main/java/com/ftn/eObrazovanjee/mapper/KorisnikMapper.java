@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.ftn.eObrazovanjee.dto.KorisnikDTO;
 import com.ftn.eObrazovanjee.model.Korisnik;
+import com.ftn.eObrazovanjee.model.Uloga;
 import com.ftn.eObrazovanjee.service.KorisnikService;
 
 @Component
@@ -16,6 +17,12 @@ public class KorisnikMapper {
 
 	@Autowired
 	private KorisnikService service;
+	
+	@Autowired
+	private StudentMapper studentMapper;
+	
+	@Autowired
+	private ProfesorMapper profesorMapper;
 	
 	public KorisnikDTO modelToDto(Korisnik object) {
 		
@@ -31,9 +38,54 @@ public class KorisnikMapper {
 		objectDTO.setKorisnickoIme(object.getKorisnickoIme());
 		objectDTO.setLozinka(object.getLozinka());
 		objectDTO.setUloga(object.getUloga());
-	//	objectDTO.setProfesor(new ProfesorMapper().modelToDto(object.getProfesor()));
-	//	objectDTO.setStudent(new StudentMapper().modelToDto(object.getStudent()));
+		System.out.println("ULOGA: " + object.getUloga().toString());
+		if(object.getUloga().equals(Uloga.PROFESOR)) {
+			System.out.println("ULOGA: " + object.getUloga().toString());
+			System.out.println("profesor je ");
+			System.out.println(object.getProfesor().getIme());
+			objectDTO.setProfesor(profesorMapper.modelToDto(object.getProfesor()));
+		}
+		if(object.getUloga().equals(Uloga.STUDENT)) {
+			System.out.println("student je");
+			objectDTO.setStudent(studentMapper.modelToDto(object.getStudent()));
+		}
+
+		return objectDTO;
+	}
+	
+	public KorisnikDTO modelFromProfesorToDto(Korisnik object) {
 		
+		/*
+		//kada je prazan entitet u bazi ovako proverimo
+		if (object == null)
+			return null;
+			*/
+		
+		KorisnikDTO objectDTO = new KorisnikDTO();
+		
+		objectDTO.setId(object.getId());
+		objectDTO.setKorisnickoIme(object.getKorisnickoIme());
+		objectDTO.setLozinka(object.getLozinka());
+		objectDTO.setUloga(object.getUloga());
+
+		return objectDTO;
+	}
+	
+public KorisnikDTO modelFromStudentToDto(Korisnik object) {
+		
+		/*
+		//kada je prazan entitet u bazi ovako proverimo
+		if (object == null)
+			return null;
+			*/
+		
+		KorisnikDTO objectDTO = new KorisnikDTO();
+		
+		objectDTO.setId(object.getId());
+		objectDTO.setKorisnickoIme(object.getKorisnickoIme());
+		objectDTO.setLozinka(object.getLozinka());
+		objectDTO.setUloga(object.getUloga());
+
 		return objectDTO;
 	}
 	

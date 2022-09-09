@@ -53,17 +53,20 @@ public class ProfesorController {
 	private ProfesorRepository repository;
 	
 	@Autowired
+	private KorisnikMapper korisnikMapper;
+	
+	@Autowired
 	private PredavanjePredmetaServiceImpl predavanjePredmetaService;
 	//page
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<ProfesorDTO>> getProfesoriPage(Pageable page) {
-		Page<Profesor> profesori = profesorService.findAll(page);
+		List<Profesor> profesori = profesorService.findAll();
 		
 		
 		List<ProfesorDTO> profesoriDTO = new ArrayList<>();
 		for (Profesor obj : profesori) {
 			ProfesorDTO profesor = new ProfesorMapper().modelToDto(obj);
-			profesor.setKorisnik(getKorisnikaIzProfesora(profesor.getId()));
+			profesor.setKorisnik(korisnikMapper.modelFromProfesorToDto(obj.getKorisnik()));
 			profesor.setPredavanja(getPredavanjePredmetaIzProfesora(profesor.getId()));
 			profesoriDTO.add(profesor);
 		}
@@ -202,7 +205,7 @@ public class ProfesorController {
 			if(profesor == null){
 				return null;
 			}
-			return new KorisnikMapper().modelToDto(profesor.getKorisnik());
+			return new KorisnikMapper().modelFromProfesorToDto(profesor.getKorisnik());
 		}
 	
 
