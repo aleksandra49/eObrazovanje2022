@@ -147,8 +147,8 @@ public class PolaganjeIspitaController {
 	}
 	
 	//drugi nacin
-	@GetMapping("/polozeniIspitiZaStudenta/{id}")
-	public ResponseEntity<?> polozeniIspitiZaStudenta(@PathVariable("idStudenta") int idStudenta){
+	@GetMapping("/polozeniIspitiZaStudenta")
+	public ResponseEntity<?> polozeniIspitiZaStudenta(@RequestParam("idStudenta") int idStudenta){
 		try {
 			List<PolozenPredmetDTO> response = polaganjeIspitaService.polozeniIspitiZaStudenta(idStudenta);
 			System.out.println(response);
@@ -159,11 +159,11 @@ public class PolaganjeIspitaController {
 	}
 	
 	//drugi nacin
-	@GetMapping("/NepolozeniIspitiZaStudenta/{id}")
-	public ResponseEntity<?> NepolozeniIspitiZaStudenta(@PathVariable("idStudenta") int idStudenta){
+	@GetMapping("/NepolozeniIspitiZaStudenta")
+	public ResponseEntity<?> NepolozeniIspitiZaStudenta(@RequestParam("idStudenta") int idStudenta){
+		System.out.println("POGODI KONTROLER");
 		try {
 			List<PolozenPredmetDTO> response = polaganjeIspitaService.NepolozeniIspitiZaStudenta(idStudenta);
-			System.out.println(response);
 			return new ResponseEntity<List<PolozenPredmetDTO>>(response, HttpStatus.OK);
 		}catch(Exception e) {
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);

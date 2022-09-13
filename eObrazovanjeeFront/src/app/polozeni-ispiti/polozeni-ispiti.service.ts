@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpResponse, HttpClient } from '@angular/common/http';
+import { HttpResponse, HttpClient, HttpParams } from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 import { PolozenPredmet } from '../model/polozenPredmet.model';
 
@@ -13,14 +13,16 @@ export class PolozenIspitService {
 
     constructor(private http: HttpClient) { }
 
-    getPolozeniPredmeti(id: number): Observable<HttpResponse<PolozenPredmet>> {
-        const url = `${this.polozenPredmetUrl+ "/polozeniIspitiZaStudenta"}/${id}`;
-        return this.http.get<PolozenPredmet>(url, {observe: 'response'});
+    getPolozeniPredmeti(id: number): Observable<HttpResponse<PolozenPredmet[]>> {
+        const url = `${this.polozenPredmetUrl+ "/polozeniIspitiZaStudenta"}`;
+        const params = new HttpParams().append("idStudenta", id);
+        return this.http.get<PolozenPredmet[]>(url, {observe: 'response', params});
     }
 
-    getNepolozeniPredmeti(id: number): Observable<HttpResponse<PolozenPredmet>> {
-        const url = `${this.polozenPredmetUrl+ "/NepolozeniIspitiZaStudenta"}/${id}`;
-        return this.http.get<PolozenPredmet>(url, {observe: 'response'});
+    getNepolozeniPredmeti(id: number): Observable<HttpResponse<PolozenPredmet[]>> {
+        const url = `${this.polozenPredmetUrl+ "/NepolozeniIspitiZaStudenta"}`;
+        const params = new HttpParams().append("idStudenta", id);
+        return this.http.get<PolozenPredmet[]>(url,{observe: 'response', params});
     }
 
 }

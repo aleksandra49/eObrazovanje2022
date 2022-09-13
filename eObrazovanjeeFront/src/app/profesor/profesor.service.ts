@@ -13,6 +13,7 @@ export class ProfesorService {
 
     constructor(private http: HttpClient) { }
 
+    public sendUloga = new Subject();
    
     
     getProfesori(): Observable<HttpResponse<Profesor[]>> {

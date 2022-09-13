@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PolozenPredmet } from '../model/polozenPredmet.model';
 import { PolozenIspitService } from '../polozeni-ispiti/polozeni-ispiti.service';
 import { StudentService } from '../student/student.service';
 
@@ -13,8 +14,7 @@ export class NepolozeniIspitiComponent implements OnInit {
   uloga: any = null;
   idKorisnika: any;
   id: string | null | undefined;
-  polozenPredmet: any;
-
+  polozenPredmet: PolozenPredmet[] | null = [];
   constructor(
     private router: Router, 
     private studentService: StudentService,
@@ -34,8 +34,11 @@ export class NepolozeniIspitiComponent implements OnInit {
       const { uloga, id } = data;
       this.uloga = uloga;
       this.idKorisnika = id;
+
+      
     })
 
+    this.getNepolozenIspit();
   }
 
   goToOnRightRouteParams(val: string, id: any) {

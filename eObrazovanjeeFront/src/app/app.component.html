@@ -2,12 +2,12 @@
 <ng-container *ngIf="uloga">
   <ul ngbNav #nav="ngbNav" [activeId]="3" class="nav-tabs justify-content-center" >
     <li [ngbNavItem]="1"  *ngIf="uloga === 'STUDENT'"
-      (click)="goToOnRightRouteParams('student', idKorisnika)"> <!--dodati id od ulogovanog studenta ugoToOnRightRoute(student/UologovanStudentID) -->
+      (click)="goToOnRightRouteParams('student', idStudenta)"> <!--dodati id od ulogovanog studenta ugoToOnRightRoute(student/UologovanStudentID) -->
       <a ngbNavLink>Profil Studenta</a>
     </li>
   
     <li *ngIf="uloga === 'PROFESOR'" [ngbNavItem]="2" 
-        (click)="goToOnRightRouteParams('profesori', idKorisnika)"> <!--dodati id od ulogovanog studenta ugoToOnRightRoute(student/UologovanStudentID) -->
+        (click)="goToOnRightRouteParams('profesori', idProfesora)"> <!--dodati id od ulogovanog studenta ugoToOnRightRoute(student/UologovanStudentID) -->
       <a ngbNavLink>Profil Profesora</a>
     </li>
     <!--dodati rutu ka profilu korisnika-->
@@ -25,10 +25,10 @@
       <a ngbNavLink>Dokumenti </a>
     </li>
     <li ngbDropdown class="nav-item">
-      <a href (click)="false" class="nav-link" ngbDropdownToggle>Predmet</a>
+      <a href *ngIf="uloga === 'STUDENT'" (click)="false" class="nav-link" ngbDropdownToggle>Predmet</a>
       <div ngbDropdownMenu>
-        <button ngbDropdownItem (click)="goToOnRightRouteParams('polozeniIspitiZaStudenta', idKorisnika)">Polozeni predmeti</button>
-        <button ngbDropdownItem (click)="goToOnRightRouteParams('NepolozeniIspitiZaStudenta', idKorisnika)">Nepolozeni predmeti</button>
+        <button ngbDropdownItem (click)="goToOnRightRouteParams('polozeniIspitiZaStudenta', idStudenta)">Polozeni predmeti</button>
+        <button ngbDropdownItem (click)="goToOnRightRouteParams('NepolozeniIspitiZaStudenta', idStudenta)">Nepolozeni predmeti</button>
         <!-- <button ngbDropdownItem>Something else here</button>
         <div class="dropdown-divider"></div>
         <button ngbDropdownItem>Separated link</button> -->

@@ -10,7 +10,8 @@ import { StudentService } from './student/student.service';
 export class AppComponent implements OnInit {
   title = 'eObrazovanjeeFront';
   uloga: any = null;
-  idKorisnika: any;
+  idStudenta: any;
+  idProfesora: any;
 
   constructor (
     private router: Router, 
@@ -22,16 +23,30 @@ export class AppComponent implements OnInit {
     const token = localStorage.getItem('auth-token');
 
     this.uloga = localStorage.getItem('uloga');
-    this.idKorisnika = localStorage.getItem('ulogovanUserID');
+    this.idStudenta = localStorage.getItem('studentID');
+    this.idProfesora = localStorage.getItem('profesorID');
 
     console.log('uloga', this.uloga);
+  if(this.uloga =="STUDENT"){
+      this.studentService.sendUloga.subscribe((data: any) => {
+        console.log('sendUloga', data);
+        const { uloga, id } = data;
+        this.uloga = uloga;
+        this.idStudenta = id;
+      })
 
-    this.studentService.sendUloga.subscribe((data: any) => {
-      console.log('sendUloga', data);
-      const { uloga, id } = data;
-      this.uloga = uloga;
-      this.idKorisnika = id;
-    })
+    }
+
+    if(this.uloga =="PROFESOR"){
+      this.studentService.sendUloga.subscribe((data: any) => {
+        console.log('sendUloga', data);
+        const { uloga, id } = data;
+        this.uloga = uloga;
+        this.idProfesora = id;
+      })
+
+    }
+
     // Ovde je greska, ternarni operator ako ima token da otvori profesore ako nema token login i onda ne mozes otvoriti profil profesora
     token ? this.router.navigate(['profesori']) : this.router.navigate(['login']);
   }
