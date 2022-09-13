@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpResponse, HttpClient } from '@angular/common/http';
+import { HttpResponse, HttpClient, HttpParams } from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 
 import { Profesor } from '../model/profesor.model';
 import { Korisnik } from '../model/korisnik.model';
 import { Student } from '../model/student.model';
+import { PredajePredmet } from '../model/predajePredmet';
 
 
 @Injectable()
 export class ProfesorService {
+
     private profesoriUrl = 'api/profesori';
 
     constructor(private http: HttpClient) { }
@@ -55,5 +57,11 @@ export class ProfesorService {
         const url = `${this.profesoriUrl}`;
 
         return this.http.put<any>(url, profesor , {observe: 'response'});
+    }
+
+    getPredajePredmet(id: number): Observable<HttpResponse<PredajePredmet[]>> {
+        const url = `${this.profesoriUrl+ "/predavanje"}`;
+        const params = new HttpParams().append("idProfesora", id);
+        return this.http.get<PredajePredmet[]>(url, {observe: 'response', params});
     }
 }

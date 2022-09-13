@@ -24,6 +24,9 @@
     <li [ngbNavItem]="5" (click)="goToOnRightRoute('dokument')">
       <a ngbNavLink>Dokumenti </a>
     </li>
+    <li *ngIf="uloga === 'PROFESOR'" [ngbNavItem]="6" (click)="goToOnRightRouteParams('predmet', idProfesora)">
+      <a ngbNavLink>Predmeti </a>
+    </li>
     <li ngbDropdown class="nav-item">
       <a href *ngIf="uloga === 'STUDENT'" (click)="false" class="nav-link" ngbDropdownToggle>Predmet</a>
       <div ngbDropdownMenu>

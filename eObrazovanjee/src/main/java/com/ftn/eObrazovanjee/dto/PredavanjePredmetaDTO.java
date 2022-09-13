@@ -8,6 +8,15 @@ public class PredavanjePredmetaDTO {
 	private PredmetInstancaDTO predmetInstanca;
 	private ProfesorDTO profesor;
 	private TipPredavacaVezbi tipPredavaca;
+	private PredmetDTO predmet;
+	
+	
+	public PredmetDTO getPredmet() {
+		return predmet;
+	}
+	public void setPredmet(PredmetDTO predmet) {
+		this.predmet = predmet;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -44,6 +53,15 @@ public class PredavanjePredmetaDTO {
 	}
 	public PredavanjePredmetaDTO() {
 		super();
+	}
+	public PredavanjePredmetaDTO(Long id, PredmetInstancaDTO predmetInstanca, ProfesorDTO profesor,
+			TipPredavacaVezbi tipPredavaca, PredmetDTO predmet) {
+		super();
+		this.id = id;
+		this.predmetInstanca = predmetInstanca;
+		this.profesor = profesor;
+		this.tipPredavaca = tipPredavaca;
+		this.predmet = predmet;
 	}
 	
 	

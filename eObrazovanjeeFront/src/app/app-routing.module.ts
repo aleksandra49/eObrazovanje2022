@@ -36,6 +36,7 @@ import { EditKorisnikComponent } from './korisnik/edit-korisnik/edit-korisnik.co
 import { EditPohadanjePredmetaComponent } from './pohadjanje-predmeta/edit-pohadanje-predmeta/edit-pohadanje-predmeta.component';
 import { PolozeniIspitiComponent } from './polozeni-ispiti/polozeni-ispiti.component';
 import { NepolozeniIspitiComponent } from './nepolozeni-ispiti/nepolozeni-ispiti.component';
+import { ProfesorPredajeComponent } from './profesor/profesor-predaje/profesor-predaje.component';
 
 const routes: Routes = [
 
@@ -58,6 +59,7 @@ const routes: Routes = [
   { path: 'addPolaganjaIspita', component: AddPolaganjeIspitaComponent },
 
   { path: 'profesori/:id', component: EditProfesorComponent },
+  { path: 'predmet/:id', component: ProfesorPredajeComponent },
   { path: 'polozeniIspitiZaStudenta/:id', component: PolozeniIspitiComponent },
   { path: 'NepolozeniIspitiZaStudenta/:id', component: NepolozeniIspitiComponent },
 

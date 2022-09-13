@@ -15,12 +15,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.eObrazovanjee.dto.KorisnikDTO;
 import com.ftn.eObrazovanjee.dto.PolozenPredmetDTO;
 import com.ftn.eObrazovanjee.dto.PredavanjePredmetaDTO;
 import com.ftn.eObrazovanjee.dto.ProfesorDTO;
+import com.ftn.eObrazovanjee.dto.ProfesorPredmetDTO;
 import com.ftn.eObrazovanjee.dto.UlogovaniProfesorDTO;
 import com.ftn.eObrazovanjee.mapper.KorisnikMapper;
 import com.ftn.eObrazovanjee.mapper.PredavanjePredmetaMapper;
@@ -48,6 +50,7 @@ public class ProfesorController {
 	
 	@Autowired
 	private KorisnikService korisnikService;
+	
 	
 	@Autowired
 	private ProfesorRepository repository;
@@ -195,6 +198,16 @@ public class ProfesorController {
 				return null;
 			} else {		
 				return null;
+			}
+		}
+		
+		@GetMapping("/predavanje")
+		public ResponseEntity<?> Predavanje(@RequestParam("idProfesora") int idProfesora){
+			try {
+				List<ProfesorPredmetDTO> response = profesorService.predavanjePredmeta(idProfesora);
+				return new ResponseEntity<List<ProfesorPredmetDTO>>(response, HttpStatus.OK);
+			}catch(Exception e) {
+				return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 			}
 		}
 	 

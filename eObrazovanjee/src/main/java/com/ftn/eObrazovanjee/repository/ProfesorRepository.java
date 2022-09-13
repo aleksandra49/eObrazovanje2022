@@ -14,4 +14,11 @@ import com.ftn.eObrazovanjee.model.Profesor;
 public interface ProfesorRepository extends JpaRepository<Profesor, Long> {
 
 	Profesor findByKorisnik(Korisnik korisnik);
+	
+	@Query(value = "select p.oznaka, p.naziv, p.espb from predavanja as pr\r\n"
+			+ "join predmetinstanca as pi on pi.id = pr.predmet_instanca_id\r\n"
+			+ "join predmet as p on pi.predmet_id = p.id\r\n"
+			+ "join profesori as prof on prof.id = :idProfesora" , nativeQuery = true)
+	List<Object[]> pronadjiPredmeteNative(@Param("idProfesora") int idStudenta);;
+	
 }

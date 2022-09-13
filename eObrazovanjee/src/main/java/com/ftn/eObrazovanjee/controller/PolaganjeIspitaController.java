@@ -161,7 +161,6 @@ public class PolaganjeIspitaController {
 	//drugi nacin
 	@GetMapping("/NepolozeniIspitiZaStudenta")
 	public ResponseEntity<?> NepolozeniIspitiZaStudenta(@RequestParam("idStudenta") int idStudenta){
-		System.out.println("POGODI KONTROLER");
 		try {
 			List<PolozenPredmetDTO> response = polaganjeIspitaService.NepolozeniIspitiZaStudenta(idStudenta);
 			return new ResponseEntity<List<PolozenPredmetDTO>>(response, HttpStatus.OK);

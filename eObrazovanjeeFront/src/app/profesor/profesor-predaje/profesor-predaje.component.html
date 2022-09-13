@@ -1,0 +1,23 @@
+
+<div class="container">
+    <h4 class="display-4 text-center">Predaje</h4>
+  
+    <div class="container">
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+            <th>Oznaka Predmeta</th>
+            <th>Naziv predmeta</th> 
+            <th>Broj ESPB bodova</th>     
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let predmet of predajePredmet">
+                <td>{{predmet.oznaka}}</td>
+                <td>{{predmet.naziv}}</td>
+                <td>{{predmet.espb}}</td>
+            </tr>
+        </tbody>
+      </table>
+     
+    </div>

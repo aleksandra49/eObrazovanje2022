@@ -1,6 +1,8 @@
 package com.ftn.eObrazovanjee.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.ftn.eObrazovanjee.dto.PolozenPredmetDTO;
+import com.ftn.eObrazovanjee.dto.ProfesorPredmetDTO;
 import com.ftn.eObrazovanjee.dto.UlogovaniProfesorDTO;
 import com.ftn.eObrazovanjee.model.Korisnik;
 import com.ftn.eObrazovanjee.model.PredmetInstanca;
@@ -48,5 +51,24 @@ public class ProfesorServiceImpl  {
 	
 	public Page<Profesor> findAll(Pageable page) {
 		return repository.findAll(page);
+	}
+	
+	public List<ProfesorPredmetDTO> predavanjePredmeta(int idProfesora) throws Exception {
+		// TODO Auto-generated method stub
+		Optional<Profesor> profesorOptional = repository.findById((long) idProfesora);
+		if(!profesorOptional.isPresent()) {
+			throw new Exception("Profesor sa prosledjenim id-om ne postoji");
+		}
+		List<Object[]> nativeResponse = repository.pronadjiPredmeteNative(idProfesora);
+		List<ProfesorPredmetDTO> response = new ArrayList<ProfesorPredmetDTO>();
+		for(Object[] obj:nativeResponse) {
+			ProfesorPredmetDTO tmpObj = new ProfesorPredmetDTO(obj[0].toString(), obj[1].toString(),
+					Integer.parseInt(obj[2].toString()));
+			
+			response.add(tmpObj);
+		}
+		System.out.println(response);
+		return response;
+		
 	}
 }
