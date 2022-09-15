@@ -17,7 +17,7 @@ constructor(private rokService: IspitniRokService) { }
 
 ispitniRok: IspitniRok = new IspitniRok({
   id: 0,
-  naziv: "",
+  nazivRoka: "",
   pocetakRoka: "",
   krajRoka: "",
 });

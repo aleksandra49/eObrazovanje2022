@@ -8,31 +8,20 @@
       <table class="table table-hover table-striped">
         <thead>
           <tr>
-            <th>id</th>
             <th>naziv</th>
             <th>pocetakRoka</th>
-            <th>krajRoka</th> 
-            <th>Izmeni</th>
-            <th>Obriši</th>
-            <th>Profil</th>       
+            <th>krajRoka</th>   
+            <th>Prijavi Ispit</th>
           </tr>
         </thead>
         <tbody>
             <tr *ngFor="let rok of ispitniRokovi">
-                <td>{{rok.id}}</td>
-                <td>{{rok.naziv}}</td>
+                <td>{{rok.nazivRoka}}</td>
                 <td>{{rok.pocetakRoka}}</td>
                 <td>{{rok.krajRoka}}</td> 
-                
-                
-      <!-- <td class="h5"><a class="badge badge-primary" [routerLink]="['/nastavnik/', nastavnik.id]"> <i class="fa fa-edit"></i> Izmeni</a></td> -->
-      <!-- <td class="h5" style="cursor: pointer; color: white"><a class="badge badge-danger" (click)="delete(nastavnik.id)"> <i class="fa fa-trash"></i> Obriši</a></td> -->
-      <!-- <td class="h5"><a class="badge badge-secondary" [routerLink]="['/nastavnik-stranica/', nastavnik.id]">Profil</a></td> -->
-
-      <td class="h5"><button type="button" class="btn btn-primary">Izmeni</button></td>
-      <td class="h5"><button type="button" class="btn btn-primary" (click)="delete(rok.id)">Obrisi</button></td>
-      <td class="h5"><button type="button" class="btn btn-primary">Profil</button></td>
-                
+                <td class="h5"><button type="button" class="btn btn-primary" 
+                (click)="goToOnRightRouteParams('prijavaIspita', rok.id)">Prijavi Ispit</button></td>
+       
             </tr>
         </tbody>
       </table>

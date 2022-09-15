@@ -64,6 +64,7 @@ public class IspitniRokController {
 			ispitniRok.setIspiti(getIspitiIzIspitnogRoka(ispitniRok.getId()));
 			
 			ispitiDTO.add(ispitniRok);
+			
 		}
 		return new ResponseEntity<>(ispitiDTO, HttpStatus.OK);
 	}

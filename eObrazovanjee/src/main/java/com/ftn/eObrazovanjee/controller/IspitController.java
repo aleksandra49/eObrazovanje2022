@@ -8,16 +8,20 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.eObrazovanjee.dto.DeoIspitaDTO;
 import com.ftn.eObrazovanjee.dto.IspitDTO;
+import com.ftn.eObrazovanjee.dto.IspitIspitniRokDTO;
 import com.ftn.eObrazovanjee.dto.IspitniRokDTO;
 import com.ftn.eObrazovanjee.dto.PolaganjeIspitaDTO;
+import com.ftn.eObrazovanjee.dto.PolozenPredmetDTO;
 import com.ftn.eObrazovanjee.dto.PredmetInstancaDTO;
 import com.ftn.eObrazovanjee.mapper.DeoIspitaMapper;
 import com.ftn.eObrazovanjee.mapper.IspitMapper;
@@ -26,22 +30,31 @@ import com.ftn.eObrazovanjee.mapper.PolaganjeIspitaMapper;
 import com.ftn.eObrazovanjee.mapper.PredmetInstancaMapper;
 import com.ftn.eObrazovanjee.model.DeoIspita;
 import com.ftn.eObrazovanjee.model.Ispit;
+import com.ftn.eObrazovanjee.model.IspitniRok;
 import com.ftn.eObrazovanjee.model.PolaganjeIspita;
+import com.ftn.eObrazovanjee.model.Student;
+import com.ftn.eObrazovanjee.repository.IspitRepository;
 import com.ftn.eObrazovanjee.service.DeoIspitaService;
 import com.ftn.eObrazovanjee.service.IspitService;
 import com.ftn.eObrazovanjee.service.IspitniRokService;
 import com.ftn.eObrazovanjee.service.PolaganjeIspitaService;
 import com.ftn.eObrazovanjee.service.PredmetInstancaServiceImpl;
+import com.ftn.eObrazovanjee.service.StudentService;
 
 
 @RestController
 @RequestMapping(value="api/ispit")
 public class IspitController {
 
+	
+	@Autowired
+	private StudentService studentService;
 	@Autowired
 	private IspitService ispitService;
 	@Autowired
 	private IspitniRokService ispitniRokService;
+	@Autowired
+	private IspitRepository ispitRepository;
 	@Autowired
 	private PredmetInstancaServiceImpl predmetInstancaServiceImpl;
 	@Autowired
@@ -65,6 +78,7 @@ public class IspitController {
 		return new ResponseEntity<>(ispitiDTO, HttpStatus.OK);
 	}
 	
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<IspitDTO>> getIspitiPage(Pageable page) {
 		Page<Ispit> ispiti = ispitService.findAll(page);
@@ -80,6 +94,29 @@ public class IspitController {
 			ispitiDTO.add(ispit);
 		}
 		return new ResponseEntity<>(ispitiDTO, HttpStatus.OK);
+	}
+	
+	@GetMapping("/ispitniRok")
+	public ResponseEntity<?> NepolozeniIspitiZaStudenta(@RequestParam("idIspitnogRoka") int idIspitnogRoka){
+		try {
+			List<IspitIspitniRokDTO> response = ispitService.pronadjiIspiteIzIspitnogRoka(idIspitnogRoka);
+			return new ResponseEntity<List<IspitIspitniRokDTO>>(response, HttpStatus.OK);
+		}catch(Exception e) {
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@RequestMapping(value ="/prijavaIspita", method=RequestMethod.POST)
+	public ResponseEntity<?> PrijavaIspita(@RequestParam Long ispitId, @RequestParam Long studentId){
+		try {
+			Ispit ispit = ispitService.findOne((long) ispitId);
+			Student student = studentService.findOne((long) studentId);
+			
+			ispitRepository.prijaviIspitNative(ispitId,studentId);
+			return new ResponseEntity<>(HttpStatus.OK);
+		}catch(Exception e) {
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)

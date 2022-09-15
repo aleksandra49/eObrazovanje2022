@@ -16,11 +16,23 @@ export class IspitniRokComponent implements OnInit {
 
   ngOnInit(): void {
     this.getIspitniRokovi();
+
+
   }
 
   getIspitniRokovi(){
     this.ispitniRokService.getRokovi().subscribe(res =>
       this.ispitniRokovi = res.body);
+
+      this.ispitniRokService.getRokovi().subscribe((data : any) => {
+        console.log('response', data);
+        
+      });
+
+  }
+
+  goToOnRightRouteParams(val: string, id: any) {
+    this.router.navigate([val, id]);
   }
 
   goToOnRightRoute(val: string) {

@@ -1,0 +1,28 @@
+
+<div class="container">
+    <h4 class="display-4 text-center">Prijava ispita</h4>
+  
+    <div class="container">
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+            <th>Naziv Predmeta</th>
+            <th>Datum ispita</th> 
+            <th>Rok</th>    
+            <th></th> 
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let ir of ispitIspitniRok">
+                <td>{{ir.nazivPredmeta}}</td>
+                <td>{{ir.datumIVremeRoka}}</td>
+                <td>{{ir.nazivRoka}}</td>
+                <td class="h5"><button type="button" class="btn btn-primary" 
+                    (click)="prijaviIspit(ir.ispitId, studentId)">prijavi ispit</button></td>
+        
+
+            </tr>
+        </tbody>
+      </table>
+     
+    </div>

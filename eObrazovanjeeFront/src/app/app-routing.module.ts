@@ -37,6 +37,8 @@ import { EditPohadanjePredmetaComponent } from './pohadjanje-predmeta/edit-pohad
 import { PolozeniIspitiComponent } from './polozeni-ispiti/polozeni-ispiti.component';
 import { NepolozeniIspitiComponent } from './nepolozeni-ispiti/nepolozeni-ispiti.component';
 import { ProfesorPredajeComponent } from './profesor/profesor-predaje/profesor-predaje.component';
+import { PrijavaIspitComponent } from './ispit/prijava-ispit/prijava-ispit.component';
+import { OdjavaIspitComponent } from './ispit/odjava-ispit/odjava-ispit.component';
 
 const routes: Routes = [
 
@@ -50,6 +52,8 @@ const routes: Routes = [
   { path: 'ispiti', component: IspitComponent },
   { path: 'addIspit', component: AddIspitComponent },
   { path: 'editIspit', component: EditIspitComponent },
+  { path: 'prijavaIspita/:id', component: PrijavaIspitComponent },
+  { path: 'odjavaIspita', component: OdjavaIspitComponent },
 
   { path: 'ispitniRokovi', component: IspitniRokComponent },
   { path: 'addIspitniRokovi', component: AddIspitniRokComponent },

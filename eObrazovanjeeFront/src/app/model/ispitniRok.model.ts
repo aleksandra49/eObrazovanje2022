@@ -1,6 +1,6 @@
 export class IspitniRok implements IspitniRokInterface{
 	public id: number;
-	public naziv : string;
+	public nazivRoka : string;
     public pocetakRoka: any;
 	public krajRoka: any;
     //public Korisnik : korisnik;
@@ -13,7 +13,7 @@ export class IspitniRok implements IspitniRokInterface{
 	constructor(objectCfg: IspitniRokInterface)
 	{	
 		this.id = objectCfg.id;
-		this.naziv = objectCfg.naziv;
+		this.nazivRoka = objectCfg.nazivRoka;
         this.pocetakRoka = objectCfg.pocetakRoka;
 		this.krajRoka = objectCfg.krajRoka;
 	}
@@ -21,7 +21,7 @@ export class IspitniRok implements IspitniRokInterface{
 
 interface IspitniRokInterface {
 	id: number;
-	naziv: string;
+	nazivRoka: string;
     pocetakRoka: any;
     krajRoka: any;
 }
