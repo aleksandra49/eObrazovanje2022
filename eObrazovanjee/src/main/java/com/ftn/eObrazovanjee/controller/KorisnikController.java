@@ -51,6 +51,7 @@ import com.ftn.eObrazovanjee.model.Korisnik;
 import com.ftn.eObrazovanjee.model.Profesor;
 import com.ftn.eObrazovanjee.model.Student;
 import com.ftn.eObrazovanjee.repository.ProfesorRepository;
+import com.ftn.eObrazovanjee.security.SecurityConfiguration;
 import com.ftn.eObrazovanjee.security.TokenUtils;
 import com.ftn.eObrazovanjee.service.KorisnikService;
 import com.ftn.eObrazovanjee.service.ProfesorServiceImpl;
@@ -62,6 +63,10 @@ import com.ftn.eObrazovanjee.service.StudentService;
 @RestController
 @RequestMapping(value="api/korisnik")
 public class KorisnikController {
+	
+	
+	@Autowired
+	SecurityConfiguration configuration;
 	
 	@Autowired
 	private KorisnikService korisnikService;
@@ -159,8 +164,9 @@ public class KorisnikController {
 		Korisnik korisnik = new Korisnik();
 
 		korisnik.setKorisnickoIme(korisnikDTO.getKorisnickoIme());
-		korisnik.setLozinka(korisnikDTO.getLozinka());
+		korisnik.setLozinka(configuration.passwordEncoder().encode(korisnikDTO.getLozinka()));
 		korisnik.setUloga(korisnikDTO.getUloga());
+		
 		korisnik.setStudent(studentService.findOne(korisnikDTO.getStudent().getId()));
 		korisnik.setProfesor(profesorService.findOne(korisnikDTO.getProfesor().getId()));
 		

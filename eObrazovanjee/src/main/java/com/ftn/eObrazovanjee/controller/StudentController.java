@@ -80,7 +80,8 @@ public class StudentController {
 	private IspitService ispitService;
 	@Autowired
 	SecurityConfiguration configuration;
-	
+	@Autowired
+	FinansijskaKarticaMapper finMapper;
 	
 	
 	@RequestMapping(value="/all", method = RequestMethod.GET)
@@ -161,6 +162,7 @@ public class StudentController {
 		Student student = new Student();
 		Korisnik korisnik = new Korisnik();
 		Korisnik korisnikProba = new Korisnik();
+		FinansijskaKartica finansijskaKartica = new FinansijskaKartica();
 		
 //		Korisnik korisnik1 = new Korisnik();
 //		korisnik1.setId(1L);
@@ -168,7 +170,16 @@ public class StudentController {
 		korisnik1.setKorisnickoIme(studentDTO.getKorisnik().getKorisnickoIme());
 		korisnik1.setLozinka(configuration.passwordEncoder().encode(studentDTO.getKorisnik().getLozinka()));
 		korisnik1.setUloga(Uloga.STUDENT);
-		System.out.println(korisnik);
+		
+		FinansijskaKartica finKartica = new FinansijskaKartica();
+		//napraviti metodu da napravi random personalni broj
+		String personalniBroj = "1234";
+		String racunFakulteta = "09876";
+		int trenutnoStanje = 100;
+		finKartica.setPersonalniBroj(personalniBroj);
+		finKartica.setRacunFakulteta(racunFakulteta);
+		finKartica.setTrenutnoStanje(trenutnoStanje);
+		finKartica.setId(studentDTO.getId());
 		
 		student.setIme(studentDTO.getIme());
 		student.setPrezime(studentDTO.getPrezime());
@@ -176,12 +187,15 @@ public class StudentController {
 		student.setIndeks(studentDTO.getIndeks());
 		student.setActive(studentDTO.isActive());
 		student.setKorisnik(korisnik1);
+		student.setFinansijskaKartica(finKartica);
 		
 		// profesor.setKorisnik(korisnik1);
 		
 		//	profesor.setPredavanja(new HashSet<>(new PredavanjePredmetaMapper().listDtoToModel(profesorDTO.getPredavanja())));
 		
 		korisnik = korisnikService.save(korisnik1);
+		finansijskaKartica = finansijskaKarticaService.save(finKartica);
+		
 		
 //		korisnikProba = korisnikService.findOne(korisnik1.getId());
 		System.out.println(korisnik);
