@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.ftn.eObrazovanjee.dto.IspitIspitniRokDTO;
 import com.ftn.eObrazovanjee.dto.PolozenPredmetDTO;
+import com.ftn.eObrazovanjee.dto.PrijavljeniIspitiDTO;
 import com.ftn.eObrazovanjee.model.Ispit;
 import com.ftn.eObrazovanjee.model.IspitniRok;
 import com.ftn.eObrazovanjee.model.Student;
@@ -61,6 +62,24 @@ public class IspitService {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 			IspitIspitniRokDTO tmpObj = new IspitIspitniRokDTO(Integer.parseInt(obj[0].toString()),obj[1].toString(),formatter.parse(obj[2].toString()),
 					obj[3].toString());
+			response.add(tmpObj);
+		}
+		return response;
+	}
+	
+	public List<PrijavljeniIspitiDTO> pronadjiPrijavljeneIspiteNative(int studentId) throws Exception {
+		// TODO Auto-generated method stub
+		Optional<Student> studentOptional = studentRepository.findById((long) studentId);
+		if(!studentOptional.isPresent()) {
+			throw new Exception("Student sa prosledjenim id-om ne postoji");
+		}
+		List<Object[]> nativeResponse = repository.pronadjiPrijavljeneIspiteNative(studentId);
+		List<PrijavljeniIspitiDTO> response = new ArrayList<PrijavljeniIspitiDTO>();
+		for(Object[] obj:nativeResponse) {
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			PrijavljeniIspitiDTO tmpObj = new PrijavljeniIspitiDTO(Long.parseLong(obj[0].toString()),obj[1].toString(),
+					formatter.parse(obj[2].toString()));
+			System.out.println(Long.parseLong(obj[0].toString()));
 			response.add(tmpObj);
 		}
 		return response;

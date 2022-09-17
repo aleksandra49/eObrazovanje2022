@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OdjavaIspitComponent } from './odjava-ispit.component';
+import { PrijavljeniIspitiComponent } from './prijavljeni-ispiti.component';
 
-describe('OdjavaIspitComponent', () => {
-  let component: OdjavaIspitComponent;
-  let fixture: ComponentFixture<OdjavaIspitComponent>;
+describe('PrijavljeniIspitiComponent', () => {
+  let component: PrijavljeniIspitiComponent;
+  let fixture: ComponentFixture<PrijavljeniIspitiComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OdjavaIspitComponent ]
+      declarations: [ PrijavljeniIspitiComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OdjavaIspitComponent);
+    fixture = TestBed.createComponent(PrijavljeniIspitiComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

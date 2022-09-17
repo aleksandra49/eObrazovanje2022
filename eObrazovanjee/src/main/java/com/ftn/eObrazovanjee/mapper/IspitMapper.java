@@ -27,7 +27,6 @@ public class IspitMapper {
 		objectDTO.setId(object.getId());
 		objectDTO.setNaziv(object.getNaziv());
 		objectDTO.setDatumVreme(object.getDatumVreme());
-		objectDTO.setBrojOsvojenihBodova(object.getBrojOsvojenihBodova());
 //		objectDTO.setPolaganjeIspita(new ArrayList<PolaganjeIspitaDTO>());
 //		objectDTO.setIspitniRok(new IspitniRokMapper().modelToDto(object.getIspitniRok()));
 //		objectDTO.setDeoIspitaDTO(new ArrayList<DeoIspitaDTO>());

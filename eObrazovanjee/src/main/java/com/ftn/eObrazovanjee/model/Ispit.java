@@ -27,8 +27,6 @@ public class Ispit {
 	@Column(name = "datumVreme")
 	private LocalDateTime datumVreme;
 	
-	@Column(name = "brojOsvojenihBodova")
-	private int brojOsvojenihBodova;
 	
 	@OneToMany(mappedBy = "ispit", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private Set<PolaganjeIspita> polaganjeIspita = new HashSet<PolaganjeIspita>();
@@ -42,14 +40,14 @@ public class Ispit {
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
 	private PredmetInstanca predmetInstanca;
 
-	public Ispit(Long id, String naziv, LocalDateTime datumVreme, int brojOsvojenihBodova,
+	public Ispit(Long id, String naziv, LocalDateTime datumVreme, 
 			Set<PolaganjeIspita> polaganjeIspita, IspitniRok ispitniRok, Set<DeoIspita> deoIspita,
 			PredmetInstanca predmetInstanca) {
 		super();
 		this.id = id;
 		this.naziv = naziv;
 		this.datumVreme = datumVreme;
-		this.brojOsvojenihBodova = brojOsvojenihBodova;
+
 		this.polaganjeIspita = polaganjeIspita;
 		this.ispitniRok = ispitniRok;
 		this.deoIspita = deoIspita;
@@ -84,13 +82,7 @@ public class Ispit {
 		this.datumVreme = datumVreme;
 	}
 
-	public int getBrojOsvojenihBodova() {
-		return brojOsvojenihBodova;
-	}
 
-	public void setBrojOsvojenihBodova(int brojOsvojenihBodova) {
-		this.brojOsvojenihBodova = brojOsvojenihBodova;
-	}
 
 	public Set<PolaganjeIspita> getPolaganjeIspita() {
 		return polaganjeIspita;

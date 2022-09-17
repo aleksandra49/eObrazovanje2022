@@ -101,56 +101,6 @@ public class StudentController {
 		return new ResponseEntity<>(studentiDTO, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/polozeniIspiti", method = RequestMethod.GET)
-	public ResponseEntity<List<IspitDTO>> getPolozeniIspiti(@RequestParam Long id) {
-		
-		Student student = studentService.findOne(id);
-		List<Ispit> ispiti = ispitService.findAll();
-		ArrayList<PolaganjeIspitaDTO> polaganjaStudenta = getPolaganjaIzStudenta(student.getId());
-		List<IspitDTO> polozeniIspiti = new ArrayList<>();
-		
-		for(PolaganjeIspitaDTO polaganje : polaganjaStudenta) {
-			if(polaganje.getIspit().getBrojOsvojenihBodova() >= 51) {
-				polozeniIspiti.add(polaganje.getIspit());
-			}		
-		}
-		
-		return new ResponseEntity<>(polozeniIspiti, HttpStatus.OK);
-	}
-	
-	@RequestMapping(value="/svaPolaganja", method = RequestMethod.GET)
-	public ResponseEntity<List<IspitDTO>> getSvaPolaganja(@RequestParam Long id) {
-		
-		Student student = studentService.findOne(id);
-		List<Ispit> ispiti = ispitService.findAll();
-		ArrayList<PolaganjeIspitaDTO> polaganjaStudenta = getPolaganjaIzStudenta(student.getId());
-		List<IspitDTO> polozeniIspiti = new ArrayList<>();
-		
-		for(PolaganjeIspitaDTO polaganje : polaganjaStudenta) {
-			if(polaganje.getIspit().getBrojOsvojenihBodova() >= 51) {
-				polozeniIspiti.add(polaganje.getIspit());
-			}		
-		}
-		
-		return new ResponseEntity<>(polozeniIspiti, HttpStatus.OK);
-	}
-	
-	@RequestMapping(value="/NepolozeniIspiti", method = RequestMethod.GET)
-	public ResponseEntity<List<IspitDTO>> getNepolozeniIspiti(@RequestParam Long id) {
-		
-		Student student = studentService.findOne(id);
-		List<Ispit> ispiti = ispitService.findAll();
-		ArrayList<PolaganjeIspitaDTO> polaganjaStudenta = getPolaganjaIzStudenta(student.getId());
-		List<IspitDTO> nepolozeniIspiti = new ArrayList<>();
-		
-		for(PolaganjeIspitaDTO polaganje : polaganjaStudenta) {
-			if(polaganje.getIspit().getBrojOsvojenihBodova() <= 51) {
-				nepolozeniIspiti.add(polaganje.getIspit());
-			}		
-		}
-		
-		return new ResponseEntity<>(nepolozeniIspiti, HttpStatus.OK);
-	}
 
 	
 	@RequestMapping(method = RequestMethod.GET)

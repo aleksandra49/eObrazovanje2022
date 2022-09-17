@@ -30,6 +30,18 @@ public interface IspitRepository extends JpaRepository<Ispit, Long>  {
 	@Modifying
 	void prijaviIspitNative(@Param("ispitId") Long ispitId, @Param("studentId") Long studentId);;
 
+	@Query(value = "select pi.id, i.naziv, i.datum_vreme from polaganje_ispita as pi\r\n"
+			+ "join ispit as i on i.id = pi.ispit_id\r\n"
+			+ "join student as s on s.id = pi.student_id\r\n"
+			+ "where pi.student_id = :studentId" , nativeQuery = true)
+	List<Object[]> pronadjiPrijavljeneIspiteNative(@Param("studentId") int studentId);;
 
+	//DELETE FROM `eobrazovanjee`.`polaganje_ispita` WHERE (`id` = '10');
+
+	@Transactional
+	@Query(value = "DELETE FROM `eobrazovanjee`.`polaganje_ispita` WHERE (`id` = :prijavljenIspitId)", nativeQuery = true )
+	
+	@Modifying
+	void odjaviIspitNative(@Param("prijavljenIspitId") Long prijavljenIspitId);;
 
 }

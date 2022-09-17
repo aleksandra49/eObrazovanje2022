@@ -4,15 +4,30 @@ import {Observable, Subject} from 'rxjs';
 
 import { Ispit } from '../model/ispit.model';
 import { IspitIspitniRok } from '../model/ispitIspitniRok';
+import { PrijavljeniIspiti } from '../model/prijavljeniIspiti';
 
 
 @Injectable()
 export class IspitService {
+
     private ispitiUrl = 'api/ispit';
 
     constructor(private http: HttpClient) { }
 
 
+
+    getPrijavljeniIspiti(studentId:number): Observable<HttpResponse<PrijavljeniIspiti[]>>  {
+        const url = `${this.ispitiUrl+ "/prijavljeniIspiti"}`;
+        const params = new HttpParams().append("idStudenta", studentId);
+
+        return this.http.get<PrijavljeniIspiti[]>(url, {observe: 'response', params});
+      }
+
+    odjavaIspita(prijavljenIspitId: number): Observable<HttpResponse<any>> {
+        const url = `${this.ispitiUrl+ "/odjavaIspita"}`;
+        const params = new HttpParams().append("prijavljenIspitId", prijavljenIspitId);
+        return this.http.delete<any>(url, {observe: 'response', params});
+    }
 
     getIspiti(): Observable<HttpResponse<any[]>> {
         return this.http.get<any[]>(this.ispitiUrl, {observe: 'response'});
@@ -25,7 +40,7 @@ export class IspitService {
         // const param = new HttpParams().append("ispitId", ispitId);
         // const params = new HttpParams().append("studentId", studentId);
         // return this.http.post<any>(url, {observe: 'response',param,params});
-        return this.http.post<any>(url, {title:'Angular POST request Example', data:[ispitId,studentId]})
+        return this.http.post(`api/ispit/prijavaIspita?ispitId=${ispitId}&studentId=${studentId}`, {}) as any
     }
 
     getIspit(id: number): Observable<HttpResponse<Ispit>> {
@@ -44,6 +59,8 @@ export class IspitService {
         const url = `${this.ispitiUrl}/${id}`;
         return this.http.delete<any>(url, {observe: 'response'});
     }
+
+
 
     saveIspit(ispit: Ispit): Observable<HttpResponse<any>> {
         const url = `${this.ispitiUrl}`;

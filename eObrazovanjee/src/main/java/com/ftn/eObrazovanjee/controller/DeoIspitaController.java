@@ -89,25 +89,25 @@ public class DeoIspitaController {
 		deoIspita.setPolozio(deoIspitaDTO.isPolozio());
 
 		deoIspita.setIspit(ispitService.findOne(deoIspitaDTO.getIspitDTO().getId()));
-		dodajBodove(deoIspita);
+//		dodajBodove(deoIspita);
 		
 		deoIspita = deoIspitaService.save(deoIspita);
 		return new ResponseEntity<>(new DeoIspitaMapper().modelToDto(deoIspita), HttpStatus.CREATED);	
 	}
 	
-	public Void dodajBodove(DeoIspita deo){		
-		Ispit ispit = ispitService.findOne(deo.getIspit().getId());
-		if(ispit.getBrojOsvojenihBodova() + deo.getBrojOsvojenihBodova() > 100) {
-			ispit.setBrojOsvojenihBodova(100);
-		}
-		else {
-			ispit.setBrojOsvojenihBodova(ispit.getBrojOsvojenihBodova() + deo.getBrojOsvojenihBodova());
-		}
-		ispit = ispitService.save(ispit);
-		
-		return null;
-	}
-	
+//	public Void dodajBodove(DeoIspita deo){		
+//		Ispit ispit = ispitService.findOne(deo.getIspit().getId());
+//		if(ispit.getBrojOsvojenihBodova() + deo.getBrojOsvojenihBodova() > 100) {
+//			ispit.setBrojOsvojenihBodova(100);
+//		}
+//		else {
+//			ispit.setBrojOsvojenihBodova(ispit.getBrojOsvojenihBodova() + deo.getBrojOsvojenihBodova());
+//		}
+//		ispit = ispitService.save(ispit);
+//		
+//		return null;
+//	}
+//	
 	@RequestMapping(method=RequestMethod.PUT, consumes="application/json")
 	public ResponseEntity<DeoIspitaDTO> updateDeoIspita(@RequestBody DeoIspitaDTO deoIspitaDTO){
 		

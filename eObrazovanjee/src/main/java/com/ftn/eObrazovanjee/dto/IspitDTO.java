@@ -15,21 +15,20 @@ public class IspitDTO {
 	private Long id;
 	private String naziv;
 	private LocalDateTime datumVreme;
-	private int brojOsvojenihBodova;
 	
 	private ArrayList<PolaganjeIspitaDTO> polaganjeIspita;
 	private IspitniRokDTO ispitniRok;
 	private ArrayList<DeoIspitaDTO> deoIspitaDTO;
 	private PredmetInstancaDTO predmetInstanca;
 	
-	public IspitDTO(Long id, String naziv, LocalDateTime datumVreme, int brojOsvojenihBodova,
+	public IspitDTO(Long id, String naziv, LocalDateTime datumVreme, 
 			ArrayList<PolaganjeIspitaDTO> polaganjeIspita, IspitniRokDTO ispitniRok, ArrayList<DeoIspitaDTO> deoIspitaDTO,
 			PredmetInstancaDTO predmetInstanca) {
 		super();
 		this.id = id;
 		this.naziv = naziv;
 		this.datumVreme = datumVreme;
-		this.brojOsvojenihBodova = brojOsvojenihBodova;
+
 		this.polaganjeIspita = polaganjeIspita;
 		this.ispitniRok = ispitniRok;
 		this.deoIspitaDTO = deoIspitaDTO;
@@ -64,13 +63,7 @@ public class IspitDTO {
 		this.datumVreme = datumVreme;
 	}
 
-	public int getBrojOsvojenihBodova() {
-		return brojOsvojenihBodova;
-	}
 
-	public void setBrojOsvojenihBodova(int brojOsvojenihBodova) {
-		this.brojOsvojenihBodova = brojOsvojenihBodova;
-	}
 
 	public ArrayList<PolaganjeIspitaDTO> getPolaganjeIspita() {
 		return polaganjeIspita;

@@ -23,6 +23,7 @@ import com.ftn.eObrazovanjee.dto.IspitniRokDTO;
 import com.ftn.eObrazovanjee.dto.PolaganjeIspitaDTO;
 import com.ftn.eObrazovanjee.dto.PolozenPredmetDTO;
 import com.ftn.eObrazovanjee.dto.PredmetInstancaDTO;
+import com.ftn.eObrazovanjee.dto.PrijavljeniIspitiDTO;
 import com.ftn.eObrazovanjee.mapper.DeoIspitaMapper;
 import com.ftn.eObrazovanjee.mapper.IspitMapper;
 import com.ftn.eObrazovanjee.mapper.IspitniRokMapper;
@@ -119,6 +120,28 @@ public class IspitController {
 		}
 	}
 	
+	@RequestMapping(value ="/odjavaIspita", method=RequestMethod.DELETE)
+	public ResponseEntity<?> OdjavaIspita(@RequestParam Long prijavljenIspitId){
+		try {			
+			ispitRepository.odjaviIspitNative(prijavljenIspitId);
+			return new ResponseEntity<>(HttpStatus.OK);
+		}catch(Exception e) {
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	//drugi nacin
+	@GetMapping("/prijavljeniIspiti")
+	public ResponseEntity<?> prijavljeniIspiti(@RequestParam("idStudenta") int idStudenta){
+		try {
+			List<PrijavljeniIspitiDTO> response = ispitService.pronadjiPrijavljeneIspiteNative(idStudenta);
+			
+			return new ResponseEntity<List<PrijavljeniIspitiDTO>>(response, HttpStatus.OK);
+		}catch(Exception e) {
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+	}
+	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<IspitDTO> getIspit(@PathVariable Long id){
 		Ispit ispit = ispitService.findOne(id);
@@ -140,8 +163,6 @@ public class IspitController {
 		Ispit ispit = new Ispit();
 		ispit.setNaziv(ispitDTO.getNaziv());
 		ispit.setDatumVreme(ispitDTO.getDatumVreme());
-		ispit.setBrojOsvojenihBodova(ispitDTO.getBrojOsvojenihBodova());
-
 		ispit.setPolaganjeIspita(new HashSet<>(new PolaganjeIspitaMapper().listDtoToModel(ispitDTO.getPolaganjeIspita())));
 		ispit.setIspitniRok(ispitniRokService.findOne(ispitDTO.getIspitniRok().getId()));
 		ispit.setDeoIspita(new HashSet<>(new DeoIspitaMapper().listDtoToModel(ispitDTO.getDeoIspitaDTO())));
@@ -161,8 +182,6 @@ public class IspitController {
 		
 		ispit.setNaziv(ispitDTO.getNaziv());
 		ispit.setDatumVreme(ispitDTO.getDatumVreme());
-		ispit.setBrojOsvojenihBodova(ispitDTO.getBrojOsvojenihBodova());
-
 		ispit.setPolaganjeIspita(new HashSet<>(new PolaganjeIspitaMapper().listDtoToModel(ispitDTO.getPolaganjeIspita())));
 		ispit.setIspitniRok(ispitniRokService.findOne(ispitDTO.getIspitniRok().getId()));
 		ispit.setDeoIspita(new HashSet<>(new DeoIspitaMapper().listDtoToModel(ispitDTO.getDeoIspitaDTO())));

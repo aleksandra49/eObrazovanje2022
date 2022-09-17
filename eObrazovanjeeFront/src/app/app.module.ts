@@ -61,7 +61,8 @@ import { PolozenIspitService } from './polozeni-ispiti/polozeni-ispiti.service';
 import { NepolozeniIspitiComponent } from './nepolozeni-ispiti/nepolozeni-ispiti.component';
 import { ProfesorPredajeComponent } from './profesor/profesor-predaje/profesor-predaje.component';
 import { PrijavaIspitComponent } from './ispit/prijava-ispit/prijava-ispit.component';
-import { OdjavaIspitComponent } from './ispit/odjava-ispit/odjava-ispit.component';
+import { PrijavljeniIspitiComponent } from './prijavljeni-ispiti/prijavljeni-ispiti.component';
+
 // import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -108,7 +109,7 @@ import { OdjavaIspitComponent } from './ispit/odjava-ispit/odjava-ispit.componen
     NepolozeniIspitiComponent,
     ProfesorPredajeComponent,
     PrijavaIspitComponent,
-    OdjavaIspitComponent
+    PrijavljeniIspitiComponent
   ],
   imports: [
     BrowserModule,
@@ -121,7 +122,7 @@ import { OdjavaIspitComponent } from './ispit/odjava-ispit/odjava-ispit.componen
               KorisnikService, IspitService, IspitniRokService, PolaganjeService, 
               StudentService, DeoIspitaService, StudijskaGodinaService, PohadjanjePredmetaService,
               DokumentService, authInterceptorProviders, PolozenIspitService, ProfesorPredajeComponent,
-              PrijavaIspitComponent, OdjavaIspitComponent],
+              PrijavaIspitComponent,PrijavljeniIspitiComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
