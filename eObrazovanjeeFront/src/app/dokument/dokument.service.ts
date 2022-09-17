@@ -22,9 +22,9 @@ export class DokumentService {
         return this.http.post<Dokument>(this.dokumentUrl, dokument, {observe: 'response'});
     }
 
-    editDokument(dokument: Dokument): Observable<HttpResponse<Dokument>> {
+    /*editDokument(dokument: Dokument): Observable<HttpResponse<Dokument>> {
         return this.http.put<Dokument>(this.dokumentUrl, dokument, {observe: 'response'});
-    }
+    }*/
 
     deleteDokument(dokumentId: number): Observable<HttpResponse<any>> {
         const url = `${this.dokumentUrl}/${dokumentId}`;
@@ -51,6 +51,12 @@ export class DokumentService {
         };*/
 
         return this.http.post<any>(url, dokument , {observe: 'response'});
+    }
+
+    editDokument(dokument: Dokument): Observable<HttpResponse<any>>{
+        const url = `${this.dokumentUrl}`;
+
+        return this.http.put<any>(url, dokument , {observe: 'response'});
     }
 
 }

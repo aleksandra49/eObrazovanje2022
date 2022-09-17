@@ -63,6 +63,7 @@ import { ProfesorPredajeComponent } from './profesor/profesor-predaje/profesor-p
 import { PrijavaIspitComponent } from './ispit/prijava-ispit/prijava-ispit.component';
 import { PrijavljeniIspitiComponent } from './prijavljeni-ispiti/prijavljeni-ispiti.component';
 import { IspitiOcenjivanjeComponent } from './ispit/ispiti-ocenjivanje/ispiti-ocenjivanje.component';
+import { EditDokumentComponent } from './dokument/edit-dokument/edit-dokument.component';
 
 // import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 
@@ -111,7 +112,8 @@ import { IspitiOcenjivanjeComponent } from './ispit/ispiti-ocenjivanje/ispiti-oc
     ProfesorPredajeComponent,
     PrijavaIspitComponent,
     PrijavljeniIspitiComponent,
-    IspitiOcenjivanjeComponent
+    IspitiOcenjivanjeComponent,
+    EditDokumentComponent
   ],
   imports: [
     BrowserModule,

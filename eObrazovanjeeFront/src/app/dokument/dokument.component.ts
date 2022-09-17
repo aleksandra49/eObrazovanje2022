@@ -33,6 +33,10 @@ export class DokumentComponent implements OnInit {
     this.router.navigate([val]);
   }
 
+  goToOnRightRouteParams(val: string, id: any) {
+    this.router.navigate([val, id]);
+  }
+
 
   delete(id: number): void {
     this.dokumentService.delete(id).subscribe(

@@ -40,6 +40,7 @@ import { ProfesorPredajeComponent } from './profesor/profesor-predaje/profesor-p
 import { PrijavaIspitComponent } from './ispit/prijava-ispit/prijava-ispit.component';
 import { PrijavljeniIspitiComponent } from './prijavljeni-ispiti/prijavljeni-ispiti.component';
 import { IspitiOcenjivanjeComponent } from './ispit/ispiti-ocenjivanje/ispiti-ocenjivanje.component';
+import { EditDokumentComponent } from './dokument/edit-dokument/edit-dokument.component';
 
 
 const routes: Routes = [
@@ -94,6 +95,7 @@ const routes: Routes = [
 
   { path: 'dokument', component: DokumentComponent },
   { path: 'addDokument', component: AddDokumentComponent },
+  { path: 'editDokument', component: EditDokumentComponent },
 
   { path: 'pohadjanje', component: PohadjanjePredmetaComponent },
   { path: 'addPohadjanje', component: AddPohadanjePredmetaComponent },

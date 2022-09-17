@@ -20,6 +20,9 @@
             <tr *ngFor="let dokument of dokumenti">
                 <td>{{dokument.id}}</td>
                 <td>{{dokument.naziv}}</td>
+                <div (click)="goToOnRightRouteParams('dokument', dokument.id)">
+                  {{dokument.naziv}}
+                </div>
                 <td>{{dokument.uri}}</td>
                 
                 
@@ -29,7 +32,6 @@
 
       <td class="h5"><button type="button" class="btn btn-primary">Izmeni</button></td>
       <td class="h5"><button type="button" class="btn btn-primary" (click)="delete(dokument.id)">Obrisi</button></td>
-      <td class="h5"><button type="button" class="btn btn-primary">Profil</button></td>
                 
             </tr>
         </tbody>
