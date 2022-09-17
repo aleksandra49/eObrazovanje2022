@@ -5,6 +5,7 @@ import {Observable, Subject} from 'rxjs';
 import { Ispit } from '../model/ispit.model';
 import { IspitIspitniRok } from '../model/ispitIspitniRok';
 import { PrijavljeniIspiti } from '../model/prijavljeniIspiti';
+import { IspitiZaOcenjivanje } from '../model/ispitZaOcenjivanje';
 
 
 @Injectable()
@@ -15,6 +16,10 @@ export class IspitService {
     constructor(private http: HttpClient) { }
 
 
+    getIspitiZaOcenjivanje():Observable<HttpResponse<IspitiZaOcenjivanje[]>>  {
+        const url = `${this.ispitiUrl+ "/ispitiZaOcenjivanje"}`;
+        return this.http.get<IspitiZaOcenjivanje[]>(url, {observe: 'response'});
+    }
 
     getPrijavljeniIspiti(studentId:number): Observable<HttpResponse<PrijavljeniIspiti[]>>  {
         const url = `${this.ispitiUrl+ "/prijavljeniIspiti"}`;
@@ -35,11 +40,6 @@ export class IspitService {
 
     prijaviIspit(ispitId: number, studentId:number): Observable<HttpResponse<any>> {
         const url = `${this.ispitiUrl+ "/prijavaIspita"}`;
-        // const params = new HttpParams({fromObject:{"ispitId": ispitId, "studentId":studentId}});
-        // console.log(params)
-        // const param = new HttpParams().append("ispitId", ispitId);
-        // const params = new HttpParams().append("studentId", studentId);
-        // return this.http.post<any>(url, {observe: 'response',param,params});
         return this.http.post(`api/ispit/prijavaIspita?ispitId=${ispitId}&studentId=${studentId}`, {}) as any
     }
 

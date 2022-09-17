@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.ftn.eObrazovanjee.dto.IspitIspitniRokDTO;
+import com.ftn.eObrazovanjee.dto.IspitiZaOcenjivanjeDTO;
 import com.ftn.eObrazovanjee.dto.PolozenPredmetDTO;
 import com.ftn.eObrazovanjee.dto.PrijavljeniIspitiDTO;
 import com.ftn.eObrazovanjee.model.Ispit;
@@ -80,6 +81,20 @@ public class IspitService {
 			PrijavljeniIspitiDTO tmpObj = new PrijavljeniIspitiDTO(Long.parseLong(obj[0].toString()),obj[1].toString(),
 					formatter.parse(obj[2].toString()));
 			System.out.println(Long.parseLong(obj[0].toString()));
+			response.add(tmpObj);
+		}
+		return response;
+	}
+	
+	public List<IspitiZaOcenjivanjeDTO> pronadjiIspiteZaOcenjivanjeNative() throws Exception {
+
+		List<Object[]> nativeResponse = repository.pronadjiIspiteZaOcenjivanjeNative();
+		List<IspitiZaOcenjivanjeDTO> response = new ArrayList<IspitiZaOcenjivanjeDTO>();
+		for(Object[] obj:nativeResponse) {
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			IspitiZaOcenjivanjeDTO tmpObj = new IspitiZaOcenjivanjeDTO(obj[0].toString(),obj[1].toString(),
+					Long.parseLong(obj[2].toString()),obj[3].toString(),formatter.parse(obj[4].toString()));
+			System.out.println(obj[0].toString());
 			response.add(tmpObj);
 		}
 		return response;

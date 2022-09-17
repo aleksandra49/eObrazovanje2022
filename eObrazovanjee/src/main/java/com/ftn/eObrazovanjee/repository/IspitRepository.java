@@ -35,13 +35,23 @@ public interface IspitRepository extends JpaRepository<Ispit, Long>  {
 			+ "join student as s on s.id = pi.student_id\r\n"
 			+ "where pi.student_id = :studentId" , nativeQuery = true)
 	List<Object[]> pronadjiPrijavljeneIspiteNative(@Param("studentId") int studentId);;
+	
+	@Query(value = "select s.ime, s.prezime,pi.id, i.naziv, i.datum_vreme from polaganje_ispita as pi\r\n"
+			+ "join ispit as i on i.id = pi.ispit_id\r\n"
+			+ "join student as s on s.id = pi.student_id\r\n"
+			+ "where pi.broj_bodova is null" , nativeQuery = true)
+	List<Object[]> pronadjiIspiteZaOcenjivanjeNative();;
 
 	//DELETE FROM `eobrazovanjee`.`polaganje_ispita` WHERE (`id` = '10');
 
 	@Transactional
 	@Query(value = "DELETE FROM `eobrazovanjee`.`polaganje_ispita` WHERE (`id` = :prijavljenIspitId)", nativeQuery = true )
-	
 	@Modifying
 	void odjaviIspitNative(@Param("prijavljenIspitId") Long prijavljenIspitId);;
+	
+	@Transactional
+	@Query(value = "UPDATE `eobrazovanjee`.`polaganje_ispita` SET `broj_bodova` = :broj_bodova WHERE (`id` = :polozenIspitId)", nativeQuery = true )
+	@Modifying
+	void ocenjivanjeNative(@Param("polozenIspitId") Long polozenIspitId, @Param("broj_bodova") Long broj_bodova);;
 
 }

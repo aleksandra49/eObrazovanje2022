@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ftn.eObrazovanjee.dto.DeoIspitaDTO;
 import com.ftn.eObrazovanjee.dto.IspitDTO;
 import com.ftn.eObrazovanjee.dto.IspitIspitniRokDTO;
+import com.ftn.eObrazovanjee.dto.IspitiZaOcenjivanjeDTO;
 import com.ftn.eObrazovanjee.dto.IspitniRokDTO;
 import com.ftn.eObrazovanjee.dto.PolaganjeIspitaDTO;
 import com.ftn.eObrazovanjee.dto.PolozenPredmetDTO;
@@ -120,6 +121,17 @@ public class IspitController {
 		}
 	}
 	
+	@RequestMapping(value ="/ocenjivanjeIspita", method=RequestMethod.POST)
+	public ResponseEntity<?> ocenjivanjeIspita(@RequestParam Long polozenIspitId, @RequestParam Long broj_bodova){
+		try {
+
+			ispitRepository.ocenjivanjeNative(polozenIspitId,broj_bodova);
+			return new ResponseEntity<>(HttpStatus.OK);
+		}catch(Exception e) {
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+	}
+	
 	@RequestMapping(value ="/odjavaIspita", method=RequestMethod.DELETE)
 	public ResponseEntity<?> OdjavaIspita(@RequestParam Long prijavljenIspitId){
 		try {			
@@ -137,6 +149,18 @@ public class IspitController {
 			List<PrijavljeniIspitiDTO> response = ispitService.pronadjiPrijavljeneIspiteNative(idStudenta);
 			
 			return new ResponseEntity<List<PrijavljeniIspitiDTO>>(response, HttpStatus.OK);
+		}catch(Exception e) {
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	//drugi nacin
+	@GetMapping("/ispitiZaOcenjivanje")
+	public ResponseEntity<?> pronadjiIspiteZaOcenjivanje(){
+		try {
+			List<IspitiZaOcenjivanjeDTO> response = ispitService.pronadjiIspiteZaOcenjivanjeNative();
+			
+			return new ResponseEntity<List<IspitiZaOcenjivanjeDTO>>(response, HttpStatus.OK);
 		}catch(Exception e) {
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
