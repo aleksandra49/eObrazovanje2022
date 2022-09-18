@@ -151,6 +151,20 @@ public class IspitController {
 		return true;	
 	}
 	
+	public Boolean proveraPrijave(Student student, Ispit ispit){		
+		List<PolaganjeIspita> polaganja = polaganjeIspitaService.findAll();
+		
+		Boolean provera = false;
+		
+		for(PolaganjeIspita polaganje : polaganja) {
+			if(polaganje.getIspit().getId() == ispit.getId() && polaganje.getStudent().getId() == student.getId()) {
+				provera = true;
+			}
+		}
+	
+		return provera;	
+	}
+	
 	@RequestMapping(value ="/ocenjivanjeIspita", method=RequestMethod.POST)
 	public ResponseEntity<?> ocenjivanjeIspita(@RequestParam Long polozenIspitId, @RequestParam Long broj_bodova){
 		try {
