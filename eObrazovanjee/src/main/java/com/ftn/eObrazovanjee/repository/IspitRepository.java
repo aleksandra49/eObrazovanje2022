@@ -33,7 +33,7 @@ public interface IspitRepository extends JpaRepository<Ispit, Long>  {
 	@Query(value = "select pi.id, i.naziv, i.datum_vreme from polaganje_ispita as pi\r\n"
 			+ "join ispit as i on i.id = pi.ispit_id\r\n"
 			+ "join student as s on s.id = pi.student_id\r\n"
-			+ "where pi.student_id = :studentId" , nativeQuery = true)
+			+ "where (pi.student_id = :studentId and pi.broj_bodova is null)" , nativeQuery = true)
 	List<Object[]> pronadjiPrijavljeneIspiteNative(@Param("studentId") int studentId);;
 	
 	@Query(value = "select s.ime, s.prezime,pi.id, i.naziv, i.datum_vreme from polaganje_ispita as pi\r\n"
