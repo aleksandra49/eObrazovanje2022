@@ -140,6 +140,42 @@ public class IspitController {
 		}
 	}
 	
+
+	public Transakcija saveTransakcija(FinansijskaKartica finansijskaKartica){		
+		Transakcija transakcija = new Transakcija();
+		
+		transakcija.setDatum(new Date());
+		transakcija.setSvrha("Prijava ispita");
+		transakcija.setPromenaStanja(-200);
+		transakcija.setFinansijskaKartica(finansijskaKartica);
+		
+		transakcija = transakcijaService.save(transakcija);
+		return transakcija;	
+	}
+	
+	public Boolean naplata(Student student){		
+		FinansijskaKartica finansijskaKartica = finansijskaKarticaService.findOne(student.getFinansijskaKartica().getId());
+		
+		finansijskaKartica.setTrenutnoStanje(finansijskaKartica.getTrenutnoStanje() - 200);
+		
+		finansijskaKartica = finansijskaKarticaService.save(finansijskaKartica);
+		return true;	
+	}
+	
+	public Boolean proveraPrijave(Student student, Ispit ispit){		
+		List<PolaganjeIspita> polaganja = polaganjeIspitaService.findAll();
+		
+		Boolean provera = false;
+		
+		for(PolaganjeIspita polaganje : polaganja) {
+			if(polaganje.getIspit().getId() == ispit.getId() && polaganje.getStudent().getId() == student.getId()) {
+				provera = true;
+			}
+		}
+	
+		return provera;	
+	}
+
 	
 	@RequestMapping(value ="/ocenjivanjeIspita", method=RequestMethod.POST)
 	public ResponseEntity<?> ocenjivanjeIspita(@RequestParam Long polozenIspitId, @RequestParam Long broj_bodova){
