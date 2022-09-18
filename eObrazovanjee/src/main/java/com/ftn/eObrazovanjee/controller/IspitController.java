@@ -22,6 +22,7 @@ import com.ftn.eObrazovanjee.dto.IspitDTO;
 import com.ftn.eObrazovanjee.dto.IspitIspitniRokDTO;
 import com.ftn.eObrazovanjee.dto.IspitiZaOcenjivanjeDTO;
 import com.ftn.eObrazovanjee.dto.IspitniRokDTO;
+import com.ftn.eObrazovanjee.dto.IstorijaPolaganjaDTO;
 import com.ftn.eObrazovanjee.dto.PolaganjeIspitaDTO;
 import com.ftn.eObrazovanjee.dto.PolozenPredmetDTO;
 import com.ftn.eObrazovanjee.dto.PredmetInstancaDTO;
@@ -218,6 +219,18 @@ public class IspitController {
 			List<PrijavljeniIspitiDTO> response = ispitService.pronadjiPrijavljeneIspiteNative(idStudenta);
 			
 			return new ResponseEntity<List<PrijavljeniIspitiDTO>>(response, HttpStatus.OK);
+		}catch(Exception e) {
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	//drugi nacin
+	@GetMapping("/istorijaPolaganja")
+	public ResponseEntity<?> istorijaPolaganja(@RequestParam("idStudenta") int idStudenta){
+		try {
+			List<IstorijaPolaganjaDTO> response = ispitService.istorijaPolaganjaNative(idStudenta);
+			
+			return new ResponseEntity<List<IstorijaPolaganjaDTO>>(response, HttpStatus.OK);
 		}catch(Exception e) {
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}

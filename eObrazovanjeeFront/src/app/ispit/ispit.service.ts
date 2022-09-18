@@ -6,6 +6,7 @@ import { Ispit } from '../model/ispit.model';
 import { IspitIspitniRok } from '../model/ispitIspitniRok';
 import { PrijavljeniIspiti } from '../model/prijavljeniIspiti';
 import { IspitiZaOcenjivanje } from '../model/ispitZaOcenjivanje';
+import { IstorijaPolaganja } from '../model/istorijaPolaganja';
 
 
 @Injectable()
@@ -19,6 +20,11 @@ export class IspitService {
     getIspitiZaOcenjivanje():Observable<HttpResponse<IspitiZaOcenjivanje[]>>  {
         const url = `${this.ispitiUrl+ "/ispitiZaOcenjivanje"}`;
         return this.http.get<IspitiZaOcenjivanje[]>(url, {observe: 'response'});
+    }
+    getIstorijaPolaganja(studentId:number):Observable<HttpResponse<IstorijaPolaganja[]>>  {
+        const url = `${this.ispitiUrl+ "/istorijaPolaganja"}`;
+        const params = new HttpParams().append("idStudenta", studentId);
+        return this.http.get<IstorijaPolaganja[]>(url, {observe: 'response', params});
     }
 
     getPrijavljeniIspiti(studentId:number): Observable<HttpResponse<PrijavljeniIspiti[]>>  {

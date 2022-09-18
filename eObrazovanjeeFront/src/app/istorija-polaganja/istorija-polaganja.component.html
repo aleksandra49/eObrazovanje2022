@@ -1,0 +1,37 @@
+
+<div class="container">
+    <h4 class="display-4 text-center"> Istorija polaganja</h4>
+    <div class="row  mt-3 mb-3" >
+    </div>
+    <div class="container">
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+            <th>Ime studenta</th>
+            <th>Prezime studenta</th>
+            <th>Naziv predmeta</th>
+            <th>Datum i vreme odrzavanja</th>
+            <th>Broj bodova</th>
+            <th>Ocena</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let istorija of istorijaPolaganja"> 
+                <td>{{istorija.studentIme}}</td>
+                 <td>{{istorija.studentPrezime}}</td>
+                <td>{{istorija.nazivPredmeta}}</td>
+                <td>{{istorija.datumVreme}}</td>
+                <td>{{istorija.brojBodova}}</td>
+                <td *ngIf="istorija.brojBodova <= 50">5 </td>
+                <td *ngIf="50 <= istorija.brojBodova && istorija.brojBodova <= 60">6 </td>
+                <td *ngIf="61 <= istorija.brojBodova && istorija.brojBodova <= 70">7 </td>
+                <td *ngIf="71 <= istorija.brojBodova && istorija.brojBodova <= 80">8 </td>
+                <td *ngIf="81 <= istorija.brojBodova && istorija.brojBodova <= 90">9 </td>
+                <td *ngIf="91 <= istorija.brojBodova && istorija.brojBodova <= 101">10 </td>
+               
+             </tr> 
+        </tbody>
+      </table>
+
+    </div>
+

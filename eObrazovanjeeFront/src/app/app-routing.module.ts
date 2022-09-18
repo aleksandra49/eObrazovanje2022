@@ -41,6 +41,7 @@ import { PrijavaIspitComponent } from './ispit/prijava-ispit/prijava-ispit.compo
 import { PrijavljeniIspitiComponent } from './prijavljeni-ispiti/prijavljeni-ispiti.component';
 import { IspitiOcenjivanjeComponent } from './ispit/ispiti-ocenjivanje/ispiti-ocenjivanje.component';
 import { EditDokumentComponent } from './dokument/edit-dokument/edit-dokument.component';
+import { IstorijaPolaganjaComponent } from './istorija-polaganja/istorija-polaganja.component';
 
 
 const routes: Routes = [
@@ -58,6 +59,7 @@ const routes: Routes = [
   { path: 'prijavaIspita/:id', component: PrijavaIspitComponent },
   { path: 'listaPrijavljenihIspita', component: PrijavljeniIspitiComponent },
   { path: 'ocenjivanjeIspita', component: IspitiOcenjivanjeComponent },
+  { path: 'istorijaPolaganja/:id', component: IstorijaPolaganjaComponent },
 
 
   { path: 'ispitniRokovi', component: IspitniRokComponent },

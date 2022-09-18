@@ -42,6 +42,12 @@ public interface IspitRepository extends JpaRepository<Ispit, Long>  {
 			+ "where pi.broj_bodova is null" , nativeQuery = true)
 	List<Object[]> pronadjiIspiteZaOcenjivanjeNative();;
 
+	@Query(value = "select s.ime, s.prezime, i.naziv, pi.broj_bodova, i.datum_vreme, pi.ispit_id, pi.student_id from polaganje_ispita as pi\r\n" + 
+			"join ispit as i on i.id = pi.ispit_id\r\n" + 
+			"join student as s on s.id = pi.student_id\r\n" + 
+			"where s.id = :studentId" , nativeQuery = true)
+	List<Object[]> istorijaPolaganjaNative(@Param("studentId") int studentId);;
+	
 	//DELETE FROM `eobrazovanjee`.`polaganje_ispita` WHERE (`id` = '10');
 
 	@Transactional

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.ftn.eObrazovanjee.dto.IspitIspitniRokDTO;
 import com.ftn.eObrazovanjee.dto.IspitiZaOcenjivanjeDTO;
+import com.ftn.eObrazovanjee.dto.IstorijaPolaganjaDTO;
 import com.ftn.eObrazovanjee.dto.PolozenPredmetDTO;
 import com.ftn.eObrazovanjee.dto.PrijavljeniIspitiDTO;
 import com.ftn.eObrazovanjee.model.Ispit;
@@ -94,6 +95,21 @@ public class IspitService {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 			IspitiZaOcenjivanjeDTO tmpObj = new IspitiZaOcenjivanjeDTO(obj[0].toString(),obj[1].toString(),
 					Long.parseLong(obj[2].toString()),obj[3].toString(),formatter.parse(obj[4].toString()));
+			System.out.println(obj[0].toString());
+			response.add(tmpObj);
+		}
+		return response;
+	}
+	
+	public List<IstorijaPolaganjaDTO> istorijaPolaganjaNative(int studentId) throws Exception {
+
+		List<Object[]> nativeResponse = repository.istorijaPolaganjaNative(studentId);
+		List<IstorijaPolaganjaDTO> response = new ArrayList<IstorijaPolaganjaDTO>();
+		for(Object[] obj:nativeResponse) {
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			IstorijaPolaganjaDTO tmpObj = new IstorijaPolaganjaDTO(obj[0].toString(),obj[1].toString(),
+					obj[2].toString(),Integer.parseInt(obj[3].toString()),formatter.parse(obj[4].toString()),
+					Integer.parseInt(obj[5].toString()), Integer.parseInt(obj[6].toString()));
 			System.out.println(obj[0].toString());
 			response.add(tmpObj);
 		}

@@ -64,6 +64,7 @@ import { PrijavaIspitComponent } from './ispit/prijava-ispit/prijava-ispit.compo
 import { PrijavljeniIspitiComponent } from './prijavljeni-ispiti/prijavljeni-ispiti.component';
 import { IspitiOcenjivanjeComponent } from './ispit/ispiti-ocenjivanje/ispiti-ocenjivanje.component';
 import { EditDokumentComponent } from './dokument/edit-dokument/edit-dokument.component';
+import { IstorijaPolaganjaComponent } from './istorija-polaganja/istorija-polaganja.component';
 
 // import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 
@@ -113,7 +114,8 @@ import { EditDokumentComponent } from './dokument/edit-dokument/edit-dokument.co
     PrijavaIspitComponent,
     PrijavljeniIspitiComponent,
     IspitiOcenjivanjeComponent,
-    EditDokumentComponent
+    EditDokumentComponent,
+    IstorijaPolaganjaComponent
   ],
   imports: [
     BrowserModule,
