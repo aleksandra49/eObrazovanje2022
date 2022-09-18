@@ -43,6 +43,11 @@ export class IspitService {
         return this.http.post(`api/ispit/prijavaIspita?ispitId=${ispitId}&studentId=${studentId}`, {}) as any
     }
 
+    dodajOcenu(polozenIspitId: number,broj_bodova: number): Observable<HttpResponse<any>> {
+        const url = `${this.ispitiUrl+ "/ocenjivanjeIspita"}`;
+        return this.http.post(`api/ispit/ocenjivanjeIspita?polozenIspitId=${polozenIspitId}&broj_bodova=${broj_bodova}`, {}) as any
+    }
+
     getIspit(id: number): Observable<HttpResponse<Ispit>> {
         const url = `${this.ispitiUrl}/${id}`;
         return this.http.get<Ispit>(url, {observe: 'response'});

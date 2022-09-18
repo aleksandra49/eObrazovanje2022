@@ -42,5 +42,11 @@ export class IspitiOcenjivanjeComponent implements OnInit {
       this.ispitiZaOcenjivanje = res.body);
   }
 
+  dodajOcenu(polozenIspitId: number,broj_bodova: number ): void {
+    this.ispitService.dodajOcenu(polozenIspitId,broj_bodova).subscribe(
+      () => this.getIspitiZaOcenjivanje()
+    );
+    console.log("PO ID JE" + polozenIspitId + "UNESEN BROJ BODODVA JE" + broj_bodova)
+  }
 
 }

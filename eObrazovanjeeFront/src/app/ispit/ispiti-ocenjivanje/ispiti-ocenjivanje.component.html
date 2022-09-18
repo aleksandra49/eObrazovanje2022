@@ -22,6 +22,11 @@
                     <td>{{io.studentPrezime}}</td>
                     <td>{{io.nazivPredmeta}}</td>   
                     <td>{{io.datumIspita}}</td>
+                    <td ><input [(ngModel)]="io.broj_bodova" type="text" class="form-control" value=""></td>
+
+                    <td class="h5"><button type="button" class="btn btn-primary" (click)="dodajOcenu(io.polozenIspitId, io.broj_bodova)">Unesite ocenu</button></td>
+
+
 
                 </tr>
 
