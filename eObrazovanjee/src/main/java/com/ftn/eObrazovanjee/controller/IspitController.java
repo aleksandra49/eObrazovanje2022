@@ -125,8 +125,8 @@ public class IspitController {
 			Boolean proveraNaplate = false;
 			Boolean proveraPrijave = false;
 			
-			saveTransakcija(student.getFinansijskaKartica());
-			proveraNaplate = naplata(student);
+			saveTransakcija(student.getFinansijskaKartica(), -200);
+			proveraNaplate = naplataPrijave(student);
 			proveraPrijave = proveraPrijave(student, ispit);
 			
 			//pod ovim uslovom je promena stanja na kartici uspela i ispit nije vec prijavljen
@@ -141,22 +141,31 @@ public class IspitController {
 	}
 	
 
-	public Transakcija saveTransakcija(FinansijskaKartica finansijskaKartica){		
+	public Transakcija saveTransakcija(FinansijskaKartica finansijskaKartica, int iznos){		
 		Transakcija transakcija = new Transakcija();
 		
 		transakcija.setDatum(new Date());
 		transakcija.setSvrha("Prijava ispita");
-		transakcija.setPromenaStanja(-200);
+		transakcija.setPromenaStanja(iznos);
 		transakcija.setFinansijskaKartica(finansijskaKartica);
 		
 		transakcija = transakcijaService.save(transakcija);
 		return transakcija;	
 	}
 	
-	public Boolean naplata(Student student){		
+	public Boolean naplataPrijave(Student student){		
 		FinansijskaKartica finansijskaKartica = finansijskaKarticaService.findOne(student.getFinansijskaKartica().getId());
 		
 		finansijskaKartica.setTrenutnoStanje(finansijskaKartica.getTrenutnoStanje() - 200);
+		
+		finansijskaKartica = finansijskaKarticaService.save(finansijskaKartica);
+		return true;	
+	}
+	
+	public Boolean povracajOdjave(Student student){		
+		FinansijskaKartica finansijskaKartica = finansijskaKarticaService.findOne(student.getFinansijskaKartica().getId());
+		
+		finansijskaKartica.setTrenutnoStanje(finansijskaKartica.getTrenutnoStanje() + 200);
 		
 		finansijskaKartica = finansijskaKarticaService.save(finansijskaKartica);
 		return true;	
@@ -191,6 +200,10 @@ public class IspitController {
 	@RequestMapping(value ="/odjavaIspita", method=RequestMethod.DELETE)
 	public ResponseEntity<?> OdjavaIspita(@RequestParam Long prijavljenIspitId){
 		try {			
+			
+//			povracajOdjave(student);
+//			saveTransakcija(student.getFinansijskaKartica(), +200);
+			
 			ispitRepository.odjaviIspitNative(prijavljenIspitId);
 			return new ResponseEntity<>(HttpStatus.OK);
 		}catch(Exception e) {
