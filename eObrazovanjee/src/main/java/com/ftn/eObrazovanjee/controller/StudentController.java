@@ -173,7 +173,9 @@ public class StudentController {
 		
 		FinansijskaKartica finKartica = new FinansijskaKartica();
 		//napraviti metodu da napravi random personalni broj
-		String personalniBroj = "1234";
+//		String personalniBroj = "1234";
+		String personalniBroj = personalniBroj();
+
 		String racunFakulteta = "09876";
 		int trenutnoStanje = 100;
 		finKartica.setPersonalniBroj(personalniBroj);
@@ -202,6 +204,21 @@ public class StudentController {
 		
 		student = studentService.save(student);
 		return new ResponseEntity<>(new StudentMapper().modelToDto(student), HttpStatus.CREATED);
+	}
+	
+//	finansijskaKarticaService
+	public String personalniBroj(){
+		List<FinansijskaKartica> kartice = finansijskaKarticaService.findAll();
+		int najveci = Integer. parseInt(kartice.get(0).getPersonalniBroj());
+		
+		for (FinansijskaKartica fin : kartice) {
+			if(Integer. parseInt(fin.getPersonalniBroj()) > najveci){
+				najveci = Integer. parseInt(fin.getPersonalniBroj());
+			}
+		}
+		najveci = najveci + 77;
+		String najveciString = String.valueOf(najveci);
+		return najveciString;	
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, consumes="application/json")

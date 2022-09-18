@@ -1,6 +1,7 @@
 package com.ftn.eObrazovanjee.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,17 +32,21 @@ import com.ftn.eObrazovanjee.mapper.IspitniRokMapper;
 import com.ftn.eObrazovanjee.mapper.PolaganjeIspitaMapper;
 import com.ftn.eObrazovanjee.mapper.PredmetInstancaMapper;
 import com.ftn.eObrazovanjee.model.DeoIspita;
+import com.ftn.eObrazovanjee.model.FinansijskaKartica;
 import com.ftn.eObrazovanjee.model.Ispit;
 import com.ftn.eObrazovanjee.model.IspitniRok;
 import com.ftn.eObrazovanjee.model.PolaganjeIspita;
 import com.ftn.eObrazovanjee.model.Student;
+import com.ftn.eObrazovanjee.model.Transakcija;
 import com.ftn.eObrazovanjee.repository.IspitRepository;
 import com.ftn.eObrazovanjee.service.DeoIspitaService;
+import com.ftn.eObrazovanjee.service.FinansijskaKarticaService;
 import com.ftn.eObrazovanjee.service.IspitService;
 import com.ftn.eObrazovanjee.service.IspitniRokService;
 import com.ftn.eObrazovanjee.service.PolaganjeIspitaService;
 import com.ftn.eObrazovanjee.service.PredmetInstancaServiceImpl;
 import com.ftn.eObrazovanjee.service.StudentService;
+import com.ftn.eObrazovanjee.service.TransakcijaService;
 
 
 @RestController
@@ -63,6 +68,10 @@ public class IspitController {
 	private PolaganjeIspitaService polaganjeIspitaService;
 	@Autowired
     private DeoIspitaService deoIspitaService;
+	@Autowired
+	private TransakcijaService transakcijaService;
+	@Autowired
+	private FinansijskaKarticaService finansijskaKarticaService;
 	
 	@RequestMapping(value="/all", method = RequestMethod.GET)
 	public ResponseEntity<List<IspitDTO>> getAllIspiti() {
@@ -113,13 +122,24 @@ public class IspitController {
 		try {
 			Ispit ispit = ispitService.findOne((long) ispitId);
 			Student student = studentService.findOne((long) studentId);
+			Boolean proveraNaplate = false;
+			Boolean proveraPrijave = false;
 			
-			ispitRepository.prijaviIspitNative(ispitId,studentId);
+			saveTransakcija(student.getFinansijskaKartica());
+			proveraNaplate = naplata(student);
+			proveraPrijave = proveraPrijave(student, ispit);
+			
+			//pod ovim uslovom je promena stanja na kartici uspela i ispit nije vec prijavljen
+			if(proveraNaplate == true && proveraPrijave == false) {
+				ispitRepository.prijaviIspitNative(ispitId,studentId);
+			}
+			
 			return new ResponseEntity<>(HttpStatus.OK);
 		}catch(Exception e) {
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
+	
 	
 	@RequestMapping(value ="/ocenjivanjeIspita", method=RequestMethod.POST)
 	public ResponseEntity<?> ocenjivanjeIspita(@RequestParam Long polozenIspitId, @RequestParam Long broj_bodova){
