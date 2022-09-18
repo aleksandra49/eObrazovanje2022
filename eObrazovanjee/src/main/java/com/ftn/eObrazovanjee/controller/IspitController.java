@@ -142,6 +142,15 @@ public class IspitController {
 		return transakcija;	
 	}
 	
+	public Boolean naplata(Student student){		
+		FinansijskaKartica finansijskaKartica = finansijskaKarticaService.findOne(student.getFinansijskaKartica().getId());
+		
+		finansijskaKartica.setTrenutnoStanje(finansijskaKartica.getTrenutnoStanje() - 200);
+		
+		finansijskaKartica = finansijskaKarticaService.save(finansijskaKartica);
+		return true;	
+	}
+	
 	@RequestMapping(value ="/ocenjivanjeIspita", method=RequestMethod.POST)
 	public ResponseEntity<?> ocenjivanjeIspita(@RequestParam Long polozenIspitId, @RequestParam Long broj_bodova){
 		try {
