@@ -9,13 +9,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.eObrazovanjee.dto.FinansijskaKarticaDTO;
+import com.ftn.eObrazovanjee.dto.IstorijaTransakcijaDTO;
+import com.ftn.eObrazovanjee.dto.PrijavljeniIspitiDTO;
 import com.ftn.eObrazovanjee.dto.TransakcijaDTO;
 import com.ftn.eObrazovanjee.mapper.FinansijskaKarticaMapper;
 import com.ftn.eObrazovanjee.mapper.TransakcijaMapper;
@@ -122,6 +126,17 @@ public class TransakcijaController {
 			return null;
 		}
 		return new FinansijskaKarticaMapper().modelToDto(transakcija.getFinansijskaKartica());
+	}
+	
+	@GetMapping("/istorijaTransakcija")
+	public ResponseEntity<?> istorijaTransakcija(@RequestParam("idStudenta") int idStudenta){
+		try {
+			List<IstorijaTransakcijaDTO> response = transakcijaService.istorijaTransakcijaNative(idStudenta);
+			
+			return new ResponseEntity<List<IstorijaTransakcijaDTO>>(response, HttpStatus.OK);
+		}catch(Exception e) {
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
 	}
 
 }

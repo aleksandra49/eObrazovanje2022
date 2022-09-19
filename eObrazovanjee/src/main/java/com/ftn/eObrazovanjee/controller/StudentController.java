@@ -173,8 +173,9 @@ public class StudentController {
 		
 		FinansijskaKartica finKartica = new FinansijskaKartica();
 		//napraviti metodu da napravi random personalni broj
-//		String personalniBroj = "1234";
-		String personalniBroj = personalniBroj();
+		//ne radi funkcija 178 linija
+		String personalniBroj = "1234";
+	//	String personalniBroj = personalniBroj();
 
 		String racunFakulteta = "09876";
 		int trenutnoStanje = 100;
@@ -207,6 +208,7 @@ public class StudentController {
 	}
 	
 //	finansijskaKarticaService
+	//treba da je string a ne integer
 	public String personalniBroj(){
 		List<FinansijskaKartica> kartice = finansijskaKarticaService.findAll();
 		int najveci = Integer. parseInt(kartice.get(0).getPersonalniBroj());
