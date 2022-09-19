@@ -65,6 +65,8 @@ import { PrijavljeniIspitiComponent } from './prijavljeni-ispiti/prijavljeni-isp
 import { IspitiOcenjivanjeComponent } from './ispit/ispiti-ocenjivanje/ispiti-ocenjivanje.component';
 import { EditDokumentComponent } from './dokument/edit-dokument/edit-dokument.component';
 import { IstorijaPolaganjaComponent } from './istorija-polaganja/istorija-polaganja.component';
+import { FinansijskaKarticaService } from './finansijska-kartica/finansijska-kartica.service';
+import { IstorijaTransakcijaComponent } from './istorija-transakcija/istorija-transakcija.component';
 
 // import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 
@@ -115,7 +117,8 @@ import { IstorijaPolaganjaComponent } from './istorija-polaganja/istorija-polaga
     PrijavljeniIspitiComponent,
     IspitiOcenjivanjeComponent,
     EditDokumentComponent,
-    IstorijaPolaganjaComponent
+    IstorijaPolaganjaComponent,
+    IstorijaTransakcijaComponent
   ],
   imports: [
     BrowserModule,
@@ -128,7 +131,7 @@ import { IstorijaPolaganjaComponent } from './istorija-polaganja/istorija-polaga
               KorisnikService, IspitService, IspitniRokService, PolaganjeService, 
               StudentService, DeoIspitaService, StudijskaGodinaService, PohadjanjePredmetaService,
               DokumentService, authInterceptorProviders, PolozenIspitService, ProfesorPredajeComponent,
-              PrijavaIspitComponent,PrijavljeniIspitiComponent],
+              PrijavaIspitComponent,PrijavljeniIspitiComponent, FinansijskaKarticaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

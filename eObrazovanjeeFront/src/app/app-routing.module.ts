@@ -42,6 +42,8 @@ import { PrijavljeniIspitiComponent } from './prijavljeni-ispiti/prijavljeni-isp
 import { IspitiOcenjivanjeComponent } from './ispit/ispiti-ocenjivanje/ispiti-ocenjivanje.component';
 import { EditDokumentComponent } from './dokument/edit-dokument/edit-dokument.component';
 import { IstorijaPolaganjaComponent } from './istorija-polaganja/istorija-polaganja.component';
+import { FinansijskaKarticaComponent } from './finansijska-kartica/finansijska-kartica.component';
+import { IstorijaTransakcijaComponent } from './istorija-transakcija/istorija-transakcija.component';
 
 
 const routes: Routes = [
@@ -88,8 +90,9 @@ const routes: Routes = [
   { path: 'addStudijskaGodina', component: AddStudijskaGodinaComponent },
   { path: 'editStudijskaGodina', component: EditStudijskaGodinaComponent },
 
-  { path: 'finansijskaKartica', component: FinansijskaKartica },
+  { path: 'finansijskaKartica', component: FinansijskaKarticaComponent },
   { path: 'addFinansijskaKartica', component: AddFinansijskaKarticaComponent },
+  { path: 'istorijaTransakcija/:id', component: IstorijaTransakcijaComponent },
 
   { path: 'transakcija', component: TransakcijaComponent },
   { path: 'addTransakcija', component: AddTransakcijaComponent },
