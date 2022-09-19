@@ -59,7 +59,7 @@ public class TransakcijaService {
 		for(Object[] obj:nativeResponse) {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 			IstorijaTransakcijaDTO tmpObj = new IstorijaTransakcijaDTO(Long.parseLong(obj[0].toString()),formatter.parse(obj[1].toString()),
-					Double.parseDouble(obj[2].toString()) ,obj[3].toString());
+					Double.parseDouble(obj[2].toString()) ,obj[3].toString(), obj[4].toString(), obj[5].toString(), Double.parseDouble(obj[6].toString())) ;
 			System.out.println(Long.parseLong(obj[0].toString()));
 			response.add(tmpObj);
 		}
