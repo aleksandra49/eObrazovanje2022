@@ -40,6 +40,7 @@ import com.ftn.eObrazovanjee.model.PolaganjeIspita;
 import com.ftn.eObrazovanjee.model.Student;
 import com.ftn.eObrazovanjee.model.Transakcija;
 import com.ftn.eObrazovanjee.repository.IspitRepository;
+import com.ftn.eObrazovanjee.repository.TransakcijaRepository;
 import com.ftn.eObrazovanjee.service.DeoIspitaService;
 import com.ftn.eObrazovanjee.service.FinansijskaKarticaService;
 import com.ftn.eObrazovanjee.service.IspitService;
@@ -71,6 +72,8 @@ public class IspitController {
     private DeoIspitaService deoIspitaService;
 	@Autowired
 	private TransakcijaService transakcijaService;
+	@Autowired
+	private TransakcijaRepository transakcijaRepository;
 	@Autowired
 	private FinansijskaKarticaService finansijskaKarticaService;
 	
@@ -126,7 +129,7 @@ public class IspitController {
 			Boolean proveraNaplate = false;
 			Boolean proveraPrijave = false;
 			
-			saveTransakcija(student.getFinansijskaKartica(), -200);
+			saveTransakcija(student.getFinansijskaKartica(), -200, student.getId());
 			proveraNaplate = naplataPrijave(student);
 			proveraPrijave = proveraPrijave(student, ispit);
 			
@@ -142,7 +145,7 @@ public class IspitController {
 	}
 	
 
-	public Transakcija saveTransakcija(FinansijskaKartica finansijskaKartica, int iznos){		
+	public Transakcija saveTransakcija(FinansijskaKartica finansijskaKartica, int iznos, Long studentId ){		
 		Transakcija transakcija = new Transakcija();
 		
 		transakcija.setDatum(new Date());
@@ -151,6 +154,11 @@ public class IspitController {
 		transakcija.setFinansijskaKartica(finansijskaKartica);
 		
 		transakcija = transakcijaService.save(transakcija);
+		Long transakcijaId = transakcija.getId();
+		transakcijaRepository.FinansijskaKarticaTransakcijeNative(studentId,transakcijaId);
+		
+		
+		
 		return transakcija;	
 	}
 	

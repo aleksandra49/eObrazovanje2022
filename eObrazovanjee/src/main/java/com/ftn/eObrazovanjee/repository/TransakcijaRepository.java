@@ -3,9 +3,11 @@ package com.ftn.eObrazovanjee.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ftn.eObrazovanjee.model.Transakcija;
 
@@ -17,5 +19,11 @@ public interface TransakcijaRepository  extends JpaRepository<Transakcija, Long>
 			+ "join transakcija as t on t.id = ft.transakcije_id\r\n"
 			+ "where ft.finansijska_kartica_id = :studentId" , nativeQuery = true)
 	List<Object[]> IstorijaTransakcijaNative(@Param("studentId") int studentId);;
+	
+	@Transactional
+	@Query(value = "INSERT INTO `eobrazovanjee`.`finansijska_kartica_transakcije` (`finansijska_kartica_id`, `transakcije_id`)\r\n"
+            + "VALUES (:studentId, :transakcijaId)", nativeQuery = true )
+	@Modifying
+	void FinansijskaKarticaTransakcijeNative(@Param("studentId") Long studentId,@Param("transakcijaId") Long transakcijaId);;
 	
 }
