@@ -12,6 +12,7 @@ import { IstorijaTransakcija } from '../model/istorijaTransakcija';
 @Injectable()
 export class FinansijskaKarticaService {
     private karticaUrl = 'api/finansijskaKartica';
+    private transakcijaURL = 'api/transakcija';
 
     constructor(private http: HttpClient) { }
 
@@ -26,11 +27,11 @@ export class FinansijskaKarticaService {
         return this.http.get<FinansijskaKartica>(url, {observe: 'response'});
     }
 
-    /*getIstorijaTransakcija(studentId:number):Observable<HttpResponse<IstorijaTransakcija[]>>  {
-        const url = `${this.karticaUrl+ "/istorijaTransakcija"}`;
+    getIstorijaTransakcija(studentId:number):Observable<HttpResponse<IstorijaTransakcija[]>>  {
+        const url = `${this.transakcijaURL+ "/istorijaTransakcija"}`;
         const params = new HttpParams().append("idStudenta", studentId);
         return this.http.get<IstorijaTransakcija[]>(url, {observe: 'response', params});
-    }*/
+    }
 
 
     delete(id: number): Observable<HttpResponse<any>> {

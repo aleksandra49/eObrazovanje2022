@@ -90,7 +90,7 @@ const routes: Routes = [
   { path: 'addStudijskaGodina', component: AddStudijskaGodinaComponent },
   { path: 'editStudijskaGodina', component: EditStudijskaGodinaComponent },
 
-  { path: 'finansijskaKartica', component: FinansijskaKarticaComponent },
+  { path: 'finansijskaKartica/:id', component: FinansijskaKarticaComponent },
   { path: 'addFinansijskaKartica', component: AddFinansijskaKarticaComponent },
   { path: 'istorijaTransakcija/:id', component: IstorijaTransakcijaComponent },
 

@@ -13,17 +13,18 @@
           </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let kartica of finansijskeKartice">
-               
-                <td>{{kartica.personalniBroj}}</td>
-                <td>{{kartica.trenutnoStanje}}</td>
-                <td>{{kartica.racunFakulteta}}</td> 
+          <tr>
+                <td>{{finansijskaKartica.personalniBroj}}</td>
+                <td>{{finansijskaKartica.trenutnoStanje}}</td>
+                <td>{{finansijskaKartica.racunFakulteta}}</td>  
                     
-            </tr>
+          </tr>
         </tbody>
       </table>
 
+      
     </div>
+    <div><h4 class="display-4 text-center">Istorija transakcija</h4></div>
     <div class="container">
       <table class="table table-hover table-striped">
         <thead>
@@ -36,13 +37,13 @@
           </tr>
         </thead>
         <tbody>
-           <!-- <tr *ngFor="let istorija of istorijaTransakcija">
-                <td>{{istorija.id}}</td>
+           <tr *ngFor="let istorija of istorijaTransakcija">
+                <td>{{istorija.idTransakcije}}</td>
                 <td>{{istorija.datum}}</td>
                 <td>{{istorija.promenaStanja}}</td>
                 <td>{{istorija.svrha}}</td>  
                     
-            </tr> -->
+            </tr>
         </tbody>
       </table>
      

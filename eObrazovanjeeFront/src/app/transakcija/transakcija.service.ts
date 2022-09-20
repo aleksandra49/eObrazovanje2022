@@ -7,7 +7,7 @@ import { IstorijaTransakcija } from '../model/istorijaTransakcija';
 
 @Injectable()
 export class TransakcijaService {
-    private transakcijeUrl = 'api/transakcije';
+    private transakcijeUrl = 'api/transakcija';
 
     constructor(private http: HttpClient) { }
 
