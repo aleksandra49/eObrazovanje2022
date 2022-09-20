@@ -43,19 +43,20 @@ public class PredmetMapper {
 		
 	}
 	
-//	public Predmet konvertujDtoToEntity(PredmetDTO predmetDTO) {
-//		
-//		Predmet predmet = new Predmet();
-//		
-//		predmet.setId(predmetDTO.getId());
-//		predmet.setEspb(predmetDTO.getEspb());
-//		predmet.setNaziv(predmetDTO.getNaziv());
-//		predmet.setOznaka(predmetDTO.getOznaka());
-//		//deoIspita.setPolozio(deoIspitaDTO.isPolozio());
-//		
-//		
-//		return predmet;
-//	}
+	public Predmet konvertujDtoToEntity(PredmetDTO predmetDTO) {
+		
+		Predmet predmet = new Predmet();
+		
+		predmet.setId(predmetDTO.getId());
+		predmet.setEspb(predmetDTO.getEspb());
+		predmet.setNaziv(predmetDTO.getNaziv());
+		predmet.setOznaka(predmetDTO.getOznaka());
+	//	predmet.setPredmetInstanca(predmetDTO.getPredmetInstancaDTO());
+		//deoIspita.setPolozio(deoIspitaDTO.isPolozio());
+		
+		
+		return predmet;
+	}
 	
 
 

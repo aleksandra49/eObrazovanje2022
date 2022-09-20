@@ -44,6 +44,8 @@ import { EditDokumentComponent } from './dokument/edit-dokument/edit-dokument.co
 import { IstorijaPolaganjaComponent } from './istorija-polaganja/istorija-polaganja.component';
 import { FinansijskaKarticaComponent } from './finansijska-kartica/finansijska-kartica.component';
 import { IstorijaTransakcijaComponent } from './istorija-transakcija/istorija-transakcija.component';
+import { PredmetComponent } from './predmet/predmet.component';
+import { AddPredmetComponent } from './predmet/add-predmet/add-predmet.component';
 
 
 const routes: Routes = [
@@ -107,6 +109,9 @@ const routes: Routes = [
   { path: 'editPohadjanje', component: EditPohadanjePredmetaComponent },
 
   { path: 'addProfesor', component: AddProfesorComponent },
+
+  { path: 'predmeti', component: PredmetComponent },
+  { path: 'addPredmet', component: AddPredmetComponent },
 
 
   { path: 'login', component: LoginComponent }

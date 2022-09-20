@@ -33,11 +33,15 @@
     <li *ngIf="uloga === 'PROFESOR'" [ngbNavItem]="6" (click)="goToOnRightRoute('ocenjivanjeIspita')">
       <a ngbNavLink>Ocenjivanje </a>
     </li>
+    <li [ngbNavItem]="7" (click)="goToOnRightRoute('predmeti')">
+      <a ngbNavLink>LISTA PREDMETA </a>
+    </li>
     <li ngbDropdown class="nav-item">
-      <a href *ngIf="uloga === 'STUDENT'" (click)="false" class="nav-link" ngbDropdownToggle>Predmet</a>
+      <a href  (click)="false" class="nav-link" ngbDropdownToggle>Predmet</a>
       <div ngbDropdownMenu>
-        <button ngbDropdownItem (click)="goToOnRightRouteParams('polozeniIspitiZaStudenta', idStudenta)">Polozeni predmeti</button>
-        <button ngbDropdownItem (click)="goToOnRightRouteParams('NepolozeniIspitiZaStudenta', idStudenta)">Nepolozeni predmeti</button>
+        <button ngbDropdownItem *ngIf="uloga === 'STUDENT'" (click)="goToOnRightRouteParams('polozeniIspitiZaStudenta', idStudenta)">Polozeni predmeti</button>
+        <button ngbDropdownItem *ngIf="uloga === 'STUDENT'" (click)="goToOnRightRouteParams('NepolozeniIspitiZaStudenta', idStudenta)">Nepolozeni predmeti</button>
+        <!-- <button ngbDropdownItem *ngIf="uloga === 'STUDENT'" (click)="goToOnRightRoute('predmeti')">predmeti</button> -->
 
         <!-- <button ngbDropdownItem>Something else here</button>
         <div class="dropdown-divider"></div>

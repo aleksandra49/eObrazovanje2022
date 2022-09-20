@@ -1,5 +1,6 @@
 package com.ftn.eObrazovanjee.controller;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ftn.eObrazovanjee.dto.DeoIspitaDTO;
 import com.ftn.eObrazovanjee.dto.PredmetDTO;
 import com.ftn.eObrazovanjee.dto.PredmetInstancaDTO;
+import com.ftn.eObrazovanjee.dto.PredmetInstancaPredmetDTO;
 import com.ftn.eObrazovanjee.mapper.DeoIspitaMapper;
 import com.ftn.eObrazovanjee.mapper.PredmetInstancaMapper;
 import com.ftn.eObrazovanjee.mapper.PredmetMapper;
@@ -46,6 +48,9 @@ public class PredmetController {
 	private PredmetRepository predmetRepository;
 	
 	@Autowired
+	PredmetInstancaMapper predmetInstancaMapper;
+	
+	@Autowired
 	private ProfesorServiceImpl profesorService;
 	
 	@Autowired
@@ -56,17 +61,27 @@ public class PredmetController {
 	
 	
 	
+	
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
-	public ResponseEntity<PredmetDTO> savePredmet(@RequestBody PredmetDTO predmetDTO){		
+	public ResponseEntity<PredmetDTO> savePredmet(@RequestBody PredmetInstancaPredmetDTO predmetInstancaPredmetDTO){		
 		Predmet predmet = new Predmet();
+		PredmetInstanca predmetInstanca = new PredmetInstanca();
 		
-		predmet.setNaziv(predmetDTO.getNaziv());
-		predmet.setEspb(predmetDTO.getEspb());
-		predmet.setOznaka(predmetDTO.getOznaka());
-
-		predmet.setPredmetInstanca(new HashSet<>(new PredmetInstancaMapper().listDtoToModel(predmetDTO.getPredmetInstancaDTO())));
+		
+		predmet.setNaziv(predmetInstancaPredmetDTO.getNaziv());
+		predmet.setEspb(predmetInstancaPredmetDTO.getEspb());
+		predmet.setOznaka(predmetInstancaPredmetDTO.getOznaka());
 		
 		predmet = predmetService.save(predmet);
+		
+		predmetInstanca.setPocetak(predmetInstancaPredmetDTO.getPocetak());
+		predmetInstanca.setKraj(predmetInstancaPredmetDTO.getKraj());
+		predmetInstanca.setPredmet(predmet);
+		predmetInstanca = predmetInstancaService.save(predmetInstanca);
+		
+		
+		
+		
 		return new ResponseEntity<>(new PredmetMapper().modelToDto(predmet), HttpStatus.CREATED);	
 	}
 	

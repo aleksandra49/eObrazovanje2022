@@ -30,7 +30,7 @@ public class PredmetInstancaMapper {
 		predmetInstancaDTO.setId(object.getId());
 		predmetInstancaDTO.setPocetak(object.getPocetak());
 		predmetInstancaDTO.setKraj(object.getKraj());
-		//predmetInstancaDTO.setPredmet(new PredmetMapper().modelToDto(object.getPredmet()));
+		predmetInstancaDTO.setPredmet(new PredmetMapper().modelToDto(object.getPredmet()));
 		//predmetInstancaDTO.setPredavanjePredmetaDTO(new ArrayList<PredavanjePredmetaDTO>());
 		//predmetInstancaDTO.setPohadjanjePredmetaDTO(new ArrayList<PohadjanjePredmetaDTO>());
 		//predmetInstancaDTO.setIspit(new ArrayList<IspitDTO>());

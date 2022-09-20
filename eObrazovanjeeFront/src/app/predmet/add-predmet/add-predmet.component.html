@@ -1,0 +1,31 @@
+<div
+class="col-md-8 offset-md-2"
+>
+  <div class="form-row">
+    <div class="col-md-5 offset-md-3">
+      <label for="inputIme">Naziv Predmeta</label>
+      <input [(ngModel)]="predmet.naziv" type="ime" class="form-control" id="inputIme" placeholder="">
+    </div>
+    <div class="col-md-5 offset-md-3">
+      <label for="inputPrezime">Broj ESPB bodova</label>
+      <input [(ngModel)]="predmet.espb" type="prezime" class="form-control" id="inputPrezime" placeholder="">
+    </div>
+    <div class="col-md-5 offset-md-3">
+      <label for="inputUser">Oznaka Predmeta</label>
+      <input [(ngModel)]="predmet.oznaka" type="user" class="form-control" id="inputUser" placeholder="">
+    </div>
+    <div class="col-md-5 offset-md-3">
+      <label for="inputUser">Pocetak predavanja</label>
+      <input [(ngModel)]="predmet.pocetak" type="user" class="form-control" id="inputUser" placeholder="">
+    </div>
+    <div class="col-md-5 offset-md-3">
+      <label for="inputPassword">Kraj Predavanja</label>
+      <input [(ngModel)]="predmet.kraj" type="password" class="form-control" id="inputPassword" placeholder="">
+    </div>
+  </div>
+
+  <div class="col-md-5 offset-md-3">
+  <!-- <button type="submit" class="btn btn-primary"
+   (click)="onSubmit()" >Dodaj Predmet</button>
+  </div>  -->
+</div>
