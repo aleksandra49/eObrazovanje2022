@@ -36,6 +36,9 @@
     <li [ngbNavItem]="7" (click)="goToOnRightRoute('predmeti')">
       <a ngbNavLink>LISTA PREDMETA </a>
     </li>
+    <li *ngIf="uloga === 'STUDENT'" [ngbNavItem]="8" (click)="goToOnRightRoute('studijskaGodina')">
+      <a ngbNavLink>Studijska godina </a>
+    </li>
     <li ngbDropdown class="nav-item">
       <a href  (click)="false" class="nav-link" ngbDropdownToggle>Predmet</a>
       <div ngbDropdownMenu>
