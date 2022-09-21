@@ -4,7 +4,9 @@ import java.util.Date;
 import java.util.List;
 
 import com.ftn.eObrazovanjee.model.NacinFinansiranja;
+import lombok.Builder;
 
+@Builder
 public class StudijskaGodinaDTO {
 	
 	private Long id;
@@ -33,6 +35,21 @@ public class StudijskaGodinaDTO {
 		this.godinaStudija = godinaStudija;
 		this.skolskaGodina = skolskaGodina;
 		this.studnetDTO = studnetDTO;
+	}
+	
+	
+
+	
+
+	public StudijskaGodinaDTO(Long id, Date pocetakStudija, Date krajStudija, NacinFinansiranja nacinFinansiranja,
+			int godinaStudija, int skolskaGodina) {
+		super();
+		this.id = id;
+		this.pocetakStudija = pocetakStudija;
+		this.krajStudija = krajStudija;
+		this.nacinFinansiranja = nacinFinansiranja;
+		this.godinaStudija = godinaStudija;
+		this.skolskaGodina = skolskaGodina;
 	}
 
 	public Long getId() {

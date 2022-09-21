@@ -1,4 +1,4 @@
-import { HttpClient, HttpResponse } from "@angular/common/http";
+import { HttpClient, HttpParams, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { StudijskaGodina } from "../model/studijskaGodina.model";
@@ -20,6 +20,12 @@ export class StudijskaGodinaService {
         const url = `${this.studijskeGodineUrl}/${id}`;
         return this.http.get<StudijskaGodina>(url, {observe: 'response'});
     }
+
+    /*getStudijska(studentId:number):Observable<HttpResponse<IstorijaTransakcija[]>>  {
+        const url = `${this.studijskeGodineUrl+ "/tokStudija"}`;
+        const params = new HttpParams().append("idStudenta", studentId);
+        return this.http.get<IstorijaTransakcija[]>(url, {observe: 'response', params});
+    }*/
 
     delete(id: number): Observable<HttpResponse<any>> {
         const url = `${this.studijskeGodineUrl}/${id}`;

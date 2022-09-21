@@ -8,13 +8,16 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.eObrazovanjee.dto.IspitDTO;
+import com.ftn.eObrazovanjee.dto.IstorijaTransakcijaDTO;
 import com.ftn.eObrazovanjee.dto.StudentDTO;
 import com.ftn.eObrazovanjee.dto.StudijskaGodinaDTO;
 import com.ftn.eObrazovanjee.mapper.IspitMapper;
@@ -26,9 +29,9 @@ import com.ftn.eObrazovanjee.service.StudijskaGodinaService;
 
 
 @RestController
-@RequestMapping(value="api/studijskaGodina")
+@RequestMapping(value= "api/studijskaGodina")
 public class StudijskaGodinaController {
-	
+
 	@Autowired
     private StudijskaGodinaService studijskaGodinaService;
 	@Autowired
@@ -145,6 +148,17 @@ public class StudijskaGodinaController {
 			return null;
 		}
 		return new StudentMapper().modelToDto(studijskaGodina.getStudent());
+	}
+	
+	@GetMapping("/tokStudija")
+	public ResponseEntity<?> studijskaGodinaStudenta(@RequestParam("idStudenta") Long idStudenta){
+		try {
+			List<StudijskaGodinaDTO> response = studijskaGodinaService.StudijskaGodinaStudentaNative(idStudenta);
+			
+			return new ResponseEntity<List<StudijskaGodinaDTO>>(response, HttpStatus.OK);
+		}catch(Exception e) {
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
 	}
 
 }
