@@ -27,6 +27,26 @@ public class StudentService {
 	public Student save(Student student) {
 		return studentRepository.save(student);
 	}
+	
+	//druga metoda gde sacuvamo i stud godinu ali ne sacuva i student id valjda.....
+	/*public Student save(Student student) {
+
+	StudijskaGodina sg = new StudijskaGodina(
+			LocalDateTime.now(),
+			LocalDateTime.now().plusYears(4),
+			NacinFinansiranja.budzet,
+			1,
+			LocalDateTime.now().getYear(),
+			student
+	);
+
+	student.getStudijskaGodina().add(sg);
+
+	student = studentRepository.save(student);
+	studijskaGodinaRepository.save(sg);
+
+	return student;
+}*/
 
 	public void remove(Long id) {
 		studentRepository.deleteById(id);

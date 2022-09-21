@@ -27,9 +27,11 @@ public class StudijskaGodina {
 	private Long id;
 	
 	@Column(name = "pocetak_studija")
+	//private LocalDateTime pocetakStudija;
 	private Date pocetakStudija;
 	
 	@Column(name = "kraj_studija")
+	//private LocalDateTime krajStudija;
 	private Date krajStudija;
 	
 	//private String nacinFinansiranja;
@@ -44,6 +46,7 @@ public class StudijskaGodina {
 	private int skolskaGodina;
 	
 	//student
+    //referencedColumnName = "id" OVO NAM PRAVI SPOJENU TABELU SA DVA ENTITETA
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "student", referencedColumnName = "id", nullable = false)
     private Student student;
@@ -75,6 +78,19 @@ public class StudijskaGodina {
 		this.godinaStudija = godinaStudija;
 		this.skolskaGodina = skolskaGodina;
 		this.student = student;
+	}
+	
+	
+
+	public StudijskaGodina(Long id, Date pocetakStudija, Date krajStudija, NacinFinansiranja nacin_finansiranja,
+			int godinaStudija, int skolskaGodina) {
+		super();
+		this.id = id;
+		this.pocetakStudija = pocetakStudija;
+		this.krajStudija = krajStudija;
+		this.nacin_finansiranja = nacin_finansiranja;
+		this.godinaStudija = godinaStudija;
+		this.skolskaGodina = skolskaGodina;
 	}
 
 	public Long getId() {

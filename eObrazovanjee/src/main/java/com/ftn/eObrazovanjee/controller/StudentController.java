@@ -174,11 +174,13 @@ public class StudentController {
 		FinansijskaKartica finKartica = new FinansijskaKartica();
 		//napraviti metodu da napravi random personalni broj
 		//ne radi funkcija 178 linija
-		String personalniBroj = "1234";
-	//	String personalniBroj = personalniBroj();
+		//String personalniBroj = UUID.randomUUID().toString();
+		//String personalniBroj = "1234";
+		
+		String personalniBroj = personalniBroj();
 
-		String racunFakulteta = "09876";
-		int trenutnoStanje = 100;
+		String racunFakulteta = "840-1710666-12";
+		int trenutnoStanje = 600;
 		finKartica.setPersonalniBroj(personalniBroj);
 		finKartica.setRacunFakulteta(racunFakulteta);
 		finKartica.setTrenutnoStanje(trenutnoStanje);
@@ -211,11 +213,11 @@ public class StudentController {
 	//treba da je string a ne integer
 	public String personalniBroj(){
 		List<FinansijskaKartica> kartice = finansijskaKarticaService.findAll();
-		int najveci = Integer. parseInt(kartice.get(0).getPersonalniBroj());
+		long najveci = Long.parseLong(kartice.get(0).getPersonalniBroj());
 		
 		for (FinansijskaKartica fin : kartice) {
-			if(Integer. parseInt(fin.getPersonalniBroj()) > najveci){
-				najveci = Integer. parseInt(fin.getPersonalniBroj());
+			if(Long.parseLong(fin.getPersonalniBroj()) > najveci){
+				najveci = Long.parseLong(fin.getPersonalniBroj());
 			}
 		}
 		najveci = najveci + 77;

@@ -20,8 +20,11 @@ public interface StudijskaGodinaRepository extends JpaRepository<StudijskaGodina
 			+ "join student as s on s.id = ssg.student_id\r\n"  
 			+ "where ssg.student_id = :studentId"  , nativeQuery = true)
 	List<Object[]> StudijskaGodinaStudentaNative(@Param("studentId") int studentId);
+	//List<Object[]> StudijskaGodinaStudentaNative(@Param("studentId") Long studentId);
 
-	List<StudijskaGodina> findStudijskaGodinasByStudentId(Long studentId);
+	//List<StudijskaGodina> findStudijskaGodinasByStudentId(Long studentId);
+	
+	
 
 
 }

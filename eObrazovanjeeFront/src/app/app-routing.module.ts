@@ -91,6 +91,7 @@ const routes: Routes = [
   { path: 'studijskaGodina', component: StudijskaGodinaComponent },
   { path: 'addStudijskaGodina', component: AddStudijskaGodinaComponent },
   { path: 'editStudijskaGodina', component: EditStudijskaGodinaComponent },
+  { path: 'tokStudija/:id', component: StudijskaGodinaComponent },
 
   { path: 'finansijskaKartica/:id', component: FinansijskaKarticaComponent },
   { path: 'addFinansijskaKartica', component: AddFinansijskaKarticaComponent },

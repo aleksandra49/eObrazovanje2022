@@ -21,11 +21,13 @@ export class StudijskaGodinaService {
         return this.http.get<StudijskaGodina>(url, {observe: 'response'});
     }
 
-    /*getStudijska(studentId:number):Observable<HttpResponse<IstorijaTransakcija[]>>  {
+    getStudijskaGodinaStudenta(studentId:number):Observable<HttpResponse<StudijskaGodina[]>>  {
         const url = `${this.studijskeGodineUrl+ "/tokStudija"}`;
         const params = new HttpParams().append("idStudenta", studentId);
-        return this.http.get<IstorijaTransakcija[]>(url, {observe: 'response', params});
-    }*/
+        return this.http.get<StudijskaGodina[]>(url, {observe: 'response', params});
+    }
+
+    
 
     delete(id: number): Observable<HttpResponse<any>> {
         const url = `${this.studijskeGodineUrl}/${id}`;

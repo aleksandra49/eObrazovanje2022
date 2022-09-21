@@ -12,6 +12,8 @@ public class StudijskaGodinaDTO {
 	private Long id;
 	private Date pocetakStudija;
 	private Date krajStudija;
+//	private LocalDateTime pocetakStudija;
+//	private LocalDateTime krajStudija;
 	private NacinFinansiranja nacinFinansiranja;
 	private int godinaStudija;
 	private int skolskaGodina;

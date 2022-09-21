@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StudijskaGodina } from '../model/studijskaGodina.model';
 import { StudijskaGodinaService } from './studijska-godina.service';
 
@@ -10,14 +10,26 @@ import { StudijskaGodinaService } from './studijska-godina.service';
 })
 export class StudijskaGodinaComponent implements OnInit {
 
+  id: string | null | undefined;
   studGodine: StudijskaGodina[] | null = [];
 
 
-  constructor(private studijskaGodinaService: StudijskaGodinaService, private router: Router) { }
+  constructor(
+    private studijskaGodinaService: StudijskaGodinaService,
+     private router: Router,
+     private route: ActivatedRoute
+     ) { }
 
 
   ngOnInit(): void {
-    this.getStudijskeGodine();
+    this.id = this.route.snapshot.paramMap.get('id');
+
+    this.getStudijskaGodinaStudenta();
+  }
+
+  getStudijskaGodinaStudenta() {
+    this.studijskaGodinaService.getStudijskaGodinaStudenta(Number(this.id)).subscribe(res =>
+      this.studGodine = res.body);
   }
 
   getStudijskeGodine() {

@@ -49,25 +49,26 @@ public class StudijskaGodinaService {
 	}
 	
 	
-	public List<StudijskaGodinaDTO> StudijskaGodinaStudentaNative(Long studentId) throws Exception {
+	public List<StudijskaGodinaDTO> StudijskaGodinaStudentaNative(int studentId) throws Exception {
+		//public List<StudijskaGodinaDTO> StudijskaGodinaStudentaNative(Long studentId) throws Exception {
 		
 		Optional<Student> studentOptional = studentRepository.findById((long) studentId);
 		if(!studentOptional.isPresent()) {
 			throw new Exception("Student sa prosledjenim id-om ne postoji");
 		}
-//		List<Object[]> nativeResponse = studijskaGodinaRepository.StudijskaGodinaStudentaNative(studentId);
-//		List<StudijskaGodinaDTO> response = new ArrayList<StudijskaGodinaDTO>();
-//		for(Object[] obj:nativeResponse) {
-//			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-//			//Enum nacinFinansiranjaEnum = NacinFinansiranja.budzet;
-//			StudijskaGodinaDTO tmpObj = new StudijskaGodinaDTO(Long.parseLong(obj[0].toString()),formatter.parse(obj[1].toString()),
-//					formatter.parse(obj[2].toString()) , NacinFinansiranja.valueOf(obj[3].toString()),
-//					Integer.parseInt(obj[4].toString()), Integer.parseInt(obj[5].toString())) ;
-//			System.out.println(Long.parseLong(obj[0].toString()));
-//			response.add(tmpObj);
-//		}
+		List<Object[]> nativeResponse = studijskaGodinaRepository.StudijskaGodinaStudentaNative(studentId);
+		List<StudijskaGodinaDTO> response = new ArrayList<StudijskaGodinaDTO>();
+		for(Object[] obj:nativeResponse) {
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			
+			StudijskaGodinaDTO tmpObj = new StudijskaGodinaDTO(Long.parseLong(obj[0].toString()),formatter.parse(obj[1].toString()),
+					formatter.parse(obj[2].toString()) , NacinFinansiranja.valueOf(obj[3].toString()),
+					Integer.parseInt(obj[4].toString()), Integer.parseInt(obj[5].toString())) ;
+			System.out.println(Long.parseLong(obj[0].toString()));
+			response.add(tmpObj);
+		}
 
-		List<StudijskaGodina> studentskeGodine = studijskaGodinaRepository.findStudijskaGodinasByStudentId(studentId);
+		/*List<StudijskaGodina> studentskeGodine = studijskaGodinaRepository.findStudijskaGodinasByStudentId(studentId);
 		List<StudijskaGodinaDTO> studentskeGodineDto = new ArrayList<>();
 		for(StudijskaGodina sg:studentskeGodine) {
 			studentskeGodineDto.add(new StudijskaGodinaDTO(
@@ -80,7 +81,56 @@ public class StudijskaGodinaService {
 			));
 		}
 
-		return studentskeGodineDto;
+		return studentskeGodineDto;*/
+		return response;
 	}
+	
+	
+	//AKO IMA LOCALDATETIME ZA DATUME I DA SE CUVA TAKO STUDGODINA
+	
+	
+//	public List<StudijskaGodinaDTO> StudijskaGodinaStudentaNative(Long studentId) throws Exception {
+//		
+//		Optional<Student> studentOptional = studentRepository.findById((long) studentId);
+//		if(!studentOptional.isPresent()) {
+//			throw new Exception("Student sa prosledjenim id-om ne postoji");
+//		}
+//		List<Object[]> nativeResponse = studijskaGodinaRepository.StudijskaGodinaStudentaNative(studentId);
+//		List<StudijskaGodinaDTO> response = new ArrayList<StudijskaGodinaDTO>();
+//		for(Object[] obj:nativeResponse) {
+//			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+//
+//			StudijskaGodinaDTO tmpObj = new StudijskaGodinaDTO(Long.parseLong(obj[0].toString()), formatter.parse(obj[1].toString()),
+//					formatter.parse(obj[1].toString()) , NacinFinansiranja.valueOf(obj[3].toString()),
+//					Integer.parseInt(obj[4].toString()), Integer.parseInt(obj[5].toString())) ;
+//			System.out.println(Long.parseLong(obj[0].toString()));
+//			response.add(tmpObj);
+//
+//			//AKO IMA LOCALDATETIME UMESTO SAMO DATE IDA OVAKO
+//			/*StudijskaGodinaDTO tmpObj = new StudijskaGodinaDTO(Long.parseLong(obj[0].toString()), LocalDateTime.parse(obj[1].toString()),
+//					LocalDateTime.parse(obj[2].toString()) , NacinFinansiranja.valueOf(obj[3].toString()),
+//					Integer.parseInt(obj[4].toString()), Integer.parseInt(obj[5].toString())) ;
+//			System.out.println(Long.parseLong(obj[0].toString()));
+//			response.add(tmpObj);*/
+//		}
+//
+//	/*	List<StudijskaGodina> studentskeGodine = studijskaGodinaRepository.findStudijskaGodinasByStudentId(studentId);
+//		List<StudijskaGodinaDTO> studentskeGodineDto = new ArrayList<>();
+//		for(StudijskaGodina sg:studentskeGodine) {
+//			studentskeGodineDto.add(new StudijskaGodinaDTO(
+//					sg.getId(),
+//					sg.getPocetakStudija(),
+//					sg.getKrajStudija(),
+//					sg.getNacin_finansiranja(),
+//					sg.getGodinaStudija(),
+//					sg.getSkolskaGodina()
+//			));
+//		}
+//		return studentskeGodineDto;
+//	 */
+//
+//		return response;
+//	}
+
 
 }
