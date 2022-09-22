@@ -1,5 +1,6 @@
 package com.ftn.eObrazovanjee.model;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -27,12 +28,12 @@ public class StudijskaGodina {
 	private Long id;
 	
 	@Column(name = "pocetak_studija")
-	//private LocalDateTime pocetakStudija;
-	private Date pocetakStudija;
+	private LocalDateTime pocetakStudija;
+	//private Date pocetakStudija;
 	
 	@Column(name = "kraj_studija")
-	//private LocalDateTime krajStudija;
-	private Date krajStudija;
+	private LocalDateTime krajStudija;
+	//private Date krajStudija;
 	
 	//private String nacinFinansiranja;
 	@Enumerated(EnumType.STRING)
@@ -55,70 +56,127 @@ public class StudijskaGodina {
 		super();
 	}
 
-	public StudijskaGodina(Long id, Date pocetakStudija, Date krajStudija, NacinFinansiranja nacin_finansiranja,
-			int godinaStudija, int skolskaGodina, Student student) {
-		super();
-		this.id = id;
-		this.pocetakStudija = pocetakStudija;
-		this.krajStudija = krajStudija;
-		this.nacin_finansiranja = nacin_finansiranja;
-		this.godinaStudija = godinaStudija;
-		this.skolskaGodina = skolskaGodina;
-		this.student = student;
-	}
+//	public StudijskaGodina(Long id, Date pocetakStudija, Date krajStudija, NacinFinansiranja nacin_finansiranja,
+//			int godinaStudija, int skolskaGodina, Student student) {
+//		super();
+//		this.id = id;
+//		this.pocetakStudija = pocetakStudija;
+//		this.krajStudija = krajStudija;
+//		this.nacin_finansiranja = nacin_finansiranja;
+//		this.godinaStudija = godinaStudija;
+//		this.skolskaGodina = skolskaGodina;
+//		this.student = student;
+//	}
+//	
+//	
+//
+//	public StudijskaGodina(Date pocetakStudija, Date krajStudija, NacinFinansiranja nacin_finansiranja,
+//			int godinaStudija, int skolskaGodina, Student student) {
+//		super();
+//		this.pocetakStudija = pocetakStudija;
+//		this.krajStudija = krajStudija;
+//		this.nacin_finansiranja = nacin_finansiranja;
+//		this.godinaStudija = godinaStudija;
+//		this.skolskaGodina = skolskaGodina;
+//		this.student = student;
+//	}
 	
 	
 
-	public StudijskaGodina(Date pocetakStudija, Date krajStudija, NacinFinansiranja nacin_finansiranja,
-			int godinaStudija, int skolskaGodina, Student student) {
-		super();
-		this.pocetakStudija = pocetakStudija;
-		this.krajStudija = krajStudija;
-		this.nacin_finansiranja = nacin_finansiranja;
-		this.godinaStudija = godinaStudija;
-		this.skolskaGodina = skolskaGodina;
-		this.student = student;
-	}
+//	public StudijskaGodina(Long id, Date pocetakStudija, Date krajStudija, NacinFinansiranja nacin_finansiranja,
+//			int godinaStudija, int skolskaGodina) {
+//		super();
+//		this.id = id;
+//		this.pocetakStudija = pocetakStudija;
+//		this.krajStudija = krajStudija;
+//		this.nacin_finansiranja = nacin_finansiranja;
+//		this.godinaStudija = godinaStudija;
+//		this.skolskaGodina = skolskaGodina;
+//	}
 	
 	
-
-	public StudijskaGodina(Long id, Date pocetakStudija, Date krajStudija, NacinFinansiranja nacin_finansiranja,
-			int godinaStudija, int skolskaGodina) {
-		super();
-		this.id = id;
-		this.pocetakStudija = pocetakStudija;
-		this.krajStudija = krajStudija;
-		this.nacin_finansiranja = nacin_finansiranja;
-		this.godinaStudija = godinaStudija;
-		this.skolskaGodina = skolskaGodina;
-	}
+	
 
 	public Long getId() {
 		return id;
+	}
+
+	public StudijskaGodina(Long id, LocalDateTime pocetakStudija, LocalDateTime krajStudija,
+		NacinFinansiranja nacin_finansiranja, int godinaStudija, int skolskaGodina) {
+	super();
+	this.id = id;
+	this.pocetakStudija = pocetakStudija;
+	this.krajStudija = krajStudija;
+	this.nacin_finansiranja = nacin_finansiranja;
+	this.godinaStudija = godinaStudija;
+	this.skolskaGodina = skolskaGodina;
+}
+
+	public StudijskaGodina(Long id, LocalDateTime pocetakStudija, LocalDateTime krajStudija,
+		NacinFinansiranja nacin_finansiranja, int godinaStudija, int skolskaGodina, Student student) {
+	super();
+	this.id = id;
+	this.pocetakStudija = pocetakStudija;
+	this.krajStudija = krajStudija;
+	this.nacin_finansiranja = nacin_finansiranja;
+	this.godinaStudija = godinaStudija;
+	this.skolskaGodina = skolskaGodina;
+	this.student = student;
+}
+	
+	
+
+	public StudijskaGodina(LocalDateTime pocetakStudija, LocalDateTime krajStudija,
+			NacinFinansiranja nacin_finansiranja, int godinaStudija, int skolskaGodina, Student student) {
+		super();
+		this.pocetakStudija = pocetakStudija;
+		this.krajStudija = krajStudija;
+		this.nacin_finansiranja = nacin_finansiranja;
+		this.godinaStudija = godinaStudija;
+		this.skolskaGodina = skolskaGodina;
+		this.student = student;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public Date getPocetakStudija() {
-		return pocetakStudija;
-	}
-
-	public void setPocetakStudija(Date pocetakStudija) {
-		this.pocetakStudija = pocetakStudija;
-	}
-
-	public Date getKrajStudija() {
-		return krajStudija;
-	}
-
-	public void setKrajStudija(Date krajStudija) {
-		this.krajStudija = krajStudija;
-	}
+//	public Date getPocetakStudija() {
+//		return pocetakStudija;
+//	}
+//
+//	public void setPocetakStudija(Date pocetakStudija) {
+//		this.pocetakStudija = pocetakStudija;
+//	}
+//
+//	public Date getKrajStudija() {
+//		return krajStudija;
+//	}
+//
+//	public void setKrajStudija(Date krajStudija) {
+//		this.krajStudija = krajStudija;
+//	}
+	
+	
 
 	public NacinFinansiranja getNacin_finansiranja() {
 		return nacin_finansiranja;
+	}
+
+	public LocalDateTime getPocetakStudija() {
+		return pocetakStudija;
+	}
+
+	public void setPocetakStudija(LocalDateTime pocetakStudija) {
+		this.pocetakStudija = pocetakStudija;
+	}
+
+	public LocalDateTime getKrajStudija() {
+		return krajStudija;
+	}
+
+	public void setKrajStudija(LocalDateTime krajStudija) {
+		this.krajStudija = krajStudija;
 	}
 
 	public void setNacin_finansiranja(NacinFinansiranja nacin_finansiranja) {

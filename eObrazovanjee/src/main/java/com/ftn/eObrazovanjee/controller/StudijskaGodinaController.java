@@ -151,7 +151,7 @@ public class StudijskaGodinaController {
 	}
 	
 	@GetMapping("/tokStudija")
-	public ResponseEntity<?> studijskaGodinaStudenta(@RequestParam("idStudenta") int idStudenta){
+	public ResponseEntity<?> studijskaGodinaStudenta(@RequestParam("idStudenta") Long idStudenta){
 		try {
 			List<StudijskaGodinaDTO> response = studijskaGodinaService.StudijskaGodinaStudentaNative(idStudenta);
 			

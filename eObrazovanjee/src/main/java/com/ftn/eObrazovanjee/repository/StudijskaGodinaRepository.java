@@ -14,15 +14,14 @@ import com.ftn.eObrazovanjee.model.StudijskaGodina;
 public interface StudijskaGodinaRepository extends JpaRepository<StudijskaGodina, Long> {
 
 	
-	@Query(value = "SELECT sg.id, sg.pocetak_studija, sg.kraj_studija, sg.nacin_finansiranja, sg.godina_studija,\r\n" +
-			" sg.skolska_godina from student_studijska_godina as ssg\r\n" 
-			+ "join studijska_godina as sg on sg.id = ssg.studijska_godina_id\r\n"  
-			+ "join student as s on s.id = ssg.student_id\r\n"  
-			+ "where ssg.student_id = :studentId"  , nativeQuery = true)
-	List<Object[]> StudijskaGodinaStudentaNative(@Param("studentId") int studentId);
+	@Query(value = "SELECT sg.id, sg.pocetak_studija, sg.kraj_studija, sg.nacin_finansiranja, sg.godina_studija, \r\n"
+			+ "sg.skolska_godina from studijska_godina as sg\r\n"
+			+ "join student as s on sg.id = s.id\r\n"
+			+ "where sg.student = :studentId"  , nativeQuery = true)
+	List<Object[]> StudijskaGodinaStudentaNative(@Param("studentId") Long studentId);
 	//List<Object[]> StudijskaGodinaStudentaNative(@Param("studentId") Long studentId);
 
-	//List<StudijskaGodina> findStudijskaGodinasByStudentId(Long studentId);
+	List<StudijskaGodina> findStudijskaGodinasByStudentId(Long studentId);
 	
 	
 

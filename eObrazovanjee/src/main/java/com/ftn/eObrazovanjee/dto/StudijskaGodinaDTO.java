@@ -1,5 +1,6 @@
 package com.ftn.eObrazovanjee.dto;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -10,10 +11,10 @@ import lombok.Builder;
 public class StudijskaGodinaDTO {
 	
 	private Long id;
-	private Date pocetakStudija;
-	private Date krajStudija;
-//	private LocalDateTime pocetakStudija;
-//	private LocalDateTime krajStudija;
+//	private Date pocetakStudija;
+//	private Date krajStudija;
+	private LocalDateTime pocetakStudija;
+	private LocalDateTime krajStudija;
 	private NacinFinansiranja nacinFinansiranja;
 	private int godinaStudija;
 	private int skolskaGodina;
@@ -27,33 +28,60 @@ public class StudijskaGodinaDTO {
 		super();
 	}
 
-	public StudijskaGodinaDTO(Long id, Date pocetakStudija, Date krajStudija, NacinFinansiranja nacinFinansiranja,
-			int godinaStudija, int skolskaGodina, StudentDTO studnetDTO) {
-		super();
-		this.id = id;
-		this.pocetakStudija = pocetakStudija;
-		this.krajStudija = krajStudija;
-		this.nacinFinansiranja = nacinFinansiranja;
-		this.godinaStudija = godinaStudija;
-		this.skolskaGodina = skolskaGodina;
-		this.studnetDTO = studnetDTO;
-	}
+//	public StudijskaGodinaDTO(Long id, Date pocetakStudija, Date krajStudija, NacinFinansiranja nacinFinansiranja,
+//			int godinaStudija, int skolskaGodina, StudentDTO studnetDTO) {
+//		super();
+//		this.id = id;
+//		this.pocetakStudija = pocetakStudija;
+//		this.krajStudija = krajStudija;
+//		this.nacinFinansiranja = nacinFinansiranja;
+//		this.godinaStudija = godinaStudija;
+//		this.skolskaGodina = skolskaGodina;
+//		this.studnetDTO = studnetDTO;
+//	}
+//	
+//	
+//
+//	
+//
+//	public StudijskaGodinaDTO(Long id, Date pocetakStudija, Date krajStudija, NacinFinansiranja nacinFinansiranja,
+//			int godinaStudija, int skolskaGodina) {
+//		super();
+//		this.id = id;
+//		this.pocetakStudija = pocetakStudija;
+//		this.krajStudija = krajStudija;
+//		this.nacinFinansiranja = nacinFinansiranja;
+//		this.godinaStudija = godinaStudija;
+//		this.skolskaGodina = skolskaGodina;
+//	}
 	
 	
 
 	
 
-	public StudijskaGodinaDTO(Long id, Date pocetakStudija, Date krajStudija, NacinFinansiranja nacinFinansiranja,
-			int godinaStudija, int skolskaGodina) {
-		super();
-		this.id = id;
-		this.pocetakStudija = pocetakStudija;
-		this.krajStudija = krajStudija;
-		this.nacinFinansiranja = nacinFinansiranja;
-		this.godinaStudija = godinaStudija;
-		this.skolskaGodina = skolskaGodina;
-	}
+	public StudijskaGodinaDTO(Long id, LocalDateTime pocetakStudija, LocalDateTime krajStudija,
+		NacinFinansiranja nacinFinansiranja, int godinaStudija, int skolskaGodina) {
+	super();
+	this.id = id;
+	this.pocetakStudija = pocetakStudija;
+	this.krajStudija = krajStudija;
+	this.nacinFinansiranja = nacinFinansiranja;
+	this.godinaStudija = godinaStudija;
+	this.skolskaGodina = skolskaGodina;
+}
 
+	public StudijskaGodinaDTO(Long id, LocalDateTime pocetakStudija, LocalDateTime krajStudija,
+		NacinFinansiranja nacinFinansiranja, int godinaStudija, int skolskaGodina, StudentDTO studnetDTO) {
+	super();
+	this.id = id;
+	this.pocetakStudija = pocetakStudija;
+	this.krajStudija = krajStudija;
+	this.nacinFinansiranja = nacinFinansiranja;
+	this.godinaStudija = godinaStudija;
+	this.skolskaGodina = skolskaGodina;
+	this.studnetDTO = studnetDTO;
+}
+	
 	public Long getId() {
 		return id;
 	}
@@ -62,26 +90,44 @@ public class StudijskaGodinaDTO {
 		this.id = id;
 	}
 
-	public Date getPocetakStudija() {
-		return pocetakStudija;
-	}
-
-	public void setPocetakStudija(Date pocetakStudija) {
-		this.pocetakStudija = pocetakStudija;
-	}
-
-	public Date getKrajStudija() {
-		return krajStudija;
-	}
-
-	public void setKrajStudija(Date krajStudija) {
-		this.krajStudija = krajStudija;
-	}
+//	public Date getPocetakStudija() {
+//		return pocetakStudija;
+//	}
+//
+//	public void setPocetakStudija(Date pocetakStudija) {
+//		this.pocetakStudija = pocetakStudija;
+//	}
+//
+//	public Date getKrajStudija() {
+//		return krajStudija;
+//	}
+//
+//	public void setKrajStudija(Date krajStudija) {
+//		this.krajStudija = krajStudija;
+//	}
+	
+	
 
 	
 
 	public NacinFinansiranja getNacinFinansiranja() {
 		return nacinFinansiranja;
+	}
+
+	public LocalDateTime getPocetakStudija() {
+		return pocetakStudija;
+	}
+
+	public void setPocetakStudija(LocalDateTime pocetakStudija) {
+		this.pocetakStudija = pocetakStudija;
+	}
+
+	public LocalDateTime getKrajStudija() {
+		return krajStudija;
+	}
+
+	public void setKrajStudija(LocalDateTime krajStudija) {
+		this.krajStudija = krajStudija;
 	}
 
 	public void setNacinFinansiranja(NacinFinansiranja nacinFinansiranja) {
