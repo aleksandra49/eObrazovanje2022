@@ -185,6 +185,7 @@ public class StudentController {
 		finKartica.setRacunFakulteta(racunFakulteta);
 		finKartica.setTrenutnoStanje(trenutnoStanje);
 		finKartica.setId(studentDTO.getId());
+
 		
 		student.setIme(studentDTO.getIme());
 		student.setPrezime(studentDTO.getPrezime());
@@ -199,13 +200,16 @@ public class StudentController {
 		//	profesor.setPredavanja(new HashSet<>(new PredavanjePredmetaMapper().listDtoToModel(profesorDTO.getPredavanja())));
 		
 		korisnik = korisnikService.save(korisnik1);
-		finansijskaKartica = finansijskaKarticaService.save(finKartica);
+	//	finansijskaKartica = finansijskaKarticaService.save(finKartica);
 		
 		
 //		korisnikProba = korisnikService.findOne(korisnik1.getId());
 		System.out.println(korisnik);
 		
 		student = studentService.save(student);
+		finansijskaKartica = finansijskaKarticaService.save(finKartica);
+		
+		System.out.println(finKartica.getId());
 		return new ResponseEntity<>(new StudentMapper().modelToDto(student), HttpStatus.CREATED);
 	}
 	
