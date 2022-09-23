@@ -1,5 +1,6 @@
 package com.ftn.eObrazovanjee.service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -38,8 +39,8 @@ public class StudentService {
 	public Student save(Student student) {
 
 	StudijskaGodina sg = new StudijskaGodina(
-			LocalDateTime.now(),
-			LocalDateTime.now().plusYears(4),
+			LocalDate.now(),
+			LocalDate.now().plusYears(4),
 			NacinFinansiranja.budzet,
 			1,
 			2022,

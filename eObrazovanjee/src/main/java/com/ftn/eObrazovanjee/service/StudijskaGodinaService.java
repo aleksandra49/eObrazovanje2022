@@ -1,5 +1,6 @@
 package com.ftn.eObrazovanjee.service;
 
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -109,9 +110,9 @@ System.out.println("OVDE UDJE");
 			response.add(tmpObj);*/
 
 			//AKO IMA LOCALDATETIME UMESTO SAMO DATE IDA OVAKO
-			StudijskaGodinaDTO tmpObj = new StudijskaGodinaDTO(Long.parseLong(obj[0].toString()), LocalDateTime.parse(obj[1].toString()),
-					LocalDateTime.parse(obj[2].toString()) , NacinFinansiranja.valueOf(obj[3].toString()),
-					Integer.parseInt(obj[4].toString()), Integer.parseInt(obj[5].toString())) ;
+			StudijskaGodinaDTO tmpObj = new StudijskaGodinaDTO(Long.parseLong(obj[0].toString()), ((Timestamp)obj[1]).toLocalDateTime().toLocalDate(),
+					((Timestamp)obj[2]).toLocalDateTime().toLocalDate(), NacinFinansiranja.valueOf(obj[3].toString()),
+					Integer.parseInt(obj[4].toString()), Integer.parseInt(obj[5].toString()));
 			System.out.println("++++++++++++++");
 			System.out.println(Long.parseLong(obj[0].toString()));
 			System.out.println();
