@@ -46,6 +46,8 @@ import { FinansijskaKarticaComponent } from './finansijska-kartica/finansijska-k
 import { IstorijaTransakcijaComponent } from './istorija-transakcija/istorija-transakcija.component';
 import { PredmetComponent } from './predmet/predmet.component';
 import { AddPredmetComponent } from './predmet/add-predmet/add-predmet.component';
+import { AddStudnetNaPredmetComponent } from './predmet/add-studnet-na-predmet/add-studnet-na-predmet.component';
+import { AddProfNaPredmetComponent } from './predmet/add-prof-na-predmet/add-prof-na-predmet.component';
 
 
 const routes: Routes = [
@@ -77,6 +79,8 @@ const routes: Routes = [
   { path: 'predmet/:id', component: ProfesorPredajeComponent },
   { path: 'polozeniIspitiZaStudenta/:id', component: PolozeniIspitiComponent },
   { path: 'NepolozeniIspitiZaStudenta/:id', component: NepolozeniIspitiComponent },
+  { path: 'addProfesor/:id', component: AddProfNaPredmetComponent },
+  { path: 'addStudent/:id', component: AddStudnetNaPredmetComponent },
 
   { path: 'student', component: StudentComponent },
   { path: 'addStudent', component: AddStudentComponent },

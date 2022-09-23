@@ -1,0 +1,31 @@
+<div
+class="col-md-8 offset-md-2"
+>
+  <div class="form-row">
+    <div class="col-md-5 offset-md-3">
+      <label for="inputIme">Naziv Predmeta</label>
+      <input [(ngModel)]="predmet.naziv" type="ime" class="form-control" id="inputIme" readonly >
+    </div>
+    <div class="col-md-5 offset-md-3">
+      <label for="inputPrezime">Oznaka</label>
+      <input [(ngModel)]="predmet.oznaka" type="prezime" class="form-control" id="inputPrezime" readonly>
+    </div>
+    <div class="col-md-5 offset-md-3">
+      <label for="inputUser">Broj ESPB bodova</label>
+      <input [(ngModel)]="predmet.espb" type="user" class="form-control" id="inputUser" readonly>
+    </div>
+    <div class="col-md-5 offset-md-3">
+      <label for="inputUser">Pocetak</label>
+      <input [(ngModel)]="predmet.predmetInstancaDTO.pocetak" type="user" class="form-control" id="inputUser" readonly>
+    </div>
+    <div class="col-md-5 offset-md-3">
+      <label for="inputPassword">Kraj</label>
+      <input [(ngModel)]="predmet.predmetInstancaDTO.kraj" type="password" class="form-control" id="inputPassword" readonly>
+    </div>
+  </div>
+
+  <div class="col-md-5 offset-md-3">
+  <button type="submit" class="btn btn-primary"
+   (click)="onSubmit()" >Dodaj studenta</button>
+  </div> <!-- [routerLink]="['/profesor']" -->
+</div>

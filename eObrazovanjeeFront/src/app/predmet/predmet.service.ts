@@ -20,4 +20,9 @@ export class PredmetService {
         const url = `${this.predmetUrl}`;
         return this.http.post<any>(url, predmet , {observe: 'response'});
     }
+
+    getPredmet(id: number): Observable<HttpResponse<Predmet>> {
+        const url = `${this.predmetUrl}/${id}`;
+        return this.http.get<Predmet>(url, {observe: 'response'});
+    }
 }

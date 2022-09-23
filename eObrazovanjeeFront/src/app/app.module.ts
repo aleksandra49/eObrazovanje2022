@@ -70,6 +70,8 @@ import { IstorijaTransakcijaComponent } from './istorija-transakcija/istorija-tr
 import { PredmetComponent } from './predmet/predmet.component';
 import { PredmetService } from './predmet/predmet.service';
 import { AddPredmetComponent } from './predmet/add-predmet/add-predmet.component';
+import { AddProfNaPredmetComponent } from './predmet/add-prof-na-predmet/add-prof-na-predmet.component';
+import { AddStudnetNaPredmetComponent } from './predmet/add-studnet-na-predmet/add-studnet-na-predmet.component';
 
 // import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 
@@ -123,7 +125,9 @@ import { AddPredmetComponent } from './predmet/add-predmet/add-predmet.component
     IstorijaPolaganjaComponent,
     IstorijaTransakcijaComponent,
     PredmetComponent,
-    AddPredmetComponent
+    AddPredmetComponent,
+    AddProfNaPredmetComponent,
+    AddStudnetNaPredmetComponent
   ],
   imports: [
     BrowserModule,

@@ -27,10 +27,17 @@ export class PredmetComponent implements OnInit {
       console.log('res', res);this.predmeti = res.body});
   }
 
+  getPredmet(){
+  }
+
   goToOnRightRoute(val: string) {
     console.log('val', val);
 
     this.router.navigate([val]);
+  }
+
+  goToOnRightRouteParams(val: string, id: any) {
+    this.router.navigate([val, id]);
   }
 
 
