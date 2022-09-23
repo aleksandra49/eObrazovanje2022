@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Ispit } from 'src/app/model/ispit.model';
 import { IspitService } from '../ispit.service';
+import { ViewEncapsulation, Inject } from '@angular/core';
 
 
 @Component({
@@ -10,27 +11,33 @@ import { IspitService } from '../ispit.service';
 })
 export class AddIspitComponent implements OnInit {
   naziv = '';
-  datumVreme = '';
+  datumVreme = new Date();
   brojBodova = '';
-  
+  predmeti = [
+    {naziv: "predmet1", stvar: "asd"},
+    {naziv: "predmet2", stvar: "asd"}
+  ];
+
 
 constructor(private ispitService: IspitService) { }
 
 ispit: Ispit = new Ispit({
   id: 0,
   naziv: "",
-  datumVreme: "",
+  datumVreme: new Date(),
   brojBodova: 0
-  
+
 });
 
 ngOnInit(): void {
 }
 
+
+
 onSubmit() {
-  console.log('ime', this.naziv);
-  console.log('prezime', this.datumVreme);
-  console.log('password', this.brojBodova);
+  console.log('naziv', this.naziv);
+  console.log('datumVreme', this.datumVreme);
+  console.log('brojBodova', this.brojBodova);
 
   this.ispitService.saveIspit(this.ispit)
     .subscribe(() => {
