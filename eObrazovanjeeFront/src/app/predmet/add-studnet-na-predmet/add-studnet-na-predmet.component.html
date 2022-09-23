@@ -22,6 +22,15 @@ class="col-md-8 offset-md-2"
       <label for="inputPassword">Kraj</label>
       <input [(ngModel)]="predmet.predmetInstancaDTO.kraj" type="password" class="form-control" id="inputPassword" readonly>
     </div>
+    <div class="col-md-5 offset-md-3">
+    <label for="inputUser">Izaberi Studenta</label>
+    </div>
+    <div>
+      
+    <select class="col-md-5 offset-md-3" aria-label="Default select">
+      <option *ngFor="let s of studenti">{{s.ime + ' ' + s.prezime}}</option>
+    </select>
+    </div>
   </div>
 
   <div class="col-md-5 offset-md-3">

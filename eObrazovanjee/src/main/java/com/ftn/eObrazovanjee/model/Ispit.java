@@ -1,6 +1,7 @@
 package com.ftn.eObrazovanjee.model;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,7 +26,7 @@ public class Ispit {
 	private String naziv;
 	
 	@Column(name = "datumVreme")
-	private LocalDateTime datumVreme;
+	private Date datumVreme;
 	
 	
 	@OneToMany(mappedBy = "ispit", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
@@ -40,7 +41,7 @@ public class Ispit {
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
 	private PredmetInstanca predmetInstanca;
 
-	public Ispit(Long id, String naziv, LocalDateTime datumVreme, 
+	public Ispit(Long id, String naziv, Date datumVreme, 
 			Set<PolaganjeIspita> polaganjeIspita, IspitniRok ispitniRok, Set<DeoIspita> deoIspita,
 			PredmetInstanca predmetInstanca) {
 		super();
@@ -74,11 +75,11 @@ public class Ispit {
 		this.naziv = naziv;
 	}
 
-	public LocalDateTime getDatumVreme() {
+	public Date getDatumVreme() {
 		return datumVreme;
 	}
 
-	public void setDatumVreme(LocalDateTime datumVreme) {
+	public void setDatumVreme(Date datumVreme) {
 		this.datumVreme = datumVreme;
 	}
 

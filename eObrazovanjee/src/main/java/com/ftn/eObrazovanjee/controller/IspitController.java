@@ -1,5 +1,6 @@
 package com.ftn.eObrazovanjee.controller;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.eObrazovanjee.dto.DeoIspitaDTO;
 import com.ftn.eObrazovanjee.dto.IspitDTO;
+import com.ftn.eObrazovanjee.dto.IspitDodavanje;
 import com.ftn.eObrazovanjee.dto.IspitIspitniRokDTO;
 import com.ftn.eObrazovanjee.dto.IspitiZaOcenjivanjeDTO;
 import com.ftn.eObrazovanjee.dto.IspitniRokDTO;
@@ -272,19 +274,34 @@ public class IspitController {
 		return new ResponseEntity<>(ispitDTO, HttpStatus.OK);
 	}
 	
+//	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
+//	public ResponseEntity<IspitDTO> saveIspit(@RequestBody IspitDTO ispitDTO){		
+//		Ispit ispit = new Ispit();
+//		ispit.setNaziv(ispitDTO.getNaziv());
+//		ispit.setDatumVreme(ispitDTO.getDatumVreme());
+//		ispit.setPolaganjeIspita(new HashSet<>(new PolaganjeIspitaMapper().listDtoToModel(ispitDTO.getPolaganjeIspita())));
+//		ispit.setIspitniRok(ispitniRokService.findOne(ispitDTO.getIspitniRok().getId()));
+//		ispit.setDeoIspita(new HashSet<>(new DeoIspitaMapper().listDtoToModel(ispitDTO.getDeoIspitaDTO())));
+//		ispit.setPredmetInstanca(predmetInstancaServiceImpl.findOne(ispitDTO.getPredmetInstanca().getId()));
+//		
+//		ispit = ispitService.save(ispit);
+//		return new ResponseEntity<>(new IspitMapper().modelToDto(ispit), HttpStatus.CREATED);	
+//	}
+	
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
-	public ResponseEntity<IspitDTO> saveIspit(@RequestBody IspitDTO ispitDTO){		
+	public ResponseEntity<IspitDodavanje> saveIspit(@RequestBody IspitDodavanje ispitDTO){		
 		Ispit ispit = new Ispit();
 		ispit.setNaziv(ispitDTO.getNaziv());
+		
 		ispit.setDatumVreme(ispitDTO.getDatumVreme());
-		ispit.setPolaganjeIspita(new HashSet<>(new PolaganjeIspitaMapper().listDtoToModel(ispitDTO.getPolaganjeIspita())));
-		ispit.setIspitniRok(ispitniRokService.findOne(ispitDTO.getIspitniRok().getId()));
-		ispit.setDeoIspita(new HashSet<>(new DeoIspitaMapper().listDtoToModel(ispitDTO.getDeoIspitaDTO())));
-		ispit.setPredmetInstanca(predmetInstancaServiceImpl.findOne(ispitDTO.getPredmetInstanca().getId()));
+		ispit.setIspitniRok(ispitniRokService.findOne(ispitDTO.getIspitniRokId()));
+		ispit.setPredmetInstanca(predmetInstancaServiceImpl.findOne(ispitDTO.getPredmetId()));
 		
 		ispit = ispitService.save(ispit);
-		return new ResponseEntity<>(new IspitMapper().modelToDto(ispit), HttpStatus.CREATED);	
+		return new ResponseEntity<>(HttpStatus.CREATED);	
 	}
+	
+	
 	
 	@RequestMapping(method=RequestMethod.PUT, consumes="application/json")
 	public ResponseEntity<IspitDTO> updateIspit(@RequestBody IspitDTO ispitDTO){

@@ -2,6 +2,7 @@ package com.ftn.eObrazovanjee.dto;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,14 +15,14 @@ public class IspitDTO {
 
 	private Long id;
 	private String naziv;
-	private LocalDateTime datumVreme;
+	private Date datumVreme;
 	
 	private ArrayList<PolaganjeIspitaDTO> polaganjeIspita;
 	private IspitniRokDTO ispitniRok;
 	private ArrayList<DeoIspitaDTO> deoIspitaDTO;
 	private PredmetInstancaDTO predmetInstanca;
 	
-	public IspitDTO(Long id, String naziv, LocalDateTime datumVreme, 
+	public IspitDTO(Long id, String naziv, Date datumVreme, 
 			ArrayList<PolaganjeIspitaDTO> polaganjeIspita, IspitniRokDTO ispitniRok, ArrayList<DeoIspitaDTO> deoIspitaDTO,
 			PredmetInstancaDTO predmetInstanca) {
 		super();
@@ -55,11 +56,11 @@ public class IspitDTO {
 		this.naziv = naziv;
 	}
 
-	public LocalDateTime getDatumVreme() {
+	public Date getDatumVreme() {
 		return datumVreme;
 	}
 
-	public void setDatumVreme(LocalDateTime datumVreme) {
+	public void setDatumVreme(Date datumVreme) {
 		this.datumVreme = datumVreme;
 	}
 

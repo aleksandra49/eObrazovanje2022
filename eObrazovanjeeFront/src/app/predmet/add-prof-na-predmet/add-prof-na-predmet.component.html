@@ -20,7 +20,18 @@ class="col-md-8 offset-md-2"
     </div>
     <div class="col-md-5 offset-md-3">
       <label for="inputPassword">Kraj</label>
-      <input [(ngModel)]="predmet.predmetInstancaDTO.kraj" type="password" class="form-control" id="inputPassword" readonly>
+      <div class="col-md-5 offset-md-3">
+        <input class="form-control" placeholder="yyyy-mm-dd"
+             name="dp" [(ngModel)]="predmet.kraj" ngbDatepicker #d="ngbDatepicker">
+  
+      </div>
+
+    </div>
+    <div>
+      <label for="inputUser">Izaberi Profesora</label>
+    <select class="col-md-5 offset-md-3" aria-label="Default select">
+      <option *ngFor="let p of profesori">{{p.ime + ' ' + p.prezime}}</option>
+    </select>
     </div>
   </div>
 

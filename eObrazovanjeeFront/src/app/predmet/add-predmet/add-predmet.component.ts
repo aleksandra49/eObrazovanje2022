@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PredmetInstancaPredmet } from 'src/app/model/predmetInstancaPredmet';
 import { PredmetService } from '../predmet.service';
+import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-add-predmet',
@@ -8,7 +9,6 @@ import { PredmetService } from '../predmet.service';
   styleUrls: ['./add-predmet.component.css']
 })
 export class AddPredmetComponent implements OnInit {
-
 	naziv = '';
   espb = '';
 	oznaka = '';
