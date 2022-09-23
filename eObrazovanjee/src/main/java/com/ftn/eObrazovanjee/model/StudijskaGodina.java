@@ -1,5 +1,6 @@
 package com.ftn.eObrazovanjee.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -28,11 +29,11 @@ public class StudijskaGodina {
 	private Long id;
 	
 	@Column(name = "pocetak_studija")
-	private LocalDateTime pocetakStudija;
+	private LocalDate pocetakStudija;
 	//private Date pocetakStudija;
 	
 	@Column(name = "kraj_studija")
-	private LocalDateTime krajStudija;
+	private LocalDate krajStudija;
 	//private Date krajStudija;
 	
 	//private String nacinFinansiranja;
@@ -101,7 +102,7 @@ public class StudijskaGodina {
 		return id;
 	}
 
-	public StudijskaGodina(Long id, LocalDateTime pocetakStudija, LocalDateTime krajStudija,
+	public StudijskaGodina(Long id, LocalDate pocetakStudija, LocalDate krajStudija,
 		NacinFinansiranja nacin_finansiranja, int godinaStudija, int skolskaGodina) {
 	super();
 	this.id = id;
@@ -112,7 +113,7 @@ public class StudijskaGodina {
 	this.skolskaGodina = skolskaGodina;
 }
 
-	public StudijskaGodina(Long id, LocalDateTime pocetakStudija, LocalDateTime krajStudija,
+	public StudijskaGodina(Long id, LocalDate pocetakStudija, LocalDate krajStudija,
 		NacinFinansiranja nacin_finansiranja, int godinaStudija, int skolskaGodina, Student student) {
 	super();
 	this.id = id;
@@ -126,7 +127,7 @@ public class StudijskaGodina {
 	
 	
 
-	public StudijskaGodina(LocalDateTime pocetakStudija, LocalDateTime krajStudija,
+	public StudijskaGodina(LocalDate pocetakStudija, LocalDate krajStudija,
 			NacinFinansiranja nacin_finansiranja, int godinaStudija, int skolskaGodina, Student student) {
 		super();
 		this.pocetakStudija = pocetakStudija;
@@ -163,19 +164,19 @@ public class StudijskaGodina {
 		return nacin_finansiranja;
 	}
 
-	public LocalDateTime getPocetakStudija() {
+	public LocalDate getPocetakStudija() {
 		return pocetakStudija;
 	}
 
-	public void setPocetakStudija(LocalDateTime pocetakStudija) {
+	public void setPocetakStudija(LocalDate pocetakStudija) {
 		this.pocetakStudija = pocetakStudija;
 	}
 
-	public LocalDateTime getKrajStudija() {
+	public LocalDate getKrajStudija() {
 		return krajStudija;
 	}
 
-	public void setKrajStudija(LocalDateTime krajStudija) {
+	public void setKrajStudija(LocalDate krajStudija) {
 		this.krajStudija = krajStudija;
 	}
 
