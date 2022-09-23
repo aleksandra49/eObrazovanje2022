@@ -19,7 +19,6 @@ import { IspitniRokService } from './ispitni-rok/ispitni-rok.service';
 import { StudentService } from './student/student.service';
 import { DokumentComponent } from './dokument/dokument.component';
 import { DokumentService } from './dokument/dokument.service';
-
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddProfesorComponent } from './profesor/add-profesor/add-profesor/add-profesor.component';
 import { PolaganjeIspitaComponent } from './polaganje-ispita/polaganje-ispita.component';
@@ -132,8 +131,8 @@ import { AddPredmetComponent } from './predmet/add-predmet/add-predmet.component
     FormsModule,
     NgbModule
   ],
-  providers: [ProfesorService, 
-              KorisnikService, IspitService, IspitniRokService, PolaganjeService, 
+  providers: [ProfesorService,
+              KorisnikService, IspitService, IspitniRokService, PolaganjeService,
               StudentService, DeoIspitaService, StudijskaGodinaService, PohadjanjePredmetaService,
               DokumentService, authInterceptorProviders, PolozenIspitService, ProfesorPredajeComponent,
               PrijavaIspitComponent,PrijavljeniIspitiComponent, FinansijskaKarticaService,PredmetService],
