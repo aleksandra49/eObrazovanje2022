@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.eObrazovanjee.dto.DeoIspitaDTO;
@@ -29,6 +30,7 @@ import com.ftn.eObrazovanjee.model.Ispit;
 import com.ftn.eObrazovanjee.model.Predmet;
 import com.ftn.eObrazovanjee.model.PredmetInstanca;
 import com.ftn.eObrazovanjee.model.Profesor;
+import com.ftn.eObrazovanjee.model.Student;
 import com.ftn.eObrazovanjee.repository.PredmetRepository;
 import com.ftn.eObrazovanjee.service.PredmetInstancaServiceImpl;
 import com.ftn.eObrazovanjee.service.PredmetServiceImpl;
@@ -83,6 +85,20 @@ public class PredmetController {
 		
 		
 		return new ResponseEntity<>(new PredmetMapper().modelToDto(predmet), HttpStatus.CREATED);	
+	}
+	
+	@RequestMapping(value ="/dodavanjeProfesora", method=RequestMethod.POST)
+	public ResponseEntity<?> PrijavaIspita(@RequestParam Long predmetId, @RequestParam Long profesorId){
+		try {
+			Predmet predmet = predmetService.findOne((long) predmetId);
+			Profesor profesor = profesorService.findOne((long) profesorId);
+
+			predmetRepository.dodavanjeProfesoraNaPredmet(predmetId,profesorId);
+			
+			return new ResponseEntity<>(HttpStatus.OK);
+		}catch(Exception e) {
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, consumes="application/json")

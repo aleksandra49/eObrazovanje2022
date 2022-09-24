@@ -14,6 +14,11 @@ export class PredmetService {
     private predmetUrl = 'api/predmeti';
     private ispitniRokUrl = 'api/ispitni_rok';
 
+
+    addProfesorNaPredmet(predmetId: number, profesorId:number): Observable<HttpResponse<any>> {
+        return this.http.post(`api/predmeti/dodavanjeProfesora?predmetId=${predmetId}&profesorId=${profesorId}`, {}) as any
+    }
+
     getPredmeti(): Observable<HttpResponse<Predmet[]>> {
         const url = `${this.predmetUrl+"/all"}`;
         return this.http.get<Predmet[]>(url, {observe: 'response'});

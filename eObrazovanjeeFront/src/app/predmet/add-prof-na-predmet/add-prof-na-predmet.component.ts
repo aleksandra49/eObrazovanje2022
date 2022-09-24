@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Korisnik } from 'src/app/model/korisnik.model';
 import { Profesor } from 'src/app/model/profesor.model';
+import { AddProfesorComponent } from 'src/app/profesor/add-profesor/add-profesor/add-profesor.component';
 import { ProfesorService } from 'src/app/profesor/profesor.service';
 import { PredmetService } from '../predmet.service';
 
@@ -50,10 +51,13 @@ export class AddProfNaPredmetComponent implements OnInit {
     console.log('predmet', this.predmet);
     console.log('profesorId', this.profesorId);
 
-   /* this.profesorService.saveProfesor(this.profesor)
-      .subscribe(() => {
-        alert("Usepsno dodat profesor!")
-      })*/
+
+      this.predmetService.addProfesorNaPredmet(this.predmet.id, this.profesorId).subscribe(
+       () =>  
+       alert("Usepsno dodat profesor!")
+      );
+
+      
   }
 
 }
