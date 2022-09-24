@@ -83,15 +83,22 @@ public class ProfesorController {
 		List<Korisnik> korisnici = korisnikService.findAll();
 		Boolean slobodan = true;
 		for(Korisnik kor : korisnici) {
+			System.err.println(kor.getUsername());
+			System.err.println(username);
 			if(kor.getUsername().equals(username)) {
+			
+//			if(kor.getUsername() == username) {
+				System.err.println("falsed");
 				slobodan = false;
 			}
 		}
 		
 		if(slobodan == false) {
+			System.err.println("nije slobodan");
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		else {
+			System.err.println("slobodan");
 			return new ResponseEntity<>(slobodan, HttpStatus.OK);
 		}
 		
