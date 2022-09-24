@@ -263,7 +263,14 @@ public class StudentController {
 		student.setEmail(studentDTO.getEmail());
 		student.setActive(studentDTO.isActive());
 		
+		if(studentDTO.getPolaganjeIspita() == null) {
+			System.out.println("Polaganje je null");
+			studentDTO.setPolaganjeIspita(new ArrayList<PolaganjeIspitaDTO>());
+		}
 		
+		
+		
+		System.out.println(studentDTO.getFinansijskaKarticaDTO().getId());
 		
 		student.setStudijskaGodina(new HashSet<>(new StudijskaGodinaMapper().listDtoToModel(studentDTO.getStudijskeGodineDTO())));
 		student.setDokumenti(new HashSet<>(new DokumentMapper().listDtoToModel(studentDTO.getDokumentiDTO())));
