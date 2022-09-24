@@ -38,9 +38,18 @@ export class AddPredmetComponent implements OnInit {
     console.log('password', this.pocetak);
     console.log('user', this.kraj);
 
-    this.predmetService.savePredmet(this.predmet)
+    const obj = {
+      id: 0,
+      naziv: this.predmet.naziv,
+      espb: this.predmet.espb,
+      oznaka: this.predmet.oznaka,
+      pocetak: this.pocetak,
+      kraj: this.kraj
+    }
+
+    this.predmetService.savePredmet(obj)
       .subscribe(() => {
-        alert("Usepsno dodat predmet!")
+        alert("Uspesno dodat nov predmet!")
       })
   }
 

@@ -17,21 +17,18 @@ class="col-md-8 offset-md-2"
     <div class="col-md-5 offset-md-3">
       <label for="inputUser">Pocetak predavanja</label>
       <div class="col-md-5 offset-md-3">
-        <label for="datumVreme">Datum i vreme</label>
          <!-- <input [(ngModel)]="ispit.datumVreme" type="datumVreme" class="form-control" id="inputDatumVreme" placeholder="datum"> -->
-         <input class="form-control" placeholder="yyyy-mm-dd"
-         name="dp" [(ngModel)]="predmet.pocetak" ngbDatepicker #d="ngbDatepicker">
-  
+         <input type="date" [(ngModel)]="pocetak" id="datumVreme" />
       </div>
     </div>
     <div class="col-md-5 offset-md-3">
       <label for="inputPassword">Kraj Predavanja</label>
-      <input [(ngModel)]="predmet.kraj" type="password" class="form-control" id="inputPassword" placeholder="">
+      <input type="date" [(ngModel)]="kraj" id="datumVreme" />
     </div>
   </div>
 
   <div class="col-md-5 offset-md-3">
-  <!-- <button type="submit" class="btn btn-primary"
+  <button type="submit" class="btn btn-primary"
    (click)="onSubmit()" >Dodaj Predmet</button>
-  </div>  -->
+  </div> 
 </div>

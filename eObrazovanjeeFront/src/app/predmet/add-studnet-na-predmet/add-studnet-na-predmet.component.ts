@@ -13,6 +13,8 @@ export class AddStudnetNaPredmetComponent implements OnInit {
 
   id: string | null | undefined;
   predmet: any;
+  selectedStudent: any;
+  studentId: any;
   studenti: Student[] | null = [];
 
   constructor(
@@ -38,8 +40,18 @@ export class AddStudnetNaPredmetComponent implements OnInit {
       this.studenti = res.body);
   }
 
+  onChangeStudent(event: any) {
+    console.dir(event.id);
+    this.studentId = event.id;
+  }
+
   onSubmit() {
     console.log('lista studenata' + this.studenti);
+
+    this.predmetService.addStudentNaPredmet(this.predmet.id, this.studentId).subscribe(
+      () =>  
+      alert("Uspesno dodat student na predmet!")
+     );
     
        /* this.profesorService.saveProfesor(this.profesor)
           .subscribe(() => {

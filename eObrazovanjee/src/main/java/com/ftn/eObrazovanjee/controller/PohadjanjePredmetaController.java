@@ -1,5 +1,7 @@
 package com.ftn.eObrazovanjee.controller;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.eObrazovanjee.dto.IspitDTO;
@@ -24,6 +27,8 @@ import com.ftn.eObrazovanjee.mapper.PredmetInstancaMapper;
 import com.ftn.eObrazovanjee.mapper.StudentMapper;
 import com.ftn.eObrazovanjee.model.Ispit;
 import com.ftn.eObrazovanjee.model.PohadjanjePredmeta;
+import com.ftn.eObrazovanjee.model.Predmet;
+import com.ftn.eObrazovanjee.model.Profesor;
 import com.ftn.eObrazovanjee.service.PohadjanjePredmetaService;
 import com.ftn.eObrazovanjee.service.PredmetInstancaServiceImpl;
 import com.ftn.eObrazovanjee.service.StudentService;
@@ -71,6 +76,24 @@ public class PohadjanjePredmetaController {
         }
         return new ResponseEntity<>(pohadjanjaPredmetaDTO, HttpStatus.OK);
     }
+	
+//	@RequestMapping(value ="/dodavanjeStudenta", method=RequestMethod.POST)
+//	public ResponseEntity<?> DodavanjeSnaPredmet(@RequestParam Long predmetId, @RequestParam Long studentId){
+//		try {
+//			PohadjanjePredmetaDTO pohadjanja = new PohadjanjePredmetaDTO();
+//			pohadjanja.setStudnetDTO(getStudentIzPohadjanje(studentId));
+//			pohadjanja.setPredmetInstanca(getPredmetInstancaIzPohadjanje(predmetId));
+//			   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+//			   LocalDateTime now = LocalDateTime.now();  
+//			   System.out.println(dtf.format(now));  
+//			pohadjanja.setPocetak(dtf.format(now));
+//
+//			
+//			return new ResponseEntity<>(HttpStatus.OK);
+//		}catch(Exception e) {
+//			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+//		}
+//	}
 	
 	@RequestMapping(value="/pohagadjanjaStudenta", method = RequestMethod.GET)
 	public ResponseEntity<List<PohadjanjePredmetaDTO>> getPohadjanjaStudenta(@PathVariable Long id) {

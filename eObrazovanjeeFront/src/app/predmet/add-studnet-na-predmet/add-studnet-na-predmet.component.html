@@ -1,6 +1,7 @@
 <div
 class="col-md-8 offset-md-2"
 >
+<div class="form-row" *ngIf="predmet">
   <div class="form-row">
     <div class="col-md-5 offset-md-3">
       <label for="inputIme">Naziv Predmeta</label>
@@ -16,25 +17,35 @@ class="col-md-8 offset-md-2"
     </div>
     <div class="col-md-5 offset-md-3">
       <label for="inputUser">Pocetak</label>
-      <input [(ngModel)]="predmet.predmetInstancaDTO.pocetak" type="user" class="form-control" id="inputUser" readonly>
+      <input [(ngModel)]="predmet.predmetInstancaDTO[0]['pocetak']" type="user" class="form-control" id="inputUser" readonly>
     </div>
     <div class="col-md-5 offset-md-3">
       <label for="inputPassword">Kraj</label>
-      <input [(ngModel)]="predmet.predmetInstancaDTO.kraj" type="password" class="form-control" id="inputPassword" readonly>
+      <input [(ngModel)]="predmet.predmetInstancaDTO[0]['kraj']" type="user" class="form-control" id="inputUser" readonly>
     </div>
     <div class="col-md-5 offset-md-3">
     <label for="inputUser">Izaberi Studenta</label>
     </div>
     <div>
       
-    <select class="col-md-5 offset-md-3" aria-label="Default select">
-      <option *ngFor="let s of studenti">{{s.ime + ' ' + s.prezime}}</option>
+      <select [(ngModel)]="selectedStudent"
+      class="col-md-5 offset-md-3"
+      (ngModelChange)="onChangeStudent($event)">
+      <option [ngValue]="p" *ngFor="let p of studenti">{{p.ime + ' ' + p.prezime}}</option>
     </select>
+
+    <!-- <select class="col-md-5 offset-md-3" aria-label="Default select">
+      <option *ngFor="let s of studenti">{{s.ime + ' ' + s.prezime}}</option>
+    </select> -->
     </div>
   </div>
+</div>
 
   <div class="col-md-5 offset-md-3">
-  <button type="submit" class="btn btn-primary"
+  <button type="submit" class="btn btn-primary" 
+  [routerLink]="['/predmeti']"
    (click)="onSubmit()" >Dodaj studenta</button>
-  </div> <!-- [routerLink]="['/profesor']" -->
-</div>
+  </div>
+
+  
+  </div> 

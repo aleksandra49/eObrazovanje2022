@@ -19,6 +19,10 @@ export class PredmetService {
         return this.http.post(`api/predmeti/dodavanjeProfesora?predmetId=${predmetId}&profesorId=${profesorId}`, {}) as any
     }
 
+    addStudentNaPredmet(predmetId: number, studentId:number): Observable<HttpResponse<any>> {
+        return this.http.post(`api/predmeti/dodavanjeStudenta?predmetId=${predmetId}&studentId=${studentId}`, {}) as any
+    }
+
     getPredmeti(): Observable<HttpResponse<Predmet[]>> {
         const url = `${this.predmetUrl+"/all"}`;
         return this.http.get<Predmet[]>(url, {observe: 'response'});
@@ -29,7 +33,7 @@ export class PredmetService {
         return this.http.get<IspitniRok[]>(url, {observe: 'response'});
     }
 
-    savePredmet(predmet: PredmetInstancaPredmet): Observable<HttpResponse<any>> {
+    savePredmet(predmet: any): Observable<HttpResponse<any>> {
         const url = `${this.predmetUrl}`;
         return this.http.post<any>(url, predmet , {observe: 'response'});
     }

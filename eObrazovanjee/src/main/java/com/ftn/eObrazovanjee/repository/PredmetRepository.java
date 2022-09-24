@@ -20,4 +20,11 @@ public interface PredmetRepository extends JpaRepository<Predmet, Long> {
 			+ " VALUES ('PROFESOR', :predmetId, :profesorId)", nativeQuery = true )
 	@Modifying
 	void dodavanjeProfesoraNaPredmet(@Param("predmetId") Long predmetId, @Param("profesorId") Long profesorId);;
+	
+	
+	@Transactional
+	@Query(value = "INSERT INTO `eobrazovanjee`.`pohadjanje_predmeta` (`polozen`, `predmet_instanca`, `student`)"
+			+ " VALUES (FALSE, :predmetId, :studentId)", nativeQuery = true )
+	@Modifying
+	void dodavanjeStudentaNaPredmet(@Param("predmetId") Long predmetId, @Param("studentId") Long studentId);;
 }

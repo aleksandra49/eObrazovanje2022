@@ -75,7 +75,7 @@ public class PredmetController {
 		predmet.setOznaka(predmetInstancaPredmetDTO.getOznaka());
 		
 		predmet = predmetService.save(predmet);
-		
+		System.out.println(predmetInstancaPredmetDTO.getPocetak());
 		predmetInstanca.setPocetak(predmetInstancaPredmetDTO.getPocetak());
 		predmetInstanca.setKraj(predmetInstancaPredmetDTO.getKraj());
 		predmetInstanca.setPredmet(predmet);
@@ -88,7 +88,7 @@ public class PredmetController {
 	}
 	
 	@RequestMapping(value ="/dodavanjeProfesora", method=RequestMethod.POST)
-	public ResponseEntity<?> PrijavaIspita(@RequestParam Long predmetId, @RequestParam Long profesorId){
+	public ResponseEntity<?> DodavanjePNaPredmet(@RequestParam Long predmetId, @RequestParam Long profesorId){
 		try {
 			Predmet predmet = predmetService.findOne((long) predmetId);
 			Profesor profesor = profesorService.findOne((long) profesorId);
@@ -100,6 +100,21 @@ public class PredmetController {
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	@RequestMapping(value ="/dodavanjeStudenta", method=RequestMethod.POST)
+	public ResponseEntity<?> DodavanjeSNaPredmet(@RequestParam Long predmetId, @RequestParam Long studentId){
+		try {
+			Predmet predmet = predmetService.findOne((long) predmetId);
+
+			predmetRepository.dodavanjeStudentaNaPredmet(predmetId, studentId);
+			
+			return new ResponseEntity<>(HttpStatus.OK);
+		}catch(Exception e) {
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	
 	
 	@RequestMapping(method=RequestMethod.PUT, consumes="application/json")
 	public ResponseEntity<PredmetDTO> updatePredmet(@RequestBody PredmetDTO predmetDTO){
