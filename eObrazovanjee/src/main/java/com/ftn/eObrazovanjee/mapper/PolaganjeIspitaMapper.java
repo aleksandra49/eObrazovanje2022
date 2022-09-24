@@ -30,9 +30,9 @@ public class PolaganjeIspitaMapper {
 	public Set<PolaganjeIspita> listDtoToModel(ArrayList<PolaganjeIspitaDTO> listaDto) {
 		Set<PolaganjeIspita> listaModel = new HashSet<PolaganjeIspita>();
 		for (PolaganjeIspitaDTO objectDTO : listaDto) {
-			if(listaDto != null && objectDTO != null) {
+//			if(listaDto != null && objectDTO != null) {
 				listaModel.add(service.findOne(objectDTO.getId()));
-			}
+//			}
 			
 		}
 		return listaModel;

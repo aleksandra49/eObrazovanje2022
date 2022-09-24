@@ -263,10 +263,10 @@ public class StudentController {
 		student.setEmail(studentDTO.getEmail());
 		student.setActive(studentDTO.isActive());
 		
-		if(studentDTO.getPolaganjeIspita() == null) {
-			System.out.println("Polaganje je null");
-			studentDTO.setPolaganjeIspita(new ArrayList<PolaganjeIspitaDTO>());
-		}
+//		if(studentDTO.getPolaganjeIspita() == null) {
+//			System.out.println("Polaganje je null");
+//			studentDTO.setPolaganjeIspita(new ArrayList<PolaganjeIspitaDTO>());
+//		}
 		
 		
 		
