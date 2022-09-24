@@ -19,8 +19,11 @@ export class IspitComponent implements OnInit {
   }
 
   getIspiti(){
-    this.ispitService.getIspiti().subscribe(res =>
-      this.ispiti = res.body);
+    this.ispitService.getIspiti()
+      .subscribe(res => {
+        console.log('res.body', res.body);
+        this.ispiti = res.body;
+      });
   }
 
   goToOnRightRoute(val: string) {

@@ -25,8 +25,8 @@
                 <td>{{pr.espb}}</td>
                 <td>{{pr.oznaka}}</td>
                 <!-- <td>{{pr.predmetInstancaDTO.id}}</td> -->
-                <td>{{pr.predmetInstancaDTO.pocetak}}</td>
-                <td>{{pr.predmetInstancaDTO.kraj}}</td>
+                <td>{{pr.predmetInstancaDTO[0]['pocetak']}}</td>
+                <td>{{pr.predmetInstancaDTO[0].kraj}}</td>
                 <th><button type="button" class="btn btn-primary" (click)="goToOnRightRouteParams('addProfesor', pr.id)">Dodaj profesora</button></th> 
                 <th><button type="button" class="btn btn-primary" (click)="goToOnRightRouteParams('addStudent', pr.id)">Dodaj studenta</button></th> 
 

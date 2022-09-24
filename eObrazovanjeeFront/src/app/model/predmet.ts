@@ -5,7 +5,8 @@ export class Predmet implements PredmetInterface{
 	public naziv : string;
     public espb: number;
 	public oznaka: String;
-	public predmetInstancaDTO: PredmetInstanca
+	public predmetInstancaDTO: any;
+	// public predmetInstancaDTO: Array<PredmetInstanca>
 
    
 		

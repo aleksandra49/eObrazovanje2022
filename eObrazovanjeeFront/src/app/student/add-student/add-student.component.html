@@ -1,7 +1,5 @@
 
-<div
-class="col-md-8 offset-md-2"
->
+<div class="col-md-8 offset-md-2" style="position: relative;">
   <div class="form-row">
     <div class="col-md-5 offset-md-3">
       <label for="inputIme">Ime</label>
@@ -33,4 +31,10 @@ class="col-md-8 offset-md-2"
   <button type="submit" class="btn btn-primary"
    (click)="onSubmit()" >Dodaj studenta</button>
   </div> <!-- [routerLink]="['/profesor']" -->
+  <div *ngIf="showError" style="width: 200px;position: absolute;top: 0px;right: 0px;">
+    <ngb-alert [type]="'danger'" [dismissible]="false">
+       User vec postoji
+    </ngb-alert>
+  </div>
 </div>
+

@@ -218,7 +218,18 @@ public class StudentController {
 		// profesor.setKorisnik(korisnik1);
 		
 		//	profesor.setPredavanja(new HashSet<>(new PredavanjePredmetaMapper().listDtoToModel(profesorDTO.getPredavanja())));
+		List<Korisnik> korisnici = korisnikService.findAll();
+		Boolean slobodan = true;
+		for(Korisnik kor : korisnici) {
+			if(kor.getUsername().equals(studentDTO.getKorisnik().getKorisnickoIme())) {
+				slobodan = false;
+			}
+		}
 		
+		if(slobodan == false) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+
 		korisnik = korisnikService.save(korisnik1);
 	//	finansijskaKartica = finansijskaKarticaService.save(finKartica);
 		

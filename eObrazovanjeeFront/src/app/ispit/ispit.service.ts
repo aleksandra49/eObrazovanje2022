@@ -73,7 +73,7 @@ export class IspitService {
 
 
 
-    saveIspit(ispit: Ispit): Observable<HttpResponse<any>> {
+    saveIspit(ispit: any): Observable<HttpResponse<any>> {
         const url = `${this.ispitiUrl}`;
 
         return this.http.post<any>(url, ispit , {observe: 'response'});

@@ -25,7 +25,13 @@ class="col-md-8 offset-md-2"
   </div>
 
   <div class="col-md-5 offset-md-3">
-  <button type="submit" class="btn btn-primary"
+  <button type="submit" class="btn btn-primary" 
+    [disabled]="!profesor.ime.length ||
+      !profesor.prezime.length ||
+      !profesor.email.length ||
+      !profesor.korisnik.korisnickoIme.length ||
+      !profesor.korisnik.lozinka.length
+    "
    (click)="onSubmit()" >Dodaj profesora</button>
   </div> <!-- [routerLink]="['/profesor']" -->
 </div>

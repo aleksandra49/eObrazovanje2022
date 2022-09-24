@@ -1,7 +1,7 @@
 <div
 class="col-md-8 offset-md-2"
 >
-  <div class="form-row">
+  <div class="form-row" *ngIf="predmet">
     <div class="col-md-5 offset-md-3">
       <label for="inputIme">Naziv Predmeta</label>
       <input [(ngModel)]="predmet.naziv" type="ime" class="form-control" id="inputIme" readonly >
@@ -11,27 +11,31 @@ class="col-md-8 offset-md-2"
       <input [(ngModel)]="predmet.oznaka" type="prezime" class="form-control" id="inputPrezime" readonly>
     </div>
     <div class="col-md-5 offset-md-3">
-      <label for="inputUser">Broj ESPB bodova</label>
       <input [(ngModel)]="predmet.espb" type="user" class="form-control" id="inputUser" readonly>
     </div>
     <div class="col-md-5 offset-md-3">
       <label for="inputUser">Pocetak</label>
-      <input [(ngModel)]="predmet.predmetInstancaDTO.pocetak" type="user" class="form-control" id="inputUser" readonly>
+      <input [(ngModel)]="predmet.predmetInstancaDTO[0]['pocetak']" type="user" class="form-control" id="inputUser" readonly>
     </div>
     <div class="col-md-5 offset-md-3">
       <label for="inputPassword">Kraj</label>
-      <div class="col-md-5 offset-md-3">
-        <input class="form-control" placeholder="yyyy-mm-dd"
-             name="dp" [(ngModel)]="predmet.kraj" ngbDatepicker #d="ngbDatepicker">
-  
+      <div class="col-md-5 offset-md-3">     
+             <input [(ngModel)]="predmet.predmetInstancaDTO[0].kraj" type="user" class="form-control" id="inputUser" readonly>
+   
       </div>
+
 
     </div>
     <div>
       <label for="inputUser">Izaberi Profesora</label>
-    <select class="col-md-5 offset-md-3" aria-label="Default select">
+    <!-- <select class="col-md-5 offset-md-3" aria-label="Default select">
       <option *ngFor="let p of profesori">{{p.ime + ' ' + p.prezime}}</option>
-    </select>
+    </select> -->
+      <select [(ngModel)]="selectedProfesor"
+        class="col-md-5 offset-md-3"
+        (ngModelChange)="onChangeProfesor($event)">
+        <option [ngValue]="p" *ngFor="let p of profesori">{{p.ime + ' ' + p.prezime}}</option>
+      </select>
     </div>
   </div>
 

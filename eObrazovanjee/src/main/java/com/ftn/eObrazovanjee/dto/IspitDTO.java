@@ -16,7 +16,7 @@ public class IspitDTO {
 	private Long id;
 	private String naziv;
 	private Date datumVreme;
-	
+	private int broj_osvojenih_bodova;
 	private ArrayList<PolaganjeIspitaDTO> polaganjeIspita;
 	private IspitniRokDTO ispitniRok;
 	private ArrayList<DeoIspitaDTO> deoIspitaDTO;
@@ -35,6 +35,40 @@ public class IspitDTO {
 		this.deoIspitaDTO = deoIspitaDTO;
 		this.predmetInstanca = predmetInstanca;
 	}
+
+	
+	
+	
+	
+	public IspitDTO(Long id, String naziv, Date datumVreme, int broj_osvojenih_bodova,
+			ArrayList<PolaganjeIspitaDTO> polaganjeIspita, IspitniRokDTO ispitniRok,
+			ArrayList<DeoIspitaDTO> deoIspitaDTO, PredmetInstancaDTO predmetInstanca) {
+		super();
+		this.id = id;
+		this.naziv = naziv;
+		this.datumVreme = datumVreme;
+		this.broj_osvojenih_bodova = broj_osvojenih_bodova;
+		this.polaganjeIspita = polaganjeIspita;
+		this.ispitniRok = ispitniRok;
+		this.deoIspitaDTO = deoIspitaDTO;
+		this.predmetInstanca = predmetInstanca;
+	}
+
+
+
+
+
+	public int getBroj_osvojenih_bodova() {
+		return broj_osvojenih_bodova;
+	}
+
+
+
+	public void setBroj_osvojenih_bodova(int broj_osvojenih_bodova) {
+		this.broj_osvojenih_bodova = broj_osvojenih_bodova;
+	}
+
+
 
 	public IspitDTO() {
 		super();

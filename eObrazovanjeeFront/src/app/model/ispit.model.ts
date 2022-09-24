@@ -3,7 +3,8 @@ export class Ispit implements IspitInterface{
 	public naziv : string;
     public datumVreme: any;
 	public brojBodova: number;
-    //public Korisnik : korisnik;
+	public deoIspitaDTO: any;
+    //public Korisnik : korisni:k;
     //public PredavanjePredmeta : predavanja;
 
 

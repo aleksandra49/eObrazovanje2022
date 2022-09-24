@@ -15,6 +15,8 @@ export class AddProfNaPredmetComponent implements OnInit {
 
   id: string | null | undefined;
   predmet: any;
+  selectedProfesor: any;
+  profesorId: any;
   profesori: Profesor[] | null = [];
   constructor(
     private predmetService: PredmetService, 
@@ -39,8 +41,14 @@ export class AddProfNaPredmetComponent implements OnInit {
       this.profesori = res.body);
   }
 
+  onChangeProfesor(event: any) {
+    console.dir(event.id);
+    this.profesorId = event.id;
+  }
+
   onSubmit() {
-console.log('lista profesora' + this.profesori);
+    console.log('predmet', this.predmet);
+    console.log('profesorId', this.profesorId);
 
    /* this.profesorService.saveProfesor(this.profesor)
       .subscribe(() => {

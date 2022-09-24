@@ -23,8 +23,11 @@ export class PredmetComponent implements OnInit {
   }
 
   getPredmeti() {
-    this.predmetService.getPredmeti().subscribe(res =>{
-      console.log('res', res);this.predmeti = res.body});
+    this.predmetService.getPredmeti()
+      .subscribe(res => { 
+        console.log('res', res);
+        this.predmeti = res.body;
+      });
   }
 
   getPredmet(){

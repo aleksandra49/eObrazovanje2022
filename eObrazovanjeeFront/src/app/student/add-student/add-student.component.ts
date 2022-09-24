@@ -17,6 +17,7 @@ export class AddStudentComponent implements OnInit {
   email = '';
   //active = '';
   user = '';
+  showError = false;
 
   constructor(private studentService: StudentService) { }
 
@@ -42,9 +43,12 @@ export class AddStudentComponent implements OnInit {
     console.log('email', this.email);
     console.log('user', this.user);
 
+    this.showError = false;
     this.studentService.saveStudent(this.student)
       .subscribe(() => {
         alert("Uspesno je  dodat student!")
+      }, (error) => {
+        this.showError = true;
       })
   }
 
