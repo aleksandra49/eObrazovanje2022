@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -76,6 +77,26 @@ public class ProfesorController {
 		return new ResponseEntity<>(profesoriDTO, HttpStatus.OK);
 	}
 	
+	@PostMapping("/check_username")
+	public ResponseEntity<Boolean> createAuthenticationToken(@RequestBody String username) {
+		
+		List<Korisnik> korisnici = korisnikService.findAll();
+		Boolean slobodan = true;
+		for(Korisnik kor : korisnici) {
+			if(kor.getUsername().equals(username)) {
+				slobodan = false;
+			}
+		}
+		
+		if(slobodan == false) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		else {
+			return new ResponseEntity<>(slobodan, HttpStatus.OK);
+		}
+		
+		
+	}
 	
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
 	public ResponseEntity<ProfesorDTO> saveProfesor(@RequestBody ProfesorDTO profesorDTO){		

@@ -113,26 +113,7 @@ public class KorisnikController {
 		return ResponseEntity.ok(new KorisnikTokenStateDTO(jwt, expiresIn, korisnikMapper.modelToDto(korisnikFromDb)));
 	}
 	
-	@PostMapping("/check_username")
-	public ResponseEntity<Boolean> createAuthenticationToken(@RequestBody String username) {
-		
-		List<Korisnik> korisnici = korisnikService.findAll();
-		Boolean slobodan = true;
-		for(Korisnik kor : korisnici) {
-			if(kor.getUsername().equals(username)) {
-				slobodan = false;
-			}
-		}
-		
-		if(slobodan == false) {
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
-		else {
-			return new ResponseEntity<>(slobodan, HttpStatus.OK);
-		}
-		
-		
-	}
+
 	
 	
 	@RequestMapping(value="/all", method = RequestMethod.GET)

@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -102,7 +103,26 @@ public class StudentController {
 		return new ResponseEntity<>(studentiDTO, HttpStatus.OK);
 	}
 	
-
+	@PostMapping("/check_username")
+	public ResponseEntity<Boolean> createAuthenticationToken(@RequestBody String username) {
+		
+		List<Korisnik> korisnici = korisnikService.findAll();
+		Boolean slobodan = true;
+		for(Korisnik kor : korisnici) {
+			if(kor.getUsername().equals(username)) {
+				slobodan = false;
+			}
+		}
+		
+		if(slobodan == false) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		else {
+			return new ResponseEntity<>(slobodan, HttpStatus.OK);
+		}
+		
+		
+	}
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<StudentDTO>> getStudentiPage(Pageable page) {
