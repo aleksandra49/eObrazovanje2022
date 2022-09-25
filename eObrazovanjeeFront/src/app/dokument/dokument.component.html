@@ -11,18 +11,13 @@
             <th>id</th>
             <th>naziv</th>
             <th>uri</th>
-            <th>Izmeni</th>
-            <th>Obriši</th>
-            <th>Profil</th>       
+            <th>Obriši</th>      
           </tr>
         </thead>
         <tbody>
             <tr *ngFor="let dokument of dokumenti">
                 <td>{{dokument.id}}</td>
                 <td>{{dokument.naziv}}</td>
-                <div (click)="goToOnRightRouteParams('dokument', dokument.id)">
-                  {{dokument.naziv}}
-                </div>
                 <td>{{dokument.uri}}</td>
                 
                 
@@ -30,7 +25,6 @@
       <!-- <td class="h5" style="cursor: pointer; color: white"><a class="badge badge-danger" (click)="delete(nastavnik.id)"> <i class="fa fa-trash"></i> Obriši</a></td> -->
       <!-- <td class="h5"><a class="badge badge-secondary" [routerLink]="['/nastavnik-stranica/', nastavnik.id]">Profil</a></td> -->
 
-      <td class="h5"><button type="button" class="btn btn-primary">Izmeni</button></td>
       <td class="h5"><button type="button" class="btn btn-primary" (click)="delete(dokument.id)">Obrisi</button></td>
                 
             </tr>

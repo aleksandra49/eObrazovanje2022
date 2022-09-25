@@ -9,7 +9,10 @@ import { StudentService } from './student.service';
   styleUrls: ['./student.component.css']
 })
 export class StudentComponent implements OnInit {
-
+ 
+  uloga: any = null;
+  idStudenta: any;
+  idProfesora: any;
   studenti: Student[] | null = [];
   //studenti: Student[] = [];
 
@@ -19,6 +22,41 @@ export class StudentComponent implements OnInit {
 
   ngOnInit(): void {
     this.getStudenti();
+
+    this.uloga = localStorage.getItem('uloga');
+    this.idStudenta = localStorage.getItem('studentID');
+    this.idProfesora = localStorage.getItem('profesorID');
+
+    console.log('uloga', this.uloga);
+  if(this.uloga =="STUDENT"){
+      this.studentService.sendUloga.subscribe((data: any) => {
+        console.log('sendUloga', data);
+        const { uloga, id } = data;
+        this.uloga = uloga;
+        this.idStudenta = id;
+      })
+
+    }
+
+    if(this.uloga =="PROFESOR"){
+      this.studentService.sendUloga.subscribe((data: any) => {
+        console.log('sendUloga', data);
+        const { uloga, id } = data;
+        this.uloga = uloga;
+        this.idProfesora = id;
+      })
+
+    }
+    if(this.uloga =="ADMIN"){
+      this.studentService.sendUloga.subscribe((data: any) => {
+        console.log('sendUloga', data);
+        const { uloga, id } = data;
+        this.uloga = uloga;
+        this.idProfesora = id;
+      })
+
+    }
+
   }
 
   getStudenti() {

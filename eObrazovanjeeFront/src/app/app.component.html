@@ -11,9 +11,9 @@
       <a ngbNavLink>Profil Profesora</a>
     </li>
     <!--dodati rutu ka profilu korisnika-->
-    <li [ngbNavItem]="1" (click)="goToOnRightRoute('korisnici')">
+    <!-- <li [ngbNavItem]="1" (click)="goToOnRightRoute('korisnici')">
       <a ngbNavLink>Korisnici</a>
-    </li> 
+    </li>  -->
 
     <li [ngbNavItem]="3" (click)="goToOnRightRoute('profesori')">
       <a ngbNavLink><b>Profesori</b></a>
@@ -21,10 +21,10 @@
     <li [ngbNavItem]="4" (click)="goToOnRightRoute('student')">
       <a ngbNavLink>Studenti </a>
     </li>
-    <li [ngbNavItem]="5" (click)="goToOnRightRoute('dokument')">
+    <li [ngbNavItem]="5" *ngIf="uloga !== 'PROFESOR'" (click)="goToOnRightRoute('dokument')">
       <a ngbNavLink>Dokumenti </a>
     </li>
-    <li [ngbNavItem]="6" (click)="goToOnRightRouteParams('finansijskaKartica', idStudenta)">
+    <li [ngbNavItem]="6" *ngIf="uloga === 'STUDENT'" (click)="goToOnRightRouteParams('finansijskaKartica', idStudenta)">
       <a ngbNavLink>Finansijska kartica </a>
     </li>
     <li *ngIf="uloga === 'PROFESOR'" [ngbNavItem]="6" (click)="goToOnRightRouteParams('predmet', idProfesora)">
@@ -33,14 +33,14 @@
     <li *ngIf="uloga === 'PROFESOR'" [ngbNavItem]="6" (click)="goToOnRightRoute('ocenjivanjeIspita')">
       <a ngbNavLink>Ocenjivanje </a>
     </li>
-    <li [ngbNavItem]="7" (click)="goToOnRightRoute('predmeti')">
-      <a ngbNavLink>LISTA PREDMETA </a>
+    <li *ngIf="uloga === 'ADMIN'"[ngbNavItem]="7" (click)="goToOnRightRoute('predmeti')">
+      <a ngbNavLink>PREDMETI </a>
     </li>
     <li *ngIf="uloga === 'STUDENT'" [ngbNavItem]="8" (click)="goToOnRightRouteParams('tokStudija' , idStudenta)">
       <a ngbNavLink>Studijska godina </a>
     </li>
     <li ngbDropdown class="nav-item">
-      <a href  (click)="false" class="nav-link" ngbDropdownToggle>Predmet</a>
+      <a href  *ngIf="uloga === 'STUDENT'" (click)="false" class="nav-link" ngbDropdownToggle>Predmeti</a>
       <div ngbDropdownMenu>
         <button ngbDropdownItem *ngIf="uloga === 'STUDENT'" (click)="goToOnRightRouteParams('polozeniIspitiZaStudenta', idStudenta)">Polozeni predmeti</button>
         <button ngbDropdownItem *ngIf="uloga === 'STUDENT'" (click)="goToOnRightRouteParams('NepolozeniIspitiZaStudenta', idStudenta)">Nepolozeni predmeti</button>
@@ -51,13 +51,13 @@
         <button ngbDropdownItem>Separated link</button> -->
       </div>
     </li>
-    <li ngbDropdown class="nav-item">
+    <li *ngIf="uloga !== 'PROFESOR'" ngbDropdown class="nav-item">
       <a href (click)="false" class="nav-link" ngbDropdownToggle>Ispiti</a>
       <div ngbDropdownMenu>
         <button ngbDropdownItem (click)="goToOnRightRoute('ispiti')">Ispiti</button>
-        <button ngbDropdownItem (click)="goToOnRightRoute('ispitniRokovi')">Prijavljivanje ispita</button>
-        <button ngbDropdownItem (click)="goToOnRightRoute('listaPrijavljenihIspita')">Prijavljeni ispiti</button>
-        <button ngbDropdownItem (click)="goToOnRightRouteParams('istorijaPolaganja', idStudenta)">Istorija polaganja</button>
+        <button  *ngIf="uloga === 'STUDENT'" ngbDropdownItem (click)="goToOnRightRoute('ispitniRokovi')">Prijavljivanje ispita</button>
+        <button *ngIf="uloga === 'STUDENT'" ngbDropdownItem (click)="goToOnRightRoute('listaPrijavljenihIspita')">Prijavljeni ispiti</button>
+        <button *ngIf="uloga === 'STUDENT'" ngbDropdownItem (click)="goToOnRightRouteParams('istorijaPolaganja', idStudenta)">Istorija polaganja</button>
         <!-- <button ngbDropdownItem>Something else here</button>
         <div class="dropdown-divider"></div>
         <button ngbDropdownItem>Separated link</button> -->

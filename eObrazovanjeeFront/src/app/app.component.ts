@@ -46,6 +46,15 @@ export class AppComponent implements OnInit {
       })
 
     }
+    if(this.uloga =="ADMIN"){
+      this.studentService.sendUloga.subscribe((data: any) => {
+        console.log('sendUloga', data);
+        const { uloga, id } = data;
+        this.uloga = uloga;
+        this.idProfesora = id;
+      })
+
+    }
 
     // Ovde je greska, ternarni operator ako ima token da otvori profesore ako nema token login i onda ne mozes otvoriti profil profesora
     token ? this.router.navigate(['profesori']) : this.router.navigate(['login']);

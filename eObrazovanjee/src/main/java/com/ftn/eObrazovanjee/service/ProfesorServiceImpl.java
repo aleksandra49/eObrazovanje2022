@@ -21,6 +21,8 @@ import com.ftn.eObrazovanjee.model.Student;
 import com.ftn.eObrazovanjee.repository.KorisnikRepository;
 import com.ftn.eObrazovanjee.repository.ProfesorRepository;
 
+
+
 @Service
 public class ProfesorServiceImpl  {
 	

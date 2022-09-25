@@ -16,10 +16,11 @@
                 <div class="row mt-3">
                     <div class="col-md-12"><label class="labels"> Broj indeksa </label><input [(ngModel)]="student.indeks" type="text" class="form-control" placeholder="indeks" value=""></div>
                     <div class="col-md-12"><label class="labels">Email</label><input [(ngModel)]="student.email" type="text" class="form-control" placeholder="email" value=""></div>
-                    
+                    <div class="col-md-12"><label class="labels">Korisnicko Ime</label><input [(ngModel)]="student.korisnik.korisnickoIme" type="text" class="form-control" placeholder="email" value=""></div>
+                    <div class="col-md-12"><label class="labels">Lozinka</label><input [(ngModel)]="student.korisnik.lozinka" type="text" class="form-control" placeholder="email" value=""></div>
                 </div>
                 
-                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" (click)="edit()" type="button">sacuvaj izmene </button></div>
+                <div class="mt-5 text-center"><button *ngIf="uloga === 'ADMIN'" class="btn btn-primary profile-button" (click)="edit()" type="button">sacuvaj izmene </button></div>
             </div>
         </div>
         

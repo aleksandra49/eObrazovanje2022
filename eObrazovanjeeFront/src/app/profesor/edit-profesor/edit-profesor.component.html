@@ -10,8 +10,8 @@
                     <h4 class="text-right">Profile Settings</h4>
                 </div>
                 <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels">Ime</label><input [(ngModel)]="profesor.ime" type="text" class="form-control" placeholder="ime" value=""></div>
-                    <div class="col-md-6"><label class="labels">Prezime</label><input [(ngModel)]="profesor.prezime" type="text" class="form-control" value="" placeholder="prezime"></div>
+                    <div class="col-md-6"><label class="labels">Ime</label><input  [(ngModel)]="profesor.ime" type="text" class="form-control" placeholder="ime" value=""></div>
+                    <div class="col-md-6"><label class="labels">Prezime</label><input  [(ngModel)]="profesor.prezime" type="text" class="form-control" value="" placeholder="prezime"></div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-12"><label class="labels">Email</label><input [(ngModel)]="profesor.email" type="text" class="form-control" placeholder="email" value=""></div>
@@ -20,7 +20,7 @@
                     
                 </div>
                 
-                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" (click)="edit()" type="button">Save Profile</button></div>
+                <div class="mt-5 text-center"><button *ngIf="uloga === 'ADMIN'" class="btn btn-primary profile-button" (click)="edit()" type="button">Save Profile</button></div>
             </div>
         </div>
         
