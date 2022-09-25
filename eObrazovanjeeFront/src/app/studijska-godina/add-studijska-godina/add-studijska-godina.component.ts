@@ -8,20 +8,25 @@ import { StudijskaGodinaService } from '../studijska-godina.service';
   styleUrls: ['./add-studijska-godina.component.css']
 })
 export class AddStudijskaGodinaComponent implements OnInit {
+  //pocetakStudija = '';
   pocetakStudija = '';
   krajStudija = '';
   nacinFinansiranja = '';
   godinaStudija =  '';
   skolskaGodina = '';
+  /*nacinFinansiranja = [
+    {nacinFinansiranja: "samofinansiranje"},
+    {nacinFinansiranja: "buzdet"}
+  ];*/
   
 
 constructor(private studGodinaService: StudijskaGodinaService) { }
 
 studijskaGodina: StudijskaGodina = new StudijskaGodina({
   id: 0,
-  pocetakStudija: new Date ,//kako ovde za date?
-  krajStudija: new Date , //isto
-  nacinFinansiranja : "SAMOFINANSIRANJE" ,
+  pocetakStudija: '' ,//kako ovde za date?
+  krajStudija: '' , //isto
+  nacinFinansiranja : "samofinansiranje" ,
   godinaStudija: 0,
   skolskaGodina: 0,
 });
@@ -35,6 +40,17 @@ onSubmit() {
   console.log('nacinFinansiranja', this.nacinFinansiranja);
   console.log('godinaStudija', this.godinaStudija);
   console.log('skolskaGodina', this.skolskaGodina);
+
+  const obj = {
+    id: 0,
+    pocetakStudija: this.studijskaGodina.pocetakStudija,
+    krajStudija: this.studijskaGodina.krajStudija,
+    nacinFinansiranja: this.studijskaGodina.nacinFinansiranja,
+    godinaStudija: this.studijskaGodina.godinaStudija,
+    skolskaGodina: this.studijskaGodina.skolskaGodina
+  }
+
+  console.log('obj', obj);
 
   this.studGodinaService.saveStudijskaGodina(this.studijskaGodina)
     .subscribe(() => {

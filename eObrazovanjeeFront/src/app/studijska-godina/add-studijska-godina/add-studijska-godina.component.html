@@ -20,12 +20,12 @@ class="col-md-8 offset-md-2"
     </div>
     <div class="col-md-5 offset-md-3">
       <label for="inputPassword">Skolska godina</label>
-      <input [(ngModel)]="studijskaGodina.skolskaGodina" type="password" class="form-control" id="inputskolskaGodina" placeholder="skolskaGodina">
+      <input [(ngModel)]="studijskaGodina.skolskaGodina" type="text" class="form-control" id="inputskolskaGodina" placeholder="skolskaGodina">
     </div>
   </div>
 
   <div class="col-md-5 offset-md-3">
   <button type="submit" class="btn btn-primary"
    (click)="onSubmit()" >Dodaj studijsku godinu</button>
-  </div> <!-- [routerLink]="['/profesor']" -->
+  </div> <!-- [routerLink]="['/student']" -->
 </div>

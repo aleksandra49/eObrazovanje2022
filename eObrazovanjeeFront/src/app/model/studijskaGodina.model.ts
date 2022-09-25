@@ -2,8 +2,10 @@
 
 export class StudijskaGodina implements StudijskaGodinaInterface{
 	public id: number;
-	public pocetakStudija: Date;
-	public krajStudija: Date;
+	// public pocetakStudija: Date;
+	// public krajStudija: Date;
+	public pocetakStudija: any;
+	 public krajStudija: any;
 	public nacinFinansiranja: any; //enum
     public godinaStudija: number;
 	public skolskaGodina: number;
@@ -23,8 +25,10 @@ export class StudijskaGodina implements StudijskaGodinaInterface{
 
 interface StudijskaGodinaInterface{
 	id: number;
-	pocetakStudija: Date;
-	krajStudija: Date;	
+	// // pocetakStudija: Date;
+	// // krajStudija: Date;
+	pocetakStudija: any;
+	 krajStudija: any;		
 	nacinFinansiranja: string;
     godinaStudija: number;
     skolskaGodina: number;
