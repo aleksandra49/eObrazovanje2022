@@ -13,6 +13,7 @@ export class AddProfesorComponent implements OnInit {
     prezime = '';
     password = '';
     user = '';
+    showError = false;
 
   constructor(private profesorService: ProfesorService) { }
 
@@ -33,9 +34,12 @@ export class AddProfesorComponent implements OnInit {
     console.log('password', this.password);
     console.log('user', this.user);
 
+    this.showError = false;
     this.profesorService.saveProfesor(this.profesor)
       .subscribe(() => {
         alert("Usepsno dodat profesor!")
+      }, (error) => {
+        this.showError = true;
       })
   }
 

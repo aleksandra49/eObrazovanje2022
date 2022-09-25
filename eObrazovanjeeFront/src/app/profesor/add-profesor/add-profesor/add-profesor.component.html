@@ -34,4 +34,9 @@ class="col-md-8 offset-md-2"
     "
    (click)="onSubmit()" >Dodaj profesora</button>
   </div> <!-- [routerLink]="['/profesor']" -->
+  <div *ngIf="showError" style="width: 200px;position: absolute;top: 0px;right: 0px;">
+    <ngb-alert [type]="'danger'" [dismissible]="false">
+       User vec postoji
+    </ngb-alert>
+  </div>
 </div>

@@ -3,7 +3,7 @@ class="col-md-8 offset-md-2"
 >
   <div class="form-row">
     <div class="col-md-5 offset-md-3">
-      <label for="inputIme">Naziv Predmeta</label>
+      <label for="inputIme">Naziv predmeta</label>
       <input [(ngModel)]="predmet.naziv" type="ime" class="form-control" id="inputIme" placeholder="">
     </div>
     <div class="col-md-5 offset-md-3">
@@ -11,24 +11,27 @@ class="col-md-8 offset-md-2"
       <input [(ngModel)]="predmet.espb" type="prezime" class="form-control" id="inputPrezime" placeholder="">
     </div>
     <div class="col-md-5 offset-md-3">
-      <label for="inputUser">Oznaka Predmeta</label>
+      <label for="inputUser">Oznaka predmeta</label>
       <input [(ngModel)]="predmet.oznaka" type="user" class="form-control" id="inputUser" placeholder="">
     </div>
     <div class="col-md-5 offset-md-3">
       <label for="inputUser">Pocetak predavanja</label>
-      <div class="col-md-5 offset-md-3">
-         <!-- <input [(ngModel)]="ispit.datumVreme" type="datumVreme" class="form-control" id="inputDatumVreme" placeholder="datum"> -->
-         <input type="date" [(ngModel)]="pocetak" id="datumVreme" />
-      </div>
+      <input type="date" [(ngModel)]="pocetak" id="datumVreme" />
     </div>
     <div class="col-md-5 offset-md-3">
-      <label for="inputPassword">Kraj Predavanja</label>
+      <label for="inputPassword">Kraj predavanja</label>
       <input type="date" [(ngModel)]="kraj" id="datumVreme" />
     </div>
   </div>
 
   <div class="col-md-5 offset-md-3">
   <button type="submit" class="btn btn-primary"
-   (click)="onSubmit()" >Dodaj Predmet</button>
+  [disabled]="!predmet.naziv.length ||
+      !predmet.espb ||
+      !predmet.oznaka.length ||
+      !predmet.pocetak.length ||
+      !predmet.kraj.length
+    "
+   (click)="onSubmit()" >Dodaj predmet</button>
   </div> 
 </div>

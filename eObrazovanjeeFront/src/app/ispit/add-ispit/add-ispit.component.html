@@ -16,7 +16,7 @@ class="col-md-8 offset-md-2"
 
     </div>
 <div class="col-md-5 offset-md-3">
-  <label for="datumVreme">Izaberite Predmet</label>
+  <label for="datumVreme">Izaberite predmet</label>
 </div>
     <div class="col-md-5 offset-md-3">
       <!-- <select class="form-select" aria-label="Default select">
@@ -31,7 +31,7 @@ class="col-md-8 offset-md-2"
       </select>
     </div>
     <div class="col-md-5 offset-md-3">
-      <label for="datumVreme">Izaberite Ispitni Rok</label>
+      <label for="datumVreme">Izaberite ispitni rok</label>
     </div>
     <div class="col-md-5 offset-md-3">
       <!-- <select class="form-select" aria-label="Default select">
@@ -49,6 +49,9 @@ class="col-md-8 offset-md-2"
 
   <div class="col-md-5 offset-md-3">
   <button type="submit" class="btn btn-primary"
+  [disabled]="!ispit.naziv.length ||
+  !ispit.datumVreme.length 
+"
    (click)="onSubmit()" >Dodaj ispit</button>
   </div>
 </div>

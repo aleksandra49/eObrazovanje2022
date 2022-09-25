@@ -28,9 +28,14 @@
   </div>
 
   <div class="col-md-5 offset-md-3">
-  <button type="submit" class="btn btn-primary"
-   (click)="onSubmit()" >Dodaj studenta</button>
-  </div> <!-- [routerLink]="['/profesor']" -->
+    <button type="submit" class="btn btn-primary" [disabled]="!student.ime.length ||
+        !student.prezime.length ||
+        !student.indeks.length ||
+        !student.email.length ||
+        !student.korisnik.korisnickoIme.length ||
+        !student.korisnik.lozinka.length
+      " (click)="onSubmit()">Dodaj studenta</button>
+  </div><!-- [routerLink]="['/profesor']" -->
   <div *ngIf="showError" style="width: 200px;position: absolute;top: 0px;right: 0px;">
     <ngb-alert [type]="'danger'" [dismissible]="false">
        User vec postoji
