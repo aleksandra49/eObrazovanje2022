@@ -87,6 +87,8 @@ const routes: Routes = [
   { path: 'editstudent', component: EditStudentComponent },
   { path: 'student/:id', component: EditStudentComponent },
   { path: 'profil', component: StudentProfilComponent },
+  { path: 'addStudGodinu', component: AddStudijskaGodinaComponent },
+
 
   { path: 'deoIspita', component: DeoIspitaComponent },
   { path: 'addDeoIspita', component: AddDeoIspitaComponent },
