@@ -28,9 +28,7 @@ class="col-md-8 offset-md-2"
   <button type="submit" class="btn btn-primary"
   [disabled]="!predmet.naziv.length ||
       !predmet.espb ||
-      !predmet.oznaka.length ||
-      !predmet.pocetak.length ||
-      !predmet.kraj.length
+      !predmet.oznaka.length 
     "
    (click)="onSubmit()" >Dodaj predmet</button>
   </div> 
