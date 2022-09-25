@@ -47,7 +47,7 @@ public class Student {
 	
 	
 	//studijskagodina
-	@OneToMany(mappedBy = "student",cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "student",cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
 	private Set<StudijskaGodina> studijskaGodina = new HashSet<StudijskaGodina>();
 	
 	//dokument

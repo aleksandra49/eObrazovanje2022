@@ -1,14 +1,19 @@
 package com.ftn.eObrazovanjee.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -145,5 +150,24 @@ public class DokumentController {
 			}		
 			return listaTipova;
 		}
-
+		//pdf
+		/*
+		@GetMapping("otpremnica/pdf/{otpremnicaId}")
+		public void exportToPdf(HttpServletResponse response, @PathVariable long otpremnicaId) throws DocumentException, IOException {
+			response.setContentType("application/pdf");
+			
+			Otpremnica otpremnica = otpremnicaService.getOne(otpremnicaId);
+			
+			String headerKey = "Content-Disposition";
+	        String headerValue = "attachment; filename="+ otpremnica.getBrojOtpremnice() + "_" + otpremnica.getPoslovnaGodina().getGodinaPoslovanja() + ".pdf";
+	        response.setHeader(headerKey, headerValue);
+			
+			List<StavkaOtpremnice> stavkeOtpremnice = stavkaOtpremniceService.findAll().stream()
+					.filter(so -> so.getOtpremnica().getId() == otpremnicaId)
+					.collect(Collectors.toList());
+			
+			PdfOtpremnicaExporter exporter = new PdfOtpremnicaExporter(stavkeOtpremnice, otpremnica);
+			exporter.export(response);
+		}
+*/
 }

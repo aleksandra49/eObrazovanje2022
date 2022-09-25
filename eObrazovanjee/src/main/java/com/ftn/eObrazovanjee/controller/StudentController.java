@@ -37,6 +37,7 @@ import com.ftn.eObrazovanjee.mapper.PolaganjeIspitaMapper;
 import com.ftn.eObrazovanjee.mapper.ProfesorMapper;
 import com.ftn.eObrazovanjee.mapper.StudentMapper;
 import com.ftn.eObrazovanjee.mapper.StudijskaGodinaMapper;
+import com.ftn.eObrazovanjee.model.DeoIspita;
 import com.ftn.eObrazovanjee.model.Dokument;
 import com.ftn.eObrazovanjee.model.FinansijskaKartica;
 import com.ftn.eObrazovanjee.model.Ispit;
@@ -298,10 +299,15 @@ public class StudentController {
 	public ResponseEntity<Void> deleteStudent(@PathVariable Long id){
 		Student student = studentService.findOne(id);
 		if (student != null){
-			studentService.remove(id);
+			
+//			deleteStudijskaGodina(((StudijskaGodinaDTO) student.getStudijskaGodina()).getId());
 			deleteFinansijskaKartica(student.getFinansijskaKartica().getId());
 			deleteKorisnik(student.getKorisnik().getId());
 			
+			for(StudijskaGodina god : student.getStudijskaGodina()) {
+				deleteStudijskaGodina(id);
+			}
+			studentService.remove(id);
 			
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {		
@@ -328,6 +334,17 @@ public class StudentController {
 			return null;
 		}
 	}
+	
+	public Void deleteStudijskaGodina(Long id){
+		StudijskaGodina sg = studijskaGodinaService.findOne(id);
+		if (sg != null){
+			studijskaGodinaService.remove(id);
+			return null;
+		} else {		
+			return null;
+		}
+	}
+	
 	
 	//veza za studgodina za student
 	//@RequestMapping(value="/studijskeGodIzStudenta/{id}", method=RequestMethod.GET)
