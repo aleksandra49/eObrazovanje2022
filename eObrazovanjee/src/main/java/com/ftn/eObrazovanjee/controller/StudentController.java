@@ -48,6 +48,7 @@ import com.ftn.eObrazovanjee.model.Profesor;
 import com.ftn.eObrazovanjee.model.Student;
 import com.ftn.eObrazovanjee.model.StudijskaGodina;
 import com.ftn.eObrazovanjee.model.Uloga;
+import com.ftn.eObrazovanjee.repository.StudentRepository;
 import com.ftn.eObrazovanjee.security.SecurityConfiguration;
 import com.ftn.eObrazovanjee.service.DokumentService;
 import com.ftn.eObrazovanjee.service.FinansijskaKarticaService;
@@ -66,6 +67,8 @@ public class StudentController {
 	
 	@Autowired
     private StudentService studentService;
+	@Autowired
+    private StudentRepository studentRepo;
 	@Autowired
     private StudijskaGodinaService studijskaGodinaService ;
 	@Autowired
@@ -261,6 +264,42 @@ public class StudentController {
 		return najveciString;	
 	}
 	
+//	@RequestMapping(method=RequestMethod.PUT, consumes="application/json")
+//	public ResponseEntity<StudentDTO> updateStudent(@RequestBody StudentDTO studentDTO){
+//		
+//		Student student = studentService.findOne(studentDTO.getId()); 
+//		if (student == null) {
+//			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//		}
+//		
+//		student.setIme(studentDTO.getIme());
+//		student.setPrezime(studentDTO.getPrezime());
+//		student.setIndeks(studentDTO.getIndeks());
+//		student.setEmail(studentDTO.getEmail());
+//		student.setActive(studentDTO.isActive());
+//		
+////		if(studentDTO.getPolaganjeIspita() == null) {
+////			System.out.println("Polaganje je null");
+////			studentDTO.setPolaganjeIspita(new ArrayList<PolaganjeIspitaDTO>());
+////		}
+//		
+//		
+//		
+//		System.out.println(studentDTO.getFinansijskaKarticaDTO().getId());
+//		
+//		student.setStudijskaGodina(new HashSet<>(new StudijskaGodinaMapper().listDtoToModel(studentDTO.getStudijskeGodineDTO())));
+//		student.setDokumenti(new HashSet<>(new DokumentMapper().listDtoToModel(studentDTO.getDokumentiDTO())));
+//		student.setFinansijskaKartica(finansijskaKarticaService.findOne(studentDTO.getFinansijskaKarticaDTO().getId()));
+//		student.setPohadjanjePredmeta(new HashSet<>(new PohadjanjePredmetaMapper().listDtoToModel(studentDTO.getPohadjanjaPredmetaDTO())));
+//		student.setKorisnik(korisnikService.findOne(studentDTO.getKorisnik().getId()));
+//		student.setPolaganjeIspita(new HashSet<>(new PolaganjeIspitaMapper().listDtoToModel(studentDTO.getPolaganjeIspita())));
+//		
+//		student = studentService.save(student);
+//		return new ResponseEntity<>(new StudentMapper().modelToDto(student), HttpStatus.OK);	
+//	}
+	
+	
+	
 	@RequestMapping(method=RequestMethod.PUT, consumes="application/json")
 	public ResponseEntity<StudentDTO> updateStudent(@RequestBody StudentDTO studentDTO){
 		
@@ -269,31 +308,25 @@ public class StudentController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		
-		student.setIme(studentDTO.getIme());
-		student.setPrezime(studentDTO.getPrezime());
-		student.setIndeks(studentDTO.getIndeks());
-		student.setEmail(studentDTO.getEmail());
-		student.setActive(studentDTO.isActive());
+		studentRepo.izmenaStudenta(studentDTO.getEmail(), studentDTO.getIme(),
+				studentDTO.getIndeks(), studentDTO.getPrezime(), studentDTO.getId());
 		
-//		if(studentDTO.getPolaganjeIspita() == null) {
-//			System.out.println("Polaganje je null");
-//			studentDTO.setPolaganjeIspita(new ArrayList<PolaganjeIspitaDTO>());
-//		}
+		Korisnik korisnik = korisnikService.findOne(studentDTO.getKorisnik().getId());
+		if (korisnik == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		korisnik.setKorisnickoIme(studentDTO.getKorisnik().getKorisnickoIme());
+		korisnik.setLozinka(studentDTO.getKorisnik().getLozinka());
+		korisnik.setUloga(Uloga.STUDENT);
+//		korisnik.setStudent(studentService.findOne(korisnikDTO.getStudent().getId()));
+		korisnik.setStudent(studentService.findOne(studentDTO.getId()));
 		
+		korisnik = korisnikService.save(korisnik);
 		
+		return new ResponseEntity<>(studentDTO, HttpStatus.OK);
 		
-		System.out.println(studentDTO.getFinansijskaKarticaDTO().getId());
-		
-		student.setStudijskaGodina(new HashSet<>(new StudijskaGodinaMapper().listDtoToModel(studentDTO.getStudijskeGodineDTO())));
-		student.setDokumenti(new HashSet<>(new DokumentMapper().listDtoToModel(studentDTO.getDokumentiDTO())));
-		student.setFinansijskaKartica(finansijskaKarticaService.findOne(studentDTO.getFinansijskaKarticaDTO().getId()));
-		student.setPohadjanjePredmeta(new HashSet<>(new PohadjanjePredmetaMapper().listDtoToModel(studentDTO.getPohadjanjaPredmetaDTO())));
-		student.setKorisnik(korisnikService.findOne(studentDTO.getKorisnik().getId()));
-		student.setPolaganjeIspita(new HashSet<>(new PolaganjeIspitaMapper().listDtoToModel(studentDTO.getPolaganjeIspita())));
-		
-		student = studentService.save(student);
-		return new ResponseEntity<>(new StudentMapper().modelToDto(student), HttpStatus.OK);	
 	}
+	
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteStudent(@PathVariable Long id){
