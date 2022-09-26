@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.ftn.eObrazovanjee.model.FinansijskaKartica;
 import com.ftn.eObrazovanjee.model.Ispit;
+import com.ftn.eObrazovanjee.model.Student;
 import com.ftn.eObrazovanjee.repository.FinansijskaKarticaRepository;
 
 @Service
@@ -31,6 +32,10 @@ public class FinansijskaKarticaService {
 
 	public void delete (Long id) {
 		finansijskaKarticaRepository.deleteById(id);
+	}
+	
+	public void deleteStudent(Student student) {
+		finansijskaKarticaRepository.deleteByStudent(student);
 	}
 	
 	public Page<FinansijskaKartica> findAll(Pageable page) {

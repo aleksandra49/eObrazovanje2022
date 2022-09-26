@@ -300,7 +300,7 @@ public class StudentController {
 		Student student = studentService.findOne(id);
 		if (student != null){
 			
-//			deleteStudijskaGodina(((StudijskaGodinaDTO) student.getStudijskaGodina()).getId());
+	//		deleteStudijskaGodina(((StudijskaGodinaDTO) student.getStudijskaGodina()).getId());
 			deleteFinansijskaKartica(student.getFinansijskaKartica().getId());
 			deleteKorisnik(student.getKorisnik().getId());
 			
@@ -311,9 +311,24 @@ public class StudentController {
 			
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {		
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+//	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+//	public ResponseEntity<Void> deleteStudent(@PathVariable Long id){
+//		Student student = studentService.findOne(id);
+//		
+//		if (student != null){
+//			finansijskaKarticaService.deleteStudent(student);
+//			studijskaGodinaService.deleteStudent(student);
+//			studentService.remove(id);
+//			korisnikService.deleteStudent(student);
+//			return new ResponseEntity<>(HttpStatus.OK);
+//		} else {		
+//			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//		}
+//	}
 	
 	public Void deleteKorisnik(Long id){
 		Korisnik korisnik = korisnikService.findOne(id);

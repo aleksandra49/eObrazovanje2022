@@ -6,7 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.ftn.eObrazovanjee.model.Student;
 import com.ftn.eObrazovanjee.model.StudijskaGodina;
 
 
@@ -22,6 +24,9 @@ public interface StudijskaGodinaRepository extends JpaRepository<StudijskaGodina
 	//List<Object[]> StudijskaGodinaStudentaNative(@Param("studentId") Long studentId);
 
 	List<StudijskaGodina> findStudijskaGodinasByStudentId(Long studentId);
+
+	@Transactional
+	void deleteByStudent(Student student);
 	
 	
 

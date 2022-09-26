@@ -33,7 +33,7 @@
             <td>{{ student.email }}</td>
             
 
-      <td class="h5"><button  *ngIf="uloga === 'ADMIN'" type="button" class="btn btn-primary" (click)="delete(student.id)">Obrisi</button></td>
+      <td class="h5"><button  *ngIf="uloga === 'ADMIN'" type="button" class="btn btn-primary" (click)="delete(student.id)" (click)="goToOnRightRoute('student')">Obrisi</button></td>
       <td class="h5"><button  *ngIf="uloga === 'ADMIN'" type="button" class="btn btn-primary" (click)="goToOnRightRoute('addStudGodinu')">Dodaj</button></td>
             
           </tr>

@@ -59,6 +59,10 @@ public class KorisnikService {
 		
 	}
 	
+	public void deleteStudent(Student student) {
+		repository.deleteByStudent(student);
+	}
+	
 	
 	public void remove(Long id){
 		repository.deleteById(id);

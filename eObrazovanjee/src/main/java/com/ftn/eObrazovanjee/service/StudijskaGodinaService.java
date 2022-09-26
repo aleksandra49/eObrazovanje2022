@@ -42,6 +42,10 @@ public class StudijskaGodinaService {
 		return studijskaGodinaRepository.save(studijskaGodina);
 	}
 	
+	public void deleteStudent(Student student) {
+		studijskaGodinaRepository.deleteByStudent(student);
+	}
+	
 	public void remove(Long id){
 		studijskaGodinaRepository.deleteById(id);
 	}

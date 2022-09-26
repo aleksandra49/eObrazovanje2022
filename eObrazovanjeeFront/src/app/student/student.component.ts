@@ -14,6 +14,7 @@ export class StudentComponent implements OnInit {
   idStudenta: any;
   idProfesora: any;
   studenti: Student[] | null = [];
+  showError = false;
   //studenti: Student[] = [];
 
   constructor(private studentService: StudentService, private router: Router) {
@@ -76,8 +77,14 @@ export class StudentComponent implements OnInit {
 
   delete(id: number): void {
     this.studentService.delete(id).subscribe(
-      () => this.getStudenti()
+      () =>   this.router.navigateByUrl("/student")
+      
     );
+    this.reloadPage();
+  }
+
+  reloadPage(): void {
+    window.location.reload();
   }
 
  
