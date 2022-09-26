@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.ftn.eObrazovanjee.model.PolaganjeIspita;
 import com.ftn.eObrazovanjee.model.PredavanjePredmeta;
+import com.ftn.eObrazovanjee.model.Profesor;
 import com.ftn.eObrazovanjee.repository.PredavanjePredmetaRepository;
 
 
@@ -35,6 +36,10 @@ public class PredavanjePredmetaServiceImpl  {
 	
 	public void remove(Long id){
 		repository.deleteById(id);
+	}
+	
+	public void deleteProfesor(Profesor profesor){
+		repository.deleteByProfesor(profesor);
 	}
 	
 	public Page<PredavanjePredmeta> findAll(Pageable page) {

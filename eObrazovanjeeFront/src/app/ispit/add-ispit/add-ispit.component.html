@@ -1,39 +1,36 @@
 <div
 class="col-md-8 offset-md-2"
 >
+<h2 class="display-4 text-center">Dodaj Ispit</h2>
   <div class="form-row">
     <div class="col-md-5 offset-md-3">
       <label for="inputNaziv">Naziv</label>
       <input [(ngModel)]="ispit.naziv" type="naziv" class="form-control" id="inputNaziv" placeholder="naziv">
     </div>
-    <div class="col-md-5 offset-md-3">
-      <label for="datumVreme">Datum i vreme</label>
-       <!-- <input [(ngModel)]="ispit.datumVreme" type="datumVreme" class="form-control" id="inputDatumVreme" placeholder="datum"> -->
 
-       <input type="date" [(ngModel)]="datumVreme" id="datumVreme" />
-
-
-
+    <div class="col-md-2 offset-md-3">
+      <label for="inputNaziv">Datum i vreme</label>
     </div>
-<div class="col-md-5 offset-md-3">
-  <label for="datumVreme">Izaberite predmet</label>
-</div>
-    <div class="col-md-5 offset-md-3">
-      <!-- <select class="form-select" aria-label="Default select">
-        <option *ngFor="let n of predmeti">{{n.naziv}}</option>
-      </select> -->
+    <div class="col-md-2 offset-md-3">
+      <input type="date" [(ngModel)]="datumVreme" id="datumVreme" />
+    </div>
 
-      <select [(ngModel)]="selectedPredmet"
+    <div class="col-md-2 offset-md-3">
+      <label for="datumVreme">Izaberite predmet</label>
+    </div>
+    <div class="col-md-2 offset-md-3">
+      <select class="col-md-2 offset-md-3" [(ngModel)]="selectedPredmet"
         aria-label="Default select"
         class="col-md-5 offset-md-3 form-select"
         (ngModelChange)="onChangePredmet($event)">
         <option [ngValue]="p" *ngFor="let p of predmeti">{{p.naziv}}</option>
       </select>
     </div>
-    <div class="col-md-5 offset-md-3">
+
+    <div class="col-md-2 offset-md-3">
       <label for="datumVreme">Izaberite ispitni rok</label>
     </div>
-    <div class="col-md-5 offset-md-3">
+    <div class="col-md-2 offset-md-3">
       <!-- <select class="form-select" aria-label="Default select">
         <option *ngFor="let i of ispitniRokovi">{{i.nazivRoka}}</option>
       </select> -->
@@ -46,6 +43,8 @@ class="col-md-8 offset-md-2"
       </select>
     </div>
   </div>
+
+  <br>
 
   <div class="col-md-5 offset-md-3">
   <button type="submit" class="btn btn-primary"

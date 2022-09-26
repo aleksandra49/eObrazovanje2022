@@ -32,6 +32,7 @@ import com.ftn.eObrazovanjee.model.Korisnik;
 import com.ftn.eObrazovanjee.model.PredavanjePredmeta;
 import com.ftn.eObrazovanjee.model.Profesor;
 import com.ftn.eObrazovanjee.model.Uloga;
+import com.ftn.eObrazovanjee.repository.KorisnikRepository;
 import com.ftn.eObrazovanjee.repository.ProfesorRepository;
 import com.ftn.eObrazovanjee.security.SecurityConfiguration;
 import com.ftn.eObrazovanjee.service.KorisnikService;
@@ -55,6 +56,9 @@ public class ProfesorController {
 	
 	@Autowired
 	private ProfesorRepository repository;
+	
+	@Autowired
+	private KorisnikRepository korisnikRepository;
 	
 	@Autowired
 	private KorisnikMapper korisnikMapper;
@@ -137,40 +141,74 @@ public class ProfesorController {
 		return new ResponseEntity<>(new ProfesorMapper().modelToDto(profesor), HttpStatus.CREATED);	
 	}
 	
+//	@RequestMapping(method=RequestMethod.PUT, consumes="application/json")
+//	public ResponseEntity<ProfesorDTO> updateProfesor(@RequestBody ProfesorDTO profesorDTO){
+//		System.out.println("udje u metodu");
+//		
+//		Korisnik korisnik = new Korisnik();
+//		Profesor profesor = repository.getById(profesorDTO.getId()); 
+//		if (profesor == null) {
+//			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//		}
+//		System.out.println("nadje profesora");
+//		profesor.setIme(profesorDTO.getIme());
+//		profesor.setPrezime(profesorDTO.getPrezime());
+//		profesor.setEmail(profesorDTO.getEmail());
+//
+//		Korisnik korisnik1 = new Korisnik();
+//		korisnik1.setKorisnickoIme(profesorDTO.getKorisnik().getKorisnickoIme());
+//		korisnik1.setLozinka(configuration.passwordEncoder().encode(profesorDTO.getKorisnik().getLozinka()));
+//		korisnik1.setUloga(Uloga.PROFESOR);
+//		
+//		profesor.setKorisnik(korisnik1);
+//		profesor.setPredavanja(new HashSet<>(new PredavanjePredmetaMapper().listDtoToModel(profesorDTO.getPredavanja())));
+//		System.out.println("nadjeni korisnik je ======" + profesor);
+//		
+//		Long korisnikId = profesorDTO.getKorisnik().getId();
+//		Long profesorId = profesorDTO.getId();
+//		
+//		profesorService.remove(profesorId);
+//		korisnikService.remove(korisnikId);
+//
+//		
+//		korisnik = korisnikService.save(korisnik1);
+//		profesor = profesorService.save(profesor);
+//		return new ResponseEntity<>(new ProfesorMapper().modelToDto(profesor), HttpStatus.OK);	
+//	}
+	
+//	Korisnik korisnik = korisnikService.findOne(korisnikDTO.getId()); 
+//	if (korisnik == null) {
+//		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//	}
+//	
+//	korisnik.setKorisnickoIme(korisnikDTO.getKorisnickoIme());
+//	korisnik.setLozinka(korisnikDTO.getLozinka());
+//	korisnik.setUloga(korisnikDTO.getUloga());
+//	korisnik.setStudent(studentService.findOne(korisnikDTO.getStudent().getId()));
+//	korisnik.setProfesor(profesorService.findOne(korisnikDTO.getProfesor().getId()));
+//	
+//	korisnik = korisnikService.save(korisnik);
+	
 	@RequestMapping(method=RequestMethod.PUT, consumes="application/json")
 	public ResponseEntity<ProfesorDTO> updateProfesor(@RequestBody ProfesorDTO profesorDTO){
-		System.out.println("udje u metodu");
-		
-		Korisnik korisnik = new Korisnik();
-		Profesor profesor = repository.getById(profesorDTO.getId()); 
-		if (profesor == null) {
+	
+		repository.izmenaProfesora(profesorDTO.getEmail(),profesorDTO.getIme(), profesorDTO.getPrezime(),profesorDTO.getId());
+	//	korisnikRepository.izmenaKorisnika(profesorDTO.getKorisnik().getKorisnickoIme(), profesorDTO.getKorisnik().getLozinka(), profesorDTO.getKorisnik().getId());
+		Korisnik korisnik = korisnikService.findOne(profesorDTO.getKorisnik().getId());
+		if (korisnik == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		System.out.println("nadje profesora");
-		profesor.setIme(profesorDTO.getIme());
-		profesor.setPrezime(profesorDTO.getPrezime());
-		profesor.setEmail(profesorDTO.getEmail());
-
-		Korisnik korisnik1 = new Korisnik();
-		korisnik1.setKorisnickoIme(profesorDTO.getKorisnik().getKorisnickoIme());
-		korisnik1.setLozinka(configuration.passwordEncoder().encode(profesorDTO.getKorisnik().getLozinka()));
-		korisnik1.setUloga(Uloga.PROFESOR);
+		korisnik.setKorisnickoIme(profesorDTO.getKorisnik().getKorisnickoIme());
+		korisnik.setLozinka(profesorDTO.getKorisnik().getLozinka());
+		korisnik.setUloga(Uloga.PROFESOR);
+//		korisnik.setStudent(studentService.findOne(korisnikDTO.getStudent().getId()));
+		korisnik.setProfesor(profesorService.findOne(profesorDTO.getId()));
 		
-		profesor.setKorisnik(korisnik1);
-		profesor.setPredavanja(new HashSet<>(new PredavanjePredmetaMapper().listDtoToModel(profesorDTO.getPredavanja())));
-		System.out.println("nadjeni korisnik je ======" + profesor);
+		korisnik = korisnikService.save(korisnik);
 		
-		Long korisnikId = profesorDTO.getKorisnik().getId();
-		Long profesorId = profesorDTO.getId();
-		
-		profesorService.remove(profesorId);
-		korisnikService.remove(korisnikId);
-
-		
-		korisnik = korisnikService.save(korisnik1);
-		profesor = profesorService.save(profesor);
-		return new ResponseEntity<>(new ProfesorMapper().modelToDto(profesor), HttpStatus.OK);	
+		return new ResponseEntity<>(profesorDTO, HttpStatus.OK);
 	}
+	
 	//all
 	@RequestMapping(value="/all", method = RequestMethod.GET)
 	public ResponseEntity<List<ProfesorDTO>> getAllProfesori() {
@@ -208,6 +246,7 @@ public class ProfesorController {
 	 public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
 		 Profesor profesor = profesorService.findOne(id);
 			if (profesor != null){
+				predavanjePredmetaService.deleteProfesor(profesor);
 				profesorService.remove(id);
 				deleteKorisnik(profesor.getKorisnik().getId());
 				
