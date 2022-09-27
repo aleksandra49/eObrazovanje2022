@@ -332,6 +332,9 @@ public class IspitController {
 			for(DeoIspita deo : ispit.getDeoIspita()) {
 				deleteDeoIspita(deo.getId());
 			}
+			for(PolaganjeIspita deo : ispit.getPolaganjeIspita()) {
+				deletePolaganjeIspita(deo.getId());
+			}
 			
 			ispitService.remove(id);
 			return new ResponseEntity<>(HttpStatus.OK);
@@ -344,6 +347,14 @@ public class IspitController {
 		DeoIspita deoIspita = deoIspitaService.findOne(id);
 		if (deoIspita != null){
 			deoIspitaService.remove(id);
+		}
+		return null;
+	}
+	
+	public Void deletePolaganjeIspita(Long id){
+		PolaganjeIspita deoIspita = polaganjeIspitaService.findOne(id);
+		if (deoIspita != null){
+			polaganjeIspitaService.remove(id);
 		}
 		return null;
 	}

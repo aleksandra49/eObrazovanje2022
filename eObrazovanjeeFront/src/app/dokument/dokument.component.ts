@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Dokument } from '../model/dokument.model';
 import { Student } from '../model/student.model';
+import { StudentService } from '../student/student.service';
 import { DokumentService } from './dokument.service';
 
 @Component({
@@ -12,14 +13,50 @@ import { DokumentService } from './dokument.service';
 export class DokumentComponent implements OnInit {
 
   dokumenti: Dokument[] | null = [];
+  uloga: any = null;
+  idStudenta: any;
+  idProfesora: any;
   //dokumenti: Dokument[] = [];
 
-  constructor(private dokumentService: DokumentService, private router: Router) {
+  constructor(private dokumentService: DokumentService,
+     private router: Router,
+     private studentService: StudentService) {
     
   }
 
   ngOnInit(): void {
     this.getDokumenti();
+
+    console.log('uloga', this.uloga);
+    if(this.uloga =="STUDENT"){
+        this.studentService.sendUloga.subscribe((data: any) => {
+          console.log('sendUloga', data);
+          const { uloga, id } = data;
+          this.uloga = uloga;
+          this.idStudenta = id;
+        })
+  
+      }
+  
+      if(this.uloga =="PROFESOR"){
+        this.studentService.sendUloga.subscribe((data: any) => {
+          console.log('sendUloga', data);
+          const { uloga, id } = data;
+          this.uloga = uloga;
+          this.idProfesora = id;
+        })
+  
+      }
+      if(this.uloga =="ADMIN"){
+        this.studentService.sendUloga.subscribe((data: any) => {
+          console.log('sendUloga', data);
+          const { uloga, id } = data;
+          this.uloga = uloga;
+          this.idProfesora = id;
+        })
+  
+      }
+
   }
 
   getDokumenti() {
