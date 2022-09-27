@@ -17,7 +17,7 @@
                 <td>{{ir.nazivPredmeta}}</td>
                 <td>{{ir.datumIVremeRoka}}</td>
                 <td>{{ir.nazivRoka}}</td>
-                <td class="h5"><button type="button" class="btn btn-primary" 
+                <td class="h5"><button type="button" class="btn btn-primary" [routerLink]="['/ispitniRokovi']"
                     (click)="prijaviIspit(ir.ispitId, studentId)">prijavi ispit</button></td>
         
 

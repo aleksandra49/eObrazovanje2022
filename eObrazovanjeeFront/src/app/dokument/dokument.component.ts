@@ -27,6 +27,10 @@ export class DokumentComponent implements OnInit {
   ngOnInit(): void {
     this.getDokumenti();
 
+    this.uloga = localStorage.getItem('uloga');
+    this.idStudenta = localStorage.getItem('studentID');
+    this.idProfesora = localStorage.getItem('profesorID');
+
     console.log('uloga', this.uloga);
     if(this.uloga =="STUDENT"){
         this.studentService.sendUloga.subscribe((data: any) => {
