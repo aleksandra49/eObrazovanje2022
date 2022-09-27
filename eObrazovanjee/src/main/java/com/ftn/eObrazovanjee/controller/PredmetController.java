@@ -27,14 +27,20 @@ import com.ftn.eObrazovanjee.mapper.PredmetInstancaMapper;
 import com.ftn.eObrazovanjee.mapper.PredmetMapper;
 import com.ftn.eObrazovanjee.model.DeoIspita;
 import com.ftn.eObrazovanjee.model.Ispit;
+import com.ftn.eObrazovanjee.model.PohadjanjePredmeta;
+import com.ftn.eObrazovanjee.model.PolaganjeIspita;
+import com.ftn.eObrazovanjee.model.PredavanjePredmeta;
 import com.ftn.eObrazovanjee.model.Predmet;
 import com.ftn.eObrazovanjee.model.PredmetInstanca;
 import com.ftn.eObrazovanjee.model.Profesor;
 import com.ftn.eObrazovanjee.model.Student;
 import com.ftn.eObrazovanjee.repository.PredmetRepository;
+import com.ftn.eObrazovanjee.service.PohadjanjePredmetaService;
+import com.ftn.eObrazovanjee.service.PredavanjePredmetaServiceImpl;
 import com.ftn.eObrazovanjee.service.PredmetInstancaServiceImpl;
 import com.ftn.eObrazovanjee.service.PredmetServiceImpl;
 import com.ftn.eObrazovanjee.service.ProfesorServiceImpl;
+import com.ftn.eObrazovanjee.service.StudentService;
 
 
 
@@ -61,6 +67,14 @@ public class PredmetController {
 	@Autowired
 	private PredmetInstancaServiceImpl predmetInstancaService;
 	
+	@Autowired
+	private PredavanjePredmetaServiceImpl predServ;
+	
+	@Autowired
+    private StudentService studentService;
+	
+	@Autowired
+	private PohadjanjePredmetaService pohServ;
 	
 	
 	
@@ -92,6 +106,16 @@ public class PredmetController {
 		try {
 			Predmet predmet = predmetService.findOne((long) predmetId);
 			Profesor profesor = profesorService.findOne((long) profesorId);
+			
+//			Boolean provera = false;
+			List<PredavanjePredmeta> predavanja = predServ.findAll();
+			
+			for(PredavanjePredmeta pred : predavanja) {
+				if(pred.getProfesor().getId() == profesor.getId() && pred.getInstanca().getId() == predmet.getId()) {
+//					provera = true;
+					return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+				}
+			}
 
 			predmetRepository.dodavanjeProfesoraNaPredmet(predmetId,profesorId);
 			
@@ -104,8 +128,18 @@ public class PredmetController {
 	@RequestMapping(value ="/dodavanjeStudenta", method=RequestMethod.POST)
 	public ResponseEntity<?> DodavanjeSNaPredmet(@RequestParam Long predmetId, @RequestParam Long studentId){
 		try {
-			Predmet predmet = predmetService.findOne((long) predmetId);
-
+			PredmetInstanca predmet = predmetInstancaService.findOne((long) predmetId);
+			Student student = studentService.findOne(studentId);
+			
+			List<PohadjanjePredmeta> pohadjanja = pohServ.findAll();
+			
+			for(PohadjanjePredmeta poh : pohadjanja) {
+				if(poh.getStudent().getId() == student.getId() && poh.getPredmetInstanca().getId() == predmet.getId()) {
+//					provera = true;
+					return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+				}
+			}
+			
 			predmetRepository.dodavanjeStudentaNaPredmet(predmetId, studentId);
 			
 			return new ResponseEntity<>(HttpStatus.OK);
