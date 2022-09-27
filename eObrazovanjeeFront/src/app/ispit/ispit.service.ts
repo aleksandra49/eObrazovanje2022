@@ -17,10 +17,12 @@ export class IspitService {
     constructor(private http: HttpClient) { }
 
 
-    getIspitiZaOcenjivanje():Observable<HttpResponse<IspitiZaOcenjivanje[]>>  {
-        const url = `${this.ispitiUrl+ "/ispitiZaOcenjivanje"}`;
+    getIspitiZaOcenjivanje(profesorId:number):Observable<HttpResponse<IspitiZaOcenjivanje[]>>  {
+        const url = `${this.ispitiUrl+ "/ispitiZaOcenjivanje"}/${profesorId}`;
+
         return this.http.get<IspitiZaOcenjivanje[]>(url, {observe: 'response'});
     }
+    
     getIstorijaPolaganja(studentId:number):Observable<HttpResponse<IstorijaPolaganja[]>>  {
         const url = `${this.ispitiUrl+ "/istorijaPolaganja"}`;
         const params = new HttpParams().append("idStudenta", studentId);

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IspitiZaOcenjivanje } from 'src/app/model/ispitZaOcenjivanje';
 import { IspitService } from '../ispit.service';
 
@@ -10,7 +11,8 @@ import { IspitService } from '../ispit.service';
 export class IspitiOcenjivanjeComponent implements OnInit {
   
   ispitiZaOcenjivanje: IspitiZaOcenjivanje[] | null = [];
-
+  id: string | null | undefined;
+  idProfesora: any;
 
    studentIme = '';
    studentPrezime = '';
@@ -19,7 +21,10 @@ export class IspitiOcenjivanjeComponent implements OnInit {
    datumIspita= '';
 
 
-  constructor(private ispitService: IspitService) { }
+  constructor(
+    private ispitService: IspitService,
+    private router: Router, 
+    private route: ActivatedRoute) { }
 
   ispitZaOcenjivanje: IspitiZaOcenjivanje = new IspitiZaOcenjivanje({
    
@@ -35,10 +40,12 @@ export class IspitiOcenjivanjeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getIspitiZaOcenjivanje();
+    this.id = this.route.snapshot.paramMap.get('id');
   }
 
   getIspitiZaOcenjivanje() {
-    this.ispitService.getIspitiZaOcenjivanje().subscribe(res =>
+    this.idProfesora = localStorage.getItem('profesorID');
+    this.ispitService.getIspitiZaOcenjivanje(Number(this.idProfesora)).subscribe(res =>
       this.ispitiZaOcenjivanje = res.body);
   }
 

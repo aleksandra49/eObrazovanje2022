@@ -87,9 +87,9 @@ public class IspitService {
 		return response;
 	}
 	
-	public List<IspitiZaOcenjivanjeDTO> pronadjiIspiteZaOcenjivanjeNative() throws Exception {
+	public List<IspitiZaOcenjivanjeDTO> pronadjiIspiteZaOcenjivanjeNative(Long id) throws Exception {
 
-		List<Object[]> nativeResponse = repository.pronadjiIspiteZaOcenjivanjeNative();
+		List<Object[]> nativeResponse = repository.pronadjiIspiteZaOcenjivanjeNative(id);
 		List<IspitiZaOcenjivanjeDTO> response = new ArrayList<IspitiZaOcenjivanjeDTO>();
 		for(Object[] obj:nativeResponse) {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");

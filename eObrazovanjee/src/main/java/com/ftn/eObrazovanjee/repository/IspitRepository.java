@@ -36,11 +36,13 @@ public interface IspitRepository extends JpaRepository<Ispit, Long>  {
 			+ "where (pi.student_id = :studentId and pi.broj_bodova is null)" , nativeQuery = true)
 	List<Object[]> pronadjiPrijavljeneIspiteNative(@Param("studentId") int studentId);;
 	
-	@Query(value = "select s.ime, s.prezime,pi.id, i.naziv, i.datum_vreme from polaganje_ispita as pi\r\n"
-			+ "join ispit as i on i.id = pi.ispit_id\r\n"
-			+ "join student as s on s.id = pi.student_id\r\n"
-			+ "where pi.broj_bodova is null" , nativeQuery = true)
-	List<Object[]> pronadjiIspiteZaOcenjivanjeNative();;
+	@Query(value = "select s.ime, s.prezime,pi.id, i.naziv, i.datum_vreme from polaganje_ispita as pi \r\n"
+			+ "join ispit as i on i.id = pi.ispit_id \r\n"
+			+ "inner join predavanja as pr on i.predmet_instanca_id = pr.predmet_instanca_id\r\n"
+			+ "join predmet as p on i.predmet_instanca_id = p.id\r\n"
+			+ "join student as s on s.id = pi.student_id \r\n"
+			+ "where (pi.broj_bodova is null) and (pr.profesor_id = :profesorId)" , nativeQuery = true)
+	List<Object[]> pronadjiIspiteZaOcenjivanjeNative(@Param("profesorId") Long id);;
 
 	@Query(value = "select s.ime, s.prezime, i.naziv, pi.broj_bodova, i.datum_vreme, pi.ispit_id, pi.student_id from polaganje_ispita as pi\r\n" + 
 			"join ispit as i on i.id = pi.ispit_id\r\n" + 

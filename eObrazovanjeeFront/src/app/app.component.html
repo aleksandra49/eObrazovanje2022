@@ -30,7 +30,7 @@
     <li *ngIf="uloga === 'PROFESOR'" [ngbNavItem]="6" (click)="goToOnRightRouteParams('predmet', idProfesora)">
       <a ngbNavLink>Predmeti </a>
     </li>
-    <li *ngIf="uloga === 'PROFESOR'" [ngbNavItem]="6" (click)="goToOnRightRoute('ocenjivanjeIspita')">
+    <li *ngIf="uloga === 'PROFESOR'" [ngbNavItem]="6" (click)="goToOnRightRouteParams('ocenjivanjeIspita', idProfesora)">
       <a ngbNavLink>Ocenjivanje </a>
     </li>
     <li *ngIf="uloga === 'ADMIN'"[ngbNavItem]="7" (click)="goToOnRightRoute('predmeti')">

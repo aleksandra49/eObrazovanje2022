@@ -247,10 +247,11 @@ public class IspitController {
 	}
 	
 	//drugi nacin
-	@GetMapping("/ispitiZaOcenjivanje")
-	public ResponseEntity<?> pronadjiIspiteZaOcenjivanje(){
+//	@GetMapping("/ispitiZaOcenjivanje/{id}")
+	@RequestMapping(value="/ispitiZaOcenjivanje/{id}", method=RequestMethod.GET)
+	public ResponseEntity<?> pronadjiIspiteZaOcenjivanje(@PathVariable Long id){
 		try {
-			List<IspitiZaOcenjivanjeDTO> response = ispitService.pronadjiIspiteZaOcenjivanjeNative();
+			List<IspitiZaOcenjivanjeDTO> response = ispitService.pronadjiIspiteZaOcenjivanjeNative(id);
 			
 			return new ResponseEntity<List<IspitiZaOcenjivanjeDTO>>(response, HttpStatus.OK);
 		}catch(Exception e) {

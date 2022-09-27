@@ -64,7 +64,7 @@ const routes: Routes = [
   { path: 'editIspit', component: EditIspitComponent },
   { path: 'prijavaIspita/:id', component: PrijavaIspitComponent },
   { path: 'listaPrijavljenihIspita', component: PrijavljeniIspitiComponent },
-  { path: 'ocenjivanjeIspita', component: IspitiOcenjivanjeComponent },
+  { path: 'ocenjivanjeIspita/:id', component: IspitiOcenjivanjeComponent },
   { path: 'istorijaPolaganja/:id', component: IstorijaPolaganjaComponent },
 
 
