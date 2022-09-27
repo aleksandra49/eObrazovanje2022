@@ -33,7 +33,7 @@ export class PrijavljeniIspitiComponent implements OnInit {
   }
 
   odjavaIspita(prijavljenIspitId: number): void {
-    this.ispitService.odjavaIspita(prijavljenIspitId).subscribe(
+    this.ispitService.odjavaIspita(prijavljenIspitId, this.idStudenta).subscribe(
       () => this.getPrijavljeniIspiti()
     );
   }

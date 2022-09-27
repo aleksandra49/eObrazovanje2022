@@ -209,11 +209,11 @@ public class IspitController {
 	}
 	
 	@RequestMapping(value ="/odjavaIspita", method=RequestMethod.DELETE)
-	public ResponseEntity<?> OdjavaIspita(@RequestParam Long prijavljenIspitId){
+	public ResponseEntity<?> OdjavaIspita(@RequestParam Long prijavljenIspitId,@RequestParam Long idStudenta){
 		try {			
-			
-//			povracajOdjave(student);
-//			saveTransakcija(student.getFinansijskaKartica(), +200);
+			Student student = studentService.findOne(idStudenta);
+			povracajOdjave(student);
+			saveTransakcija(student.getFinansijskaKartica(), +200, student.getId());
 			
 			ispitRepository.odjaviIspitNative(prijavljenIspitId);
 			return new ResponseEntity<>(HttpStatus.OK);

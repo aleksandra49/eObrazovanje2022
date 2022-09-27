@@ -35,11 +35,11 @@ export class IspitService {
 
         return this.http.get<PrijavljeniIspiti[]>(url, {observe: 'response', params});
       }
-
-    odjavaIspita(prijavljenIspitId: number): Observable<HttpResponse<any>> {
+//localhost:8080/api/ispit/odjavaIspita?prijavljenIspitId=1&idStudenta=2
+    odjavaIspita(prijavljenIspitId: number,idStudenta: number): Observable<HttpResponse<any>> {
         const url = `${this.ispitiUrl+ "/odjavaIspita"}`;
         const params = new HttpParams().append("prijavljenIspitId", prijavljenIspitId);
-        return this.http.delete<any>(url, {observe: 'response', params});
+        return this.http.delete<any>(`api/ispit/odjavaIspita?prijavljenIspitId=${prijavljenIspitId}&idStudenta=${idStudenta}`, {}) as any
     }
 
     getIspiti(): Observable<HttpResponse<any[]>> {
