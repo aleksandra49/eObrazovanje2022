@@ -14,6 +14,19 @@ public class IstorijaPolaganjaDTO {
 	private int ispitId;
 	private int studentId;
 	
+	
+	
+	public IstorijaPolaganjaDTO(String studentIme, String studentPrezime, String nazivPredmeta, Date datumVreme,
+			int ispitId, int studentId) {
+		super();
+		this.studentIme = studentIme;
+		this.studentPrezime = studentPrezime;
+		this.nazivPredmeta = nazivPredmeta;
+		this.datumVreme = datumVreme;
+		this.ispitId = ispitId;
+		this.studentId = studentId;
+	}
+
 	public IstorijaPolaganjaDTO(String studentIme, String studentPrezime, String nazivPredmeta, int brojBodova,
 			Date datumVreme, int ispitId, int studentId) {
 		super();

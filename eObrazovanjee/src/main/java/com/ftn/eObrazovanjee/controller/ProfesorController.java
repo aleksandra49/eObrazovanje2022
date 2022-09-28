@@ -131,7 +131,27 @@ public class ProfesorController {
 		// profesor.setKorisnik(korisnik1);
 		
 		//	profesor.setPredavanja(new HashSet<>(new PredavanjePredmetaMapper().listDtoToModel(profesorDTO.getPredavanja())));
+		List<Korisnik> korisnici = korisnikService.findAll();
+		Boolean slobodan = true;
+		for(Korisnik kor : korisnici) {
+			System.err.println(kor.getUsername());
+			System.err.println(profesorDTO.getKorisnik().getKorisnickoIme());
+			if(kor.getUsername().equals(profesorDTO.getKorisnik().getKorisnickoIme())) {
+			
+//			if(kor.getUsername() == username) {
+				System.err.println("falsed");
+				slobodan = false;
+			}
+		}
 		
+		if(slobodan == false) {
+			System.err.println("nije slobodan");
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		else {
+			System.err.println("slobodan");
+		
+		}
 		korisnik = korisnikService.save(korisnik1);
 		
 //		korisnikProba = korisnikService.findOne(korisnik1.getId());

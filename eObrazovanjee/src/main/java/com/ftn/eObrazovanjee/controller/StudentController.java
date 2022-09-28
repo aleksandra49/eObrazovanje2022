@@ -229,6 +229,7 @@ public class StudentController {
 		for(Korisnik kor : korisnici) {
 			if(kor.getUsername().equals(studentDTO.getKorisnik().getKorisnickoIme())) {
 				slobodan = false;
+				System.err.println("nije slobodan");
 			}
 		}
 		
