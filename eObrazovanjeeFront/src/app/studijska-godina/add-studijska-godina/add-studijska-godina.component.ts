@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Student } from 'src/app/model/student.model';
 import { StudijskaGodina } from 'src/app/model/studijskaGodina.model';
+import { StudentService } from 'src/app/student/student.service';
 import { StudijskaGodinaService } from '../studijska-godina.service';
 
 @Component({
@@ -8,19 +10,17 @@ import { StudijskaGodinaService } from '../studijska-godina.service';
   styleUrls: ['./add-studijska-godina.component.css']
 })
 export class AddStudijskaGodinaComponent implements OnInit {
-  //pocetakStudija = '';
-  pocetakStudija = '';
-  krajStudija = '';
+
   nacinFinansiranja = '';
   godinaStudija =  '';
   skolskaGodina = '';
-  /*nacinFinansiranja = [
-    {nacinFinansiranja: "samofinansiranje"},
-    {nacinFinansiranja: "buzdet"}
-  ];*/
-  
-
-constructor(private studGodinaService: StudijskaGodinaService) { }
+  studentId: any;
+  studenti: Student[] | null = [];
+  selectedStudent: any;
+constructor(
+  private studGodinaService: StudijskaGodinaService,
+  private studentService: StudentService
+  ) { }
 
 studijskaGodina: StudijskaGodina = new StudijskaGodina({
   id: 0,
@@ -29,30 +29,40 @@ studijskaGodina: StudijskaGodina = new StudijskaGodina({
   nacinFinansiranja : "samofinansiranje" ,
   godinaStudija: 0,
   skolskaGodina: 0,
+  studentId: 0
 });
 
 ngOnInit(): void {
+  this.getStudenti()
+}
+
+getStudenti() {
+  this.studentService.getStudenti().subscribe(res =>
+    this.studenti = res.body);
+}
+
+onChangeStudent(event: any) {
+  console.dir(event.id);
+  this.studentId = event.id;
 }
 
 onSubmit() {
-  console.log('pocetakStudija', this.pocetakStudija);
-  console.log('krajStudija', this.krajStudija);
+
   console.log('nacinFinansiranja', this.nacinFinansiranja);
   console.log('godinaStudija', this.godinaStudija);
   console.log('skolskaGodina', this.skolskaGodina);
 
   const obj = {
-    id: 0,
-    pocetakStudija: this.studijskaGodina.pocetakStudija,
-    krajStudija: this.studijskaGodina.krajStudija,
+
     nacinFinansiranja: this.studijskaGodina.nacinFinansiranja,
     godinaStudija: this.studijskaGodina.godinaStudija,
-    skolskaGodina: this.studijskaGodina.skolskaGodina
+    studentId: this.studentId
   }
+
 
   console.log('obj', obj);
 
-  this.studGodinaService.saveStudijskaGodina(this.studijskaGodina)
+  this.studGodinaService.saveStudijskaGodina(obj)
     .subscribe(() => {
       alert("Uspesno dodata studijska godina!")
     })

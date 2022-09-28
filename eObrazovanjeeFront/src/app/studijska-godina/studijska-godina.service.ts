@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { addStudijskaGodina } from "../model/addStudijskaGodina";
 import { StudijskaGodina } from "../model/studijskaGodina.model";
 
 @Injectable()
@@ -34,19 +35,9 @@ export class StudijskaGodinaService {
         return this.http.delete<any>(url, {observe: 'response'});
     }
 
-    saveStudijskaGodina(godina: StudijskaGodina): Observable<HttpResponse<any>> {
-        const url = `${this.studijskeGodineUrl}`;
 
-        /*const body = {
-            ime: 'Petar',
-            email: 'Medic',
-            prezime: '12345',
-            korisnik: {
-                id: 2,
-                korisnickoIme: 'micko333',
-                prezime: '123'
-            }
-        };*/
+    saveStudijskaGodina(godina: addStudijskaGodina): Observable<HttpResponse<any>> {
+        const url = `${this.studijskeGodineUrl+ "/dodajStudijskuGodinu"}`;
 
         return this.http.post<any>(url, godina , {observe: 'response'});
     }

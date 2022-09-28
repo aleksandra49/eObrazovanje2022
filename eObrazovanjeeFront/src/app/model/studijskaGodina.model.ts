@@ -9,6 +9,7 @@ export class StudijskaGodina implements StudijskaGodinaInterface{
 	public nacinFinansiranja: any; //enum
     public godinaStudija: number;
 	public skolskaGodina: number;
+	public studentId: number;
 	/*public student: Student;*/
 	
 		
@@ -20,6 +21,8 @@ export class StudijskaGodina implements StudijskaGodinaInterface{
 		this.nacinFinansiranja = studijskaGodinatCfg.nacinFinansiranja;	
         this.godinaStudija = studijskaGodinatCfg.godinaStudija;
 		this.skolskaGodina = studijskaGodinatCfg.skolskaGodina;	
+		this.studentId = studijskaGodinatCfg.studentId;	
+
 	}
 }
 
@@ -32,5 +35,6 @@ interface StudijskaGodinaInterface{
 	nacinFinansiranja: string;
     godinaStudija: number;
     skolskaGodina: number;
+	studentId: number
    /* student: Student;;*/
 }

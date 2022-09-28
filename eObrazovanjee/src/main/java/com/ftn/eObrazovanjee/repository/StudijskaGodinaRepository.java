@@ -18,7 +18,7 @@ public interface StudijskaGodinaRepository extends JpaRepository<StudijskaGodina
 	
 	@Query(value = "SELECT sg.id, sg.pocetak_studija, sg.kraj_studija, sg.nacin_finansiranja, sg.godina_studija, \r\n"
 			+ "sg.skolska_godina from studijska_godina as sg\r\n"
-			+ "join student as s on sg.id = s.id\r\n"
+			+ "join student as s on sg.student = s.id\r\n"
 			+ "where sg.student = :studentId"  , nativeQuery = true)
 	List<Object[]> StudijskaGodinaStudentaNative(@Param("studentId") Long studentId);
 	//List<Object[]> StudijskaGodinaStudentaNative(@Param("studentId") Long studentId);

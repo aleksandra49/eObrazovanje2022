@@ -1,5 +1,6 @@
 package com.ftn.eObrazovanjee.controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ftn.eObrazovanjee.dto.AddStudijskaGodina;
 import com.ftn.eObrazovanjee.dto.IspitDTO;
 import com.ftn.eObrazovanjee.dto.IstorijaTransakcijaDTO;
 import com.ftn.eObrazovanjee.dto.StudentDTO;
@@ -23,6 +25,7 @@ import com.ftn.eObrazovanjee.dto.StudijskaGodinaDTO;
 import com.ftn.eObrazovanjee.mapper.IspitMapper;
 import com.ftn.eObrazovanjee.mapper.StudentMapper;
 import com.ftn.eObrazovanjee.mapper.StudijskaGodinaMapper;
+import com.ftn.eObrazovanjee.model.Student;
 import com.ftn.eObrazovanjee.model.StudijskaGodina;
 import com.ftn.eObrazovanjee.service.StudentService;
 import com.ftn.eObrazovanjee.service.StudijskaGodinaService;
@@ -159,6 +162,29 @@ public class StudijskaGodinaController {
 		}catch(Exception e) {
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
+	}
+	
+	@RequestMapping(value="/dodajStudijskuGodinu", method = RequestMethod.POST)
+	public ResponseEntity<?> studijskaGodinaStudenta(@RequestBody AddStudijskaGodina studijskaGodina){
+		try {	
+			System.out.println(studijskaGodina.getStudentId());
+		Student student = studentService.findOne(studijskaGodina.getStudentId());
+		System.out.println("Pronadje studenta " + student);
+		StudijskaGodina sg = new StudijskaGodina(
+				LocalDate.now(),
+				LocalDate.now().plusYears(4),
+				studijskaGodina.getNacinFinansiranja(),
+				studijskaGodina.getGodinaStudija(),
+				2023,
+				//LocalDateTime.now().getYear(),
+				student
+		);
+		studijskaGodinaService.save(sg);
+		return new ResponseEntity<>(HttpStatus.OK);
+		}	catch(Exception e) {
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		
 	}
 
 }
