@@ -19,19 +19,9 @@ export class EditPohadanjePredmetaComponent implements OnInit {
 
   ngOnInit(): void {
      this.id = this.route.snapshot.paramMap.get('id');
-     this.getPohadjanjePredmeta();
+
   }
 
-  getPohadjanjePredmeta() {
-    this.pohadjanjePredmetaService.getPohadjanjePredmeta(Number(this.id)).subscribe(res =>
-      this.pohadjanjePredmeta = res.body);
-  }
-
-  edit(){
-    this.pohadjanjePredmetaService.editPohadjanjePredmeta(this.pohadjanjePredmeta).subscribe(
-      () => window.location.reload()
-    )
-  }
 
   
 

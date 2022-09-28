@@ -2,14 +2,18 @@ package com.ftn.eObrazovanjee.service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.ftn.eObrazovanjee.dto.ProfesorPredmetDTO;
 import com.ftn.eObrazovanjee.model.NacinFinansiranja;
+import com.ftn.eObrazovanjee.model.Profesor;
 import com.ftn.eObrazovanjee.model.Student;
 import com.ftn.eObrazovanjee.model.StudijskaGodina;
 import com.ftn.eObrazovanjee.repository.StudentRepository;
@@ -55,6 +59,24 @@ public class StudentService {
 
 	return student;
 }
+	public List<ProfesorPredmetDTO> pohadjanjePredmeta(int idStudenta) throws Exception {
+		// TODO Auto-generated method stub
+		Optional<Student> profesorOptional = studentRepository.findById((long) idStudenta);
+		if(!profesorOptional.isPresent()) {
+			throw new Exception("Student sa prosledjenim id-om ne postoji");
+		}
+		List<Object[]> nativeResponse = studentRepository.pronadjiPredmeteKojeStudentPohadjaNative(idStudenta);
+		List<ProfesorPredmetDTO> response = new ArrayList<ProfesorPredmetDTO>();
+		for(Object[] obj:nativeResponse) {
+			ProfesorPredmetDTO tmpObj = new ProfesorPredmetDTO(obj[0].toString(), obj[1].toString(),
+					Integer.parseInt(obj[2].toString()));
+			
+			response.add(tmpObj);
+		}
+		System.out.println(response);
+		return response;
+		
+	}
 
 	public void remove(Long id) {
 		studentRepository.deleteById(id);

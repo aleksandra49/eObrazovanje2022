@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,6 +26,7 @@ import com.ftn.eObrazovanjee.dto.KorisnikDTO;
 import com.ftn.eObrazovanjee.dto.PohadjanjePredmetaDTO;
 import com.ftn.eObrazovanjee.dto.PolaganjeIspitaDTO;
 import com.ftn.eObrazovanjee.dto.ProfesorDTO;
+import com.ftn.eObrazovanjee.dto.ProfesorPredmetDTO;
 import com.ftn.eObrazovanjee.dto.StudentDTO;
 import com.ftn.eObrazovanjee.dto.StudijskaGodinaDTO;
 import com.ftn.eObrazovanjee.mapper.DeoIspitaMapper;
@@ -345,6 +347,16 @@ public class StudentController {
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {		
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@GetMapping("/pohadjanja")
+	public ResponseEntity<?> Predavanje(@RequestParam("idStudenta") int idStudenta){
+		try {
+			List<ProfesorPredmetDTO> response = studentService.pohadjanjePredmeta(idStudenta);
+			return new ResponseEntity<List<ProfesorPredmetDTO>>(response, HttpStatus.OK);
+		}catch(Exception e) {
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
 	

@@ -83,7 +83,12 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['profesori']);// profesori
       }, (error) => {
         this.router.navigate(['login']);
+        alert("Niste uneli dobre kredencijale!");
+        this.reloadPage();
       })
+  }
+  reloadPage(): void {
+    window.location.reload();
   }
 
   login(form: NgForm): void {};

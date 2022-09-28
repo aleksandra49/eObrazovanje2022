@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PohadjanjePredmeta } from '../model/pohadjanjePredmeta.model';
+import { PredajePredmet } from '../model/predajePredmet';
+import { ProfesorService } from '../profesor/profesor.service';
 import { PohadjanjePredmetaService } from './pohadjanje-predmeta.service';
 
 @Component({
@@ -10,30 +12,26 @@ import { PohadjanjePredmetaService } from './pohadjanje-predmeta.service';
 })
 export class PohadjanjePredmetaComponent implements OnInit {
 
-  pohadjanjaPredmeta: PohadjanjePredmeta[] | null = [];
+  id: string | null | undefined;
+  pohadjaPredmet: PredajePredmet[] | null = [];
 
-  constructor(private pohadanjaService: PohadjanjePredmetaService, private router: Router) { }
+  constructor(
+    private router: Router, 
+    private pohService: PohadjanjePredmetaService,
+    private route: ActivatedRoute,
+    
+  ) { }
 
   ngOnInit(): void {
-    this.getPohadjanjaPredmeta();
+    this.id = this.route.snapshot.paramMap.get('id');
+
+    this.getPohadjanjaPredmet()
   }
 
-  getPohadjanjaPredmeta() {
-    this.pohadanjaService.getPohadjanjaPredmeta().subscribe(res =>
-      this.pohadjanjaPredmeta = res.body);
+
+  getPohadjanjaPredmet() {
+    this.pohService.getPohadjanjaPredmet(Number(this.id)).subscribe(res =>
+      this.pohadjaPredmet = res.body);
   }
-
-  goToOnRightRoute(val: string) {
-    console.log('val', val);
-
-    this.router.navigate([val]);
-  }
-   
-
-    delete(id: number): void {
-      this.pohadanjaService.delete(id).subscribe(
-        () => this.getPohadjanjaPredmeta()
-      );
-    }
 
 }

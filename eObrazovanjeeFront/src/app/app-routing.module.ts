@@ -90,6 +90,7 @@ const routes: Routes = [
   { path: 'addStudGodinu', component: AddStudijskaGodinaComponent },
 
 
+
   { path: 'deoIspita', component: DeoIspitaComponent },
   { path: 'addDeoIspita', component: AddDeoIspitaComponent },
   { path: 'editDeoIspita', component: EditDeoIspitaComponent },
@@ -111,7 +112,7 @@ const routes: Routes = [
   { path: 'addDokument', component: AddDokumentComponent },
   { path: 'editDokument', component: EditDokumentComponent },
 
-  { path: 'pohadjanje', component: PohadjanjePredmetaComponent },
+  { path: 'pohadjanja/:id', component: PohadjanjePredmetaComponent },
   { path: 'addPohadjanje', component: AddPohadanjePredmetaComponent },
   { path: 'editPohadjanje', component: EditPohadanjePredmetaComponent },
 

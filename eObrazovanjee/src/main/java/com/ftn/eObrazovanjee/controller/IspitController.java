@@ -164,6 +164,23 @@ public class IspitController {
 		return transakcija;	
 	}
 	
+	public Transakcija saveTransakcijaOdjava(FinansijskaKartica finansijskaKartica, int iznos, Long studentId ){		
+		Transakcija transakcija = new Transakcija();
+		
+		transakcija.setDatum(new Date());
+		transakcija.setSvrha("Odjava ispita");
+		transakcija.setPromenaStanja(iznos);
+		transakcija.setFinansijskaKartica(finansijskaKartica);
+		
+		transakcija = transakcijaService.save(transakcija);
+		Long transakcijaId = transakcija.getId();
+		transakcijaRepository.FinansijskaKarticaTransakcijeNative(studentId,transakcijaId);
+		
+		
+		
+		return transakcija;	
+	}
+	
 	public Boolean naplataPrijave(Student student){		
 		FinansijskaKartica finansijskaKartica = finansijskaKarticaService.findOne(student.getFinansijskaKartica().getId());
 		
@@ -213,7 +230,7 @@ public class IspitController {
 		try {			
 			Student student = studentService.findOne(idStudenta);
 			povracajOdjave(student);
-			saveTransakcija(student.getFinansijskaKartica(), +200, student.getId());
+			saveTransakcijaOdjava(student.getFinansijskaKartica(), +200, student.getId());
 			
 			ispitRepository.odjaviIspitNative(prijavljenIspitId);
 			return new ResponseEntity<>(HttpStatus.OK);

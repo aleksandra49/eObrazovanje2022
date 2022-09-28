@@ -53,11 +53,16 @@ export class AddProfNaPredmetComponent implements OnInit {
 
 
       this.predmetService.addProfesorNaPredmet(this.predmet.id, this.profesorId).subscribe(
-       () =>  
+       () =>  {
        alert("Usepsno dodat profesor!")
-      );
+       }, (error) => {
+        alert("Profesor je vec dodat na predmet!");
+        this.router.navigate(['predmeti']);
+      });
 
       
   }
-
+  reloadPage(): void {
+    window.location.reload();
+  }
 }

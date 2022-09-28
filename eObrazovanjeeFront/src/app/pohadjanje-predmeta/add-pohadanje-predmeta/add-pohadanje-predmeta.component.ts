@@ -25,15 +25,6 @@ pohadjanje: PohadjanjePredmeta = new PohadjanjePredmeta({
 ngOnInit(): void {
 }
 
-onSubmit() {
-  console.log('pocetak', this.pocetak);
-  console.log('kraj', this.kraj);
-  console.log('polozen', this.polozen);
 
-  this.pohadjanjeService.savePohadjanjaPredmeta(this.pohadjanje)
-    .subscribe(() => {
-      alert("Uspesno dodato pohadjanje!")
-    })
-}
 
 }

@@ -31,5 +31,12 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 			@Param("prezime") String prezime,
 			@Param("studentId") Long studentId);;
 	
+
+	@Query(value = "select p.oznaka, p.naziv, p.espb from pohadjanje_predmeta as pp\r\n"
+			+ "join predmetinstanca as pi on pi.id = pp.predmet_instanca\r\n"
+			+ "join predmet as p on pi.predmet_id = p.id\r\n"
+			+ "join student as stud on stud.id = :idStudenta" , nativeQuery = true)
+	List<Object[]> pronadjiPredmeteKojeStudentPohadjaNative(@Param("idStudenta") int idStudenta);;
+	
 	
 }

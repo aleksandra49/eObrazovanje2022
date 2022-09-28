@@ -27,17 +27,20 @@
     <li [ngbNavItem]="6" *ngIf="uloga === 'STUDENT'" (click)="goToOnRightRouteParams('finansijskaKartica', idStudenta)">
       <a ngbNavLink>Finansijska kartica </a>
     </li>
-    <li *ngIf="uloga === 'PROFESOR'" [ngbNavItem]="6" (click)="goToOnRightRouteParams('predmet', idProfesora)">
+    <li *ngIf="uloga === 'PROFESOR'" [ngbNavItem]="7" (click)="goToOnRightRouteParams('predmet', idProfesora)">
       <a ngbNavLink>Predmeti </a>
     </li>
-    <li *ngIf="uloga === 'PROFESOR'" [ngbNavItem]="6" (click)="goToOnRightRouteParams('ocenjivanjeIspita', idProfesora)">
+    <li *ngIf="uloga === 'PROFESOR'" [ngbNavItem]="8" (click)="goToOnRightRouteParams('ocenjivanjeIspita', idProfesora)">
       <a ngbNavLink>Ocenjivanje </a>
     </li>
-    <li *ngIf="uloga === 'ADMIN'"[ngbNavItem]="7" (click)="goToOnRightRoute('predmeti')">
+    <li *ngIf="uloga === 'ADMIN'"[ngbNavItem]="9" (click)="goToOnRightRoute('predmeti')">
       <a ngbNavLink>PREDMETI </a>
     </li>
-    <li *ngIf="uloga === 'STUDENT'" [ngbNavItem]="8" (click)="goToOnRightRouteParams('tokStudija' , idStudenta)">
+    <li *ngIf="uloga === 'STUDENT'" [ngbNavItem]="10" (click)="goToOnRightRouteParams('tokStudija' , idStudenta)">
       <a ngbNavLink>Studijska godina </a>
+    </li>
+    <li *ngIf="uloga === 'STUDENT'" [ngbNavItem]="11" (click)="goToOnRightRouteParams('pohadjanja' , idStudenta)">
+      <a ngbNavLink>Nastava </a>
     </li>
     <li ngbDropdown class="nav-item">
       <a href  *ngIf="uloga === 'STUDENT'" (click)="false" class="nav-link" ngbDropdownToggle>Predmeti</a>

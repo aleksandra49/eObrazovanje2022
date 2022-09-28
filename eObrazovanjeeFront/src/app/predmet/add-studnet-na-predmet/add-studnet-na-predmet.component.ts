@@ -49,9 +49,13 @@ export class AddStudnetNaPredmetComponent implements OnInit {
     console.log('lista studenata' + this.studenti);
 
     this.predmetService.addStudentNaPredmet(this.predmet.id, this.studentId).subscribe(
-      () =>  
-      alert("Uspesno dodat student na predmet!")
-     );
+      () =>{
+        alert("Usepsno dodat student!")
+        }, (error) => {
+         alert("Student je vec dodat na predmet!");
+         this.router.navigate(['predmeti']);
+       });
+ 
     
        /* this.profesorService.saveProfesor(this.profesor)
           .subscribe(() => {
